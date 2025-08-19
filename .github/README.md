@@ -1,6 +1,6 @@
 <h1 align="center">Daniel wambua - CV</h1>
 <p align="center">
-<a href="https://github.com/DanielWambua/cv"><img src="https://i.ibb.co/G4vGDwtD/cv-logo.png?" width="48" /><br /></a>
+<a href="https://github.com/Daniel-wambua/cv"><img src="https://i.ibb.co/G4vGDwtD/cv-logo.png?" width="48" /><br /></a>
 <i>This repo contains the source for my personal CV</i>
 <br />
 <i>A website (Svelte) and PDF (LaTeX) auto-built from jsonresume data</i>
@@ -140,21 +140,22 @@ No point in raising issues here. It works on my machine. Therefore I see no issu
 ---
   
 
-## Attributions
+## Attribution
+This project uses the following open-source libraries and resources:
 
-### Contributors
+- [Svelte](https://svelte.dev/)
+- [Marked](https://github.com/markedjs/marked)
+- [Font Awesome](https://fontawesome.com/)
 
-![Contributors](https://readme-contribs.as93.net/contributors/lissy93/cv)
-
-### Sponsors
-
-![Sponsors](https://readme-contribs.as93.net/sponsors/lissy93)
-
+## Contributors
+- [Daniel Wambua](https://github.com/Daniel-wambua)
+- [Alicia Sykes](https://github.com/lissy93)
+- [liss-bot](https://github.com/lissy93/liss-bot)
 ---
 
 ## License
 
-> _**[Lissy93/CV](https://github.com/Lissy93/cv)** is licensed under [MIT](https://github.com/Lissy93/cv/blob/HEAD/LICENSE) © [Alicia Sykes](https://aliciasykes.com) 2025._<br>
+> _**[Daniel Wambua/CV](https://github.com/Daniel-wambua/cv)** is licensed under [MIT](https://github.com/Daniel-wambua/cv/blob/HEAD/LICENSE) © [Daniel Wambua](https://daniel-wambua.com) 2025._<br>
 > <sup align="right">For information, see <a href="https://tldrlegal.com/license/mit-license">TLDR Legal > MIT</a></sup>
 
 <details>
@@ -162,7 +163,7 @@ No point in raising issues here. It works on my machine. Therefore I see no issu
 
 ```
 The MIT License (MIT)
-Copyright (c) Alicia Sykes <alicia@omg.com> 
+Copyright (c)  Daniel Wambua <daniel@wambua.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy 
 of this software and associated documentation files (the "Software"), to deal 
@@ -186,9 +187,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <!-- License + Copyright -->
 <p  align="center">
-  <i>© <a href="https://aliciasykes.com">Alicia Sykes</a> 2025</i><br>
+  <i>© <a href="https://danielwambua.com">Daniel Wambua</a> 2025</i><br>
   <i>Licensed under <a href="https://gist.github.com/Lissy93/143d2ee01ccc5c052a17">MIT</a></i><br>
-  <a href="https://github.com/lissy93"><img src="https://i.ibb.co/4KtpYxb/octocat-clean-mini.png" /></a><br>
+  <a href="https://github.com/Daniel-wambua"><img src="https://i.ibb.co/4KtpYxb/octocat-clean-mini.png" /></a><br>
   <sup>Thanks for visiting :)</sup>
 </p>
 

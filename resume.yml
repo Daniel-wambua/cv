@@ -1,7 +1,7 @@
 basics:
   name: Daniel Wambua
   email: wambuahdaniel@gmail.com
-  url: https://github.com/wambuahdaniel
+  url: https://github.com/Daniel-wambua
   location:
     address: Nairobi, Kenya
 personal-statement: |
@@ -16,8 +16,8 @@ extra-links:
     text: See security research and professional experience at linkedin.com/in/wambuahdaniel
     link: https://linkedin.com/in/wambuahdaniel
   projects:
-    text: Check out my security tools and research projects at github.com/wambuahdaniel
-    link: https://github.com/wambuahdaniel
+    text: Check out my security tools and research projects at github.com/Daniel-wambua
+    link: https://github.com/Daniel-wambua
   ctf_profile:
     text: Follow my CTF journey and writeups at ctftime.org/user/daniel-wambua
     link: https://ctftime.org/user/daniel-wambua

@@ -64,7 +64,7 @@
 	$: path = $page.url.pathname;
 
 	const socials = [
-		{ name: 'GitHub', url: 'https://github.com/wambuahdaniel', icon: 'fa-github', color: '#333' },
+		{ name: 'GitHub', url: 'https://github.com/Daniel-wambua', icon: 'fa-github', color: '#333' },
 		{ name: 'Twitter', url: 'https://twitter.com/wambuahdaniel', icon: 'fa-twitter', color: '#1DA1F2' },
 		{ name: 'LinkedIn', url: 'https://www.linkedin.com/in/wambuahdaniel/', icon: 'fa-linkedin', color: '#0A66C2' },
 		{ name: 'HackerOne', url: 'https://hackerone.com/wambuahdaniel', icon: 'fa-bug', color: '#ff6b35' },
@@ -82,7 +82,7 @@
 
 	const headerLinks = [
 		{ name: 'Security Blog', url: 'https://wambuahdaniel.medium.com' },
-		{ name: 'CTF Writeups', url: 'https://github.com/wambuahdaniel/ctf-writeups' },
+		{ name: 'CTF Writeups', url: 'https://github.com/Daniel-wambua/ctf-writeups' },
 		{ name: 'Research', url: 'https://wambuahdaniel.dev/research' },
 	];
 </script>
@@ -131,7 +131,7 @@
 			<a href="/download" class="no-underline">
 				<button class="download-btn"><i class="fa-solid fa-file-arrow-down"></i>Download CV</button>
 			</a>
-			<a class="view-code-link" href="https://github.com/Daniel-Wambua/cv" target="_blank" rel="nofollow">Or View CV Source Code on GitHub</a>
+			<a class="view-code-link" href="https://github.com/Daniel-wambua/cv" target="_blank" rel="nofollow">Or View CV Source Code on GitHub</a>
 		</div>
 		<div class="aside-bottom">
 			<a class="get-in-touch" href="/contact">
@@ -140,8 +140,8 @@
 			</a>
 			<br>
 			<small class="license">
-				<a href="https://github.com/Daniel-Wambua/cv">Daniel-Wambua/cv</a>
-				is licensed under <a href="https://github.com/Daniel-Wambua/cv/blob/main/LICENSE">MIT</a>, &copy; <a href="https://danielwambua.com">Daniel Wambua</a> 2025
+				<a href="https://github.com/Daniel-wambua/cv">Daniel-wambua/cv</a>
+				is licensed under <a href="https://github.com/Daniel-wambua/cv/blob/main/LICENSE">MIT</a>, &copy; <a href="https://danielwambua.com">Daniel Wambua</a> 2025
 			</small>
 		</div>
 	</aside>

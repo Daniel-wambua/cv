@@ -9,7 +9,7 @@ const stats = [
   },
   {
     stat: '5k+ followers on GitHub, X, Dev, LinkedIn etc',
-    source: 'https://github.com/Daniel-Wambua',
+    source: 'https://github.com/Daniel-wambua',
     icon: 'fa-users'
   },
   {
@@ -61,7 +61,7 @@ const projects = [
     tech: 'Python, Django, React, PostgreSQL',
     logo: '🛡️',
     stars: '20',
-    repo: 'Daniel-Wambua/secure-ecommerce',
+    repo: 'Daniel-wambua/secure-ecommerce',
     web: 'https://havoc-ecomm.com',
   },
   {
@@ -70,8 +70,8 @@ const projects = [
     tech: 'Python, Flask, SQLite',
     logo: '🔍',
     stars: '15',
-    repo: 'Daniel-Wambua/vuln-scanner',
-    web: 'https://github.com/Daniel-Wambua/vuln-scanner',
+    repo: 'Daniel-wambua/vuln-scanner',
+    web: 'https://github.com/Daniel-wambua/vuln-scanner',
   }
 ];
 

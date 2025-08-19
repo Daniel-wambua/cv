@@ -48,7 +48,7 @@
             {#each technology.projects as project}
             <li>
               <i class="fa-brands fa-github"></i>
-              <a href="https://github.com/Daniel-Wambua/{project}" target="_blank" rel="nofollow">
+              <a href="https://github.com/Daniel-wambua/{project}" target="_blank" rel="nofollow">
                 {project}
               </a>
             </li>
