@@ -24,7 +24,7 @@
 </script>
 
 <svelte:head>	
-	<title>Alicia Sykes | CV | Skills</title>
+	<title>Daniel Wambua | CV | Skills</title>
 </svelte:head>
 
 <section class="skills-page">
@@ -48,7 +48,7 @@
             {#each technology.projects as project}
             <li>
               <i class="fa-brands fa-github"></i>
-              <a href="https://github.com/lissy93/{project}" target="_blank" rel="nofollow">
+              <a href="https://github.com/Daniel-Wambua/{project}" target="_blank" rel="nofollow">
                 {project}
               </a>
             </li>
@@ -74,7 +74,7 @@
     <b>Note</b>: The technology list is not exhaustive, as it doesn't include some technologies I've used professionally at work, or for private clients.
     <br><br>
     For a full-list of programming languages and frameworks I've worked extensivley with, as well as links to code written in each,
-    please reference <a href="https://apps.aliciasykes.com">apps.aliciasykes.com</a>.
+    please reference <a href="https://havoc.com">havoc.com</a>.
     <br><br>
     For the soft skills, I can provide references, or put you in touch with previous colleagues who can vouch for my abilities.
   </p>

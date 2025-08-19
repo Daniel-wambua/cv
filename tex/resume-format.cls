@@ -1,8 +1,8 @@
 %-------------------------------------------------------------------------------
 % Resume Class File (resume.cls)
 %-------------------------------------------------------------------------------
-% Licensed under MIT, ⓒ 2025 Alicia Sykes <aliciasykes.com>
-% Full source and usage docs at https://github.com/lissy93/cv
+% Licensed under MIT, ⓒ 2025 Daniel Wambua <danielwambua.com>
+% Full source and usage docs at https://github.com/daniel-wambua/cv
 %-------------------------------------------------------------------------------
 % This LaTeX class file defines the structure and layout for resume and CV 
 % documents. It provides a comprehensive and customizable format for creating
@@ -13,7 +13,7 @@
 % - To use this class, include it in the preamble of your LaTeX document:
 %   \documentclass{resume}
 % - Customize your document using the provided commands and environments.
-% - For examples and documentation, visit: https://github.com/lissy93/cv
+% - For examples and documentation, visit: https://github.com/daniel-wambua/cv
 %
 % Features:
 % - Built for styling a CV PDF. With sections like skills, experience, education..
@@ -33,7 +33,7 @@
 %-------------------------------------------------------------------------------
 %                Identification
 %-------------------------------------------------------------------------------
-\ProvidesClass{resume-format}[2015/12/14 v1.3 Alicia Sykes Curriculum Vitae Class]
+\ProvidesClass{resume-format}[2015/12/14 v1.3 Daniel Wambua Curriculum Vitae Class]
 \NeedsTeXFormat{LaTeX2e}
 
 

@@ -2,10 +2,26 @@
   display: flex;
   height: 100vh;
   font-family: var(--font-family);
+  background: var(--background);
+  color: var(--text-color);
+  
   // on mobile use flex-direction: column;
   @media (max-width: 600px) {
     flex-direction: column;
   }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  line-height: 1.6;
 }
 
 ::selection {
@@ -20,7 +36,8 @@ li[aria-current='page']::before {
 
 aside {
   width: var(--sidebar-width);
-  background: var(--background);
+  background: var(--card-background);
+  border-right: 2px solid var(--border-color);
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -34,12 +51,124 @@ aside {
   justify-content: space-between;
 
   @media (max-height: 800px) {
-    .aside-inner { overflow-x: auto; }
+    .aside-inner { overflow-y: auto; }
   }
 
   .aside-inner {
-    padding: 1.25rem;
+    padding: 1.5rem;
     margin: 0 auto;
+    width: 100%;
+    
+    .cyber-title {
+      font-family: var(--font-mono);
+      margin: 0 0 1rem 0;
+      
+      .terminal-prompt {
+        color: var(--primary);
+        font-size: 0.9rem;
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+      
+      .command {
+        color: var(--text-color);
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+    }
+    
+    .job-title {
+      color: var(--text-color);
+      font-size: 1rem;
+      margin: 0.5rem 0 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      
+      .cyber-icon {
+        color: var(--primary);
+        font-size: 1.2rem;
+      }
+    }
+    
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      background: var(--gradient-dark);
+      border-radius: var(--button-radius);
+      border: 1px solid var(--border-color);
+      
+      .status-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--primary);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+        box-shadow: var(--glow-effect);
+      }
+      
+      .status-text {
+        color: var(--text-color);
+        font-weight: 500;
+      }
+    }
+    
+    .cyber-stats {
+      background: var(--gradient-dark);
+      border: 1px solid var(--border-color);
+      border-radius: var(--button-radius);
+      padding: 1.5rem;
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gradient-cyber);
+      }
+      
+      .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0.75rem 0;
+        font-size: 0.9rem;
+        padding: 0.5rem 0;
+        
+        i {
+          color: var(--primary);
+          width: 20px;
+          text-align: center;
+          font-size: 1.1rem;
+        }
+        
+        span {
+          color: var(--text-color);
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% { 
+      opacity: 1; 
+      transform: scale(1);
+    }
+    50% { 
+      opacity: 0.7; 
+      transform: scale(1.1);
+    }
   }
   .aside-bottom {
     margin: 0 auto;
@@ -215,19 +344,20 @@ main {
   max-width: 1000px;
   min-height: 80%;
   margin: 1rem auto;
-  padding: 1rem;
-  border-radius: 8px;
-  background-color: var(--background);
+  padding: 2rem;
+  border-radius: var(--button-radius);
+  background: var(--card-background);
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
-  box-shadow:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12)
-  ;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--box-shadow);
+  
+  @media (max-width: 768px) {
+    width: 95%;
+    padding: 1rem;
+    margin: 0.5rem auto;
+  }
 }
 
 /* Responsive Design */

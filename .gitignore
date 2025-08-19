@@ -25,6 +25,9 @@ tex/*.synctex.gz
 # Ignore node_modules directory if using Node.js
 node_modules/
 
+# Ignore Python virtual environment
+.venv/
+
 # Ignore environment variables
 .env
 
@@ -32,7 +35,7 @@ node_modules/
 out/*
 
 # Do not ignore specific files in out directory
-!out/Alicia-Sykes-CV.pdf
+!out/Daniel-Wambua-CV.pdf
 
 # Other ignored files and directories
 resume.aux

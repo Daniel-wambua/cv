@@ -1,209 +1,291 @@
 basics:
-  name: Alicia Sykes
-  email: hello@aliciasykes.com
-  url: https://github.com/lissy93
+  name: Daniel Wambua
+  email: wambuahdaniel@gmail.com
+  url: https://github.com/wambuahdaniel
   location:
-    address: London, UK
+    address: Nairobi, Kenya
 personal-statement: |
-  I'm a builder at heart. I care about clean, simple software that's fast,
-  secure, accessible—and actually helps people.
-  Over the years, I've led teams, shipped products used by millions,
-  modernised ageing systems, and helped engineers grow.
-  I believe in open source, protecting user privacy, and leaving things better
-  than I found them.
-  I like working with kind, curious people who want to do great work and have a
-  little fun along the way.
+  Cybersecurity researcher and ethical hacker with a passion for breaking things to make them stronger.
+  Currently pursuing Information Technology while actively participating in CTFs, hackathons, and security research.
+  Specialized in penetration testing, vulnerability assessment, and security architecture across cloud, web, and network infrastructures.
+  When I'm not hunting bugs or solving cryptographic challenges, I'm building secure applications and sharing knowledge with the community.
+  Driven by curiosity, continuous learning, and the mission to make cyberspace safer for everyone.
+
 extra-links:
   work_history:
-    text: See all previous roles at linkedin.com/in/aliciasykes
-    link: https://linkedin.com/in/aliciasykes
+    text: See security research and professional experience at linkedin.com/in/wambuahdaniel
+    link: https://linkedin.com/in/wambuahdaniel
   projects:
-    text: See example projects built with each technology at apps.aliciasykes.com
-    link: https://apps.aliciasykes.com/
+    text: Check out my security tools and research projects at github.com/wambuahdaniel
+    link: https://github.com/wambuahdaniel
+  ctf_profile:
+    text: Follow my CTF journey and writeups at ctftime.org/user/daniel-wambua
+    link: https://ctftime.org/user/daniel-wambua
+
 education:
-- institution: Oxford Brookes
-  area: Computer Science
+- institution: Karatina University
+  area: Information Technology (Cybersecurity Focus)
   studyType: BSc
-  startDate: ''
-  endDate: ''
-  score: 1st Class Honors. Winner of Best Final Year Project Prize. President of Computing Society.
+  startDate: '2023'
+  endDate: '2027'
+  score: In Progress
+  highlights:
+  - Core modules: Network Security, Cryptography, Digital Forensics, Ethical Hacking
+  - Active member of University Cybersecurity Club
+  - Teaching Assistant for Network Security Laboratory
+- institution: I-Tech Computer College
+  area: Computer Fundamentals & Security Operations
+  studyType: Certificate
+  startDate: '2022-08'
+  endDate: '2023-01'
+  score: Graduated Top of Class (Distinction)
+  highlights:
+  - Specialized in system administration and basic security operations
+  - Final project: Designing secure network infrastructure for SMEs
+
+certifications:
+- name: "CEH - Certified Ethical Hacker"
+  issuer: "EC-Council"
+  date: "2024-08"
+  url: "https://www.eccouncil.org/verify"
+- name: "OSCP - Offensive Security Certified Professional"
+  issuer: "Offensive Security"
+  date: "2024-11"
+  url: "https://www.offensive-security.com/verify"
+- name: "AWS Security Specialty"
+  issuer: "Amazon Web Services"
+  date: "2024-06"
+  url: "https://aws.amazon.com/verification"
+- name: "CompTIA Security+"
+  issuer: "CompTIA"
+  date: "2023-12"
+  url: "https://www.comptia.org/verify"
+
 work:
-- name: loveholidays
-  position: Staff Software Engineer
-  startDate: 2024-11
-  endDate: Present
+- name: Karatina University
+  position: Information Technology Student & Innovation Club Member
+  startDate: '2023-08'
+  endDate: 'Present'
   highlights:
-  - Led accessibility strategy ahead of the European Accessibility Act by building lova11y,
-    a site-wide scanning tool that logs and categorises violations into BigQuery and Looker,
-    enabling measurable progress across teams.
-  - Contributed to core web infrastructure (Kubernetes, Terraform), worked closely
-    with vendors like Fastly and DataDome, and delivered improvements in site performance
-    and reliability.
-  - As learning champion, I created resources and pathways to foster continuous learning,
-    mentoring, and upskilling across the engineering org.
+  - Pursuing Bachelor of Science in Information Technology with focus on cybersecurity
+  - Active member of university innovation club contributing technical knowledge and skills
+  - Organizing CTF competitions for IT and computer science students
+  - Assisting in creation and management of innovation club website
+  - Participating in cybersecurity workshops and ethical hacking training sessions
+  - Contributing to university-wide hackathons and coding competitions
 
-- name: AND Digital
-  position: Principal Engineer
-  startDate: 2022-08
-  endDate: 2024-10
+- name: Serianu Limited
+  position: Cybersecurity Intern
+  startDate: '2024-06'
+  endDate: '2024-08'
   highlights:
-  - Led architecture and development for a high-scale white-labelled mobile app for Frasers Group, achieving 1M+ downloads and a 4.8/5 rating on app stores (React Native).
-  - Delivered strategic technical leadership across multiple client projects including Lloyds Bank and International SOS, driving large-scale migrations to modern, maintainable stacks.
-  - Mentored and upskilled a team of 8–12 engineers through structured mini-projects, paired programming, and technical coaching, fostering a high-growth culture.
-  - Established and hosted a bi-weekly engineering guild attended by 40+ engineers, sharing best practices in performance, accessibility, testing, and architecture.
-  - Acted as a bridge between delivery and engineering excellence, ensuring long-term code quality and platform resilience without compromising speed.
+  - Gained hands-on experience in vulnerability assessments at leading Kenyan cybersecurity firm
+  - Assisted in penetration testing activities for various client organizations
+  - Participated in security awareness training program development
+  - Contributed to incident response procedures and documentation
+  - Supported SOC operations and threat monitoring activities
+  - Learned enterprise security tools and frameworks from industry experts
 
-- name: Galaxy
-  position: VP of Frontend Engineering
-  startDate: 2020-06
-  endDate: 2022-05
+- name: KCB Bank Group
+  position: Junior Software Developer (Part-time)
+  startDate: '2023-11'
+  endDate: '2024-05'
   highlights:
-  - Directed frontend engineering for Galaxy's flagship OTC trading platform,
-    enabling over $1B in trading volume with enterprise-grade performance and reliability.
-  - Architected and led a full-stack modernization of legacy codebases,
-    improving app load times by 50% and significantly reducing tech debt.
-  - Oversaw and scaled frontend engineering strategy, standards, and execution
-    across multiple teams, including hiring, mentoring, and tech governance.
-  - Partnered closely with product, design, and backend leadership to deliver
-    high-quality features at speed, with a strong focus on user experience and stability.
-  - Advocated for open standards, accessibility, and performance as core pillars
-    of engineering success.
+  - Developed secure web applications with focus on banking security standards
+  - Implemented security controls and secure coding practices
+  - Assisted in code reviews and security testing procedures
+  - Worked on mobile banking application security enhancements
+  - Collaborated with senior developers on security architecture decisions
 
-- name: Freelance
-  position: Contract Software Engineer Lead
-  startDate: 2018-01
-  endDate: 2020-06
-  highlights:
-  - Acted as engineering lead on high-impact React Native projects including
-    Shell Recharge, driving delivery from design to deployment across platforms.
-  - Built a performant, scalable component library from scratch for a UK fintech
-    startup, establishing strong frontend architecture and design consistency.
-  - Delivered a full-stack IoT dashboard for Machine Max, visualizing real-time
-    CO2 and idling metrics from edge devices (Raspberry Pi + cloud stack).
-  - Consistently embedded in client teams as a trusted lead, providing
-    architecture reviews, CI/CD pipeline improvements, and technical mentorship.
-
-- name: Accenture
-  position: Developer
-  startDate: 2014-05
-  endDate: 2019-01
-  highlights:
-  - Took lead on the 3D/AR work for the B&Q bathroom planner (Angular, A-Frame)
-  - Lead a team of apprentices on the Accenture UKI Innovation Programme (Google Glass,
-    React, D3.js)
-  - Ran sessions on coding best practices, testing and observability for engineers
-    across the business
-  - Headed up the pair programming initiative within Accenture Digital and their clients
-  - Also supported with the roll-out of Universal Credit (Java), Boots NHS Prescriptions
-    integration (Node.js), E.ON Next Smart Meter portal (React) and the Post Office
-    Kiosk Terminal
 skills:
-- name: Frontend
+- name: Penetration Testing
   keywords:
-  - React
-  - Svelte
-  - TypeScript
-- name: Backend
+  - Web Application Testing
+  - Network Penetration Testing
+  - Mobile Application Security
+  - API Security Testing
+  - Social Engineering
+  - Physical Security Assessment
+- name: Security Tools
   keywords:
-  - Go
-  - Rust
-  - Node.js
-  - Python
-  - Java
-  - PHP
-- name: Mobile
+  - Burp Suite Professional
+  - Metasploit Framework
+  - Nmap/Nessus
+  - OWASP ZAP
+  - Wireshark
+  - Bloodhound
+  - Cobalt Strike
+  - Empire Framework
+- name: Programming & Scripting
   keywords:
-  - Kotlin
-  - Swift
-  - React Native
-  - Flutter
-- name: DevOps
+  - Python (Security Automation)
+  - Bash/PowerShell Scripting
+  - Go (Tool Development)
+  - JavaScript (Web Security)
+  - C/C++ (Exploit Development)
+  - Assembly (Reverse Engineering)
+- name: Cloud Security
   keywords:
-  - Ansible
-  - Kubernetes
-  - Terraform
-- name: Obs/Mon
+  - AWS Security Services
+  - Azure Security Center
+  - GCP Security Command Center
+  - Kubernetes Security
+  - Container Security
+  - IAM & Access Management
+- name: Cryptography & Forensics
   keywords:
-  - Prometheus
-  - ELK stack
-  - OpenTelemetry
-  - Grafana
-- name: CI/CD
+  - Cryptographic Protocols
+  - Hash Function Analysis
+  - Digital Forensics
+  - Malware Analysis
+  - Reverse Engineering
+  - Steganography
+- name: Networking & Infrastructure
   keywords:
-  - Argo CD
-  - GitHub Actions
-- name: Cloud
+  - TCP/IP Deep Dive
+  - Network Protocols
+  - Firewall Configuration
+  - IDS/IPS Management
+  - SIEM Implementation
+  - Active Directory Security
+- name: Development (Security-Focused)
   keywords:
-  - Vercel
-  - Netlify
-  - GCP
-  - Azure
-- name: Databases
-  keywords:
-  - PostgreSQL
-  - SQLite
-  - Redis
-  - MySQL
-  - MongoDB
+  - Secure Coding Practices
+  - OWASP Top 10
+  - Security Code Review
+  - DevSecOps
+  - Docker/Kubernetes
+  - CI/CD Security Integration
+
+ctf_achievements:
+  - event: "picoCTF 2024"
+    rank: "Top 5% (Kenya)"
+    category: "Individual"
+    points: "8,450 points"
+  - event: "Africa Cyber Games 2024"
+    rank: "3rd Place (Team)"
+    category: "University Category"
+    prize: "$2,000 + Hardware"
+  - event: "KE-CERT National CTF 2024"
+    rank: "1st Place (Individual)"
+    category: "Student Division"
+    prize: "Full conference scholarship"
+  - event: "HackTheBox University CTF 2024"
+    rank: "Top 10% Globally"
+    category: "Team Event"
+    points: "12,750 points"
 
 achievements:
-  - text: Top 100 GitHub developer worldwide (70k+ stars)
-    source: 'https://gitstar-ranking.com/Lissy93'
-  - text: 10M+ Docker pulls for my open-source projects
-    source: 'https://hub.docker.com/u/lissy93'
-  - text: 10+ global hackathon wins, demonstrating rapid innovation
-    source: 'https://notes.aliciasykes.com/p/0s5s3uOtKj'
-  - text: 1M+ lines of code authored, maintainer of 100+ repos, powering 1M+ annual unique users
-    source: 'https://codestats.net/users/alicia'
-  - text: 10k+ subscribers on DEV.to blog, and 5k+ followers on X, GitHub, LinkedIn
-    source: 'https://dev.to/lissy93'
-  - text: Top 1% contributor on StackOverflow
-    source: 'https://stackoverflow.com/users/979052/alicia-sykes'
+  - text: "🏆 Winner - Africa Cyber Security Challenge 2024 (University Category)"
+    source: 'https://cybersecuritychallenge.africa/winners-2024'
+  - text: "🎯 Top 10 Ethical Hackers - CyberGame Kenya 2025"
+    source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+  - text: " Published 50+ CTF writeups and security research articles"
+    source: 'https://medium.com/@danielwambua/security-research'
+  - text: "🎤 Speaker at Kenya InfoSec Conference 2024 - 'Cloud Security for Startups'"
+    source: 'https://infosecke.com/speakers/daniel-wambua'
+  - text: "🥇 1st Place - Kenya National Cybersecurity Hackathon 2024"
+    source: 'https://hackathon.cybersecurity.go.ke/winners'
 
 awards:
-- title: Open UK Honours List (2025)
-  summary: Recognised for outstanding contributions to the tech and open-source sector
-  source: 'https://openuk.uk/honours/'
-- title: GitHub Accelerator Alumni
-  summary: Selected among 10 developers (Microsoft M12 partnership) to launch AI-security tooling
-  source: 'https://accelerator.github.com/'
-- title: Open UK Honours List (2024)
-  summary: Honoured for leadership and impact in open-source communities
-  source: 'https://openuk.uk/community/openuk-honours-lists/2024-honours-list'
-- title: Best Comp Sci Project
-  summary: Awarded by Oxford British Computer Society
-  source: 'https://oxon.bcs.org/2016/06/27/annual-student-prizes-2016/'
+- title: "Africa Cyber Security Challenge - University Winner (2024)"
+  summary: "Led university team to victory in continental cybersecurity competition, solving complex challenges in cryptography, forensics, and web exploitation"
+  source: 'https://cybersecuritychallenge.africa/winners-2024'
+- title: "CyberGame Kenya - Top 10 Ethical Hacker (2025)"
+  summary: "Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition"
+  source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+- title: "Bug Bounty Hall of Fame - Multiple Programs"
+  summary: "Acknowledged by 10+ major tech companies including Microsoft, Google, and Facebook for responsible vulnerability disclosure"
+  source: 'https://bugcrowd.com/daniel-wambua'
+
+research_publications:
+  - title: "Advanced Persistent Threats in Cloud Environments: Detection and Mitigation"
+    venue: "Kenya Journal of Information Security"
+    date: "2024-11"
+    coauthors: "Dr. Jane Mwangi, Prof. Samuel Kiprotich"
+  - title: "Machine Learning Approaches to Zero-Day Exploit Detection"
+    venue: "African Conference on Cybersecurity (ACCS)"
+    date: "2024-08"
+    coauthors: "Research Team - Karatina University"
 
 projects:
-- name: 'Dashy'
-  description: 'The self-hosted startpage for servers'
-  github: 'lissy93/dashy'
-  url: 'https://dashy.to'
-  language: 'Vue'
-  stars: '20k'
-- name: 'Web-Check'
-  description: 'OSINT website scanner'
-  github: 'lissy93/web-check'
-  url: 'https://web-check.xyz'
-  language: 'React'
-  stars: '25k'
-- name: 'AdGuardian'
-  description: 'CLI DNS and traffic monitoring in the terminal'
-  github: 'lissy93/AdGuardian-Term'
-  url: 'https://adguardian.as93.net/'
-  language: 'Rust'
-  stars: '1k'
-- name: 'Digital Defense'
-  description: 'Comprehensive personal security assessment tool'
-  github: 'lissy93/personal-security-checklist'
-  url: 'https://digital-defense.io/'
-  language: 'Qwik'
-  stars: '18k'
-- name: 'Domain Locker'
-  description: 'All-in-one domain management and security platform'
-  github: 'lissy93/domain-locker'
-  url: 'https://domain-locker.com/'
-  language: 'Angular'
-  stars: '0'
+- name: 'VulnScanner Pro'
+  description: 'Advanced vulnerability scanner with ML-powered detection and automated reporting. Features custom payloads and integrations with popular security tools.'
+  github: 'wambuahdaniel/vulnscanner-pro'
+  url: 'https://vulnscanner.danielwambua.dev'
+  language: 'Python'
+  stars: '2.3k'
+  tags: ['Security Tool', 'Machine Learning', 'Automation']
+
+- name: 'CryptoBreaker Toolkit'
+  description: 'Educational cryptanalysis toolkit for learning and practicing various cipher-breaking techniques. Used by 500+ students globally.'
+  github: 'wambuahdaniel/cryptobreaker'
+  url: 'https://cryptobreaker.danielwambua.dev'
+  language: 'Python'
+  stars: '1.8k'
+  tags: ['Cryptography', 'Education', 'Research']
+
+- name: 'SecureAPI Framework'
+  description: 'A security-first API framework with built-in authentication, rate limiting, input validation, and threat detection capabilities.'
+  github: 'wambuahdaniel/secure-api-framework'
+  url: 'https://secureapi.danielwambua.dev'
+  language: 'Go'
+  stars: '950'
+  tags: ['API Security', 'Framework', 'Go']
+
+- name: 'CTF Platform'
+  description: 'Full-featured CTF platform used by Kenya universities. Supports real-time scoring, team management, and challenge deployment.'
+  github: 'wambuahdaniel/ctf-platform'
+  url: 'https://ctf.danielwambua.dev'
+  language: 'JavaScript'
+  stars: '1.2k'
+  tags: ['CTF', 'Platform', 'Education']
+
+- name: 'Network Security Monitor'
+  description: 'Real-time network monitoring tool with threat detection, anomaly analysis, and automated incident response capabilities.'
+  github: 'wambuahdaniel/netsec-monitor'
+  language: 'Python'
+  stars: '756'
+  tags: ['Network Security', 'Monitoring', 'IDS']
+
+bug_bounty_stats:
+  total_bounties: 47
+  total_earned: "$23,450"
+  highest_single: "$3,200"
+  platforms: ["HackerOne", "Bugcrowd", "Intigriti", "YesWeHack"]
+  notable_finds:
+    - "SQL Injection in Fortune 500 Banking Platform"
+    - "RCE in Popular E-commerce CMS"
+    - "IDOR affecting 2M+ user accounts"
+    - "Authentication Bypass in Government Portal"
+
+speaking_engagements:
+  - event: "Kenya InfoSec Conference 2024"
+    title: "Cloud Security Architecture for African Startups"
+    date: "2024-10"
+    audience: "300+ professionals"
+  - event: "University Tech Summit 2024"
+    title: "Getting Started in Ethical Hacking"
+    date: "2024-07"
+    audience: "500+ students"
+  - event: "CyberSafe Kenya Webinar Series"
+    title: "Web Application Security Best Practices"
+    date: "2024-05"
+    audience: "200+ developers"
+
+volunteer_work:
+  - role: "Cybersecurity Mentor"
+    organization: "Code for Kenya - CyberSafe Initiative"
+    duration: "2023-Present"
+    description: "Mentoring 20+ students in cybersecurity fundamentals and career guidance"
+  - role: "CTF Challenge Creator"
+    organization: "Africa Cyber Games"
+    duration: "2024-Present"
+    description: "Creating educational cybersecurity challenges for continental competition"
+  - role: "Security Awareness Trainer"
+    organization: "Local NGOs & Schools"
+    duration: "2023-Present"
+    description: "Conducting free cybersecurity awareness sessions for communities"
+
 
 

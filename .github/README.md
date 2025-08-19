@@ -1,11 +1,11 @@
-<h1 align="center">Alicia Sykes - CV</h1>
+<h1 align="center">Daniel wambua - CV</h1>
 <p align="center">
-<a href="https://github.com/Lissy93/cv"><img src="https://i.ibb.co/G4vGDwtD/cv-logo.png?" width="48" /><br /></a>
+<a href="https://github.com/DanielWambua/cv"><img src="https://i.ibb.co/G4vGDwtD/cv-logo.png?" width="48" /><br /></a>
 <i>This repo contains the source for my personal CV</i>
 <br />
 <i>A website (Svelte) and PDF (LaTeX) auto-built from jsonresume data</i>
 <br />
-<b>🌐 <a href="https://cv.aliciasykes.com/">cv.aliciasykes.com</a> | 📄 <a href="https://cv.aliciasykes.com/download"><code>Alicia-Sykes-CV.pdf</code></a></b> <br />
+<b>🌐 <a href="https://cv.danielwambua.com/">cv.danielwambua.com</a> | 📄 <a href="https://cv.danielwambua.com/download"><code>Daniel-Wambua-CV.pdf</code></a></b> <br />
 </p>
 
 

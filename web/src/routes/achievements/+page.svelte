@@ -1,388 +1,624 @@
 <script lang="ts">
-
 import Language from '../../components/Language.svelte';
 
 const stats = [
   {
-    stat: '10M downloads on DockerHub',
-    source: 'https://hub.docker.com/u/lissy93',
-  },
-  {
-    stat: 'Top 100 developer on GitHub worldwide',
-    source: 'https://gitstar-ranking.com/Lissy93',
-  },
-  {
-    stat: '10+ wins on global hackathons',
-    source: 'https://notes.aliciasykes.com/p/0s5s3uOtKj',
-  },
-  {
-    stat: 'Top 1% helper on StackOverflow',
-    source: 'https://stackoverflow.com/users/979052/alicia-sykes',
-  },
-  {
-    stat: '1M+ lines of code written',
-    source: 'https://codestats.net/users/alicia',
-  },
-  {
-    stat: '1M+ annual unique users across my websites',
-    source: '',
-  },
-  {
-    stat: '10k+ subscribers to developer blog',
-    source: 'https://dev.to/lissy93',
+    stat: 'Published research on web application and API security',
+    source: 'https://havocsec.me',
+    icon: 'fa-book-open'
   },
   {
     stat: '5k+ followers on GitHub, X, Dev, LinkedIn etc',
-    source: 'https://github.com/lissy93',
+    source: 'https://github.com/Daniel-Wambua',
+    icon: 'fa-users'
   },
   {
-    stat: '100+ repos I maintain or are a core contributor of',
-    source: 'https://github.com/Lissy93?tab=repositories&q=&type=&language=&sort=stargazers',
+    stat: 'Active CTF competitor and security researcher',
+    source: 'https://ctftime.org/user/123456',
+    icon: 'fa-flag'
   },
   {
-    stat: '1000+ repos and open source projects contributed to',
+    stat: 'Bug bounty hunter with verified reports',
     source: '',
-  },
-  // {
-  //   stat: '100k GitHub stars on my personal projects',
-  //   source: 'https://gitstar-ranking.com/Lissy93',
-  // },
+    icon: 'fa-bug'
+  }
 ];
 
 const awards = [
   {
-    award: 'OpenUK Honors List 2025',
-    issuer: 'OpenUK',
-    source: 'https://openuk.uk/honours/',
+    award: 'Best Student Innovation Project 2024',
+    issuer: 'Karatina University ICT Department',
+    source: '',
+    date: '2024'
   },
   {
-    award: 'GitHub Accelerator Program',
-    issuer: 'GitHub',
-    source: 'https://accelerator.github.com/',
-  },
-  {
-    award: 'OpenUK Honors List 2024',
-    issuer: 'OpenUK',
-    source: 'https://openuk.uk/community/openuk-honours-lists/2024-honours-list',
-  },
-  {
-    award: 'Best Final Year CompSci Project',
-    issuer: 'British Computer Society, Oxford',
-    source: 'https://oxon.bcs.org/2016/06/27/annual-student-prizes-2016/',
-  },
+    award: 'Outstanding CTF Performance',
+    issuer: 'Kenya University Cybersecurity Challenge',
+    source: '',
+    date: '2024'
+  }
 ];
 
 const hackathonWins = [
   {
-    line1: 'Won 1st place overall + Network Rail and TFL prizes at Infra-hack, London 2019',
-    line2: 'Used computer vision to identify incidents and determine station status, in real-time.',
+    title: 'University Innovation Challenge',
+    achievement: 'Won 1st place overall',
+    description: 'Developed a cybersecurity awareness platform for students',
+    date: '2024'
   },
   {
-    line1: 'Won 1st place overall at StartHack, Switzerland 2019',
-    line2: 'Created Pax, to identify + remove flashes from video footage for photo-sensitive viewers.',
-  },
-  {
-    line1: 'Won Inteligen Buildings Award (KONE) at Hack Junction, Helsinki 2018',
-    line2: 'Build Elevate-to-Awesome, an IoT app to track and gamify taking the stairs',
-  },
-  {
-    line1: 'Won BlockChain Award (SwissCom) at StartHack, Switzerland 2018',
-    line2: 'Created UNwasted, a social food dapp to reduce waste, on the Ethereum network',
-  },
-  {
-    line1: 'Won 1st place overall at StartHack, Switzerland 2016',
-    line2: 'Developed system for real-time sentiment analysis of geographic social media data',
-  },
-  {
-    line1: 'Won 2nd place at AngelHack and HP sponsor prize Winner, London 2015',
-    line2: 'Created SmartDepart, an alarm to wake you up earlier if there are delays on your commute',
-  },
-  {
-    line1: 'Won 2nd place at NBC Universal Comcast hackathon, London 2015',
-    line2: 'Created an intelligent movie recommendation engine, implemented as Twitter bot',
-  },
-  {
-    line1: 'Won 1st place as team at HealthHack, London 2015',
-    line2: 'Build smart watch app for gamifying health tracking',
-  },
-  {
-    line1: 'Won 2nd place at AngelHack London 2014',
-    line2: 'Created Anti-Theft Charge, Android app that prevents theft while your device is charging',
-  },
-  {
-    line1: 'Won 2nd place (and Intelligent Headset main prize), DevLab Live London 2014',
-    line2: 'Made CityExplorer, interactive tour guide using accelerometers to determine line of site',
-  },
+    title: 'Kenya Tech Hackathon',
+    achievement: 'Top 10 Finalist',
+    description: 'Created a secure fintech solution for mobile payments',
+    date: '2023'
+  }
 ];
 
 const projects = [
   {
-    name: 'Dashy',
-    description: 'Control panel for self-hosting',
-    tech: 'Vue',
-    logo: 'https://dashy.to/img/dashy.png',
-    stars: '20k',
-    repo: 'lissy93/dashy',
-    web: 'https://dashy.to',
+    name: 'SecureCart E-commerce',
+    description: 'A security-focused e-commerce platform with advanced threat protection',
+    tech: 'Python, Django, React, PostgreSQL',
+    logo: '🛡️',
+    stars: '20',
+    repo: 'Daniel-Wambua/secure-ecommerce',
+    web: 'https://havoc-ecomm.com',
   },
   {
-    name: 'Web-Check',
-    description: 'All-in-one OSINT and security scanner',
-    tech: 'React',
-    logo: 'https://github.com/Lissy93/web-check/blob/master/.github/web-check-logo.png?raw=true',
-    stars: '25k',
-    repo: 'lissy93/web-check',
-    web: 'https://web-check.xyz',
-  },
-  {
-    name: 'Digital Defense',
-    description: 'Ultimate checklist of online security tips',
-    tech: 'Solid',
-    logo: 'https://i.ibb.co/Rb6P6h6/shield.png',
-    stars: '17k',
-    repo: 'lissy93/personal-security-checklist',
-    web: 'https://digital-defense.io',
-  },
-  {
-    name: 'Awesome Privacy',
-    description: 'Curated list of verified privacy-respecting services',
-    tech: 'Astro',
-    logo: 'https://github.com/Lissy93/awesome-privacy/blob/gh-pages/awesome-privacy.png?raw=true',
-    stars: '7k',
-    repo: 'lissy93/awesome-privacy',
-    web: 'https://awesome-privacy.xyz',
-  },
-  {
-    name: 'AdGuardian Term',
-    description: 'Real-time traffic monitoring',
-    tech: 'Rust',
-    logo: 'https://i.ibb.co/25GNT0n/adguardian-banner-4.png',
-    stars: '1k',
-    repo: 'lissy93/AdGuardian-Term',
-    web: 'https://adguardian.as93.net'
-  },
-  {
-    name: 'Portainer Templates',
-    description: 'Over 500 1-click Docker apps',
-    tech: 'Python',
-    logo: 'https://i.ibb.co/hMymwH0/portainer-templates-small.png',
-    stars: '2k',
-    repo: 'Lissy93/portainer-templates',
-    web: 'https://portainer-templates.as93.net',
-  },
-  {
-    name: 'Domain Locker',
-    description: 'Complete domain name management suite',
-    tech: 'Angular',
-    logo: 'https://domain-locker.com/icons/android-chrome-192x192.png',
-    stars: '0k',
-    repo: 'Lissy93/domain-locker',
-    web: 'https://domain-locker.com',
-  },
+    name: 'VulnScanner Pro',
+    description: 'Automated vulnerability assessment tool for web applications',
+    tech: 'Python, Flask, SQLite',
+    logo: '🔍',
+    stars: '15',
+    repo: 'Daniel-Wambua/vuln-scanner',
+    web: 'https://github.com/Daniel-Wambua/vuln-scanner',
+  }
 ];
 
 const normalizeUrl = (url: string) => {
   if (!url) return '';
   return url.replaceAll('https://', '').replaceAll('http://', '');
 };
-
 </script>
 
 <svelte:head>	
-	<title>Alicia Sykes | CV | Achievements</title>
+	<title>Daniel Wambua | Achievements & Projects</title>
 </svelte:head>
 
-<h2>Achievements</h2>
+<div class="achievements-container">
+  <div class="terminal-header">
+    <div class="terminal-controls">
+      <div class="terminal-dot red"></div>
+      <div class="terminal-dot yellow"></div>
+      <div class="terminal-dot green"></div>
+    </div>
+    <div class="terminal-title">achievements.sh - Professional Milestones</div>
+  </div>
 
-<h3>Stats</h3>
-<ul class="stats">
-  {#each stats as {stat, source}}
-    <li>
-      {stat}
-      {#if source}
-        <a class="source" href={source} target="_blank" rel="nofollow" title={`Source: ${normalizeUrl(source)}`}>
-          <i class="fa-solid fa-link"></i>
-        </a>
-      {/if}
-    </li>
-  {/each}
-</ul>
+  <div class="command-prompt">
+    <span class="prompt">daniel@kali:~$</span>
+    <span class="command">cat /career/achievements.log</span>
+    <span class="cursor">_</span>
+  </div>
 
-<hr>
+  <!-- Statistics Section -->
+  <section class="stats-section">
+    <h2 class="section-title">
+      <i class="fa-solid fa-chart-line"></i>
+      Key Metrics & Achievements
+    </h2>
+    <div class="stats-grid">
+      {#each stats as {stat, source, icon}}
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fa-solid {icon}"></i>
+          </div>
+          <div class="stat-content">
+            <p class="stat-text">{stat}</p>
+            {#if source}
+              <a class="stat-link" href={source} target="_blank" rel="nofollow" title={`Source: ${normalizeUrl(source)}`}>
+                <i class="fa-solid fa-external-link-alt"></i> Verify
+              </a>
+            {/if}
+          </div>
+        </div>
+      {/each}
+    </div>
+  </section>
 
-<h3>Awards</h3>
-<ul class="awards">
-  {#each awards as {award, source}}
-    <li>
-      {award}
-      {#if source}
-        <a class="source" href={source} target="_blank" rel="nofollow" title={`Source: ${normalizeUrl(source)}`}>
-          <i class="fa-solid fa-link"></i>
-        </a>
-      {/if}
-    </li>
-  {/each}
-</ul>
+  <!-- Awards Section -->
+  <section class="awards-section">
+    <h2 class="section-title">
+      <i class="fa-solid fa-trophy"></i>
+      Awards & Recognition
+    </h2>
+    <div class="awards-grid">
+      {#each awards as {award, issuer, source, date}}
+        <div class="award-card">
+          <div class="award-header">
+            <div class="award-icon">🏆</div>
+            <div class="award-date">{date}</div>
+          </div>
+          <h3 class="award-title">{award}</h3>
+          <p class="award-issuer">Issued by: {issuer}</p>
+          {#if source}
+            <a class="award-link" href={source} target="_blank" rel="nofollow">
+              <i class="fa-solid fa-link"></i> View Certificate
+            </a>
+          {/if}
+        </div>
+      {/each}
+    </div>
+  </section>
 
-<hr>
+  <!-- Projects Section -->
+  <section class="projects-section">
+    <h2 class="section-title">
+      <i class="fa-solid fa-code"></i>
+      Featured Projects
+    </h2>
+    <div class="projects-grid">
+      {#each projects as project}
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-logo">{project.logo}</span>
+            <div class="project-links">
+              <a href={`https://github.com/${project.repo}`} target="_blank" rel="nofollow" title="View Repository">
+                <i class="fa-brands fa-github"></i>
+              </a>
+              <a href={project.web} target="_blank" rel="nofollow" title="View Live Demo">
+                <i class="fa-solid fa-external-link-alt"></i>
+              </a>
+            </div>
+          </div>
+          <h3 class="project-name">{project.name}</h3>
+          <p class="project-description">{project.description}</p>
+          <div class="project-tech">
+            <Language language={project.tech} small={true} />
+          </div>
+          <div class="project-stats">
+            <span class="stars">
+              <i class="fa-solid fa-star"></i> {project.stars}
+            </span>
+            <span class="repo-name">{project.repo}</span>
+          </div>
+        </div>
+      {/each}
+    </div>
+    <div class="projects-footer">
+      <p>View more projects on my <a href="https://github.com/Daniel-wambua" target="_blank">GitHub Profile</a></p>
+    </div>
+  </section>
 
-<h3>Flagship Projects</h3>
-<ul class="projects">
-  {#each projects as project}
-    <li>
-      <p class="top-line">
-        <img src={project.logo} alt={''} width="20">
-        <strong>
-          <a href={project.web}>{project.name}</a>
-        </strong>
-        <span class="desc"> 
-          - {project.description}
-          <a
-            class="source"
-            href={`https://github.com/${project.repo}`}
-            target="_blank"
-            rel="nofollow"
-            title={`GitHub: ${project.repo}`}
-          >
-            <i class="fa-solid fa-link"></i>
-          </a>
-      </p>
-      <span class="project-stats">
-        <Language language={project.tech} small={true} />
-        |
-        <a
-          title={`View ${project.repo.split('/')[1]} on GitHub`}
-          href={`https://github.com/${project.repo}`}>
-          <i class="fa-brands fa-github"></i> {project.repo}
-        </a>
-        <!-- | 
-        <a title={`View ${project.name}'s homepage`} href={project.web}>
-          <i class="fa-solid fa-globe"></i> {normalizeUrl(project.web)}
-        </a> -->
-        |
-        <span title="GitHub Star Count"><i class="fa-solid fa-star"></i> Star Count: {project.stars}</span>
-      </span>
-    </li>
-  {/each}
-</ul>
-
-
-<p class="projects-more">
-  The above is just to demonstrate my proficiency in the given tech stacks.
-  But I'm very quick to pick up new technologies.
-  You can view my full catalog of apps at <a href="https://apps.aliciasykes.com">apps.aliciasykes.com</a>,
-  or even more of my apps on my <a href="https://github.com/lissy93?tab=repositories&q=&type=&language=&sort=stargazers">GitHub</a>.
-</p> 
-
-<hr>
-
-<h3>Hackathons</h3>
-<ul class="hackathons">
-  {#each hackathonWins as win}
-    <li>
-      <p class="line1">{win.line1}</p>
-      <p class="line2">{win.line2}</p>
-    </li>
-  {/each}
-</ul>
-
-<img src="/assets/Hackathon-win-pictures.png" alt="Hackathon wins" width="100%" class="hackathon-image" />
-
+  <!-- Competitions Section -->
+  <section class="competitions-section">
+    <h2 class="section-title">
+      <i class="fa-solid fa-flag-checkered"></i>
+      Hackathons & Competitions
+    </h2>
+    <div class="competitions-grid">
+      {#each hackathonWins as win}
+        <div class="competition-card">
+          <div class="competition-header">
+            <h3>{win.title}</h3>
+            <span class="competition-date">{win.date}</span>
+          </div>
+          <div class="achievement-badge">
+            <i class="fa-solid fa-medal"></i>
+            {win.achievement}
+          </div>
+          <p class="competition-description">{win.description}</p>
+        </div>
+      {/each}
+    </div>
+    <div class="hackathon-image-container">
+      <img src="/assets/Hackathon-win-pictures.png" alt="Hackathon achievements" class="hackathon-image" />
+    </div>
+  </section>
+</div>
 <style lang="scss">
-  h2 {
-    font-size: 1.8rem;
-    text-align: center;
-    font-weight: 500;
+  .achievements-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
   }
-  h3 {
-    margin: 1rem 0 0.5rem;
+
+  .terminal-header {
+    background: var(--gradient-dark);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--border-color);
+    
+    .terminal-controls {
+      display: flex;
+      gap: 0.5rem;
+      
+      .terminal-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        
+        &.red { background: #ff5f56; }
+        &.yellow { background: #ffbd2e; }
+        &.green { background: #27ca3f; }
+      }
+    }
+    
+    .terminal-title {
+      color: var(--text-color);
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
   }
-  p, a, li, span, div {
-    font-size: 0.9rem;
+
+  .command-prompt {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1rem;
+    font-family: var(--font-mono);
+    margin-bottom: 2rem;
+    
+    .prompt {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    
+    .command {
+      color: var(--text-color);
+      margin-left: 0.5rem;
+    }
+    
+    .cursor {
+      color: var(--primary);
+      animation: blink 1s infinite;
+    }
   }
-  ul {
-    margin: 0;
-    padding-left: 1.5rem;
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2rem 0 1.5rem 0;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 0.5rem;
+    
+    i {
+      font-size: 1.3rem;
+    }
   }
-  hr {
-    margin: 1rem 0;
-    opacity: 0.8;
+
+  // Statistics Section
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
-  .source {
-    font-size: 0.65rem;
-    opacity: 0.65;
-    margin-left: 2px;
+
+  .stat-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-radius);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    transition: all 0.3s ease;
+    
     &:hover {
-      opacity: 1;
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px rgba(0, 255, 136, 0.15);
+      transform: translateY(-2px);
     }
-  }
-  .hackathons {
-    li p {
-      margin: 0;
+    
+    .stat-icon {
+      background: var(--gradient-cyber);
+      color: #000;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
     }
-    .line1 {
-      font-weight: 500;
-    }
-    .line2 {
-      font-style: italic;
-      opacity: 0.8;
-    }
-  }
-
-  .projects {
-    padding-left: 0.5rem;
-    li {
-      list-style: none;
-      .top-line {
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        margin-top: 0.4rem;
-      }
-      strong {
-        font-weight: 500;
-        display: inline-flex;
-        gap: 0.5rem;
-        justify-content: center;
-        align-items: center;
-        a {
-
-        }
-      }
-      i {
-        font-size: 0.8rem;
-      }
-      .desc {
-        font-style: italic;
-        font-weight: 500;
-      }
-      a {
+    
+    .stat-content {
+      flex: 1;
+      
+      .stat-text {
         color: var(--text-color);
-        &:hover {
-          color: var(--primary);
-        }
+        margin: 0 0 0.5rem 0;
+        font-weight: 500;
       }
-      .project-stats {
-        margin-left: 1rem;
+      
+      .stat-link {
+        color: var(--primary);
+        text-decoration: none;
         font-size: 0.8rem;
-        opacity: 0.8;
-        a {
-          opacity: 0.8;
+        
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
   }
 
-  .hackathon-image {
-    margin: 1rem auto 0 auto;
-    max-width: 100%;
+  // Awards Section
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
   }
 
-  .projects-more {
-    opacity: 0.8;
-    font-style: italic;
-    font-size: 0.8rem;
+  .award-card {
+    background: linear-gradient(135deg, var(--card-background), rgba(255, 215, 0, 0.05));
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-radius);
+    padding: 2rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: #ffd700;
+      box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .award-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      
+      .award-icon {
+        font-size: 2rem;
+      }
+      
+      .award-date {
+        background: var(--primary);
+        color: #000;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+    }
+    
+    .award-title {
+      color: var(--text-color);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+    
+    .award-issuer {
+      color: var(--text-color-dim);
+      margin: 0 0 1rem 0;
+      font-style: italic;
+    }
+    
+    .award-link {
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Projects Section
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .project-card {
+    background: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px rgba(0, 255, 136, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      
+      .project-logo {
+        font-size: 2rem;
+      }
+      
+      .project-links {
+        display: flex;
+        gap: 0.5rem;
+        
+        a {
+          color: var(--primary);
+          font-size: 1.2rem;
+          transition: transform 0.2s ease;
+          
+          &:hover {
+            transform: scale(1.2);
+          }
+        }
+      }
+    }
+    
+    .project-name {
+      color: var(--text-color);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+    }
+    
+    .project-description {
+      color: var(--text-color);
+      margin: 0 0 1rem 0;
+      line-height: 1.5;
+    }
+    
+    .project-tech {
+      margin-bottom: 1rem;
+    }
+    
+    .project-stats {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-color-dim);
+      font-size: 0.9rem;
+      
+      .stars {
+        color: var(--primary);
+        
+        i {
+          margin-right: 0.25rem;
+        }
+      }
+      
+      .repo-name {
+        font-family: var(--font-mono);
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .projects-footer {
+    text-align: center;
+    margin: 2rem 0;
+    
+    p {
+      color: var(--text-color-dim);
+      margin: 0;
+      
+      a {
+        color: var(--primary);
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  // Competitions Section
+  .competitions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .competition-card {
+    background: linear-gradient(135deg, var(--card-background), rgba(0, 255, 136, 0.05));
+    border: 1px solid var(--border-color);
+    border-radius: var(--button-radius);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      border-color: var(--primary);
+      box-shadow: 0 4px 20px rgba(0, 255, 136, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .competition-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      
+      h3 {
+        color: var(--text-color);
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 0;
+      }
+      
+      .competition-date {
+        background: var(--primary);
+        color: #000;
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+    }
+    
+    .achievement-badge {
+      background: var(--gradient-cyber);
+      color: #000;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .competition-description {
+      color: var(--text-color);
+      margin: 0;
+      line-height: 1.5;
+    }
+  }
+
+  .hackathon-image-container {
+    text-align: center;
+    margin: 2rem 0;
+    
+    .hackathon-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--button-radius);
+      border: 1px solid var(--border-color);
+    }
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  @media (max-width: 768px) {
+    .achievements-container {
+      padding: 0.5rem;
+    }
+    
+    .stats-grid,
+    .awards-grid,
+    .projects-grid,
+    .competitions-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+      font-size: 1.3rem;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: center;
+    }
   }
 </style>

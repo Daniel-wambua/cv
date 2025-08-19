@@ -12,6 +12,8 @@
     `Quality and coding standards are super
     important to me, and I love helping others level up their skills so we can
     create something awesome together, which will bring joy to our customers.`,
+    `I’m always chasing challenges that push me to think like both a builder and a breaker. 
+    As a penetration tester and security researcher, I bring a hacker’s mindset to development.`,
     `I'm passionate about building a strong,
     supportive developer community with things like guilds, lunch & learns,
     coding challenges, and learning pathways.`,
@@ -20,12 +22,12 @@
   ];
 
   const requirements = [
-    { lbl: 'Location', desc: 'London-based, or a commutable distance from Central London' },
+    { lbl: 'Location', desc: 'kenyan-based, or a commutable distance from Nairobi' },
     { lbl: 'Contract Type', desc: 'Permanent, and ideally full-time' },
     { lbl: 'Workspace', desc: 'While remote working can be great, I do love coming into the office, as I think it\'s important for team building and collaboration' },
     { lbl: 'Seniority', desc: 'Engineering Manager or Principal Engineer role, but still with exposure to coding' },
-    { lbl: 'Discipline', desc: 'Full-Stack or Frontend' },
-    { lbl: 'Industry', desc: 'Fin tech, developer tools and custom-facing products' },
+    { lbl: 'Discipline', desc: 'Full-Stack or Frontend, with a focus on security' },
+    { lbl: 'Industry', desc: 'Fin tech, developer tools and custom-facing products, cybersecurity' },
     { lbl: 'Comp', desc: 'Competitive salary, but I can and will be flexible on this for the right role' },
   ];
 
@@ -36,11 +38,13 @@
     'Developing customer-focused products',
     'Appreciates the value of open source',
     'Innovative, and an openness to trying new things',
+    'Share security knowledge through CTFs and research',
+    'Think like an attacker to build safer systems',
   ];
 </script>
 
 <svelte:head>	
-	<title>Alicia Sykes | CV | Ideal Role</title>
+	<title>Daniel Wambua | CV | Ideal Role</title>
 </svelte:head>
 
 <h1>What I'm looking for</h1>
@@ -72,9 +76,10 @@
 
 <h2>Why me?</h2>
 <p>
-  I'm an accomplished full-stack senior developer, just take a look at my recent <a href="/achievements">achievements</a> for evidence of this! 
+  I'm an accomplished full-stack  developer, just take a look at my recent <a href="/achievements">achievements</a> for evidence of this! 
   You can learn more about me, my attributes and the philosophy that drives me in my <a href="/intro">intro</a> page.
-  Or if you prefer to see my past work, take a look at my published apps at <a href="https://apps.aliciasykes.com">apps.aliciasykes.com</a>
+  Outside of building apps, I actively participate in CTFs and hacking competitions to sharpen my skills and stay ahead in cybersecurity.
+  If you’d like to see some of my past work, check out my published work at  <a href="https://havocsec.me">havocsec.me</a>
 </p>
 
 <h2>Get in Touch</h2>

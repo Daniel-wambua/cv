@@ -79,7 +79,7 @@
       </h1>
       <div class="subtitle">
         <i class="fa-solid fa-terminal"></i>
-        Pentester, Developer & Hacker
+        Cybersecurity Professional & Ethical Hacker
       </div>
     </div>
 
@@ -297,25 +297,24 @@
 
   .nav-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
   }
 
   .nav-card {
-    background: linear-gradient(135deg, var(--card-background), rgba(0, 255, 136, 0.05));
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    padding: 1rem;
+    background: var(--gradient-dark);
+    border: 2px solid var(--border-color);
+    border-radius: var(--button-radius);
+    padding: 1.5rem;
     text-decoration: none;
     color: var(--text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    min-height: 80px;
     
     &::before {
       content: '';
@@ -330,41 +329,39 @@
     
     &:hover {
       border-color: var(--primary);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(0, 255, 136, 0.2);
+      transform: translateY(-4px);
+      box-shadow: var(--glow-effect), var(--box-shadow);
       
       &::before {
         left: 100%;
       }
       
       .nav-icon {
-        transform: scale(1.2);
+        transform: scale(1.1);
         color: var(--primary);
       }
       
       .nav-arrow {
-        transform: translateX(3px);
-        opacity: 1;
+        transform: translateX(5px);
       }
     }
     
     .nav-icon {
-      font-size: 1.3rem;
+      font-size: 2rem;
       color: var(--primary);
       transition: all 0.3s ease;
     }
     
     span {
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       text-align: center;
     }
     
     .nav-arrow {
       color: var(--primary);
-      font-size: 0.8rem;
-      transition: all 0.3s ease;
-      opacity: 0.7;
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
     }
   }
 

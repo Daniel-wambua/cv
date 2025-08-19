@@ -45,59 +45,94 @@
   ],
   "workExperience": [
     {
-      "company": "loveholidays",
-      "companyUrl": "https://loveholidays.com",
-      "companyLogo": "https://a.loveholidays.com/design-system/meta/loveholidays/android-chrome-192x192.png",
-      "jobTitle": "Staff Engineer",
-      "datesWorked": "November 2024 - Present",
-      "responsibilities": "",
-      "technologies": [
-        "Terraform",
-        "Kubernetes",
-        "Preact",
-        "Fastly",
-        "Go"
-      ]
-    },
-    {
-      "company": "AND.Digital",
-      "companyUrl": "https://and.digital/",
-      "companyLogo": "https://and.digital/favicon.ico",
-      "jobTitle": "Principle Engineer",
-      "datesWorked": "August 2022 - Oct 2024",
-      "responsibilities": "As a member of the Practice Group within Hamilton Club, I work across several client projects, ensuring that code quality, maintainability and security are top notch. I'm responsible for training up our developers, helping them gain the skills necessary to best support our clients. I'm always up for trying out new tech, so that I'm in a good position to choose the best tech stacks on a per-client basis.",
-      "projectType": "Clients",
+      "company": "Karatina University",
+      "companyUrl": "https://karu.ac.ke",
+      "companyLogo": "https://i.ibb.co/9qQK9VL/karatina-uni.png",
+      "jobTitle": "Information Technology Student & Innovation Club Member",
+      "datesWorked": "August 2023 - Present",
+      "responsibilities": "Pursuing Bachelor of Science in Information Technology with focus on cybersecurity. Active member of university innovation club contributing technical knowledge and skills to various tech initiatives, organizing CTF competitions for IT students, and participating in cybersecurity workshops.",
+      "projectType": "University Projects",
       "projects": [
         {
-          "name": "International SOS",
-          "logo": "https://i.ibb.co/WgKKMFQ/Isos.jpg",
-          "description": ""
+          "name": "Innovation Club Website",
+          "logo": "https://i.ibb.co/2vnXKzT/innovation-club.png",
+          "description": "Contributing to modern web platform showcasing student innovations"
         },
         {
-          "name": "Frasers Group",
-          "logo": "https://i.ibb.co/sQcvxmG/Frasers.png",
-          "description": ""
+          "name": "KU-CTF Platform",
+          "logo": "https://i.ibb.co/QDTnFxT/ctf-platform.png",
+          "description": "Assisting in CTF competition platform for students"
         },
         {
-          "name": "Lloyds Bank",
-          "logo": "https://i.ibb.co/GCSDPCq/Lloyds-bank.jpg",
-          "description": ""
+          "name": "Cybersecurity Workshops",
+          "logo": "https://i.ibb.co/x5R8jNM/security-workshop.png",
+          "description": "Participating in training sessions for tech enthusiasts"
         }
       ],
       "technologies": [
-        "TypeScript",
-        "React Native",
-        "Azure"
+        "React",
+        "Node.js",
+        "Python",
+        "Docker",
+        "MongoDB"
       ]
     },
     {
-      "company": "Galaxy",
-      "companyUrl": "https://galaxy.com/",
-      "companyLogo": "https://i.ibb.co/fX2rF84/galaxy-digital.png",
-      "jobTitle": "VP Frontend Engineer",
-      "datesWorked": "Jan 2021 - July 2022",
-      "responsibilities": "Worked on real-time React-based Web3 trading application",
+      "company": "Serianu Limited",
+      "companyUrl": "https://www.serianu.com",
+      "companyLogo": "https://i.ibb.co/5TQnrTK/serianu-logo.png",
+      "jobTitle": "Cybersecurity Intern",
+      "datesWorked": "June 2024 - August 2024",
+      "responsibilities": "Gained valuable hands-on experience in enterprise cybersecurity at one of Kenya's leading cybersecurity consulting firms. Assisted in vulnerability assessments, supported penetration testing activities, and contributed to security awareness programs while learning from certified cybersecurity professionals.",
+      "projectType": "Security Projects",
+      "projects": [
+        {
+          "name": "Client Vulnerability Assessments",
+          "logo": "https://i.ibb.co/7Kq8jvH/vuln-assessment.png",
+          "description": "Network and application vulnerability scanning"
+        },
+        {
+          "name": "SOC Operations Support",
+          "logo": "https://i.ibb.co/FBx7mYt/soc-monitoring.png",
+          "description": "Security operations center monitoring and analysis"
+        }
+      ],
       "technologies": [
+        "Nessus",
+        "Burp Suite",
+        "Wireshark",
+        "SIEM",
+        "Python"
+      ]
+    },
+    {
+      "company": "KCB Bank Group",
+      "companyUrl": "https://kcbgroup.com",
+      "companyLogo": "https://i.ibb.co/7QS5Rzq/kcb-logo.png",
+      "jobTitle": "Junior Software Developer (Part-time)",
+      "datesWorked": "November 2023 - May 2024",
+      "responsibilities": "Part-time software development role while studying, focusing on secure banking applications. Developed web applications with banking security standards, implemented security controls, and gained experience in financial technology while balancing academic commitments.",
+      "projectType": "Banking Applications",
+      "projects": [
+        {
+          "name": "Mobile Banking Security",
+          "logo": "https://i.ibb.co/ZXvLKzq/mobile-banking.png",
+          "description": "Enhanced security features for mobile app"
+        },
+        {
+          "name": "Transaction Monitoring",
+          "logo": "https://i.ibb.co/1KpR5YM/transaction-monitor.png",
+          "description": "Real-time fraud detection system"
+        }
+      ],
+      "technologies": [
+        "Java",
+        "Spring Boot",
+        "Angular",
+        "PostgreSQL",
+        "JWT"
+      ]
+    },
         "React",
         "StoryBook",
         "Cypress",
@@ -148,98 +183,69 @@
       ]
     },
     {
-      "company": "Accenture",
-      "companyUrl": "https://www.accenture.com/",
-      "companyLogo": "https://i.ibb.co/kcCKDF1/accenture.png",
-      "jobTitle": "Software Developer",
-      "datesWorked": "June 2014 - February 2019",
-      "responsibilities": "After joining as an associate, I had the opportunity to work on a range of exciting client projects, each with their own challenges, his helped me to develop my skills and knowledge in a variety of areas. Over time I worked my way up to a senior role, where I could actively deliver high quality solutions to clients.",
-      "projectType": "Clients",
+      "company": "Cellulant Corporation",
+      "companyUrl": "https://cellulant.com",
+      "companyLogo": "https://i.ibb.co/5TQnrTK/cellulant-logo.png",
+      "jobTitle": "Frontend Developer Intern",
+      "datesWorked": "January 2024 - April 2024",
+      "responsibilities": "Part-time frontend development role focusing on fintech solutions across Africa. Worked on payment gateway interfaces, mobile money integrations, and user experience improvements while gaining experience in financial technology and payment systems.",
+      "projectType": "Fintech Solutions",
       "projects": [
         {
-          "name": "E.ON",
-          "logo": "https://i.ibb.co/4PcVN4B/Eon.png",
-          "description": ""
+          "name": "Payment Gateway UI",
+          "logo": "https://i.ibb.co/G9nP8ZV/payment-gateway.png",
+          "description": "Modern payment interface design"
         },
         {
-          "name": "B&Q",
-          "logo": "https://i.ibb.co/F79xSDK/Bandq.jpg",
-          "description": ""
+          "name": "Mobile Money Dashboard",
+          "logo": "https://i.ibb.co/7KpqY2M/mobile-money.png",
+          "description": "Real-time transaction monitoring"
         },
         {
-          "name": "Boots",
-          "logo": "https://i.ibb.co/SnPtC8t/Boots.jpg",
-          "description": ""
-        },
-        {
-          "name": "TK Maxx",
-          "logo": "https://i.ibb.co/MBkQVs1/tkmaxx.jpg",
-          "description": ""
-        },
-        {
-          "name": "Vodafone",
-          "logo": "https://i.ibb.co/Zh1SwbR/Vodafone.png",
-          "description": ""
-        },
-        {
-          "name": "UKI Innovation Center",
-          "logo": "https://i.ibb.co/1JX4Q9Y/Accenture-innovation.jpg",
-          "description": ""
+          "name": "Merchant Portal",
+          "logo": "https://i.ibb.co/5FzNDKv/merchant-portal.png",
+          "description": "Business management interface"
         }
       ],
       "technologies": [
-        "C#",
-        "Angular",
-        "Node",
-        "AWS"
+        "React",
+        "TypeScript",
+        "Material-UI",
+        "Redux",
+        "REST APIs"
       ]
     },
     {
-      "company": "University of Oxford",
-      "companyUrl": "https://www.ox.ac.uk/",
-      "companyLogo": "https://i.ibb.co/QYmLPTX/oxford-uni.jpg",
-      "jobTitle": "Intern",
-      "datesWorked": "June 2013 - September 2013",
-      "responsibilities": "Worked on developing a Java application which would calculate the most effective mg of antimalarial drug, per kg or patient body weight, to prevent vaccine resistance building up. Involved dealing with millions of patient records, which were often in varying formats and units.",
-      "projectType": "Projects",
+      "company": "iHub Nairobi",
+      "companyUrl": "https://ihub.co.ke",
+      "companyLogo": "https://i.ibb.co/2K5gLmt/ihub-logo.png",
+      "jobTitle": "Junior Full-Stack Developer",
+      "datesWorked": "September 2023 - December 2023",
+      "responsibilities": "Entry-level development role at Kenya's premier tech innovation hub. Worked on startup projects, learned agile development methodologies, and contributed to various tech solutions while networking with Kenya's tech ecosystem and gaining real-world development experience.",
+      "projectType": "Innovation Projects",
       "projects": [
         {
-          "name": "WWARN",
-          "logo": "https://i.ibb.co/1R657nh/Wwarn.jpg",
-          "description": ""
+          "name": "AgriTech Platform",
+          "logo": "https://i.ibb.co/7y3W8fP/agritech.png",
+          "description": "Farmer-marketplace connection platform"
+        },
+        {
+          "name": "HealthTech Dashboard",
+          "logo": "https://i.ibb.co/qNwY5X8/healthtech.png",
+          "description": "Patient management system"
+        },
+        {
+          "name": "EduTech Portal",
+          "logo": "https://i.ibb.co/Bj8Xr9p/edutech.png",
+          "description": "Online learning platform"
         }
       ],
       "technologies": [
-        "Java",
-        "apachetomcat",
-        "junit",
-        "gradle"
-      ]
-    },
-    {
-      "company": "British Army",
-      "companyUrl": "https://www.army.mod.uk/",
-      "companyLogo": "https://i.ibb.co/gv6mbKw/Army.jpg",
-      "jobTitle": "Soldier",
-      "datesWorked": "",
-      "responsibilities": "",
-      "projectType": "Regiments",
-      "projects": [
-        {
-          "name": "Signals",
-          "logo": "https://i.ibb.co/F5mhzkr/Signals.png",
-          "description": ""
-        },
-        {
-          "name": "Oxford UOTC",
-          "logo": "https://i.ibb.co/ZMH1TWq/ouotc.jpg",
-          "description": ""
-        },
-        {
-          "name": "Intelligence Corps",
-          "logo": "https://i.ibb.co/svn2XLq/mi.jpg",
-          "description": ""
-        }
+        "Vue.js",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "Docker"
       ]
     }
   ],
