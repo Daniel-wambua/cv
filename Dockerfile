@@ -19,9 +19,9 @@ WORKDIR /app
 COPY web/package*.json ./web/
 COPY lib/requirements.txt ./lib/
 
-# Install dependencies
+# Install dependencies (including dev dependencies for building)
 WORKDIR /app/web
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy source code
 WORKDIR /app
