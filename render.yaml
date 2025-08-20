@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: cv-app
+    env: docker
+    dockerfilePath: ./render.dockerfile
+    plan: free
+    buildCommand: ""
+    startCommand: ""
+    envVars:
+      - key: NODE_ENV
+        value: production
