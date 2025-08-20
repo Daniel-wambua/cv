@@ -81,9 +81,9 @@
 	];
 
 	const headerLinks = [
-		{ name: 'Security Blog', url: 'https://havocsec.me' },
-		{ name: 'CTF Writeups', url: 'https://havocsec.me' },
-		{ name: 'Research', url: 'https://havocsec.me' },
+		{ name: 'Security Blog', url: 'https://havocsec.me/blog' },
+		{ name: 'CTF Writeups', url: 'https://havocsec.me/ctf-writeups' },
+		{ name: 'Research', url: 'https://havocsec.me/pentesting' },
 	];
 </script>
 
