@@ -3,5 +3,15 @@
   "outputDirectory": "build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
-  "framework": "svelte"
+  "framework": "svelte",
+  "functions": {
+    "src/routes/download/+server.ts": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "build": {
+    "env": {
+      "NODE_VERSION": "20"
+    }
+  }
 }
