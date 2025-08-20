@@ -122,10 +122,10 @@ The source for the website version is located in [`web/`](/web)
 ## Screenshot
 
 <h3 align="center">Web 🌐</h3>
-<p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://i.ibb.co/7NjgmHC/alicia-sykes-cv-mockup.png" /></a></p>
+<p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/main/web/static/assets/wmremove-transformed.png?raw=true" /></a></p>
 
 <h3 align="center">PDF 📄</h3>
-<p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://i.ibb.co/ycsHkjdF/screenshot-pdf.png?" /></a></p>
+<p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/main/web/static/assets/image.png?raw=true" /></a></p>
 
 ---
 
