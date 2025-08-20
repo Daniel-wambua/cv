@@ -42,7 +42,7 @@
   <p>
     Beyond that, I'm on LinkedIn, at <a href="https://www.linkedin.com/in/danielwambua/">in/danielwambua</a>
     and GitHub at <a href="https://github.com/Daniel-wambua">@Daniel-wambua</a>.
-    A catalog of my recent open source apps can be found at <a href="https://apps.danielwambua.com">apps.danielwambua.com</a>
+    A catalog of my recent open source apps can be found at <a href="https://apps.danielwambua.dev">apps.danielwambua.dev</a>
   </p>
   <p>
     To see if I'd be a good fit for your team, you can view my <a href="/ideal-role">ideal role</a>
