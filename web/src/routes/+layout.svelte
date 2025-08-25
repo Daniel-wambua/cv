@@ -68,7 +68,7 @@
 		{ name: 'Twitter', url: 'https://twitter.com/wambuahdaniel', icon: 'fa-twitter', color: '#1DA1F2' },
 		{ name: 'LinkedIn', url: 'www.linkedin.com/in/daniel-wambua-a312b32b8', icon: 'fa-linkedin', color: '#0A66C2' },
 		{ name: 'CTFtime', url: 'https://ctftime.org/team/379200', icon: 'fa-flag', color: '#00ff41' },
-
+    ];
 	const navLinks = [
 		{ name: 'Intro', url: '/intro', icon: 'fa-terminal' },
 		{ name: 'Experience', url: '/experience', icon: 'fa-shield-halved' },
