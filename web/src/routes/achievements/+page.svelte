@@ -8,17 +8,17 @@ const stats = [
     icon: 'fa-book-open'
   },
   {
-    stat: '5k+ followers on GitHub, X, Dev, LinkedIn etc',
+    stat: '5k+ followers on GitHub, X, Dev, LinkedIn,facebook etc',
     source: 'https://github.com/Daniel-wambua',
     icon: 'fa-users'
   },
   {
     stat: 'Active CTF competitor and security researcher',
-    source: 'https://ctftime.org/user/123456',
+    source: 'https://ctftime.org/team/379200',
     icon: 'fa-flag'
   },
   {
-    stat: 'Bug bounty hunter with verified reports',
+    stat: 'Bug bounty hunter',
     source: '',
     icon: 'fa-bug'
   }
@@ -26,43 +26,37 @@ const stats = [
 
 const awards = [
   {
-    award: 'Best Student Innovation Project 2024',
-    issuer: 'Karatina University ICT Department',
+    award: 'Best cybergame male winner-2025',
+    issuer: 'Ministry of ICT Kenya and Embassy of the Slovak Nation Kenya',
     source: '',
-    date: '2024'
+    date: '2025'
   },
   {
     award: 'Outstanding CTF Performance',
-    issuer: 'Kenya University Cybersecurity Challenge',
-    source: '',
-    date: '2024'
+    issuer: 'Binarysith',
+    source: 'Binarysith',
+    date: '2025'
   }
 ];
 
 const hackathonWins = [
   {
-    title: 'University Innovation Challenge',
-    achievement: 'Won 1st place overall',
-    description: 'Developed a cybersecurity awareness platform for students',
-    date: '2024'
-  },
-  {
-    title: 'Kenya Tech Hackathon',
+    title: 'Karu Tech Hackathon',
     achievement: 'Top 10 Finalist',
     description: 'Created a secure fintech solution for mobile payments',
-    date: '2023'
+    date: '2025'
   }
 ];
 
 const projects = [
   {
-    name: 'SecureCart E-commerce',
-    description: 'A security-focused e-commerce platform with advanced threat protection',
-    tech: 'Python, Django, React, PostgreSQL',
+    name: 'DataPulse',
+    description: 'A comprehensive, production-ready dashboard that aggregates and visualizes real-time data from multiple public APIs',
+    tech: 'Python, FastAPI, Streamlit',
     logo: '🛡️',
     stars: '20',
-    repo: 'Daniel-wambua/secure-ecommerce',
-    web: 'https://havoc-ecomm.com',
+    repo: ' https://github.com/Daniel-wambua/Datapulse.git',
+    web: ' https://github.com/Daniel-wambua/Datapulse.git',
   },
   {
     name: 'VulnScanner Pro',
