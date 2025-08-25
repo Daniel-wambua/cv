@@ -8,7 +8,7 @@ const stats = [
     icon: 'fa-book-open'
   },
   {
-    stat: '5k+ followers on GitHub, X, Dev, LinkedIn,facebook etc',
+    stat: '5k+ followers on GitHub, X, Dev, LinkedIn,facebook,slack etc',
     source: 'https://github.com/Daniel-wambua',
     icon: 'fa-users'
   },
