@@ -79,7 +79,7 @@
 
 	const headerLinks = [
 		{ name: 'Security Blog', url: 'https://havocsec.me/blog' },
-		{ name: 'CTF Writeups', url: 'https://havocsec.me/CTF' },
+		{ name: 'CTF Writeups', url: 'https://havocsec.me/ctf/' },
 		{ name: 'Research', url: 'https://havocsec.me/pentesting' },
 	];
 </script>
