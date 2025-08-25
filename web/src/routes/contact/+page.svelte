@@ -26,7 +26,7 @@
   {/if}
   <br>
   Or for other communication channels,
-  see <a target="_blank" href="https://havocsec.tech">havocsec.tech</a>
+  see <a target="_blank" href="https://daniel-wambua.github.io/havoc/">havocsec.tech</a>
 </p>
 <p>
   Thank you for stopping by, and I really hope to hear from you!
