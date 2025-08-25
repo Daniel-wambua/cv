@@ -30,7 +30,7 @@
 	// Display banner if looking for job, within the specified dates. Format date into human readable string
 	const lookingForJobDates = {
 		start: new Date('2025-07-01'),
-		end: new Date('2026-12-31'),
+		end: new Date('2026-12-30'),
 	};
 	const currentDate = new Date();
 	const startDateFormatted = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' }).format(lookingForJobDates.start);
