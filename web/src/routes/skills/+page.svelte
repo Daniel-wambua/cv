@@ -74,7 +74,7 @@
     <b>Note</b>: The technology list is not exhaustive, as it doesn't include some technologies I've used professionally at work, or for private clients.
     <br><br>
     For a full-list of programming languages and frameworks I've worked extensivley with, as well as links to code written in each,
-    please reference <a href="https://havoc.com">havoc.com</a>.
+    please reference <a href="https://havoc.com"><havoc class="com"></havoc></a>.
     <br><br>
     For the soft skills, I can provide references, or put you in touch with previous colleagues who can vouch for my abilities.
   </p>

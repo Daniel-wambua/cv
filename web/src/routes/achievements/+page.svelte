@@ -42,7 +42,7 @@ const awards = [
 const hackathonWins = [
   {
     title: 'University Innovation Challenge',
-    achievement: 'Won 1st place overall',
+    achievement: 'Won 3rd place overall',
     description: 'Developed a cybersecurity awareness platform for students',
     date: '2024'
   },
@@ -65,13 +65,13 @@ const projects = [
     web: 'https://havoc-ecomm.com',
   },
   {
-    name: 'VulnScanner Pro',
-    description: 'Automated vulnerability assessment tool for web applications',
+    name: 'Datapulse',
+    description: 'A comprehensive, production-ready dashboard that aggregates and visualizes real-time data from multiple public APIs',
     tech: 'Python, Flask, SQLite',
-    logo: '🔍',
+    logo: '📊',
     stars: '15',
-    repo: 'Daniel-wambua/vuln-scanner',
-    web: 'https://github.com/Daniel-wambua/vuln-scanner',
+    repo: 'https://github.com/Daniel-wambua/Datapulse.git',
+    web: 'https://github.com/Daniel-wambua/Datapulse.git',
   }
 ];
 

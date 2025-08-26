@@ -26,7 +26,7 @@
   {/if}
   <br>
   Or for other communication channels,
-  see <a target="_blank" href="https://havocsec.tech">havocsec.tech</a>
+  see <a target="_blank" href="https://danielwambua.dev">danielwambua.dev</a>
 </p>
 <p>
   Thank you for stopping by, and I really hope to hear from you!
@@ -40,9 +40,9 @@
     A shortened version of my CV in PDF format can be downloaded <a href="/download">here</a>.
   </p>
   <p>
-    Beyond that, I'm on LinkedIn, at <a href="https://www.linkedin.com/in/danielwambua/">in/danielwambua</a>
+    Beyond that, I'm on LinkedIn, at <a href="https://www.linkedin.com/in/daniel-wambua-a312b32b8/">in/danielwambua</a>
     and GitHub at <a href="https://github.com/Daniel-wambua">@Daniel-wambua</a>.
-    A catalog of my recent open source apps can be found at <a href="https://apps.danielwambua.dev">apps.danielwambua.dev</a>
+    A catalog of my recent open source apps can be found at <a href="https://danielwambua.dev">danielwambua.dev</a>
   </p>
   <p>
     To see if I'd be a good fit for your team, you can view my <a href="/ideal-role">ideal role</a>
