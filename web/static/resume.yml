@@ -13,10 +13,10 @@ personal-statement: |
 extra-links:
   work_history:
     text: See all previous roles at linkedin.com/in/wambuahdaniel
-    link: https://linkedin.com/in/wambuahdaniel
+    link: https://www.linkedin.com/in/daniel-wambua-a312b32b8/
   projects:
-    text: See example projects built with each technology at apps.wambuahdaniel.com
-    link: https://apps.wambuahdaniel.com/
+    text: See example projects built with each technology at wambuahdaniel.dev
+    link: https://wambuahdaniel.dev/
 education:
 - institution: karatina university
   area: information technology
@@ -30,6 +30,12 @@ education:
   startDate: '2022-08'
   endDate: '2023-01'
   score: Graduated Top of Class (Distinction)
+- institution: Kitonyoni secondary school
+  area: Certificate of Secondary Education
+  studyType: KCSE
+  startDate: '2018'
+  endDate: '2022'
+  score: Distinction
 
 work:
 - name: Ridge Cybersecurity Inc.
