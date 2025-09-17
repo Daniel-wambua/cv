@@ -9,7 +9,6 @@ export const GET: RequestHandler = async () => {
     const projectRoot = join(process.cwd(), '..');
     const resumePath = join(projectRoot, 'resume.yml');
     const templatePath = join(projectRoot, 'template.jinja');
-    const outputTexPath = join(projectRoot, 'tex', 'resume.tex');
     const outputPdfPath = join(projectRoot, 'out', 'Daniel-Wambua-CV.pdf');
     
     // Check if required files exist

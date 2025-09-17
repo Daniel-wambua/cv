@@ -120,8 +120,18 @@
 %-------------------------------------------------------------------------------
 
 %% Page Layout
-% Configure page margins with geometry
-\geometry{left=1.5cm, top=0.5cm, right=1.5cm, bottom=0.5cm, footskip=.5cm}
+% Configure page margins with geometry - optimized for professional layout
+\geometry{left=1.8cm, top=1.0cm, right=1.8cm, bottom=1.5cm, footskip=1.0cm}
+
+% Ensure consistent page layout across all pages
+\AtBeginDocument{%
+  \newgeometry{left=1.8cm, top=1.0cm, right=1.8cm, bottom=1.5cm, footskip=1.0cm}
+}
+
+% Prevent overfull boxes and improve line breaking
+\sloppy
+\tolerance=1000
+\emergencystretch=3em
 
 %% Header & Footer
 % Set offset to each header and offset
@@ -264,13 +274,13 @@
 \newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 
 % For elements of entry
-\newcommand*{\entrytitlestyle}[1]{{\vspace*{0mm}\fontsize{12pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\entrytitlestyle}[1]{{\vspace*{0mm}\fontsize{13pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\entrypositionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 
 
 \newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
-\newcommand*{\descriptionstyle}[1]{{\fontsize{11pt}{12pt}\bodyfontlight\upshape\color{text} #1}}
+\newcommand*{\descriptionstyle}[1]{{\fontsize{10pt}{12pt}\bodyfontlight\upshape\color{text} #1}}
 \newcommand*{\skill}[1]{{\fontsize{10pt}{1em}\bodyfontlight\upshape\color{text} \textnormal{#1}}}
 
 % For elements of subentry
@@ -288,7 +298,7 @@
 
 % For elements of skill
 \newcommand*{\skilltypestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\skillsetstyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\color{text} #1}}
+\newcommand*{\skillsetstyle}[1]{{\fontsize{10pt}{12pt}\bodyfontlight\color{text} #1}}
 
 % For elements of Achievements
 \newcommand*{\achievementstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
@@ -323,15 +333,15 @@
 
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{
-  \vspace{-3mm}
+  \vspace{-2mm}
   \begin{justify}
-  \begin{itemize}[leftmargin=-2ex, nosep, noitemsep]
+  \begin{itemize}[leftmargin=0.5cm, nosep, itemsep=1.5pt]
     \setlength{\parskip}{0pt}
-    \renewcommand{\labelitemi}{\bullet}
+    \renewcommand{\labelitemi}{\textcolor{awesome}{\textbullet}}
 }{
   \end{itemize}
   \end{justify}
-  \vspace{-2mm}
+  \vspace{-1mm}
 }
 
 % Define an environment for cvparagraphs
@@ -602,11 +612,11 @@
 % Define a section for CV
 % Usage: \cvsection{<section-title>}
 \newcommand{\cvsection}[1]{
-  \par\addvspace{1.5ex}
+  \par\addvspace{2.5ex}
   \phantomsection{}
   \sectionstyle{#1}
-  \color{gray}\vhrulefill{0.10pt}
-  \par\nobreak\addvspace{1ex}
+  \color{gray}\vhrulefill{0.15pt}
+  \par\nobreak\addvspace{1.5ex}
 }
 
 % Define a subsection for CV
@@ -625,15 +635,16 @@
 % Define an entry of cv information
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
 \newcommand*{\cventry}[5]{
-  \setlength\tabcolsep{0pt}
-  \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{12.5cm} R{4.5cm}}
+  \setlength\tabcolsep{3pt}
+  \setlength{\extrarowheight}{2pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} p{0.65\textwidth} p{0.3\textwidth}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
-    \multicolumn{2}{L{17cm}}{\descriptionstyle{#5}} \\
-  \end{tabular*}
+    \multicolumn{2}{p{\textwidth}}{\descriptionstyle{#5}} \\
+  \end{tabular*}%
+  \vspace{1mm}
 }
 
 % Define an environment for cvsubentry
@@ -645,10 +656,10 @@
 % Define a subentry of cv information
 % Usage: \cvsubentry{<position>}{<title>}{<date>}{<description>}
 \newcommand*{\cvsubentry}[4]{
-  \setlength\tabcolsep{0pt}
-  \setlength{\extrarowheight}{0pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{12.5cm} R{4.5cm}}
-    \setlength\leftskip{0.2cm}
+  \setlength\tabcolsep{3pt}
+  \setlength{\extrarowheight}{2pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} p{0.65\textwidth} p{0.3\textwidth}}
+    \setlength\leftskip{0.3cm}
     \subentrytitlestyle{#2} & \ifthenelse{\equal{#1}{}}
       {\subentrydatestyle{#3}}{}
     \ifthenelse{\equal{#1}{}}
@@ -656,8 +667,9 @@
       {\subentrypositionstyle{#1} & \subentrydatestyle{#3} \\}
     \ifthenelse{\equal{#4}{}}
       {}
-      {\multicolumn{2}{L{17.0cm}}{\subdescriptionstyle{#4}} \\}
-  \end{tabular*}
+      {\multicolumn{2}{p{\textwidth}}{\subdescriptionstyle{#4}} \\}
+  \end{tabular*}%
+  \vspace{1mm}
 }
 
 % Define an environment for cvhonor
@@ -679,16 +691,16 @@
 
 % Define an environment for cvachievements
 \newenvironment{cvachievements}{
-  \vspace{-2mm}
+  \vspace{-1mm}
   \bodyfontlight
   \begin{justify}
-  \fontsize{10pt}{1em}\selectfont
-  \begin{itemize}[leftmargin=0ex, label={}, nosep, noitemsep, before=\achievementstyle]
-    \setlength{\parskip}{2mm}
+  \fontsize{10pt}{12pt}\selectfont
+  \begin{itemize}[leftmargin=0.5cm, label={\textcolor{awesome}{\textbullet}}, nosep, itemsep=2mm, before=\achievementstyle]
+    \setlength{\parskip}{1mm}
 }{
   \end{itemize}
   \end{justify}
-  \vspace{2mm}
+  \vspace{1mm}
 }
 
 % Define an environment for personal statement
@@ -727,9 +739,9 @@
 % Define an environment for cvskill
 \newenvironment{cvskills}{
   \begin{center}
-    \setlength\tabcolsep{1ex}
-    \setlength{\extrarowheight}{0pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{20.2cm}}
+    \setlength\tabcolsep{4pt}
+    \setlength{\extrarowheight}{3pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} p{0.25\textwidth} p{0.7\textwidth}}
 }{
     \end{tabular*}
   \end{center}

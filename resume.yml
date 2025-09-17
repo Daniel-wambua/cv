@@ -7,8 +7,7 @@ basics:
 personal-statement: |
   Cybersecurity researcher and ethical hacker with a passion for breaking things to make them stronger.
   Currently pursuing Information Technology while actively participating in CTFs, hackathons, and security research.
-  Specialized in penetration testing, vulnerability assessment, and security architecture across cloud, web, and network infrastructures.
-  When I'm not hunting bugs or solving cryptographic challenges, I'm building secure applications and sharing knowledge with the community.
+  Specialized in penetration testing, vulnerability assessment, and security architecture.
   Driven by curiosity, continuous learning, and the mission to make cyberspace safer for everyone.
 
 extra-links:
@@ -67,45 +66,38 @@ work:
   startDate: '2023-08'
   endDate: 'Present'
   highlights:
-  - Pursuing Bachelor of Science in Information Technology with focus on cybersecurity
-  - Active member of university innovation club contributing technical knowledge and skills
-  - Organizing CTF competitions for IT and computer science students
-  - Assisting in creation and management of innovation club website
-  - Participating in cybersecurity workshops and ethical hacking training sessions
-  - Contributing to university-wide hackathons and coding competitions
+  - Pursuing BSc Information Technology with cybersecurity focus
+  - Active member of university innovation club
+  - Organizing CTF competitions for students
+  - Participating in cybersecurity workshops and training
 
 - name: Serianu Limited
   position: Cybersecurity Intern
   startDate: '2024-06'
   endDate: '2024-08'
   highlights:
-  - Gained hands-on experience in vulnerability assessments at leading Kenyan cybersecurity firm
-  - Assisted in penetration testing activities for various client organizations
-  - Participated in security awareness training program development
-  - Contributed to incident response procedures and documentation
-  - Supported SOC operations and threat monitoring activities
-  - Learned enterprise security tools and frameworks from industry experts
+  - Hands-on experience in vulnerability assessments
+  - Assisted in penetration testing for client organizations
+  - Contributed to incident response procedures
+  - Learned enterprise security tools and frameworks
 
 - name: KCB Bank Group
   position: Junior Software Developer (Part-time)
   startDate: '2023-11'
   endDate: '2024-05'
   highlights:
-  - Developed secure web applications with focus on banking security standards
+  - Developed secure web applications for banking standards
   - Implemented security controls and secure coding practices
-  - Assisted in code reviews and security testing procedures
-  - Worked on mobile banking application security enhancements
-  - Collaborated with senior developers on security architecture decisions
+  - Assisted in code reviews and security testing
+  - Worked on mobile banking security enhancements
 
 skills:
 - name: Penetration Testing
   keywords:
   - Web Application Testing
   - Network Penetration Testing
-  - Mobile Application Security
   - API Security Testing
-  - Social Engineering
-  - Physical Security Assessment
+  - Mobile Application Security
 - name: Security Tools
   keywords:
   - Burp Suite Professional
@@ -113,49 +105,24 @@ skills:
   - Nmap/Nessus
   - OWASP ZAP
   - Wireshark
-  - Bloodhound
-  - Cobalt Strike
-  - Empire Framework
 - name: Programming & Scripting
   keywords:
   - Python (Security Automation)
   - Bash/PowerShell Scripting
-  - Go (Tool Development)
   - JavaScript (Web Security)
-  - C/C++ (Exploit Development)
-  - Assembly (Reverse Engineering)
+  - Go (Tool Development)
 - name: Cloud Security
   keywords:
   - AWS Security Services
-  - Azure Security Center
-  - GCP Security Command Center
   - Kubernetes Security
   - Container Security
   - IAM & Access Management
 - name: Cryptography & Forensics
   keywords:
-  - Cryptographic Protocols
-  - Hash Function Analysis
   - Digital Forensics
   - Malware Analysis
   - Reverse Engineering
-  - Steganography
-- name: Networking & Infrastructure
-  keywords:
-  - TCP/IP Deep Dive
-  - Network Protocols
-  - Firewall Configuration
-  - IDS/IPS Management
-  - SIEM Implementation
-  - Active Directory Security
-- name: Development (Security-Focused)
-  keywords:
-  - Secure Coding Practices
-  - OWASP Top 10
-  - Security Code Review
-  - DevSecOps
-  - Docker/Kubernetes
-  - CI/CD Security Integration
+  - Cryptographic Protocols
 
 ctf_achievements:
   - event: "picoCTF 2024"
@@ -176,27 +143,17 @@ ctf_achievements:
     points: "12,750 points"
 
 achievements:
-  - text: "🏆 Winner - Africa Cyber Security Challenge 2024 (University Category)"
-    source: 'https://cybersecuritychallenge.africa/winners-2024'
-  - text: "🎯 Top 10 Ethical Hackers - CyberGame Kenya 2025"
+  - text: " Top 10 Ethical Hackers - CyberGame Kenya 2025"
     source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
-  - text: " Published 50+ CTF writeups and security research articles"
-    source: 'https://medium.com/@danielwambua/security-research'
-  - text: "🎤 Speaker at Kenya InfoSec Conference 2024 - 'Cloud Security for Startups'"
-    source: 'https://infosecke.com/speakers/daniel-wambua'
+  - text: "🏆 Winner - Africa Cyber Security Challenge 2024"
+    source: 'https://cybersecuritychallenge.africa/winners-2024'
   - text: "🥇 1st Place - Kenya National Cybersecurity Hackathon 2024"
     source: 'https://hackathon.cybersecurity.go.ke/winners'
 
 awards:
-- title: "Africa Cyber Security Challenge - University Winner (2024)"
-  summary: "Led university team to victory in continental cybersecurity competition, solving complex challenges in cryptography, forensics, and web exploitation"
-  source: 'https://cybersecuritychallenge.africa/winners-2024'
 - title: "CyberGame Kenya - Top 10 Ethical Hacker (2025)"
   summary: "Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition"
   source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
-- title: "Bug Bounty Hall of Fame - Multiple Programs"
-  summary: "Acknowledged by 10+ major tech companies including Microsoft, Google, and Facebook for responsible vulnerability disclosure"
-  source: 'https://bugcrowd.com/daniel-wambua'
 
 research_publications:
   - title: "Advanced Persistent Threats in Cloud Environments: Detection and Mitigation"
@@ -209,44 +166,29 @@ research_publications:
     coauthors: "Research Team - Karatina University"
 
 projects:
-- name: 'VulnScanner Pro'
-  description: 'Advanced vulnerability scanner with ML-powered detection and automated reporting. Features custom payloads and integrations with popular security tools.'
-  github: 'wambuahdaniel/vulnscanner-pro'
-  url: 'https://vulnscanner.danielwambua.dev'
+- name: 'TypingMaster Pro'
+  description: 'Typing speed test app with real book content'
+  github: 'Daniel-wambua/TypingMaster-Pro'
+  url: 'https://typing-master-pro-eta.vercel.app/'
+  language: 'TypeScript'
+  stars: '1'
+  tags: ['Web Application', 'TypeScript', 'React']
+
+- name: 'DataPulse Command Center'
+  description: 'Real-time dashboard with FastAPI backend'
+  github: 'Daniel-wambua/Datapulse'
+  url: 'https://datapulse.vercel.app'
   language: 'Python'
-  stars: '2.3k'
-  tags: ['Security Tool', 'Machine Learning', 'Automation']
+  stars: '1'
+  tags: ['Dashboard', 'API Integration', 'Real-time']
 
-- name: 'CryptoBreaker Toolkit'
-  description: 'Educational cryptanalysis toolkit for learning and practicing various cipher-breaking techniques. Used by 500+ students globally.'
-  github: 'wambuahdaniel/cryptobreaker'
-  url: 'https://cryptobreaker.danielwambua.dev'
-  language: 'Python'
-  stars: '1.8k'
-  tags: ['Cryptography', 'Education', 'Research']
-
-- name: 'SecureAPI Framework'
-  description: 'A security-first API framework with built-in authentication, rate limiting, input validation, and threat detection capabilities.'
-  github: 'wambuahdaniel/secure-api-framework'
-  url: 'https://secureapi.danielwambua.dev'
-  language: 'Go'
-  stars: '950'
-  tags: ['API Security', 'Framework', 'Go']
-
-- name: 'CTF Platform'
-  description: 'Full-featured CTF platform used by Kenya universities. Supports real-time scoring, team management, and challenge deployment.'
-  github: 'wambuahdaniel/ctf-platform'
-  url: 'https://ctf.danielwambua.dev'
-  language: 'JavaScript'
-  stars: '1.2k'
-  tags: ['CTF', 'Platform', 'Education']
-
-- name: 'Network Security Monitor'
-  description: 'Real-time network monitoring tool with threat detection, anomaly analysis, and automated incident response capabilities.'
-  github: 'wambuahdaniel/netsec-monitor'
-  language: 'Python'
-  stars: '756'
-  tags: ['Network Security', 'Monitoring', 'IDS']
+- name: 'CTF Writeups & Security Blog'
+  description: 'Technical blog with CTF solutions'
+  github: 'Daniel-wambua/blogz'
+  url: 'https://blog.danielwambua.dev'
+  language: 'Technical Writing'
+  stars: '1'
+  tags: ['CTF', 'Security Research', 'Education']
 
 bug_bounty_stats:
   total_bounties: 47

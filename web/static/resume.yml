@@ -107,17 +107,29 @@ achievements:
     source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
 
 awards:
-- title:  CyberGame-Ke Overall Best Player (2025)
-  summary: Recognized as one of the top 10 hackers in the CyberGame Kenya event
+- title: CyberGame Kenya - Top 10 Ethical Hacker (2025)
+  summary: Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition
   source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
 
 projects:
-- name: 'Web Check'
-  description: 'A web application for monitoring website uptime and performance.'
-  github: 'DanielWambua/web-check'
-  url: 'https://web-check.xyz'
-  language: 'React'
-  stars: '25k'
+- name: 'TypingMaster Pro'
+  description: 'A comprehensive typing speed test application with real book content, multi-source fetching, and advanced analytics'
+  github: 'Daniel-wambua/TypingMaster-Pro'
+  url: 'https://typing-master-pro-eta.vercel.app/'
+  language: 'TypeScript'
+  stars: '1'
+- name: 'DataPulse Command Center'
+  description: 'Real-time dashboard aggregating data from multiple public APIs with FastAPI backend and Streamlit frontend'
+  github: 'Daniel-wambua/Datapulse'
+  url: 'https://datapulse.danielwambua.dev'
+  language: 'Python'
+  stars: '1'
+- name: 'CTF Writeups & Security Blog'
+  description: 'Technical blog documenting cybersecurity research, CTF solutions, and security tutorials'
+  github: 'Daniel-wambua/blogz'
+  url: 'https://blog.danielwambua.dev'
+  language: 'Technical Writing'
+  stars: '1'
 
 
 

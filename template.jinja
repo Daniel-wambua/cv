@@ -169,9 +169,9 @@
   \item {
     \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
       \href{ {{ proj.url | latex_escape }} }{\textbf{ {{ proj.name | latex_escape }} }} 
-      - {{ proj.description | latex_escape }} \href{ {{ proj.url | latex_escape }} }{\scriptsize\color{lightgray}\faLink}
+      - {{ proj.description | latex_escape }}
       & 
-      \href{https://github.com/{{ proj.github | latex_escape }}}{\faGithub\ {{ proj.github | latex_escape }}} \\
+      \href{https://github.com/{{ proj.github | latex_escape }}}{\faGithub\ GitHub} \\
     \end{tabular*}
   }
 {%- endfor %}

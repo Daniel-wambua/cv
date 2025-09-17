@@ -1,46 +1,46 @@
 {
-  "title": "Alicia Sykes",
+  "title": "Daniel Wambua",
   "description": "",
-  "source": "https://github.com/lissy93/my-website",
+  "source": "https://github.com/Daniel-wambua/cv",
   "baseUrl": "https://as93.net",
   "initialFeeds": [
     {
       "label": "Notes",
-      "url": "https://raw.githubusercontent.com/Lissy93/feeds/main/blog.atom"
+      "url": "https://example.com/feeds/blog.atom"
     }
   ],
   "additionalFeeds": [
     {
       "label": "Notes",
-      "url": "https://notes.aliciasykes.com/feed"
+      "url": "https://example.com/feeds/notes.atom"
     },
     {
       "label": "Dev.to",
-      "url": "https://raw.githubusercontent.com/Lissy93/feeds/main/dev-to.atom"
+      "url": "https://example.com/feeds/dev-to.atom"
     },
     {
       "label": "BlogSpot",
-      "url": "https://raw.githubusercontent.com/Lissy93/feeds/main/blogger.atom"
+      "url": "https://example.com/feeds/blogger.atom"
     },
     {
       "label": "GitHub",
-      "url": "https://raw.githubusercontent.com/Lissy93/feeds/main/github.atom"
+      "url": "https://example.com/feeds/github.atom"
     },
     {
       "label": "StackOverflow",
-      "url": "https://raw.githubusercontent.com/Lissy93/feeds/main/stackoverflow.atom"
+      "url": "https://example.com/feeds/stackoverflow.atom"
     },
     {
       "label": "Reddit",
-      "url": "https://raw.githubusercontent.com/Lissy93/feeds/main/reddit.atom"
+      "url": "https://example.com/feeds/reddit.atom"
     },
     {
       "label": "Mastodon",
-      "url": "https://raw.githubusercontent.com/Lissy93/feeds/main/mastodon.atom"
+      "url": "https://example.com/feeds/mastodon.atom"
     },
     {
       "label": "YouTube",
-      "url": "https://raw.githubusercontent.com/Lissy93/feeds/main/youtube.atom"
+      "url": "https://example.com/feeds/youtube.atom"
     }
   ],
   "workExperience": [
@@ -77,62 +77,6 @@
         "MongoDB"
       ]
     },
-    {
-      "company": "Serianu Limited",
-      "companyUrl": "https://www.serianu.com",
-      "companyLogo": "https://i.ibb.co/5TQnrTK/serianu-logo.png",
-      "jobTitle": "Cybersecurity Intern",
-      "datesWorked": "June 2024 - August 2024",
-      "responsibilities": "Gained valuable hands-on experience in enterprise cybersecurity at one of Kenya's leading cybersecurity consulting firms. Assisted in vulnerability assessments, supported penetration testing activities, and contributed to security awareness programs while learning from certified cybersecurity professionals.",
-      "projectType": "Security Projects",
-      "projects": [
-        {
-          "name": "Client Vulnerability Assessments",
-          "logo": "https://i.ibb.co/7Kq8jvH/vuln-assessment.png",
-          "description": "Network and application vulnerability scanning"
-        },
-        {
-          "name": "SOC Operations Support",
-          "logo": "https://i.ibb.co/FBx7mYt/soc-monitoring.png",
-          "description": "Security operations center monitoring and analysis"
-        }
-      ],
-      "technologies": [
-        "Nessus",
-        "Burp Suite",
-        "Wireshark",
-        "SIEM",
-        "Python"
-      ]
-    },
-    {
-      "company": "KCB Bank Group",
-      "companyUrl": "https://kcbgroup.com",
-      "companyLogo": "https://i.ibb.co/7QS5Rzq/kcb-logo.png",
-      "jobTitle": "Junior Software Developer (Part-time)",
-      "datesWorked": "November 2023 - May 2024",
-      "responsibilities": "Part-time software development role while studying, focusing on secure banking applications. Developed web applications with banking security standards, implemented security controls, and gained experience in financial technology while balancing academic commitments.",
-      "projectType": "Banking Applications",
-      "projects": [
-        {
-          "name": "Mobile Banking Security",
-          "logo": "https://i.ibb.co/ZXvLKzq/mobile-banking.png",
-          "description": "Enhanced security features for mobile app"
-        },
-        {
-          "name": "Transaction Monitoring",
-          "logo": "https://i.ibb.co/1KpR5YM/transaction-monitor.png",
-          "description": "Real-time fraud detection system"
-        }
-      ],
-      "technologies": [
-        "Java",
-        "Spring Boot",
-        "Angular",
-        "PostgreSQL",
-        "JWT"
-      ]
-    },
         "React",
         "StoryBook",
         "Cypress",
@@ -141,7 +85,7 @@
     },
     {
       "company": "Freelance",
-      "companyUrl": "https://aliciasykes.com/",
+      "companyUrl": "https://danielwambua.com/",
       "companyLogo": "https://i.ibb.co/Dt6kGFQ/brick.png",
       "jobTitle": "Full-Stack Developer",
       "datesWorked": "February 2019 - Jan 2021",
@@ -180,39 +124,6 @@
         "TypeScript",
         "GraphQL",
         "GCP"
-      ]
-    },
-    {
-      "company": "Cellulant Corporation",
-      "companyUrl": "https://cellulant.com",
-      "companyLogo": "https://i.ibb.co/5TQnrTK/cellulant-logo.png",
-      "jobTitle": "Frontend Developer Intern",
-      "datesWorked": "January 2024 - April 2024",
-      "responsibilities": "Part-time frontend development role focusing on fintech solutions across Africa. Worked on payment gateway interfaces, mobile money integrations, and user experience improvements while gaining experience in financial technology and payment systems.",
-      "projectType": "Fintech Solutions",
-      "projects": [
-        {
-          "name": "Payment Gateway UI",
-          "logo": "https://i.ibb.co/G9nP8ZV/payment-gateway.png",
-          "description": "Modern payment interface design"
-        },
-        {
-          "name": "Mobile Money Dashboard",
-          "logo": "https://i.ibb.co/7KpqY2M/mobile-money.png",
-          "description": "Real-time transaction monitoring"
-        },
-        {
-          "name": "Merchant Portal",
-          "logo": "https://i.ibb.co/5FzNDKv/merchant-portal.png",
-          "description": "Business management interface"
-        }
-      ],
-      "technologies": [
-        "React",
-        "TypeScript",
-        "Material-UI",
-        "Redux",
-        "REST APIs"
       ]
     },
     {
@@ -255,7 +166,7 @@
       "thumbnail": "https://i.ibb.co/wgJDXs2/adguardian-banner-2.png"
     },
     {
-      "name": "aliciasykes.com",
+      "name": "danielwambua.com",
       "thumbnail": "https://repository-images.githubusercontent.com/165275206/a5fc1f00-f206-11e9-9f21-6e5f696368e7"
     },
     {
@@ -273,11 +184,11 @@
     },
     {
       "name": "brewfile",
-      "thumbnail": "https://i.ibb.co/N9c30xT/lissy93-brewfile-banner.png"
+      "thumbnail": "https://i.ibb.co/N9c30xT/daniel-wambua-brewfile-banner.png"
     },
     {
       "name": "bug-bounties",
-      "thumbnail": "https://raw.githubusercontent.com/Lissy93/bug-bounties/main/web/public/banner.png"
+      "thumbnail": "https://raw.githubusercontent.com/Daniel-wambua/bug-bounties/main/web/public/banner.png"
     },
     {
       "name": "cheat-code",
@@ -285,7 +196,7 @@
     },
     {
       "name": "cso",
-      "thumbnail": "https://github.com/Lissy93/cso/blob/HEAD/public/banner.png?raw=true",
+      "thumbnail": "https://github.com/Daniel-wambua/cso/blob/HEAD/public/banner.png?raw=true",
       "language": "Solid"
     },
     {
@@ -323,7 +234,7 @@
       "thumbnail": "https://i.ibb.co/vvpw9Yg/upscaled-hasami.jpg"
     },
     {
-      "name": "lissy93",
+      "name": "danielwambua",
       "language": "markdown",
       "thumbnail": "https://i.ibb.co/TkqZmZ9/Screenshot-from-2023-10-29-23-48-30.png"
     },
@@ -375,7 +286,7 @@
     },
     {
       "name": "who-dat",
-      "thumbnail": "https://github.com/Lissy93/who-dat/blob/main/public/who-dat.png?raw=true"
+      "thumbnail": "https://github.com/Daniel-wambua/who-dat/blob/main/public/who-dat.png?raw=true"
     }
   ],
   "postComplimentaryData": [
@@ -441,25 +352,23 @@
     }
   ],
   "contact": {
-    "name": "Alicia Sykes",
-    "email": "alicia@omg.lol",
-    "website": "https://aliciasykes.com",
+    "name": "Daniel Wambua",
+    "email": "wambuahdaniel@gmail.com",
+    "website": "https://danielwambua.com",
     "socials": {
-      "Twitter": "Lissy_Sykes",
-      "GitHub": "Lissy93",
-      "Dev.to": "Lissy93",
-      "Mastodon": "@Lissy93",
-      "LinkedIn": "in/AliciaSykes",
-      "Instagram": "liss.sykes",
-      "YouTube": "AliciaSykes",
-      "Reddit": "lissy93",
-      "StackOverflow": "979052/alicia",
-      "KeyBase": "AliciaSykes",
-      "Facebook": "Liss.Sykes",
-      "PeerList": "alicia",
-      "CodersRank": "lissy93",
-      "OMG.lol": "alicia"
-    },
+      "GitHub": "Daniel-wambua",
+      "Dev.to": "danielwambua",
+      "Mastodon": "@danielwambua",
+      "LinkedIn": "in/wambuahdaniel",
+      "Twitter": "danielwambua",
+      "YouTube": "DanielWambua",
+      "Reddit": "danielwambua",
+      "StackOverflow": "123456/daniel",
+      "KeyBase": "DanielWambua",
+      "HackerNews": "danielwambua",
+      "PeerList": "daniel",
+      "CodersRank": "danielwambua",
+      "OMG.lol": "daniel",
     "socialButtonLimit": 6,
     "mailerConfig": {
       "service_id": "gmail",
@@ -467,20 +376,20 @@
       "user_id": "user_K6F041q1dQvz8SJLSOZCR",
       "template_params": {}
     },
-    "pgpKeyLink": "https://keybase.io/aliciasykes/pgp_keys.asc?fingerprint=0688f8d34587d954e9e51fb8fedb68f55c0283a7",
+    "pgpKeyLink": "https://keybase.io/danielwambua/pgp_keys.asc",
     "pgpPublicKey": "-----BEGIN PGP PUBLIC KEY BLOCK-----\n      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\n      mFFVmpQe2X/qgZBVVYC+LjpxNEMt6w==\n      =dpLK\n      -----END PGP PUBLIC KEY BLOCK-----\n"
   },
   "about": {
-    "intro": "Just your average dev...",
+    "intro": "Cybersecurity researcher and ethical hacker...",
     "bio": [
-      "I'm Alicia, a London-based software engineer.",
-      "I have a particular interest in privacy-respecting software, as well as security.\n      I've carried out a few audits, and authored the initial versions of\n      <a href=\"https://github.com/Lissy93/personal-security-checklist\">Personal Security Checklist</a>\n      and <a href=\"https://github.com/Lissy93/awesome-privacy\">Awesome Privacy</a>.",
-      "I enjoy going to (<a href=\"https://notes.aliciasykes.com/p/0s5s3uOtKj\">and sometimes winning!</a>) hackathons.\n      And if you're London-based, you'll probably have bumped into me at a tech meetup.",
-      "I love Linux, and (imo) have a neat\n      <a href=\"https://github.com/lissy93/dotfiles\">dotfiles setup</a> which I'm always tweaking.\n      And I have a small homelab, that I'm using to learn more about system administration,\n      and host my own services to (attempt to) escape big tech.\n      I made <a href=\"https://github.com/Lissy93/dashy\">dashboard app</a> for it.\n      ",
-      "For work, I'm a principal software engineer at <a href=\"https://and.digital/\">AND.Digital</a>,\n      where I work across various client projects, help to upskill and mentor junior and mid-level\n      developers and ensure that the code we're delivering is the best it can be.",
-      "Away from the keyboard, I like sports, hanging out with friends, and going to Church."
+      "I'm Daniel, a Nairobi-based cybersecurity researcher and ethical hacker.",
+      "I have a particular interest in penetration testing, vulnerability assessment, and security architecture across cloud, web, and network infrastructures.",
+      "I enjoy participating in CTFs, hackathons, and cybersecurity competitions.",
+      "I love Linux, and have a security-focused development setup which I'm always tweaking for better security research and tool development.",
+      "Currently pursuing Information Technology with focus on cybersecurity while actively participating in the security community.",
+      "Away from the keyboard, I like sports, hanging out with friends, and contributing to open source security projects."
     ],
-    "picture": "https://i.ibb.co/svxHFMD/alicia-sykes-3.jpg"
+    "picture": "https://i.ibb.co/svxHFMD/daniel-wambua.jpg"
   },
   "techStack": {
     "backend": [
@@ -526,7 +435,6 @@
         "language": "PHP",
         "projects": [
           "revision-quizzes",
-          "intern-magnet",
           "usermonkey"
         ]
       }
@@ -537,7 +445,7 @@
         "projects": [
           "dashy",
           "all-the-countries",
-          "aliciasykes.com",
+          "danielwambua.com",
           "tfl-lift-availability-dash"
         ]
       },

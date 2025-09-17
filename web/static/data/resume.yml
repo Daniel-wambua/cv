@@ -1,0 +1,135 @@
+basics:
+  name: Daniel Wambua
+  email: wambuahdaniel@gmail.com
+  url: https://github.com/wambuahdaniel
+  location:
+    address: Nairobi, Kenya
+personal-statement: |
+  I'm a builder at heart. I care about clean, simple software that's fast,
+  secure, accessible—and actually helps people. Currently an IT student, ethical hacker, and developer 
+  passionate about AI and cybersecurity. Skilled in building secure, efficient software and modernising systems
+  with a security-first mindset. Driven by curiosity, innovation, and a commitment to using technology to make a positive impact.
+
+extra-links:
+  work_history:
+    text: See all previous roles at linkedin.com/in/wambuahdaniel
+    link: https://www.linkedin.com/in/daniel-wambua-a312b32b8/
+  projects:
+    text: See example projects built with each technology at wambuahdaniel.dev
+    link: https://wambuahdaniel.dev/
+education:
+- institution: karatina university
+  area: information technology
+  studyType: BSc
+  startDate: ''
+  endDate: ''
+  score: in progress
+- institution: i-tech computer college
+  area: Computer Fundamentals & Operations
+  studyType: certificate
+  startDate: '2022-08'
+  endDate: '2023-01'
+  score: Graduated Top of Class (Distinction)
+- institution: Kitonyoni secondary school
+  area: Certificate of Secondary Education
+  studyType: KCSE
+  startDate: '2018'
+  endDate: '2022'
+  score: Distinction
+
+work:
+- name: Ridge Cybersecurity Inc.
+  position: cybersecurity engineer
+  startDate: '2025'
+  endDate: Present
+  highlights:
+  - Leading the development of a next-gen AI security platform, integrating advanced threat detection and response capabilities.
+  - As learning champion, I created resources and pathways to foster continuous learning,
+    mentoring, and upskilling across the engineering org.
+- name: Freelance
+  position: Contract Software Engineer Lead
+  startDate: 2024-06
+  endDate: 2025-01
+  highlights:
+  - Acted as engineering lead on high-impact React Native projects including
+    Shell Recharge, driving delivery from design to deployment across platforms.
+  - Built a performant, scalable component library from scratch for a kenyan fintech
+    startup, establishing strong frontend architecture and design consistency.
+  - Delivered a full-stack IoT dashboard for Machine Max, visualizing real-time
+    CO2 and idling metrics from edge devices (Raspberry Pi + cloud stack).
+  - Consistently embedded in client teams as a trusted lead, providing
+    architecture reviews, CI/CD pipeline improvements, and technical mentorship.
+
+skills:
+- name: Frontend
+  keywords:
+  - React
+  - Html
+  - CSS
+  - JavaScript
+  - Svelte
+  - TypeScript
+- name: Backend
+  keywords:
+  - Go
+  - Rust
+  - Node.js
+  - Python
+  - Java
+  - PHP
+- name: DevOps
+  keywords:
+  - Ansible
+  - Kubernetes
+  - Terraform
+  - Docker
+- name: CI/CD
+  keywords:
+  - Argo CD
+  - GitHub Actions
+- name: Cloud
+  keywords:
+  - Vercel
+  - Netlify
+  - GCP
+  - Azure
+  - AWS
+- name: Databases
+  keywords:
+  - PostgreSQL
+  - SQLite
+  - Redis
+  - MySQL
+  - MongoDB
+
+achievements:
+  - text: Top 10 hackers in CyberGame kenya event-2025
+    source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+
+awards:
+- title: CyberGame Kenya - Top 10 Ethical Hacker (2025)
+  summary: Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition
+  source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+
+projects:
+- name: 'TypingMaster Pro'
+  description: 'A comprehensive typing speed test application with real book content, multi-source fetching, and advanced analytics'
+  github: 'Daniel-wambua/TypingMaster-Pro'
+  url: 'https://typing-master-pro-eta.vercel.app/'
+  language: 'TypeScript'
+  stars: '1'
+- name: 'DataPulse Command Center'
+  description: 'Real-time dashboard aggregating data from multiple public APIs with FastAPI backend and Streamlit frontend'
+  github: 'Daniel-wambua/Datapulse'
+  url: 'https://datapulse.danielwambua.dev'
+  language: 'Python'
+  stars: '1'
+- name: 'CTF Writeups & Security Blog'
+  description: 'Technical blog documenting cybersecurity research, CTF solutions, and security tutorials'
+  github: 'Daniel-wambua/blogz'
+  url: 'https://blog.danielwambua.dev'
+  language: 'Technical Writing'
+  stars: '1'
+
+
+

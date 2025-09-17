@@ -2,7 +2,7 @@
 	"name": "web",
 	"version": "0.0.1",
 	"engines": {
-		"node": "20"
+		"node": ">=20"
 	},
 	"scripts": {
 		"dev": "vite dev",
@@ -21,6 +21,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"@types/eslint": "^9.6.0",
 		"@types/js-yaml": "^4.0.9",
+		"@types/node": "^24.5.1",
 		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-svelte": "^2.36.0",
