@@ -60,7 +60,7 @@ const projects = [
     description: 'A comprehensive, production-ready dashboard that aggregates and visualizes real-time data from multiple public APIs',
     tech: 'Python, FastAPI, Streamlit',
     logo: '�',
-    stars: '1',
+    stars: '4',
     repo: 'Daniel-wambua/Datapulse',
     web: 'https://github.com/Daniel-wambua/Datapulse',
   },
@@ -69,7 +69,7 @@ const projects = [
     description: 'A comprehensive, professional-grade typing speed test application with real book content, multi-source fetching, and advanced analytics',
     tech: 'TypeScript, React, Node.js',
     logo: '⌨️',
-    stars: '1',
+    stars: '8',
     repo: 'Daniel-wambua/TypingMaster-Pro',
     web: 'https://typing-master-pro-eta.vercel.app/',
   }
@@ -212,7 +212,7 @@ const normalizeUrl = (url: string) => {
       {/each}
     </div>
     <div class="hackathon-image-container">
-      <img src="/assets/Hackathon-win-pictures.png" alt="Hackathon achievements" class="hackathon-image" />
+      <img src="/assets/Hackathon-win-pictures.png?v=2025-09-17" alt="Hackathon achievements" class="hackathon-image" />
     </div>
   </section>
 </div>
