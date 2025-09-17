@@ -30,7 +30,7 @@
 	// Display banner if looking for job, within the specified dates. Format date into human readable string
 	const lookingForJobDates = {
 		start: new Date('2025-07-01'),
-		end: new Date('2026-12-31'),
+		end: new Date('2026-12-30'),
 	};
 	const currentDate = new Date();
 	const startDateFormatted = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' }).format(lookingForJobDates.start);
@@ -66,12 +66,9 @@
 	const socials = [
 		{ name: 'GitHub', url: 'https://github.com/Daniel-wambua', icon: 'fa-github', color: '#333' },
 		{ name: 'Twitter', url: 'https://twitter.com/wambuahdaniel', icon: 'fa-twitter', color: '#1DA1F2' },
-		{ name: 'LinkedIn', url: 'https://www.linkedin.com/in/wambuahdaniel/', icon: 'fa-linkedin', color: '#0A66C2' },
-		{ name: 'HackerOne', url: 'https://hackerone.com/wambuahdaniel', icon: 'fa-bug', color: '#ff6b35' },
-		{ name: 'CTFtime', url: 'https://ctftime.org/user/wambuahdaniel', icon: 'fa-flag', color: '#00ff41' },
-		{ name: 'Medium', url: 'https://medium.com/@wambuahdaniel', icon: 'fa-medium', color: '#00ab6c' },
-	];
-
+		{ name: 'LinkedIn', url: 'https://www.linkedin.com/in/daniel-wambua-a312b32b8', icon: 'fa-linkedin', color: '#0A66C2' },
+		{ name: 'CTFtime', url: 'https://ctftime.org/team/379200', icon: 'fa-flag', color: '#00ff41' },
+    ];
 	const navLinks = [
 		{ name: 'Intro', url: '/intro', icon: 'fa-terminal' },
 		{ name: 'Experience', url: '/experience', icon: 'fa-shield-halved' },
@@ -82,7 +79,7 @@
 
 	const headerLinks = [
 		{ name: 'Security Blog', url: 'https://havocsec.me/blog' },
-		{ name: 'CTF Writeups', url: 'https://havocsec.me/ctf-writeups' },
+		{ name: 'CTF Writeups', url: 'https://havocsec.me/ctf/' },
 		{ name: 'Research', url: 'https://havocsec.me/pentesting' },
 	];
 </script>
