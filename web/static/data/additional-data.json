@@ -77,12 +77,6 @@
         "MongoDB"
       ]
     },
-        "React",
-        "StoryBook",
-        "Cypress",
-        "web3js"
-      ]
-    },
     {
       "company": "Freelance",
       "companyUrl": "https://danielwambua.com/",
@@ -654,7 +648,21 @@
       "Nmap",
       "OWASPZAP",
       "BurpSuite",
-      "Wireshark"
+      "Wireshark",
+      "Metasploit",
+      "Kali",
+      "HackTheBox",
+      "Nikto",
+      "SQLMap",
+      "Hydra",
+      "Netcat",
+      "TCPDump",
+      "Snort",
+      "Shodan",
+      "Maltego",
+      "Aircrack",
+      "John",
+      "Hashcat"
     ]
   }
 }

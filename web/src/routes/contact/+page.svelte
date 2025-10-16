@@ -26,7 +26,7 @@
   {/if}
   <br>
   Or for other communication channels,
-  see <a target="_blank" href="https://danielwambua.dev">danielwambua.dev</a>
+  see <a target="_blank" href="https://daniel-wambua.github.io/havoc/">danielwambua.io</a>
 </p>
 <p>
   Thank you for stopping by, and I really hope to hear from you!
@@ -42,7 +42,7 @@
   <p>
     Beyond that, I'm on LinkedIn, at <a href="https://www.linkedin.com/in/daniel-wambua-a312b32b8/">in/danielwambua</a>
     and GitHub at <a href="https://github.com/Daniel-wambua">@Daniel-wambua</a>.
-    A catalog of my recent open source apps can be found at <a href="https://danielwambua.dev">danielwambua.dev</a>
+    A catalog of my recent open source apps can be found at <a href="https://github.com/Daniel-wambua                                                                                                           ">danielwambua.dev</a>
   </p>
   <p>
     To see if I'd be a good fit for your team, you can view my <a href="/ideal-role">ideal role</a>

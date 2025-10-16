@@ -36,6 +36,12 @@ education:
   startDate: '2018'
   endDate: '2022'
   score: Distinction
+- institution: Muvau primary school
+  area: Certificate of Primary Education
+  studyType: KCPE
+  startDate: '2008'
+  endDate: '2017'
+  score: Distinction
 
 work:
 - name: Ridge Cybersecurity Inc.

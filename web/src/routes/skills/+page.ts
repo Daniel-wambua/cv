@@ -12,7 +12,9 @@ export const load: PageLoad = async ({ fetch }) => {
     if (response.ok) {
       const data = await response.json();
       return {
-        techStack: data.techStack || {}
+        techStack: data.techStack || {},
+        techStackExtras: data.techStackExtras || {},
+        additionalData: data
       };
     }
   } catch {
@@ -21,45 +23,50 @@ export const load: PageLoad = async ({ fetch }) => {
   
   // Fallback data if local file is not available
   return {
-    techStack: {
-      "backend": [
-        {
-          "language": "Python",
-          "projects": ["VulnScanner Pro", "CryptoBreaker Toolkit", "Network Security Monitor"]
-        },
-        {
-          "language": "Go", 
-          "projects": ["SecureAPI Framework"]
-        },
-        {
-          "language": "Bash",
-          "projects": ["Security Automation Scripts"]
-        }
-      ],
-      "frontend": [
-        {
-          "language": "JavaScript",
-          "projects": ["CTF Platform", "Security Dashboard"]
-        },
-        {
-          "language": "React",
-          "projects": ["Security Tools UI"]
-        }
-      ],
-      "security": [
-        {
-          "language": "Burp Suite",
-          "projects": ["Web App Penetration Testing"]
-        },
-        {
-          "language": "Metasploit",
-          "projects": ["Network Penetration Testing"]
-        },
-        {
-          "language": "Wireshark",
-          "projects": ["Network Traffic Analysis"]
-        }
-      ]
-    }
+    additionalData: {
+      techStack: {
+        "backend": [
+          {
+            "language": "Python",
+            "projects": ["VulnScanner Pro", "CryptoBreaker Toolkit", "Network Security Monitor"]
+          },
+          {
+            "language": "Go", 
+            "projects": ["SecureAPI Framework"]
+          },
+          {
+            "language": "Bash",
+            "projects": ["Security Automation Scripts"]
+          }
+        ],
+        "frontend": [
+          {
+            "language": "JavaScript",
+            "projects": ["CTF Platform", "Security Dashboard"]
+          },
+          {
+            "language": "React",
+            "projects": ["Security Tools UI"]
+          }
+        ],
+        "security": [
+          {
+            "language": "Burp Suite",
+            "projects": ["Web App Penetration Testing"]
+          },
+          {
+            "language": "Metasploit",
+            "projects": ["Network Penetration Testing"]
+          },
+          {
+            "language": "Wireshark",
+            "projects": ["Network Traffic Analysis"]
+          }
+        ]
+      },
+      techStackExtras: {}
+    },
+    techStack: {},
+    techStackExtras: {}
   };
 };

@@ -229,6 +229,37 @@
 		</div>
 	</section>
 
+	<section class="certificates modern-section">
+		<div class="section-header">
+			<h2><i class="fa-solid fa-certificate"></i> Professional Certificates</h2>
+		</div>
+		<div class="section-content">
+			<div class="certificates-preview">
+				<p class="certificates-intro">
+					<i class="fa-solid fa-shield-halved"></i>
+					Continuously expanding my cybersecurity expertise through professional certifications and specialized training programs.
+				</p>
+				<div class="certificates-stats">
+					<div class="cert-stat">
+						<span class="cert-number">5+</span>
+						<span class="cert-label">Certificates Earned</span>
+					</div>
+					<div class="cert-stat">
+						<span class="cert-number">2023-2025</span>
+						<span class="cert-label">Recent Achievements</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section-footer">
+			<a href="/certificates" class="view-more-btn">
+				<i class="fa-solid fa-certificate"></i>
+				View All Certificates
+				<i class="fa-solid fa-arrow-right"></i>
+			</a>
+		</div>
+	</section>
+
 	<section class="achievements">
 		<h2>Awards</h2>
 		<ul>
@@ -246,7 +277,7 @@
 
   </section>
 </div>
-<style>
+<style lang="scss">
 .achievement-link {
 	color: var(--text-color);
 	opacity: 0.8;
@@ -254,6 +285,66 @@
 	transition: all 0.2s ease-in-out;
 	&:hover {
 		color: var(--primary);
+	}
+}
+
+.certificates-preview {
+	.certificates-intro {
+		color: var(--text-color);
+		margin: 0 0 2rem 0;
+		font-size: 1rem;
+		line-height: 1.6;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding: 1.5rem;
+		background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 255, 136, 0.02));
+		border-radius: 0.5rem;
+		border: 1px solid rgba(0, 255, 136, 0.2);
+		
+		i {
+			color: var(--primary);
+			font-size: 1.5rem;
+			flex-shrink: 0;
+		}
+	}
+	
+	.certificates-stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.5rem;
+		
+		.cert-stat {
+			background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
+			border: 1px solid rgba(0, 255, 136, 0.3);
+			border-radius: 0.5rem;
+			padding: 1.5rem;
+			text-align: center;
+			transition: all 0.3s ease;
+			
+			&:hover {
+				border-color: var(--primary);
+				box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
+				transform: translateY(-2px);
+			}
+			
+			.cert-number {
+				display: block;
+				color: var(--primary);
+				font-size: 2rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+				font-family: var(--font-mono);
+			}
+			
+			.cert-label {
+				display: block;
+				color: var(--text-color-dim);
+				font-size: 0.85rem;
+				text-transform: uppercase;
+				letter-spacing: 0.5px;
+			}
+		}
 	}
 }
 </style>

@@ -35,7 +35,7 @@
 	const currentDate = new Date();
 	const startDateFormatted = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long' }).format(lookingForJobDates.start);
 	const isSeekingOpportunities = currentDate <= lookingForJobDates.end;
-	const pagesToShowBanner = ['/', '/achievements', '/skills', '/experience'];
+	const pagesToShowBanner = ['/', '/achievements', '/skills', '/experience', '/certificates'];
 
   function handleScroll() {
     if (header && main) {
@@ -74,6 +74,7 @@
 		{ name: 'Experience', url: '/experience', icon: 'fa-shield-halved' },
 		{ name: 'Achievements', url: '/achievements', icon: 'fa-trophy' },
 		{ name: 'Skills', url: '/skills', icon: 'fa-code' },
+		{ name: 'Certificates', url: '/certificates', icon: 'fa-certificate' },
 		{ name: 'Contact', url: '/contact', icon: 'fa-envelope' },
 	];
 
