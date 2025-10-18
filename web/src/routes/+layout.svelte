@@ -3,11 +3,15 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { onNavigate } from '$app/navigation';
+	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 
 	import '../app.css';
 	import '../styles/variables.scss';
 	import '../styles/link.scss';
 	import '../styles/page-global.scss';
+
+	// Initialize Vercel Speed Insights
+	injectSpeedInsights();
 
 	interface Document {
 		startViewTransition?: (callback: () => Promise<void>) => void;
