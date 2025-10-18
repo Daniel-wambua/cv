@@ -348,7 +348,7 @@
   "contact": {
     "name": "Daniel Wambua",
     "email": "wambuahdaniel@gmail.com",
-    "website": "https://danielwambua.com",
+    "website": "https://havocsec.me",
     "socials": {
       "GitHub": "Daniel-wambua",
       "Dev.to": "danielwambua",
@@ -362,7 +362,8 @@
       "HackerNews": "danielwambua",
       "PeerList": "daniel",
       "CodersRank": "danielwambua",
-      "OMG.lol": "daniel",
+      "OMG.lol": "daniel"
+    },
     "socialButtonLimit": 6,
     "mailerConfig": {
       "service_id": "gmail",
@@ -388,184 +389,110 @@
   "techStack": {
     "backend": [
       {
-        "language": "Rust",
+        "language": "Python",
         "projects": [
-          "AdGuardian-Term"
+          "VulnScanner-Pro",
+          "CryptoBreaker-Toolkit",
+          "Network-Security-Monitor"
+        ]
+      },
+      {
+        "language": "Node.js",
+        "projects": [
+          "API-Security-Framework",
+          "JWT-Vulnerability-Scanner"
         ]
       },
       {
         "language": "Go",
         "projects": [
-          "who-dat",
-          "go-apod",
-          "OLD_AdGuardian-Term"
-        ]
-      },
-      {
-        "language": "Node",
-        "projects": [
-          "twitter-sentiment-visualisation"
-        ]
-      },
-      {
-        "language": "Python",
-        "projects": [
-          "portainer-templates",
-          "gh-trending-no-cors",
-          "tfl-lift-availability-dash",
-          "pax"
-        ]
-      },
-      {
-        "language": "Java",
-        "projects": [
-          "Minesweper",
-          "AlternativeVoteSystem",
-          "TuneSender",
-          "TreasureHunt"
-        ]
-      },
-      {
-        "language": "PHP",
-        "projects": [
-          "revision-quizzes",
-          "usermonkey"
+          "SecureAPI-Gateway",
+          "Threat-Intelligence-Aggregator"
         ]
       }
     ],
     "frontend": [
       {
-        "language": "Vue",
-        "projects": [
-          "dashy",
-          "all-the-countries",
-          "danielwambua.com",
-          "tfl-lift-availability-dash"
-        ]
-      },
-      {
-        "language": "Svelte",
-        "projects": [
-          "portainer-templates",
-          "bug-bounties",
-          "my-website",
-          "cheat-code"
-        ]
-      },
-      {
-        "language": "Qwik",
-        "projects": [
-          "personal-security-checklist"
-        ]
-      },
-      {
         "language": "React",
         "projects": [
-          "web-check"
+          "Security-Dashboard",
+          "Vulnerability-Tracker-UI",
+          "CTF-Platform-Frontend"
         ]
       },
       {
-        "language": "Solid",
+        "language": "Vue.js",
         "projects": [
-          "cso"
+          "Pentest-Report-Generator",
+          "Security-Tools-Portal"
         ]
       },
       {
-        "language": "Angular",
+        "language": "JavaScript",
         "projects": [
-          "domain-locker",
-          "happy-app",
-          "realtime-speech-analytics"
-        ]
-      },
-      {
-        "language": "Astro",
-        "projects": [
-          "awesome-privacy",
-          "git-into-open-source",
-          "email-comparison"
-        ]
-      },
-      {
-        "language": "Van.js",
-        "projects": [
-          "raid-calculator"
-        ]
-      },
-      {
-        "language": "D3",
-        "projects": [
-          "twitter-sentiment-visualisation",
-          "happy-app",
-          "realtime-speech-analytics"
-        ]
-      },
-      {
-        "language": "Alpine",
-        "projects": [
-          "who-dat"
-        ]
-      },
-      {
-        "language": "Lit",
-        "projects": [
-          "email-comparison"
-        ]
-      },
-      {
-        "language": "Hono",
-        "projects": [
-          "readme-contribs"
-        ]
-      },
-      {
-        "language": "CoffeeScript",
-        "projects": [
-          "sentiment-analysis"
-        ]
-      },
-      {
-        "language": "HTML",
-        "projects": [
-          "repo-badge-maker ",
-          "bullet-convertor",
-          "md-toc-generator",
-          "email-extractor",
-          "cyber-defence-presentation",
-          "web-dev-school",
-          "md-cv-maker"
+          "XSS-Payload-Generator",
+          "Web-Security-Toolkit"
         ]
       }
     ],
     "mobile": [
       {
-        "language": "Swift",
+        "language": "Android",
         "projects": [
-          "hasami-shogi",
-          "Spotter"
-        ]
-      },
-      {
-        "language": "Kotlin",
-        "projects": [
-          "anti-theft-charge"
+          "Mobile-Security-Analyzer",
+          "APK-Vulnerability-Scanner"
         ]
       },
       {
         "language": "Flutter",
         "projects": [
-          "nfu"
+          "Security-Assessment-App"
+        ]
+      }
+    ],
+    "security": [
+      {
+        "language": "Burp Suite",
+        "projects": [
+          "Web-App-Pentest-Reports",
+          "API-Security-Testing",
+          "SSRF-Exploitation-Lab"
         ]
       },
       {
-        "language": "Android",
+        "language": "Metasploit",
         "projects": [
-          "Minesweper",
-          "anti-theft-charge",
-          "TuneSender",
-          "TreasureHunt",
-          "got-home-safe",
-          "Study-Time"
+          "Network-Pentest-Automation",
+          "Exploit-Development-Framework",
+          "Post-Exploitation-Scripts"
+        ]
+      },
+      {
+        "language": "Wireshark",
+        "projects": [
+          "Network-Traffic-Analysis",
+          "Protocol-Security-Research"
+        ]
+      },
+      {
+        "language": "Nmap",
+        "projects": [
+          "Network-Discovery-Tools",
+          "Vulnerability-Scanning-Automation"
+        ]
+      },
+      {
+        "language": "OWASP ZAP",
+        "projects": [
+          "Automated-Security-Scanning",
+          "Web-Vulnerability-Assessment"
+        ]
+      },
+      {
+        "language": "Kali Linux",
+        "projects": [
+          "Security-Research-Environment",
+          "CTF-Challenge-Solutions"
         ]
       }
     ],
@@ -573,96 +500,63 @@
       {
         "language": "Bash",
         "projects": [
-          "dotfiles",
-          "minimal-terminal-prompt"
+          "Security-Automation-Scripts",
+          "Linux-Hardening-Tools"
         ]
       },
       {
         "language": "Docker",
         "projects": [
-          "dockyard",
-          "docker-tcpdump"
+          "Security-Lab-Containers",
+          "Isolated-Testing-Environment"
         ]
       },
       {
-        "language": "Ansible",
+        "language": "Git",
         "projects": [
-          "ansibles"
-        ]
-      },
-      {
-        "language": "Docker",
-        "projects": [
-          "docker-tcpdump",
-          "dashy"
-        ]
-      },
-      {
-        "language": "Config",
-        "projects": [
-          "dotfiles",
-          "espanso-config",
-          "conky-system-stats-widget",
-          "Brewfile"
-        ]
-      },
-      {
-        "language": "Markdown",
-        "projects": [
-          "personal-security-checklist",
-          "awesome-privacy"
+          "Security-Research-Notes",
+          "CTF-Writeups"
         ]
       }
     ]
   },
   "techStackExtras": {
-    "devOps": [
-      "Ansible",
-      "Kubernetes",
-      "Prometheus",
-      "GitHubActions",
-      "Grafana"
-    ],
-    "cloud": [
-      "Netlify",
-      "Vercel",
-      "Cloudflare",
-      "Azure",
-      "AWS",
-      "GCP"
-    ],
-    "databases": [
-      "PostgreSQL",
-      "SQLite",
-      "Redis",
-      "MySQL",
-      "MongoDB"
-    ],
-    "testing": [
-      "Jest",
-      "Puppeteer",
-      "Enzyme",
-      "Cypress"
-    ],
-    "security": [
-      "Nmap",
-      "OWASPZAP",
+    "penetrationTesting": [
       "BurpSuite",
-      "Wireshark",
       "Metasploit",
-      "Kali",
-      "HackTheBox",
-      "Nikto",
       "SQLMap",
-      "Hydra",
+      "Nikto",
+      "OWASPZAP",
+      "Nmap",
+      "Wireshark"
+    ],
+    "cryptography": [
+      "Hashcat",
+      "John",
+      "Aircrack-ng",
+      "OpenSSL",
+      "GPG"
+    ],
+    "networking": [
       "Netcat",
       "TCPDump",
       "Snort",
       "Shodan",
-      "Maltego",
-      "Aircrack",
-      "John",
-      "Hashcat"
+      "Maltego"
+    ],
+    "cloudSecurity": [
+      "AWS",
+      "Azure",
+      "GCP",
+      "CloudFlare",
+      "Kubernetes"
+    ],
+    "platforms": [
+      "Kali",
+      "ParrotOS",
+      "HackTheBox",
+      "TryHackMe",
+      "PentesterLab"
     ]
   }
 }

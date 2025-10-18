@@ -31,19 +31,22 @@ def compile_latex(input_tex: str, output_pdf: str, timeout: int = 60) -> None:
 
         # Change to the directory containing the input .tex file
         compile_cmd = ['xelatex', '-interaction=nonstopmode', os.path.basename(input_tex)]
-        result = subprocess.run(compile_cmd, check=True, capture_output=True, text=True, timeout=timeout, cwd=input_dir)
+        result = subprocess.run(compile_cmd, check=False, capture_output=True, text=True, timeout=timeout, cwd=input_dir)
 
-        if result.returncode == 0:
-            logger.info("Compilation successful.")
+        # Check if PDF was generated (xelatex can return non-zero exit code with warnings but still produce PDF)
+        compiled_pdf_path = os.path.join(input_dir, base_name)
+        if os.path.exists(compiled_pdf_path):
+            logger.info("PDF generated successfully (with warnings)." if result.returncode != 0 else "Compilation successful.")
             # Ensure the output directory exists
             if not os.path.exists(output_dir):
                 os.makedirs(output_dir)
             # Move the generated PDF to the desired output path
-            compiled_pdf_path = os.path.join(input_dir, base_name)
             os.rename(compiled_pdf_path, output_pdf)
             print(f"{Fore.GREEN}✅ Success: PDF generated at {output_pdf}")
+            if result.returncode != 0:
+                logger.warning("XeLaTeX exited with warnings (non-zero exit code). Check compilation log for details.")
         else:
-            logger.error("Compilation failed with errors.")
+            logger.error("Compilation failed - no PDF generated.")
             print(f"{Fore.RED}❌ Error: Compilation failed.")
             print(result.stdout)
             print(result.stderr)

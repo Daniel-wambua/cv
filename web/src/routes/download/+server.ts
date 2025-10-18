@@ -1,67 +1,58 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
-import { execSync } from 'child_process';
 import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async () => {
   try {
-    // Define paths relative to the project root
-    const projectRoot = join(process.cwd(), '..');
-    const resumePath = join(projectRoot, 'resume.yml');
-    const templatePath = join(projectRoot, 'template.jinja');
-    const outputPdfPath = join(projectRoot, 'out', 'Daniel-Wambua-CV.pdf');
+    // In production (Vercel/Netlify), serve pre-built PDF from static directory
+    // Path to the static PDF (generated during build)
+    const staticPdfPath = join(process.cwd(), 'static', 'downloads', 'Daniel-Wambua-CV.pdf');
     
-    // Check if required files exist
-    if (!existsSync(resumePath)) {
-      return new Response('Resume file not found', { status: 404 });
-    }
-    
-    if (!existsSync(templatePath)) {
-      return new Response('Template file not found', { status: 404 });
-    }
-
-    console.log('Starting PDF generation...');
-    
-    try {
-      // Step 1: Generate LaTeX from YAML and template  
-      const generateCommand = `cd "${projectRoot}" && .venv/bin/python lib/generate.py --resume "resume.yml" --template "template.jinja" --output "tex/resume.tex"`;
-      execSync(generateCommand, { encoding: 'utf8', timeout: 30000 });
-      console.log('LaTeX generated successfully');
-
-      // Step 2: Compile LaTeX to PDF
-      const compileCommand = `cd "${projectRoot}" && .venv/bin/python lib/compile.py --input "tex/resume.tex" --output "out/Daniel-Wambua-CV.pdf"`;
-      execSync(compileCommand, { encoding: 'utf8', timeout: 60000 });
-      console.log('PDF compiled successfully');
-
-    } catch (execError) {
-      console.error('Command execution failed:', execError);
-      return new Response(`PDF generation failed: ${execError}`, { 
-        status: 500,
-        headers: { 'Content-Type': 'text/plain' }
+    // Check if pre-built PDF exists
+    if (existsSync(staticPdfPath)) {
+      console.log('Serving pre-built PDF from static directory');
+      const pdfBuffer = readFileSync(staticPdfPath);
+      
+      return new Response(pdfBuffer, {
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': 'attachment; filename="Daniel-Wambua-CV.pdf"',
+          'Content-Length': pdfBuffer.length.toString(),
+          'Cache-Control': 'public, max-age=3600' // Cache for 1 hour
+        }
       });
     }
 
-    // Step 3: Check if PDF exists and serve it
-    if (!existsSync(outputPdfPath)) {
-      return new Response('PDF generation completed but file not found', { status: 500 });
+    // Fallback: Try to serve from project root (for development/local)
+    const projectRoot = join(process.cwd(), '..');
+    const outputPdfPath = join(projectRoot, 'out', 'Daniel-Wambua-CV.pdf');
+    
+    if (existsSync(outputPdfPath)) {
+      console.log('Serving PDF from project output directory');
+      const pdfBuffer = readFileSync(outputPdfPath);
+      
+      return new Response(pdfBuffer, {
+        headers: {
+          'Content-Type': 'application/pdf',
+          'Content-Disposition': 'attachment; filename="Daniel-Wambua-CV.pdf"',
+          'Content-Length': pdfBuffer.length.toString()
+        }
+      });
     }
 
-    // Read the PDF file and return it
-    const pdfBuffer = readFileSync(outputPdfPath);
-    
-    return new Response(pdfBuffer, {
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="Daniel-Wambua-CV.pdf"',
-        'Content-Length': pdfBuffer.length.toString()
+    // If no PDF is found, return helpful error
+    return new Response(
+      'PDF not found. Please ensure the CV has been generated during the build process.',
+      { 
+        status: 404,
+        headers: { 'Content-Type': 'text/plain' }
       }
-    });
+    );
 
   } catch (error) {
     console.error('Download endpoint error:', error);
     
-    // Fallback message
-    return new Response(`PDF generation failed: ${error}`, {
+    return new Response(`Failed to serve PDF: ${error}`, {
       status: 500,
       headers: {
         'Content-Type': 'text/plain'

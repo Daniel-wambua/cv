@@ -43,6 +43,11 @@
       icon: '📱',
       description: 'iOS & Android development'
     },
+    security: {
+      name: 'Cybersecurity Tools',
+      icon: '🔒',
+      description: 'Penetration testing & security tools'
+    },
     other: { 
       name: 'Other Technologies', 
       icon: '🔧',

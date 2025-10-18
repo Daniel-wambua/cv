@@ -1,17 +1,14 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "cd .. && python3 -m venv .venv && source .venv/bin/activate && pip install -r lib/requirements.txt && cd web && npm run build",
   "outputDirectory": "build",
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "svelte",
-  "functions": {
-    "src/routes/download/+server.ts": {
-      "runtime": "nodejs20.x"
-    }
-  },
   "build": {
     "env": {
-      "NODE_VERSION": "20"
+      "NODE_VERSION": "20",
+      "PYTHON_VERSION": "3.11"
     }
-  }
+  },
+  "regions": ["iad1"]
 }

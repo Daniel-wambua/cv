@@ -105,11 +105,11 @@
 \begin{cventries}
 {%- for edu in education %}
     \cventry
-    { {{ edu.studyType | latex_escape }} in {{ edu.area | latex_escape }} }
+    { {{ edu.studyType | latex_escape }} in {{ edu.area | latex_escape }} — Grade: {{ edu.score | latex_escape }} }
     { {{ edu.institution | latex_escape }} }
     {}
+    { {{ edu.startDate | latex_escape | format_date }} – {{ edu.endDate | latex_escape | format_date }} }
     {}
-    {Grade: {{ edu.score | latex_escape }}}
 {%- endfor %}
 \end{cventries}
 {% endif %}
@@ -137,7 +137,7 @@
 \begin{cvachievements}
 \setlength{\itemsep}{0mm}
 {%- for ach in achievements %}
-  \item { {{ ach.text | markdown_to_latex | safe }}{% if ach.source %} \href{ {{ ach.source | latex_escape }} }{\scriptsize\color{lightgray}\faLink}{% endif %} }
+  \item { {{ ach.text | markdown_to_latex | safe }}{% if ach.source %}{% set url = ach.source | latex_escape %} \href{ {{- url -}} }{\faLink}{% endif %} }
 {%- endfor %}
 \end{cvachievements}
 {%- endif %}
@@ -152,7 +152,7 @@
 \begin{cvachievements}
 \setlength{\itemsep}{0mm}
 {%- for award in awards %}
-  \item { \textbf{ {{ award.title   | latex_escape }} } - {{ award.summary | latex_escape }}{% if award.source %} \href{ {{ award.source | latex_escape }} }{\scriptsize\color{lightgray}\faLink}{% endif %} }
+  \item { \textbf{ {{ award.title   | latex_escape }} } - {{ award.summary | latex_escape }}{% if award.source %}{% set url = award.source | latex_escape %} \href{ {{- url -}} }{\faLink}{% endif %} }
 {%- endfor %}
 \end{cvachievements}
 {% endif %}

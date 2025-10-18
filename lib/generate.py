@@ -58,8 +58,19 @@ def latex_escape(text: str) -> str:
     return ''.join(latex_special_chars.get(char, char) for char in text)
 
 def markdown_to_latex(text):
+    """Convert markdown formatting to LaTeX commands"""
+    # Convert markdown links [text](url) to \href{url}{text}
     link_pattern = re.compile(r'\[([^\]]+)\]\(([^)]+)\)')
-    return link_pattern.sub(r'\\href{\2}{\1}', text).replace('%', '\%')
+    text = link_pattern.sub(r'\\href{\2}{\1}', text)
+    
+    # Convert markdown bold **text** to \textbf{text}
+    bold_pattern = re.compile(r'\*\*([^\*]+)\*\*')
+    text = bold_pattern.sub(r'\\textbf{\1}', text)
+    
+    # Escape special characters
+    text = text.replace('%', r'\%')
+    
+    return text
 
 def format_date(date_str: str) -> str:
     """

@@ -1,0 +1,39 @@
+[build]
+  # Build command runs prebuild.sh (which needs to be updated for Netlify paths)
+  command = "npm run build"
+  publish = "build"
+  
+  # Functions directory for serverless functions
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "20"
+  PYTHON_VERSION = "3.11"
+  # Install LaTeX and Python dependencies
+  # Note: Netlify build environment has limited LaTeX support
+  # May need to use Docker-based build or find alternative
+
+[functions]
+  node_bundler = "esbuild"
+  
+[[plugins]]
+  # Python plugin for build-time Python script execution
+  package = "@netlify/plugin-python"
+  
+[[redirects]]
+  # SPA fallback for SvelteKit routing
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+[[headers]]
+  # Cache static assets
+  for = "/downloads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    
+[[headers]]
+  for = "/*.pdf"
+  [headers.values]
+    Content-Type = "application/pdf"

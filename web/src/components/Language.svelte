@@ -109,25 +109,36 @@
     storybook: { name: 'Storybook', color: 'FF4785', icon: 'storybook' },
     junit: { name: 'JUnit', color: '25A162', icon: 'junit5' },
 
-    // Security
-    nmap: { name: 'Nmap', color: '4F5D95', icon: 'nmap' },
-    owaspzap: { name: 'OWASP ZAP', color: '4B8BBE', icon: 'owasp' },
-    burpsuite: { name: 'Burp Suite', color: 'FAC748', icon: 'burpsuite' },
-    wireshark: { name: 'Wireshark', color: '1679A7', icon: 'wireshark' },
-    hackthebox: { name: 'Hack The Box', color: '9FEF00', icon: 'hackthebox' },
+    // Security Tools & Platforms
+    'burp suite': { name: 'Burp Suite', color: 'FF6633', icon: 'burpsuite' },
+    burpsuite: { name: 'Burp Suite', color: 'FF6633', icon: 'burpsuite' },
     metasploit: { name: 'Metasploit', color: '2596CD', icon: 'metasploit' },
+    wireshark: { name: 'Wireshark', color: '1679A7', icon: 'wireshark' },
+    nmap: { name: 'Nmap', color: '0E83CD', icon: 'gnubash' },
+    'owasp zap': { name: 'OWASP ZAP', color: '4B8BBE', icon: 'owasp' },
+    owaspzap: { name: 'OWASP ZAP', color: '4B8BBE', icon: 'owasp' },
+    'kali linux': { name: 'Kali Linux', color: '557C94', icon: 'kalilinux' },
     kali: { name: 'Kali Linux', color: '557C94', icon: 'kalilinux' },
-    nikto: { name: 'Nikto', color: '00599C', icon: 'security' },
-    sqlmap: { name: 'SQLMap', color: 'CC2936', icon: 'security' },
-    hydra: { name: 'Hydra', color: '0078D7', icon: 'security' },
+    hackthebox: { name: 'Hack The Box', color: '9FEF00', icon: 'hackthebox' },
+    tryhackme: { name: 'TryHackMe', color: '212C42', icon: 'tryhackme' },
+    pentesterlab: { name: 'PentesterLab', color: 'FF6633', icon: 'hackthebox' },
+    parrotos: { name: 'Parrot OS', color: '54DDF4', icon: 'kalilinux' },
+    
+    // Security Tools (using generic/similar icons)
+    nikto: { name: 'Nikto', color: '00599C', icon: 'gnubash' },
+    sqlmap: { name: 'SQLMap', color: 'CC2936', icon: 'mysql' },
+    hydra: { name: 'Hydra', color: '0078D7', icon: 'gnu' },
     netcat: { name: 'Netcat', color: '4EAA25', icon: 'gnubash' },
     tcpdump: { name: 'TCPDump', color: '1679A7', icon: 'wireshark' },
-    snort: { name: 'Snort', color: 'D72B3F', icon: 'snort' },
-    shodan: { name: 'Shodan', color: 'C8161D', icon: 'shodan' },
-    maltego: { name: 'Maltego', color: '1674B0', icon: 'maltego' },
-    aircrack: { name: 'Aircrack-ng', color: '5391FE', icon: 'security' },
-    john: { name: 'John the Ripper', color: '47A248', icon: 'security' },
-    hashcat: { name: 'Hashcat', color: 'E95420', icon: 'security' },
+    snort: { name: 'Snort', color: 'D72B3F', icon: 'wireshark' },
+    shodan: { name: 'Shodan', color: 'C8161D', icon: 'lens' },
+    maltego: { name: 'Maltego', color: '1674B0', icon: 'graphql' },
+    'aircrack-ng': { name: 'Aircrack-ng', color: '5391FE', icon: 'wifi' },
+    aircrack: { name: 'Aircrack-ng', color: '5391FE', icon: 'wifi' },
+    john: { name: 'John the Ripper', color: '47A248', icon: 'gnubash' },
+    hashcat: { name: 'Hashcat', color: 'E95420', icon: 'gnubash' },
+    openssl: { name: 'OpenSSL', color: '721412', icon: 'openssl' },
+    gpg: { name: 'GPG', color: '0093DD', icon: 'gnuprivacyguard' },
 
     // Servers
     apachetomcat: { name: 'Apache Tomcat', color: 'F8DC75', icon: 'apachetomcat' },
@@ -166,17 +177,44 @@
 
   // Get the language info (if present) for the languages passed as a prop
   const getLangAttributes = (lang: string): LanguageAttributes | null => {
-    const defaultConfig = {name: lang, color: '000000', icon: '' };
-    return badgeConfigs[lang?.toLocaleLowerCase().replaceAll('.', '').replaceAll(' ', '')] || defaultConfig;
+    const normalizedLang = lang?.toLocaleLowerCase().replaceAll('.', '').replaceAll(' ', '').replaceAll('-', '');
+    const config = badgeConfigs[normalizedLang];
+    
+    if (config) {
+      return config;
+    }
+    
+    // Fallback for unmapped languages
+    return {
+      name: lang,
+      color: '06b6d4', // cyan color
+      icon: 'gnubash' // generic bash icon as fallback
+    };
   };
 
   // Make both badge URL and language info available to the component (and reactive)
   $: langAttributes = getLangAttributes(language);
+  
+  // Handle image load errors
+  let imageError = false;
+  const handleImageError = () => {
+    imageError = true;
+  };
 </script>
 
 {#if langAttributes}
-<div class="language {small ? 'small' : ''}" title={`Build with ${langAttributes.name}`} style={`--lang-color: #${langAttributes.color};`} >
-  <img height="16" width="16" alt="l" src="https://cdn.simpleicons.org/{langAttributes.icon}/{langAttributes.color}" />
+<div class="language {small ? 'small' : ''}" title={`Built with ${langAttributes.name}`} style={`--lang-color: #${langAttributes.color};`} >
+  {#if !imageError && langAttributes.icon}
+    <img 
+      height="16" 
+      width="16" 
+      alt={langAttributes.name}
+      src="https://cdn.simpleicons.org/{langAttributes.icon}/{langAttributes.color}" 
+      on:error={handleImageError}
+    />
+  {:else}
+    <span class="icon-fallback">🔧</span>
+  {/if}
   {langAttributes.name}
 </div>
 {/if}
@@ -192,6 +230,13 @@
       transform: scale(1.05);
     }
   }
+  
+  .icon-fallback {
+    font-size: 1rem;
+    margin-right: 0.25rem;
+    display: inline-block;
+  }
+  
   .language {
     font-size: 0.95rem;
     font-weight: 500;
