@@ -53,7 +53,7 @@ education:
       - Final project: Designing secure network infrastructure for SMEs
 
   - institution: Kitonyoni Secondary School 
-    area: Highschool certificate
+    area: Highschool
     studyType: certificate
     startDate: '2019-01'
     endDate: '2021-11'
@@ -150,27 +150,12 @@ skills:
 achievements:
   - text: "🏆 **Top 10 Ethical Hackers** - CyberGame Kenya 2025"
     source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
-  
-  - text: "🥇 **Winner** - Africa Cyber Security Challenge 2024"
-    source: 'https://cybersecuritychallenge.africa/winners-2024'
-  
-  - text: "🥇 **1st Place** - Kenya National Cybersecurity Hackathon 2024"
+
+  - text: "🥉 **3rd Place** - Kenya National Cybersecurity Hackathon 2024"
     source: 'https://hackathon.cybersecurity.go.ke/winners'
   
-  - text: "🎖️ **OSCP Certified** - Offensive Security Certified Professional"
-    source: 'https://www.offensive-security.com/verify'
+
   
-  - text: "🎖️ **CEH Certified** - Certified Ethical Hacker (EC-Council)"
-    source: 'https://www.eccouncil.org/verify'
-  
-  - text: "☁️ **AWS Security Specialty** - Amazon Web Services Certified"
-    source: 'https://aws.amazon.com/verification'
-  
-  - text: "🎯 **Top 5% Kenya** - picoCTF 2024 (8,450 points)"
-    source: 'https://picoctf.org/competitions/2024.html'
-  
-  - text: "🥉 **3rd Place Team** - Africa Cyber Games 2024 ($2,000 prize)"
-    source: 'https://africacybergames.org/2024/results'
 
 # ==============================================================================
 # AWARDS
