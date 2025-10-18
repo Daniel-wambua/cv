@@ -1,7 +1,7 @@
 {
   "framework": null,
-  "buildCommand": "cd .. && python3 -m venv .venv && source .venv/bin/activate && pip install -r lib/requirements.txt && python lib/validate.py --schema schema.json --resume resume.yml --template template.jinja && python lib/generate.py --resume resume.yml --template template.jinja --output tex/resume.tex && python lib/compile.py --input tex/resume.tex --output out/Daniel-Wambua-CV.pdf && mkdir -p web/static/downloads && cp out/Daniel-Wambua-CV.pdf web/static/downloads/Daniel-Wambua-CV.pdf && cd web && npm install && npm run build",
-  "outputDirectory": "web/.svelte-kit/output/client",
+  "buildCommand": "bash scripts/vercel-build.sh",
+  "outputDirectory": ".svelte-kit/output/client",
   "devCommand": "npm run dev",
   "installCommand": "echo 'Skipping default install'",
   "build": {

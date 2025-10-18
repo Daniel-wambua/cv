@@ -9,30 +9,19 @@ PDF not found. Please ensure the CV has been generated during the build process.
 ## Root Cause
 The download endpoint (`/download`) was trying to read the PDF from the filesystem using Node.js `fs` module, which doesn't work reliably with serverless functions on Vercel. The static files are served separately from the serverless functions.
 
-## Solution
+## Solution Implemented
 
-### 1. Simplified Download Endpoint
-Changed `/web/src/routes/download/+server.ts` from filesystem reading to a simple redirect:
+**UPDATE (Oct 18, 2025)**: Fixed Vercel's 256-character `buildCommand` limit by creating dedicated build script.
 
-**Before:**
-```typescript
-// Complex filesystem reading with fallbacks
-const staticPdfPath = join(process.cwd(), 'static', 'downloads', 'Daniel-Wambua-CV.pdf');
-if (existsSync(staticPdfPath)) {
-  const pdfBuffer = readFileSync(staticPdfPath);
-  // ... serve buffer
-}
-```
+1. **Created `/web/scripts/vercel-build.sh`**:
+   - Moved entire PDF generation pipeline to dedicated script
+   - Handles Python venv, dependencies, validation, LaTeX compilation
+   - Kept `buildCommand` under 256 characters: `bash scripts/vercel-build.sh`
 
-**After:**
-```typescript
-import { redirect } from '@sveltejs/kit';
-
-export const GET: RequestHandler = async () => {
-  // Simply redirect to the static PDF file
-  throw redirect(302, '/downloads/Daniel-Wambua-CV.pdf');
-}
-```
+2. **Modified `/web/src/routes/download/+server.ts`**:
+   - Removed filesystem reading with `fs.readFileSync`
+   - Implemented simple HTTP 302 redirect to static PDF
+   - PDF is served directly from Vercel's CDN (faster & cheaper)
 
 ### 2. Updated Vercel Build Configuration
 Modified `/web/vercel.json` to ensure the PDF is generated before the SvelteKit build:
