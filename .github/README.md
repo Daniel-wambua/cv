@@ -5,7 +5,7 @@
 <br />
 <i>A website (Svelte) and PDF (LaTeX) auto-built from jsonresume data</i>
 <br />
-<b>🌐 <a href="https://cv.danielwambua.dev/">cv.danielwambua.dev</a> | 📄 <a href="https://cv.danielwambua.dev/download"><code>Daniel-Wambua-CV.pdf</code></a></b> <br />
+<b>🌐 <a href="https://danielwambua.dev/">danielwambua.dev</a> | 📄 <a href="https://cv.danielwambua.dev/download"><code>Daniel-Wambua-CV.pdf</code></a></b> <br />
 </p>
 
 
@@ -207,4 +207,5 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
               |     /          |     /     ~-.     ~- _
               |_____|          |_____|         ~ - . _ _~_-_
 -->
+
 
