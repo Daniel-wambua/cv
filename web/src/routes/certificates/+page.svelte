@@ -73,6 +73,18 @@
       credentialId: 'CYBER-2025',
       verified: true,
       isPdf: false
+    },
+     {
+      id: 6,
+      name: 'Cybersecurity Training Achievement',
+      issuer: 'Ministry of Information Technology and Communications & Embassy of the Slovak Republic Kenya',
+      date: 'July 2025',
+      image: '/Certs/cybergame.jpg',
+      description: 'Completion of advanced cybersecurity training modules and practical exercises',
+      skills: ['CTF','Penetration Testing', 'Security Analysis', 'Incident Response'],
+      credentialId: 'CYBERGAME-2025',
+      verified: true,
+      isPdf: false
     }
   ];
 
