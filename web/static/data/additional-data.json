@@ -449,6 +449,12 @@
         "projects": [
           "havoc"
         ]
+      },
+       {
+        "language": "astro",
+        "projects": [
+          "Cooler"
+        ]
       }
     ],
     "security": [
