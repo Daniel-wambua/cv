@@ -156,6 +156,20 @@
   ],
   "projectComplimentaryData": [
     {
+      "name": "blogz",
+      "featured": true,
+      "language": "HTML",
+      "thumbnail": "https://i.ibb.co/7XZR3Qm/blogz-banner.png",
+      "description": "My CTF writeups and cybersecurity blog built with Hugo"
+    },
+    {
+      "name": "cyberhub",
+      "featured": true,
+      "language": "Markdown",
+      "thumbnail": "https://i.ibb.co/9yKJH3m/cyberhub-banner.png",
+      "description": "A curated living, automated knowledge base for cybersecurity professionals"
+    },
+    {
       "name": "AdGuardian-Term",
       "thumbnail": "https://i.ibb.co/wgJDXs2/adguardian-banner-2.png"
     },
@@ -195,7 +209,6 @@
     },
     {
       "name": "dashy",
-      "featured": true,
       "thumbnail": "https://repository-images.githubusercontent.com/343078060/82f850a2-b1af-4e9f-9245-c92700d74856"
     },
     {
@@ -391,62 +404,50 @@
       {
         "language": "Python",
         "projects": [
-          "VulnScanner-Pro",
-          "CryptoBreaker-Toolkit",
-          "Network-Security-Monitor"
+          "hydrabot",
+          "Datapulse"
         ]
       },
       {
         "language": "Node.js",
         "projects": [
-          "API-Security-Framework",
-          "JWT-Vulnerability-Scanner"
-        ]
-      },
-      {
-        "language": "Go",
-        "projects": [
-          "SecureAPI-Gateway",
-          "Threat-Intelligence-Aggregator"
+          "project-atlas",
+          "Linktree"
         ]
       }
     ],
     "frontend": [
       {
-        "language": "React",
+        "language": "Svelte",
         "projects": [
-          "Security-Dashboard",
-          "Vulnerability-Tracker-UI",
-          "CTF-Platform-Frontend"
+          "Havoclab",
+          "cv"
         ]
       },
       {
-        "language": "Vue.js",
+        "language": "TypeScript",
         "projects": [
-          "Pentest-Report-Generator",
-          "Security-Tools-Portal"
+          "cyberworld",
+          "TypingMaster-Pro"
         ]
       },
       {
         "language": "JavaScript",
         "projects": [
-          "XSS-Payload-Generator",
-          "Web-Security-Toolkit"
-        ]
-      }
-    ],
-    "mobile": [
-      {
-        "language": "Android",
-        "projects": [
-          "Mobile-Security-Analyzer",
-          "APK-Vulnerability-Scanner"
+          "Linktree",
+          "project-atlas"
         ]
       },
       {
-        "language": "Flutter",
+        "language": "HTML",
         "projects": [
-          "Security-Assessment-App"
+          "blogz"
+        ]
+      },
+      {
+        "language": "CSS",
+        "projects": [
+          "havoc"
         ]
       }
     ],
@@ -454,68 +455,59 @@
       {
         "language": "Burp Suite",
         "projects": [
-          "Web-App-Pentest-Reports",
-          "API-Security-Testing",
-          "SSRF-Exploitation-Lab"
+          "Web-App-Pentests",
+          "API-Security-Testing"
         ]
       },
       {
         "language": "Metasploit",
         "projects": [
-          "Network-Pentest-Automation",
-          "Exploit-Development-Framework",
-          "Post-Exploitation-Scripts"
-        ]
-      },
-      {
-        "language": "Wireshark",
-        "projects": [
-          "Network-Traffic-Analysis",
-          "Protocol-Security-Research"
+          "Network-Penetration-Tests",
+          "Exploitation-Research"
         ]
       },
       {
         "language": "Nmap",
         "projects": [
-          "Network-Discovery-Tools",
-          "Vulnerability-Scanning-Automation"
+          "Network-Discovery",
+          "Vulnerability-Scanning"
         ]
       },
       {
         "language": "OWASP ZAP",
         "projects": [
-          "Automated-Security-Scanning",
-          "Web-Vulnerability-Assessment"
+          "Web-Security-Scans",
+          "Vulnerability-Assessments"
         ]
       },
       {
         "language": "Kali Linux",
         "projects": [
-          "Security-Research-Environment",
-          "CTF-Challenge-Solutions"
+          "Security-Research",
+          "CTF-Challenges"
         ]
       }
     ],
     "other": [
       {
-        "language": "Bash",
+        "language": "Markdown",
         "projects": [
-          "Security-Automation-Scripts",
-          "Linux-Hardening-Tools"
+          "cyberhub",
+          "Daniel-wambua"
         ]
       },
       {
         "language": "Docker",
         "projects": [
-          "Security-Lab-Containers",
-          "Isolated-Testing-Environment"
+          "Security-Lab-Setup",
+          "Isolated-Environments"
         ]
       },
       {
-        "language": "Git",
+        "language": "Bash",
         "projects": [
-          "Security-Research-Notes",
-          "CTF-Writeups"
+          "Automation-Scripts",
+          "Security-Tools"
         ]
       }
     ]

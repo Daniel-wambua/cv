@@ -14,8 +14,8 @@ const stats = [
   },
   {
     stat: 'Active CTF competitor and security researcher',
-    source: 'https://ctftime.org/team/379200',
-    icon: 'fa-flag'
+    source: 'https://ctftime.org/team/409004',
+    icon: 'fa-solid fa-flag'
   },
   {
     stat: 'Bug bounty hunter',
@@ -33,8 +33,8 @@ const awards = [
   },
   {
     award: 'Outstanding CTF Performance',
-    issuer: 'Binarysith',
-    source: 'Binarysith',
+    issuer: 'CTF-Organizers',
+    source: '/certificates',
     date: '2025'
   }
 ];
@@ -56,22 +56,22 @@ const hackathonWins = [
 
 const projects = [
   {
-    name: 'DataPulse',
-    description: 'A comprehensive, production-ready dashboard that aggregates and visualizes real-time data from multiple public APIs',
-    tech: 'Python, FastAPI, Streamlit',
-    logo: '�',
+    name: 'blogz',
+    description: 'My CTF writeups  website with a focus on security topics, penetration testing, and ethical hacking',
+    tech: 'hugo,Yaml,html,css,javascript',
+    logo: '📖',
     stars: '4',
-    repo: 'Daniel-wambua/Datapulse',
-    web: 'https://github.com/Daniel-wambua/Datapulse',
+    repo: 'Daniel-wambua/blogz',
+    web: 'https://havocsec.me',
   },
   {
-    name: 'TypingMaster Pro',
-    description: 'A comprehensive, professional-grade typing speed test application with real book content, multi-source fetching, and advanced analytics',
-    tech: 'TypeScript, React, Node.js',
-    logo: '⌨️',
+    name: 'cyberhub',
+    description: 'A curated living, automated knowledge base for cybersecurity professional',
+    tech: 'Astro,TailwindCSS,JSDOM,node-fetch,yaml',
+    logo: '🛡️',
     stars: '8',
-    repo: 'Daniel-wambua/TypingMaster-Pro',
-    web: 'https://typing-master-pro-eta.vercel.app/',
+    repo: 'Daniel-wambua/cyberhub',
+    web: 'https://cyberhub.havocsec.tech',
   }
 ];
 

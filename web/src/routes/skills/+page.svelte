@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import '../../styles/resume-main.scss';
 	import '../../styles/other-pages.scss';
   import Language from '../../components/Language.svelte';
-  export let data = {};
+  export let data: any = {};
  
   const techStack = data.additionalData?.techStack || data.techStack || {};
   const techStackExtras = data.additionalData?.techStackExtras || data.techStackExtras || {};
@@ -10,9 +10,9 @@
   // Calculate stats
   let totalTechnologies = 0;
   let totalProjects = 0;
-  Object.values(techStack).forEach((category) => {
+  Object.values(techStack).forEach((category: any) => {
     totalTechnologies += category.length;
-    category.forEach((tech) => {
+    category.forEach((tech: any) => {
       totalProjects += tech.projects.length;
     });
   });
@@ -27,7 +27,7 @@
   ];
 
   // Map category keys to display names and icons
-  const categoryInfo = {
+  const categoryInfo: Record<string, { name: string; icon: string; description: string }> = {
     backend: { 
       name: 'Backend', 
       icon: '⚙️',

@@ -298,9 +298,9 @@
 		align-items: center;
 		gap: 0.75rem;
 		padding: 1.5rem;
-		background: linear-gradient(135deg, rgba(0, 255, 136, 0.05), rgba(0, 255, 136, 0.02));
+		background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(6, 182, 212, 0.02));
 		border-radius: 0.5rem;
-		border: 1px solid rgba(0, 255, 136, 0.2);
+		border: 1px solid rgba(6, 182, 212, 0.2);
 		
 		i {
 			color: var(--primary);
@@ -315,8 +315,8 @@
 		gap: 1.5rem;
 		
 		.cert-stat {
-			background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
-			border: 1px solid rgba(0, 255, 136, 0.3);
+			background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05));
+			border: 1px solid rgba(6, 182, 212, 0.3);
 			border-radius: 0.5rem;
 			padding: 1.5rem;
 			text-align: center;
@@ -324,7 +324,7 @@
 			
 			&:hover {
 				border-color: var(--primary);
-				box-shadow: 0 4px 15px rgba(0, 255, 136, 0.2);
+				box-shadow: 0 4px 15px rgba(6, 182, 212, 0.2);
 				transform: translateY(-2px);
 			}
 			

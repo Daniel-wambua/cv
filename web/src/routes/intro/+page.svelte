@@ -8,44 +8,19 @@
 
     const sections = [
       {
-        title: "The Builder",
-        icon: "fa-hammer",
-        content: `I'm a builder at heart. Whether it's a large-scale security platform, a penetration testing framework, or a fun little side project, I love creating software that's fast, accessible, secure—and actually helps defend against threats.`
-      },
-      {
-        title: "Security-First Developer", 
+        title: "Cybersecurity Professional", 
         icon: "fa-shield-halved",
-        content: `I've been coding professionally for years, but tinkering with cybersecurity for much longer. I care deeply about secure coding practices, threat modeling, and empowering others to build defensible systems. I've led red team exercises and collaborated with blue teams across different organizations.`
+        content: `IT student specializing in penetration testing, ethical hacking, and secure system design. Active in CTFs and bug bounty programs.`
       },
       {
-        title: "Open Source Advocate",
-        icon: "fa-code-branch", 
-        content: `Open source security has always been a big part of my journey. I've published security tools and frameworks, contributed to vulnerability research, and continue to learn and grow through collaboration with the security community.`
+        title: "Full-Stack Developer",
+        icon: "fa-code",
+        content: `Building secure applications with modern technologies. Experienced in both frontend and backend development with security-first approach.`
       },
       {
-        title: "Ethical Hacker",
-        icon: "fa-user-secret",
-        content: `Security is at the heart of my work. I regularly participate in CTFs, hackathons, and bug bounty programs to sharpen my skills, learn from the community, and bring that knowledge back into the products I help design and secure.`
-      },
-      {
-        title: "Full-Stack Security Engineer",
-        icon: "fa-layer-group",
-        content: `I'm a full-stack developer with a security mindset. From secure frontend development to hardened backend infrastructure, I'm comfortable across the entire stack. I enjoy picking up new technologies quickly and always aim to choose the most secure solution for the job.`
-      },
-      {
-        title: "Multi-Disciplinary Expert",
+        title: "Continuous Learner",
         icon: "fa-graduation-cap",
-        content: `I enjoy wearing many hats: security architect, penetration tester, security engineer, mentor, and researcher. Above all, I love working with curious, security-minded people to build resilient systems—and leave organizations more secure than I found them.`
-      },
-      {
-        title: "Privacy Advocate",
-        icon: "fa-user-shield",
-        content: `Data privacy and security are causes close to my heart. I believe everyone should have the right to control their own data and browse securely. This philosophy has shaped much of the security-focused software I've built and the research I conduct.`
-      },
-      {
-        title: "Always Learning",
-        icon: "fa-brain",
-        content: `In my spare time, I'm usually tinkering with my homelab, exploring new security tools, or competing in CTFs and hackathons. Away from the keyboard, I enjoy sports, adventures, and connecting with fellow security enthusiasts. You'll often find me at security conferences, trading ideas about the latest threats and defensive techniques.`
+        content: `Constantly expanding knowledge through hands-on projects, security research, and participation in the cybersecurity community.`
       }
     ];
 
@@ -75,12 +50,17 @@
     <div class="bio-header">
       <h1 class="cyber-greeting">
         <span class="hash"># </span>
-        <span class="greeting-text">Hey! I'm Daniel 👋</span>
+        <span class="greeting-text">Daniel Wambua</span>
       </h1>
       <div class="subtitle">
-        <i class="fa-solid fa-terminal"></i>
-        Pentester, Developer & Hacker
+        <i class="fa-solid fa-shield-halved"></i>
+        Cybersecurity Specialist | Penetration Tester | Developer
       </div>
+      <p class="bio-summary">
+        Information Technology student at Karatina University with hands-on experience in ethical hacking, 
+        penetration testing, and secure application development. Actively seeking internship opportunities 
+        to apply cybersecurity expertise in real-world scenarios.
+      </p>
     </div>
 
     <div class="intro-grid">
@@ -190,6 +170,9 @@
   .bio-header {
     text-align: center;
     margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     
     .cyber-greeting {
       font-family: var(--font-mono);
@@ -213,16 +196,29 @@
       align-items: center;
       justify-content: center;
       gap: 0.75rem;
+      margin-bottom: 1.5rem;
       
       i {
         color: var(--primary);
       }
     }
+    
+    .bio-summary {
+      color: var(--text-color);
+      font-size: 1rem;
+      line-height: 1.8;
+      text-align: left;
+      background: var(--gradient-dark);
+      padding: 1.5rem;
+      border-radius: var(--button-radius);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid var(--primary);
+    }
   }
 
   .intro-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-bottom: 3rem;
   }

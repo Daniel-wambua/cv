@@ -22,11 +22,10 @@
   ];
 
   const requirements = [
-    { lbl: 'Location', desc: 'kenyan-based, or a commutable distance from Nairobi' },
-    { lbl: 'Contract Type', desc: 'Permanent, and ideally full-time' },
-    { lbl: 'Workspace', desc: 'While remote working can be great, I do love coming into the office, as I think it\'s important for team building and collaboration' },
-    { lbl: 'Seniority', desc: 'Engineering Manager or Principal Engineer role, but still with exposure to coding' },
-    { lbl: 'Discipline', desc: 'Full-Stack or Frontend, with a focus on security' },
+    { lbl: 'Location', desc: 'worldwide' },
+    { lbl: 'Contract Type', desc: 'Permanent, part-time, or freelance' },
+    { lbl: 'Workspace', desc: 'Physical,Remote or hybrid' },
+    { lbl: 'Discipline', desc: 'Cybersecurity engineer,Full-Stack or Frontend, with a focus on security' },
     { lbl: 'Industry', desc: 'Fin tech, developer tools and custom-facing products, cybersecurity' },
     { lbl: 'Comp', desc: 'Competitive salary, but I can and will be flexible on this for the right role' },
   ];

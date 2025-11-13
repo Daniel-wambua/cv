@@ -1,6 +1,19 @@
 <script lang="ts">
   // Certificate data - each certificate entry
-  const certificates = [
+  interface Certificate {
+    id: number;
+    name: string;
+    issuer: string;
+    date: string;
+    image: string;
+    description: string;
+    skills: string[];
+    credentialId: string;
+    verified: boolean;
+    isPdf?: boolean;
+  }
+  
+  const certificates: Certificate[] = [
     {
       id: 1,
       name: 'API Security Course Certificate',
@@ -10,7 +23,8 @@
       description: 'Comprehensive training in API security best practices, vulnerabilities, and protection mechanisms',
       skills: ['API Security', 'REST APIs', 'OAuth', 'JWT'],
       credentialId: 'APISEC-2024',
-      verified: true
+      verified: true,
+      isPdf: false
     },
     {
       id: 2,
@@ -21,7 +35,8 @@
       description: 'Foundation course covering essential cybersecurity principles, threat analysis, and defense strategies',
       skills: ['CTF','Network Security', 'Threat Analysis', 'Risk Management'],
       credentialId: 'CSEM-BA-159',
-      verified: true
+      verified: true,
+      isPdf: false
     },
     {
       id: 3,
@@ -32,7 +47,8 @@
       description: 'OSINT certification demonstrating ethical hacking and proficiency in open source intelligence gathering and analysis',
       skills: ['OSINT', 'Ethical Hacking', 'Intelligence Gathering', 'Information Analysis'],
       credentialId: 'MOT-OSINT-2025',
-      verified: true
+      verified: true,
+      isPdf: false
     },
     {
       id: 4,
@@ -43,7 +59,8 @@
       description: 'Recognition for competitive performance in Capture The Flag cybersecurity competitions',
       skills: ['CTF', 'Problem Solving', 'Security Research'],
       credentialId: 'RANK-375',
-      verified: true
+      verified: true,
+      isPdf: false
     },
     {
       id: 5,
@@ -54,7 +71,8 @@
       description: 'Completion of advanced cybersecurity training modules and practical exercises',
       skills: ['CTF','Penetration Testing', 'Security Analysis', 'Incident Response'],
       credentialId: 'CYBER-2025',
-      verified: true
+      verified: true,
+      isPdf: false
     }
   ];
 
@@ -70,9 +88,9 @@
     : certificates.filter(cert => cert.skills.includes(selectedSkill));
 
   // Modal state
-  let selectedCertificate: typeof certificates[0] | null = null;
+  let selectedCertificate: Certificate | null = null;
   
-  const openModal = (cert: typeof certificates[0]) => {
+  const openModal = (cert: Certificate) => {
     selectedCertificate = cert;
   };
   

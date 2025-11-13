@@ -4,6 +4,7 @@
 	import { page } from '$app/stores';
 	import { onNavigate } from '$app/navigation';
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
+	import { theme, toggleTheme } from '$lib/stores/theme';
 
 	import '../app.css';
 	import '../styles/variables.scss';
@@ -71,7 +72,8 @@
 		{ name: 'GitHub', url: 'https://github.com/Daniel-wambua', icon: 'fa-github', color: '#333' },
 		{ name: 'Twitter', url: 'https://twitter.com/wambuahdaniel', icon: 'fa-twitter', color: '#1DA1F2' },
 		{ name: 'LinkedIn', url: 'https://www.linkedin.com/in/daniel-wambua-a312b32b8', icon: 'fa-linkedin', color: '#0A66C2' },
-		{ name: 'CTFtime', url: 'https://ctftime.org/team/379200', icon: 'fa-flag', color: '#00ff41' },
+		{ name: 'CTFtime', url: 'https://ctftime.org/team/409004', icon: 'fa-flag', iconType: 'fa-solid', color: '#00ff41' },
+		{ name: 'Linktree', url: 'https://linktree.havocsec.me' , icon: 'fa-tree', iconType: 'fa-solid', color: '#43E55E' },
     ];
 	const navLinks = [
 		{ name: 'Intro', url: '/intro', icon: 'fa-terminal' },
@@ -94,7 +96,7 @@
 		<div class="aside-inner">
 			<a href="/" class="no-underline">
 				<h1 class="cyber-title">
-					<span class="terminal-prompt">root@daniel:~$</span>
+					<span class="terminal-prompt">Root@daniel:~$</span>
 					<span class="command">whoami</span>
 				</h1>
 			</a>
@@ -109,10 +111,10 @@
 			<img class="profile-picture" width="300" src="/profile-picture.jpg" alt="Daniel Wambua - Cybersecurity Expert" />
 			
 			<ul class="socials">
-				{#each socials as { url, icon, color }}
+				{#each socials as { url, icon, color, iconType = 'fa-brands' }}
 					<li style="--hover-color: {color}">
 						<a class="no-underline" href={url} target="_blank" rel="nofollow">
-							<i class="fa-brands {icon}"></i>
+							<i class="{iconType} {icon}"></i>
 						</a>
 					</li>
 				{/each}
@@ -131,7 +133,10 @@
 				</ul>
 			</nav>
 			<a href="/download" class="no-underline">
-				<button class="download-btn"><i class="fa-solid fa-file-arrow-down"></i>Download CV</button>
+				<button class="download-btn">
+					<i class="fa-solid fa-file-arrow-down"></i>
+					Download CV
+				</button>
 			</a>
 			<a class="view-code-link" href="https://github.com/Daniel-wambua/cv" target="_blank" rel="nofollow">Or View CV Source Code on GitHub</a>
 		</div>
@@ -153,6 +158,32 @@
 				{#each headerLinks as { name, url }}
 					<a class="no-underline" target="_blank" href={url}>{name}</a>
 				{/each}
+			</div>
+			<div class="header-actions">
+				<a href="/download" class="download-cv-header no-underline">
+					<button class="download-btn-header">
+						<i class="fa-solid fa-file-arrow-down"></i>
+						Download CV
+					</button>
+				</a>
+				<div class="theme-toggle">
+					<button 
+						on:click={toggleTheme}
+						class:active={$theme === 'light'}
+						aria-label="Switch to light mode"
+						title="Light mode"
+					>
+						<i class="fa-solid fa-sun"></i>
+					</button>
+					<button 
+						on:click={toggleTheme}
+						class:active={$theme === 'dark'}
+						aria-label="Switch to dark mode"
+						title="Dark mode"
+					>
+						<i class="fa-solid fa-moon"></i>
+					</button>
+				</div>
 			</div>
 		</header>
 

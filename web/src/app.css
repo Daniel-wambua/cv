@@ -1,72 +1,225 @@
 @import '@fontsource/fira-mono';
 
-:root {
-	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	--font-mono: 'Fira Mono', monospace;
-	--color-bg-0: rgb(202, 216, 228);
-	--color-bg-1: hsl(209, 36%, 86%);
-	--color-bg-2: hsl(224, 44%, 95%);
-	--color-theme-1: #ff3e00;
-	--color-theme-2: #4075a6;
-	--color-text: rgba(0, 0, 0, 0.7);
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
-	font-family: var(--font-body);
-	color: var(--color-text);
+/* Global Styles - Enhanced with Modern Typography & Layout */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	scroll-behavior: smooth;
 }
 
 body {
 	min-height: 100vh;
 	margin: 0;
-	background-attachment: fixed;
-	background-color: var(--color-bg-1);
-	background-size: 100vw 100vh;
-	background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(255, 255, 255, 0.75) 0%,
-			rgba(255, 255, 255, 0) 100%
-		),
-		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
+	padding: 0;
+	font-family: var(--font-family);
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-normal);
+	color: var(--text-color);
+	background: var(--background);
+	overflow-x: hidden;
 }
 
-h1,
-h2,
-p {
-	font-weight: 400;
-}
-
-p {
-	line-height: 1.5;
-}
-
-a {
-	color: var(--color-theme-1);
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 600;
+	line-height: var(--line-height-tight);
+	color: var(--text-color);
+	margin: 0;
 }
 
 h1 {
-	font-size: 2rem;
-	text-align: center;
+	font-size: clamp(var(--font-size-2xl), 5vw, var(--font-size-4xl));
+	font-weight: 700;
 }
 
 h2 {
-	font-size: 1rem;
+	font-size: clamp(var(--font-size-xl), 4vw, var(--font-size-3xl));
+	font-weight: 600;
+}
+
+h3 {
+	font-size: clamp(var(--font-size-lg), 3vw, var(--font-size-2xl));
+}
+
+h4 {
+	font-size: clamp(var(--font-size-base), 2.5vw, var(--font-size-xl));
+}
+
+h5 {
+	font-size: var(--font-size-lg);
+}
+
+h6 {
+	font-size: var(--font-size-base);
+}
+
+p {
+	line-height: var(--line-height-relaxed);
+	color: var(--text-color-secondary);
+	margin: 0;
+}
+
+strong, b {
+	font-weight: 600;
+	color: var(--text-color);
+}
+
+em, i {
+	font-style: italic;
+}
+
+/* Links */
+a {
+	color: var(--primary);
+	text-decoration: none;
+	transition: color var(--transition-fast);
+	cursor: pointer;
+}
+
+a:hover {
+	color: var(--primary-hover);
+}
+
+a:focus-visible {
+	outline: 2px solid var(--primary);
+	outline-offset: 2px;
+	border-radius: var(--radius-sm);
+}
+
+/* Code */
+pre, code {
+	font-family: var(--font-mono);
+	font-size: var(--font-size-sm);
 }
 
 pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
+	background: var(--surface);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-md);
+	padding: var(--space-lg);
 	overflow-x: auto;
-	color: var(--color-text);
+	color: var(--text-color);
+	line-height: var(--line-height-relaxed);
+}
+
+code {
+	background: var(--surface);
+	padding: 0.125rem 0.375rem;
+	border-radius: var(--radius-sm);
+	color: var(--primary);
+}
+
+pre code {
+	background: none;
+	padding: 0;
+	color: inherit;
+}
+
+/* Form Elements */
+input,
+textarea,
+select,
+button {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	color: inherit;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	background: none;
+	font-weight: 500;
+	transition: all var(--transition-base);
+}
+
+button:disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
+button:focus-visible {
+	outline: 2px solid var(--primary);
+	outline-offset: 2px;
+}
+
+input,
+textarea,
+select {
+	background: var(--surface);
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-md);
+	padding: var(--space-sm) var(--space-md);
+	transition: all var(--transition-base);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	outline: none;
+	border-color: var(--primary);
+	box-shadow: 0 0 0 3px var(--primary-transparent);
+}
+
+/* Lists */
+ul, ol {
+	list-style-position: inside;
+}
+
+/* Selection */
+::selection {
+	background: var(--primary);
+	color: var(--background);
+}
+
+::-moz-selection {
+	background: var(--primary);
+	color: var(--background);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--surface);
+	border-radius: var(--radius-md);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--surface-elevated);
+	border-radius: var(--radius-md);
+	border: 2px solid var(--surface);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--surface-hover);
+}
+
+/* Utilities */
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
 }
 
 .text-column {
@@ -78,30 +231,64 @@ pre {
 	margin: 0 auto;
 }
 
-input,
-button {
-	font-size: inherit;
-	font-family: inherit;
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
 }
 
-button:focus:not(:focus-visible) {
+/* Responsive Images */
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Focus Visible Polyfill */
+.js-focus-visible :focus:not(.focus-visible) {
 	outline: none;
 }
 
-@media (min-width: 720px) {
-	h1 {
-		font-size: 2.4rem;
+/* Loading States */
+@keyframes shimmer {
+	0% {
+		background-position: -1000px 0;
+	}
+	100% {
+		background-position: 1000px 0;
 	}
 }
 
-.visually-hidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: auto;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-	white-space: nowrap;
+.loading {
+	animation: shimmer 2s infinite linear;
+	background: linear-gradient(
+		to right,
+		var(--surface) 0%,
+		var(--surface-elevated) 20%,
+		var(--surface) 40%,
+		var(--surface) 100%
+	);
+	background-size: 1000px 100%;
+}
+
+/* Print Styles */
+@media print {
+	body {
+		background: white;
+		color: black;
+	}
+	
+	a {
+		text-decoration: underline;
+	}
+	
+	.no-print {
+		display: none !important;
+	}
 }
