@@ -39,8 +39,7 @@ education:
     score: In Progress
     highlights:
       - Core modules: Network Security, Cryptography, Digital Forensics, Ethical Hacking
-      - Active member of University Cybersecurity Club
-      - Teaching Assistant for Network Security Laboratory
+      - Active member of University Cybersecurity|(innovation) Club
 
   - institution: I-Tech Computer College
     area: Computer Fundamentals & Security Operations
@@ -50,7 +49,7 @@ education:
     score: Graduated Top of Class (Distinction)
     highlights:
       - Specialized in system administration and basic security operations
-      - Final project: Designing secure network infrastructure for SMEs
+      - Final project: Designed  secure network infrastructure for SMEs
 
 # ==============================================================================
 # WORK EXPERIENCE
@@ -66,8 +65,18 @@ work:
     highlights:
       - Pursuing BSc Information Technology with cybersecurity focus
       - Active member of university innovation club
-      - Organizing CTF competitions for students
+      - Organized CTF competitions for students
       - Participating in cybersecurity workshops and training
+
+  - name: 51l3nt_br34ch
+    position: Member of the 51l3nt_br34ch CTF Team
+    startDate: '2025-07'
+    endDate: 'Present'
+    highlights:
+      - collaborated with the team and solved ctf challenges and participated in bug bounties.
+      - contributed to open-source security tools
+      - Conducted security audits for web applications and networks
+      - Developed the team's website and managed online presence
 
   - name: Freelance
     position: Junior Software Developer (Part-time)
@@ -129,7 +138,7 @@ skills:
 # Use markdown formatting for bold text: **text**
 achievements:
   - text: "🏆 **Top 10 Ethical Hackers** - CyberGame Kenya 2025"
-    source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+    source: 'https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent'
 
   - text: "🥉 **3rd Place** - Kenya National Cybersecurity Hackathon 2024"
     source: 'https://hackathon.cybersecurity.go.ke/winners'
@@ -145,7 +154,7 @@ achievements:
 awards:
   - title: "CyberGame Kenya - Top 10 Ethical Hacker (2025)"
     summary: "Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition"
-    source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+    source: 'https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent'
 
 # ==============================================================================
 # PROJECTS
@@ -153,12 +162,12 @@ awards:
 # Showcase your best technical projects
 # Fields: name, description, url, github, language, stars (optional), tags (optional)
 projects:
-  - name: 'TypingMaster Pro'
-    description: 'Typing speed test app with real book content'
-    github: 'Daniel-wambua/TypingMaster-Pro'
-    url: 'https://typing-master-pro-eta.vercel.app/'
-    language: 'TypeScript'
-    stars: '2'
+  - name: 'MacOS_Portfolio'
+    description: 'A macOS-inspired React portfolio app .'
+    github: 'Daniel-wambua/MacOS_Portfolio'
+    url: 'https://portfolio.havocsec.me'
+    language: 'React, JavaScript, CSS, HTML,shell'
+    stars: '10'
 
   - name: 'DataPulse Command Center'
     description: 'Real-time dashboard with FastAPI backend'
