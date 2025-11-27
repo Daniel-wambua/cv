@@ -10,7 +10,7 @@
 ################################################################################
 
 # Specify that the targets are not files
-.PHONY: all install validate generate compile markdown clean clean_tex watch
+.PHONY: all install validate generate compile markdown copy_to_web clean clean_tex watch web_install web web_dev
 
 # Define variables for common paths
 PYTHON := $(shell which python3 2>/dev/null || which python)
@@ -20,10 +20,13 @@ RESUME := resume.yml
 TEMPLATE := template.jinja
 OUTPUT_TEX := tex/resume.tex
 OUTPUT_PDF := out/Daniel-Wambua-CV.pdf
+STATIC_PDF := web/static/downloads/Daniel-Wambua-CV.pdf
 OUTPUT_MD := out/Daniel-Wambua-CV.md
 
-# Default target. Install deps, validate, generate, compile, and clean up
-all: install clean validate generate compile markdown
+# Default target. Install deps, validate, generate, compile, emit markdown,
+# then publish the PDF into the web app's static downloads directory.
+# This means that CI/CD only needs to call `make all` and then build/deploy the web app.
+all: install clean validate generate compile markdown copy_to_web
 
 # Install required Python packages
 install:
@@ -44,6 +47,12 @@ compile:
 # Convert the resume to markdown
 markdown:
 	$(PYTHON) lib/markdown.py --input $(RESUME) --output $(OUTPUT_MD)
+
+# Copy the freshly built PDF to the web app's public downloads directory
+# Ensures that `/api/pdf` serves this exact artifact by default
+copy_to_web: $(OUTPUT_PDF)
+	mkdir -p $(dir $(STATIC_PDF))
+	cp -f $(OUTPUT_PDF) $(STATIC_PDF)
 
 # Clean up auxiliary LaTeX files
 clean: clean_tex

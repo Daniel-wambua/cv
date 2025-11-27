@@ -121,11 +121,12 @@
 
 %% Page Layout
 % Configure page margins with geometry - optimized for professional layout
-\geometry{left=1.8cm, top=1.0cm, right=1.8cm, bottom=1.5cm, footskip=1.0cm}
+% Slightly tighter margins to help fit on a single A4 page while preserving readability
+\geometry{left=1.5cm, top=0.8cm, right=1.5cm, bottom=1.0cm, footskip=0.6cm}
 
 % Ensure consistent page layout across all pages
 \AtBeginDocument{%
-  \newgeometry{left=1.8cm, top=1.0cm, right=1.8cm, bottom=1.5cm, footskip=1.0cm}
+  \newgeometry{left=1.5cm, top=0.8cm, right=1.5cm, bottom=1.0cm, footskip=0.6cm}
 }
 
 % Prevent overfull boxes and improve line breaking
@@ -263,24 +264,27 @@
 % Configure styles for each CV elements
 % For fundamental structures
 
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{1em}\headerfontlight\color{white} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{1em}\headerfont\color{white} #1}}
+% Slightly smaller header name to save vertical space
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{28pt}{1em}\headerfontlight\color{white} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{28pt}{1em}\headerfont\color{white} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{9pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{6.9pt}{1em}\headerfont\color{text} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{9pt}{1em}\footerfont\scshape\color{lighttext} #1}}
-\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+% Reduce section title size a bit
+\newcommand*{\sectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 
 % For elements of entry
-\newcommand*{\entrytitlestyle}[1]{{\vspace*{0mm}\fontsize{13pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{11pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\entrytitlestyle}[1]{{\vspace*{0mm}\fontsize{12pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\entrypositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{graytext} #1}}
 
 
 \newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
 \newcommand*{\entrylocationstyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
-\newcommand*{\descriptionstyle}[1]{{\fontsize{10pt}{12pt}\bodyfontlight\upshape\color{text} #1}}
+% Slightly tighter body text leading
+\newcommand*{\descriptionstyle}[1]{{\fontsize{10pt}{11pt}\bodyfontlight\upshape\color{text} #1}}
 \newcommand*{\skill}[1]{{\fontsize{10pt}{1em}\bodyfontlight\upshape\color{text} \textnormal{#1}}}
 
 % For elements of subentry
@@ -612,11 +616,12 @@
 % Define a section for CV
 % Usage: \cvsection{<section-title>}
 \newcommand{\cvsection}[1]{
-  \par\addvspace{2.5ex}
+  % Tighter section spacing to save vertical space
+  \par\addvspace{1.6ex}
   \phantomsection{}
   \sectionstyle{#1}
   \color{gray}\vhrulefill{0.15pt}
-  \par\nobreak\addvspace{1.5ex}
+  \par\nobreak\addvspace{1.0ex}
 }
 
 % Define a subsection for CV
@@ -691,37 +696,25 @@
 
 % Define an environment for cvachievements
 \newenvironment{cvachievements}{
+  % Slightly tighter spacing for lists
   \vspace{-1mm}
   \bodyfontlight
   \begin{justify}
-  \fontsize{10pt}{12pt}\selectfont
-  \begin{itemize}[leftmargin=0.5cm, label={\textcolor{awesome}{\textbullet}}, nosep, itemsep=2mm, before=\achievementstyle]
-    \setlength{\parskip}{1mm}
+  \fontsize{9.8pt}{11pt}\selectfont
+  \begin{itemize}[leftmargin=0.5cm, label={\textcolor{awesome}{\textbullet}}, nosep, itemsep=1mm, before=\achievementstyle]
+    \setlength{\parskip}{0.5mm}
 }{
   \end{itemize}
   \end{justify}
-  \vspace{1mm}
+  \vspace{0.5mm}
 }
 
-% Define an environment for personal statement
-\newenvironment{cvpersonalstatement}{
-  \vspace{2mm}
-  \bodyfontlight
-  \begin{justify}
-  \fontsize{10pt}{1em}\selectfont
-  \begin{itemize}[leftmargin=0ex, label={}, nosep, noitemsep, before=\cvparagraphstyle]
-    \setlength{\parskip}{2mm}
-}{
-  \end{itemize}
-  \end{justify}
-  \vspace{0mm}
-}
-
+% Compact personal statement (single paragraph, tight leading)
 \renewenvironment{cvpersonalstatement}{
-  \vspace{4mm}
+  \vspace{1mm}
   \bodyfontlight
   \begin{justify}
-  \fontsize{12pt}{14pt}\selectfont
+  \fontsize{10pt}{11pt}\selectfont
   \begin{itemize}[
     leftmargin=0ex,
     label={},
@@ -729,11 +722,11 @@
     noitemsep,
     before=\cvparagraphstyle
   ]
-  \setlength{\parskip}{3mm}
+  \setlength{\parskip}{1.2mm}
 }{
   \end{itemize}
   \end{justify}
-  \vspace{2mm}
+  \vspace{0.5mm}
 }
 
 % Define an environment for cvskill

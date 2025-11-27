@@ -52,16 +52,6 @@ education:
       - Specialized in system administration and basic security operations
       - Final project: Designing secure network infrastructure for SMEs
 
-  - institution: Kitonyoni Secondary School 
-    area: Highschool
-    studyType: certificate
-    startDate: '2019-01'
-    endDate: '2021-11'
-    score: Graduated with Merit
-    highlights:
-      - Focused solely on highschool stuff and passing the bar in general.
-      - Participated in inter-highschool competitions in various sectors and field, infact i was best in almost everything.
-
 # ==============================================================================
 # WORK EXPERIENCE
 # ==============================================================================
@@ -79,17 +69,7 @@ work:
       - Organizing CTF competitions for students
       - Participating in cybersecurity workshops and training
 
-  - name: Serianu Limited
-    position: Cybersecurity Intern
-    startDate: '2024-06'
-    endDate: '2024-08'
-    highlights:
-      - Hands-on experience in vulnerability assessments
-      - Assisted in penetration testing for client organizations
-      - Contributed to incident response procedures
-      - Learned enterprise security tools and frameworks
-
-  - name: KCB Bank Group
+  - name: Freelance
     position: Junior Software Developer (Part-time)
     startDate: '2023-11'
     endDate: '2024-05'
@@ -178,21 +158,21 @@ projects:
     github: 'Daniel-wambua/TypingMaster-Pro'
     url: 'https://typing-master-pro-eta.vercel.app/'
     language: 'TypeScript'
-    stars: '1'
+    stars: '2'
 
   - name: 'DataPulse Command Center'
     description: 'Real-time dashboard with FastAPI backend'
     github: 'Daniel-wambua/Datapulse'
     url: 'https://datapulse.vercel.app'
     language: 'Python'
-    stars: '1'
+    stars: '3'
 
   - name: 'CTF Writeups & Security Blog'
     description: 'Technical blog with CTF solutions and security research'
     github: 'Daniel-wambua/blogz'
     url: 'https://havocsec.me'
     language: 'Technical Writing'
-    stars: '1'
+    stars: '10'
 
 ################################################################################
 # END OF CV CONFIGURATION
