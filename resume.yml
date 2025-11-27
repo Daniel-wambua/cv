@@ -58,16 +58,6 @@ education:
 # Fields: name, position, startDate, endDate, highlights
 # Note: Use 'Present' for ongoing positions
 work:
-  - name: Karatina University
-    position: Information Technology Student & Innovation Club Member
-    startDate: '2023-08'
-    endDate: Present
-    highlights:
-      - Pursuing BSc Information Technology with cybersecurity focus
-      - Active member of university innovation club
-      - Organized CTF competitions for students
-      - Participating in cybersecurity workshops and training
-
   - name: 51l3nt_br34ch
     position: Member of the 51l3nt_br34ch CTF Team
     startDate: '2025-07'
@@ -77,6 +67,16 @@ work:
       - contributed to open-source security tools
       - Conducted security audits for web applications and networks
       - Developed the team's website and managed online presence
+
+  - name: Karatina University
+    position: Information Technology Student & Innovation Club Member
+    startDate: '2023-08'
+    endDate: Present
+    highlights:
+      - Pursuing BSc Information Technology with cybersecurity focus
+      - Active member of university innovation club
+      - Organized CTF competitions for students
+      - Participating in cybersecurity workshops and training
 
   - name: Freelance
     position: Junior Software Developer (Part-time)
