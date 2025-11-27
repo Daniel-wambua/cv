@@ -121,7 +121,6 @@ skills:
       - AWS Security Services
       - Kubernetes Security
       - Container Security
-      - IAM & Access Management
 
   - name: Cryptography & Forensics
     keywords:

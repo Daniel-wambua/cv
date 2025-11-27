@@ -48,7 +48,7 @@
         {/if}
       </p>
       <p>
-        For other communication channels, visit 
+        For other communication channels, visit my
         <a target="_blank" href="https://linktree.havocsec.me" rel="noopener noreferrer">
           <i class="fa-solid fa-tree"></i>
           linktree
