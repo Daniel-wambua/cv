@@ -98,29 +98,34 @@ skills:
     keywords:
       - Web Application Testing
       - Network Penetration Testing
-      - API Security Testing
-      - Mobile Application Security
+      - API Security testing
 
   - name: Security Tools
     keywords:
       - Burp Suite Professional
       - Metasploit Framework
-      - Nmap/Nessus
-      - OWASP ZAP
+      - Nmap
       - Wireshark
 
   - name: Programming & Scripting
     keywords:
-      - Python (Security Automation)
-      - Bash/PowerShell Scripting
-      - JavaScript (Web Security)
-      - Go (Tool Development)
+      - Python
+      - Bash
+      - JavaScript 
+      - Go
 
-  - name: Cloud Security
+  - name: Cloud
     keywords:
-      - AWS Security Services
-      - Kubernetes Security
-      - Container Security
+      - AWS
+      - Kubernetes
+      - Docker
+      - Vercel
+      - Netlify
+
+  - name: CI/CD
+    keywords:
+      - Argo CD
+      - GitHub Actions
 
   - name: Cryptography & Forensics
     keywords:
@@ -177,7 +182,7 @@ projects:
 
   - name: 'CTF Writeups & Security Blog'
     description: 'Technical blog with CTF solutions and security research'
-    github: 'Daniel-wambua/blogz'
+    github: 'Daniel-wambua/blog'
     url: 'https://havocsec.me'
     language: 'Technical Writing'
     stars: '10'
