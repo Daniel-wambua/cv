@@ -453,7 +453,8 @@
        {
         "language": "astro",
         "projects": [
-          "Cooler"
+          "Cooler",
+          "blog"
         ]
       }
     ],

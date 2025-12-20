@@ -56,12 +56,12 @@ const hackathonWins = [
 
 const projects = [
   {
-    name: 'blogz',
+    name: 'blog',
     description: 'My CTF writeups  website with a focus on security topics, penetration testing, and ethical hacking',
-    tech: 'hugo,Yaml,html,css,javascript',
+    tech: 'Astro,Yaml,html,css,javascript,markdown',
     logo: '📖',
-    stars: '4',
-    repo: 'Daniel-wambua/blogz',
+    stars: '10',
+    repo: 'Daniel-wambua/blog',
     web: 'https://havocsec.me',
   },
   {

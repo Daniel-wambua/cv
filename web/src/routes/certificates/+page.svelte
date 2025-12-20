@@ -15,6 +15,30 @@
   
   const certificates: Certificate[] = [
     {
+      id: 101,
+      name: 'NexHunt CTF — Top Performer',
+      issuer: 'NexHunt CTF',
+      date: 'December 2025',
+      image: '/Certs/nexhuntctf.jpg',
+      description: 'Top performer in the NexHunt Capture The Flag competition demonstrating advanced exploitation and problem solving.',
+      skills: ['CTF', 'Web Exploitation', 'Forensics'],
+      credentialId: 'NH-2025-01',
+      verified: true,
+      isPdf: false
+    },
+    {
+      id: 102,
+      name: 'p3rf3ctr00t CTF Certificate',
+      issuer: 'PERFECTROOT CTF Team',
+      date: 'December 2025',
+      image: '/Certs/Havoc of Team 51l3nt_br34ch_certificate.png',
+      description: 'Recognition for contributions as a member of the 51l3nt_br34ch CTF team during competitive events and research.',
+      skills: ['CTF', 'Team Collaboration', 'Exploit Development'],
+      credentialId: '51B-2025-HAVOC',
+      verified: true,
+      isPdf: false
+    },
+    {
       id: 1,
       name: 'API Security Course Certificate',
       issuer: 'API Security Academy',
