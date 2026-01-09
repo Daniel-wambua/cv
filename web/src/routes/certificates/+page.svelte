@@ -221,7 +221,7 @@
       <div class="stat-icon">
         <i class="fa-solid fa-calendar-days"></i>
       </div>
-      <div class="stat-number">2023-2025</div>
+      <div class="stat-number">2023-2026</div>
       <div class="stat-label">Active Period</div>
     </div>
   </section>
