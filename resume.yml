@@ -4,151 +4,133 @@
 # Edit this file to update your CV - changes will auto-generate a new PDF
 ################################################################################
 
-# ==============================================================================
-# BASIC INFORMATION
-# ==============================================================================
-# Your core contact details and online presence
 basics:
   name: Daniel Wambua
   email: wambuahdaniel@gmail.com
   url: https://github.com/Daniel-wambua
   location:
     address: Nairobi, Kenya
+  profiles:
+    - network: GitHub
+      username: Daniel-wambua
+      url: https://github.com/Daniel-wambua
 
 # ==============================================================================
 # PERSONAL STATEMENT
 # ==============================================================================
-# 2-4 sentence professional summary highlighting your expertise and goals
 personal-statement: |
-  Cybersecurity researcher and ethical hacker with a passion for breaking things to make them stronger.
-  Currently pursuing Information Technology while actively participating in CTFs, hackathons, and security research.
-  Specialized in penetration testing, vulnerability assessment, and security architecture.
-  Driven by curiosity, continuous learning, and the mission to make cyberspace safer for everyone.
+  Cybersecurity-focused Information Technology student with hands-on experience in
+  penetration testing labs, CTF competitions, and security tooling.
+  Strong interest in offensive security, vulnerability assessment, and security operations.
+  Actively seeking an industrial attachment or remote internship to gain real-world exposure
+  in cybersecurity operations, SOC workflows, or application security.
 
 # ==============================================================================
 # EDUCATION
 # ==============================================================================
-# List your academic qualifications in reverse chronological order (most recent first)
-# Fields: institution, area, studyType, startDate, endDate, score, highlights
 education:
   - institution: Karatina University
-    area: Information Technology (Cybersecurity Focus)
-    studyType: BSc
+    area: Information Technology
+    studyType: Bachelor of Science (BSc)
     startDate: '2023'
     endDate: '2027'
-    score: In Progress
+    score: Ongoing
     highlights:
-      - Core modules: Network Security, Cryptography, Digital Forensics, Ethical Hacking
-      - Active member of University Cybersecurity|(innovation) Club
+      - Coursework: Network Security, Cryptography, Digital Forensics, Ethical Hacking
+      - Active member of University Innovation & Cybersecurity Club
+      - Participated in internal CTFs, technical workshops, and peer training sessions
 
   - institution: I-Tech Computer College
     area: Computer Fundamentals & Security Operations
     studyType: Certificate
     startDate: '2022-08'
     endDate: '2023-01'
-    score: Graduated Top of Class (Distinction)
+    score: Distinction
     highlights:
-      - Specialized in system administration and basic security operations
-      - Final project: Designed  secure network infrastructure for SMEs
+      - Training in system administration, networking fundamentals, and basic security operations
+      - Final project: Designed a small-scale secure network architecture for an SME environment
 
 # ==============================================================================
-# WORK EXPERIENCE
+# EXPERIENCE (STUDENT / COMMUNITY / PRACTICAL)
 # ==============================================================================
-# Professional experience in reverse chronological order (most recent first)
-# Fields: name, position, startDate, endDate, highlights
-# Note: Use 'Present' for ongoing positions
 work:
-  - name: 51l3nt_br34ch
-    position: Member of the 51l3nt_br34ch CTF Team
+  - name: 51l3nt_br34ch CTF Team
+    position: CTF Team Member | Offensive Security Practice
     startDate: '2025-07'
     endDate: 'Present'
     highlights:
-      - collaborated with the team and solved ctf challenges and participated in bug bounties.
-      - contributed to open-source security tools
-      - Conducted security audits for web applications and networks
-      - Developed the team's website and managed online presence
+      - Solved web, network, and basic binary exploitation challenges in team-based CTFs
+      - Practiced vulnerability discovery using Burp Suite, Nmap, and manual testing techniques
+      - Collaborated on writeups and shared methodologies for common vulnerability classes
+      - Contributed minor improvements and documentation to open-source security repositories
 
   - name: Karatina University
-    position: Information Technology Student & Innovation Club Member
+    position: IT Student | Innovation Club Member
     startDate: '2023-08'
-    endDate: Present
+    endDate: 'Present'
     highlights:
-      - Pursuing BSc Information Technology with cybersecurity focus
-      - Active member of university innovation club
-      - Organized CTF competitions for students
-      - Participating in cybersecurity workshops and training
+      - Supported organization of beginner-friendly CTF competitions and technical demos
+      - Assisted peers with Linux usage, networking concepts, and basic security tooling
+      - Participated in cybersecurity awareness sessions and hands-on labs
 
-  - name: Freelance
-    position: Junior Software Developer (Part-time)
+  - name: Freelance / Academic Projects
+    position: Junior Developer (Security-Aware)
     startDate: '2023-11'
     endDate: '2024-05'
     highlights:
-      - Implemented security controls and secure coding practices
-      - Assisted in code reviews and security testing
-      - Worked on mobile banking security enhancements
-
+      - Assisted with secure coding practices and basic application security testing
+      - Performed simple vulnerability checks and dependency reviews
+      - Gained exposure to fintech-related security considerations through coursework projects
 
 # ==============================================================================
 # SKILLS
 # ==============================================================================
-# Organize your technical skills into logical categories
-# Fields: name (category), keywords (list of specific skills)
 skills:
-  - name: Penetration Testing
+  - name: Cybersecurity & Offensive Security
     keywords:
-      - Web Application Testing
-      - Network Penetration Testing
-      - API Security testing
+      - Web Application Security Testing
+      - Basic Network Penetration Testing
+      - Vulnerability Assessment
+      - OWASP Top 10
 
   - name: Security Tools
     keywords:
-      - Burp Suite Professional
-      - Metasploit Framework
+      - Burp Suite
       - Nmap
+      - Metasploit (basic usage)
       - Wireshark
+      - Linux CLI
 
   - name: Programming & Scripting
     keywords:
       - Python
       - Bash
-      - JavaScript 
-      - Go
+      - JavaScript
+      - Go (fundamentals)
 
-  - name: Cloud
+  - name: Systems & Platforms
     keywords:
-      - AWS
-      - Kubernetes
-      - Docker
-      - Vercel
-      - Netlify
+      - Linux (Parrot OS, Ubuntu)
+      - Git & GitHub
+      - Docker (fundamentals)
+      - Cloud basics (vercel,netlify)
 
-  - name: CI/CD
+  - name: Documentation & Research
     keywords:
-      - Argo CD
-      - GitHub Actions
-
-  - name: Cryptography & Forensics
-    keywords:
-      - Digital Forensics
-      - Malware Analysis
-      - Reverse Engineering
-      - Cryptographic Protocols
+      - CTF Writeups
+      - Technical Documentation
+      - Security Research Basics
 
 # ==============================================================================
-# ACHIEVEMENTS / STATISTICS
+# ACHIEVEMENTS
 # ==============================================================================
 # Highlight your notable accomplishments, CTF wins, certifications, etc.
 # Fields: text (description with emoji), source (URL for verification)
 # Use markdown formatting for bold text: **text**
 achievements:
-  - text: "🏆 **Top 10 Ethical Hackers** - CyberGame Kenya 2025"
+  - text: "🏆 **Top 10 Finalist** – CyberGame Kenya 2025"
     source: 'https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent'
 
-  - text: "🥉 **3rd Place** - Kenya National Cybersecurity Hackathon 2024"
-    source: 'https://hackathon.cybersecurity.go.ke/winners'
-  
-
-  
 
 # ==============================================================================
 # AWARDS
@@ -156,36 +138,40 @@ achievements:
 # Formal awards and recognitions with detailed descriptions
 # Fields: title, summary, source (optional URL)
 awards:
-  - title: "CyberGame Kenya - Top 10 Ethical Hacker (2025)"
-    summary: "Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition"
-    source: 'https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent'
+  - title: "CyberGame Kenya – Top 10 Finalist (2025)"
+    summary: "Recognized for strong performance in national-level cybersecurity competition focused on practical skills"
 
 # ==============================================================================
-# PROJECTS
+# PROJECTS (SECURITY-RELEVANT)
 # ==============================================================================
 # Showcase your best technical projects
 # Fields: name, description, url, github, language, stars (optional), tags (optional)
 projects:
-  - name: 'MacOS_Portfolio'
-    description: 'A macOS-inspired React portfolio app .'
-    github: 'Daniel-wambua/MacOS_Portfolio'
-    url: 'https://portfolio.havocsec.me'
-    language: 'React, JavaScript, CSS, HTML,shell'
+  - name: 'CTF Writeups & Security Blog'
+    description: 'Personal blog documenting CTF solutions, tooling notes, and security concepts'
+    github: 'Daniel-wambua/blog'
+    url: 'https://havocsec.me'
+    language: 'Technical Writing'
     stars: '10'
 
   - name: 'DataPulse Command Center'
-    description: 'Real-time dashboard with FastAPI backend'
+    description: 'Real-time dashboard built with FastAPI; focused on backend reliability and access control concepts'
     github: 'Daniel-wambua/Datapulse'
     url: 'https://datapulse.vercel.app'
     language: 'Python'
     stars: '3'
 
-  - name: 'CTF Writeups & Security Blog'
-    description: 'Technical blog with CTF solutions and security research'
-    github: 'Daniel-wambua/blog'
-    url: 'https://havocsec.me'
-    language: 'Technical Writing'
+  - name: 'MacOS_Portfolio'
+    description: 'Personal portfolio project demonstrating frontend skills and deployment workflows'
+    github: 'Daniel-wambua/MacOS_Portfolio'
+    url: 'https://macfolio.havocsec.me'
+    language: 'JavaScript, React, CSS'
     stars: '10'
+
+################################################################################
+# END OF CV CONFIGURATION
+################################################################################
+
 
 ################################################################################
 # END OF CV CONFIGURATION
