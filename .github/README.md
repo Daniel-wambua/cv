@@ -131,7 +131,7 @@ The source for the website version is located in [`web/`](/web)
 ## Screenshot
 
 <h3 align="center">Web 🌐</h3>
-<p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/main/.github/screenshots/456shots.png?raw=true" /></a></p>
+<p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/745e369f11346b91c774afc62b71d94e8e17ea50/.github/screenshots/456shots.png" /></a></p>
 
 <h3 align="center">PDF 📄</h3>
 <p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/main/web/static/assets/image.png?raw=true" /></a></p>
