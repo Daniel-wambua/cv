@@ -38,6 +38,9 @@ out/*
 !out/Daniel-Wambua-CV.pdf
 
 # Other ignored files and directories
+.codacy/
+.idea/
+doc/
 resume.aux
 resume.log
 resume.out

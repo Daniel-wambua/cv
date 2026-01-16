@@ -8,6 +8,7 @@
 %%% Themes: Awesome-CV
 \documentclass[]{resume-format}
 \usepackage{textcomp}
+\usepackage[most]{tcolorbox}
 %%% Override a directory location for fonts(default: 'fonts/')
 \fontdir[fonts/]
 
@@ -48,20 +49,18 @@
   }%
 
 \noindent
-\colorbox{headerbg}{
-  \parbox{\dimexpr\textwidth-2\fboxsep}{
-    \color{white} %
-    \begin{center} %
-      \headerfirstnamestyle{ {{ basics.name.split(' ')[0] | latex_escape }} } %
-      \headerlastnamestyle{  {{ basics.name.split(' ')[1] | latex_escape }} }\\[2mm] %
-      \faEnvelope~\href{mailto:{{ basics.email | latex_escape }}}{{ basics.email | latex_escape }} %
-      \quad|\quad %
-      \faMapMarker~{{ basics.location.address | latex_escape }} %
-      \quad|\quad %
-      \faLink~\href{ {{ basics.url | latex_escape }} }{ {{ basics.url | latex_escape }} } %
-    \end{center} %
-  }
-}
+\begin{tcolorbox}[colback=headerbg, colframe=headerbg, arc=4mm, boxrule=0pt, left=0pt, right=0pt, top=6mm, bottom=6mm, width=\textwidth, enlarge left by=0mm, enlarge right by=0mm]
+  \color{white} %
+  \begin{center} %
+    \headerfirstnamestyle{ {{ basics.name.split(' ')[0] | latex_escape }} } %
+    \headerlastnamestyle{  {{ basics.name.split(' ')[1] | latex_escape }} }\\[2mm] %
+    \faEnvelope~\href{mailto:{{ basics.email | latex_escape }}}{{ basics.email | latex_escape }} %
+    \quad|\quad %
+    \faMapMarker~{{ basics.location.address | latex_escape }} %
+    \quad|\quad %
+    \faLink~\href{ {{ basics.url | latex_escape }} }{ {{ basics.url | latex_escape }} } %
+  \end{center} %
+\end{tcolorbox}
 \endgroup
 \vspace{2mm} %
 
@@ -166,13 +165,14 @@
 \begin{cvachievements}
   \setlength{\itemsep}{0mm}
 {%- for proj in projects %}
-  \item {
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
-      \href{ {{ proj.url | latex_escape }} }{\textbf{ {{ proj.name | latex_escape }} }} 
-      - {{ proj.description | latex_escape }}
-      & 
-      \href{https://github.com/{{ proj.github | latex_escape }}}{\faGithub\ GitHub} \\
-    \end{tabular*}
+  \item {\hspace{-5pt}
+    	\textbf{ {{ proj.name | latex_escape }} }
+    {%- if proj.stars %} ({{ proj.stars | latex_escape }} \raisebox{0.5pt}{\scriptsize\faStar}){% endif %}
+    \href{ {{ proj.url | latex_escape }} }{\scriptsize\color{lightgray}\faExternalLink~Live}
+    \hfill
+    \href{https://github.com/{{ proj.github | latex_escape }}}{\hspace{1pt}\faGithub~{{ proj.github | latex_escape }}}\\
+    {{ proj.description | latex_escape }}
+    \vspace{2mm} % Add vertical space between projects
   }
 {%- endfor %}
 \end{cvachievements}

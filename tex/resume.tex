@@ -8,6 +8,7 @@
 %%% Themes: Awesome-CV
 \documentclass[]{resume-format}
 \usepackage{textcomp}
+\usepackage[most]{tcolorbox}
 %%% Override a directory location for fonts(default: 'fonts/')
 \fontdir[fonts/]
 
@@ -48,20 +49,18 @@
   }%
 
 \noindent
-\colorbox{headerbg}{
-  \parbox{\dimexpr\textwidth-2\fboxsep}{
-    \color{white} %
-    \begin{center} %
-      \headerfirstnamestyle{ Daniel } %
-      \headerlastnamestyle{  Wambua }\\[2mm] %
-      \faEnvelope~\href{mailto:wambuahdaniel@gmail.com}wambuahdaniel@gmail.com %
-      \quad|\quad %
-      \faMapMarker~Nairobi, Kenya %
-      \quad|\quad %
-      \faLink~\href{ https://github.com/Daniel-wambua }{ https://github.com/Daniel-wambua } %
-    \end{center} %
-  }
-}
+\begin{tcolorbox}[colback=headerbg, colframe=headerbg, arc=4mm, boxrule=0pt, left=0pt, right=0pt, top=6mm, bottom=6mm, width=\textwidth, enlarge left by=0mm, enlarge right by=0mm]
+  \color{white} %
+  \begin{center} %
+    \headerfirstnamestyle{ Daniel } %
+    \headerlastnamestyle{  Wambua }\\[2mm] %
+    \faEnvelope~\href{mailto:wambuahdaniel@gmail.com}wambuahdaniel@gmail.com %
+    \quad|\quad %
+    \faMapMarker~Nairobi, Kenya %
+    \quad|\quad %
+    \faLink~\href{ https://github.com/Daniel-wambua }{ https://github.com/Daniel-wambua } %
+  \end{center} %
+\end{tcolorbox}
 \endgroup
 \vspace{2mm} %
 
@@ -71,10 +70,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{cvpersonalstatement}
-  \item { Cybersecurity researcher and ethical hacker with a passion for breaking things to make them stronger.
-Currently pursuing Information Technology while actively participating in CTFs, hackathons, and security research.
-Specialized in penetration testing, vulnerability assessment, and security architecture.
-Driven by curiosity, continuous learning, and the mission to make cyberspace safer for everyone.
+  \item { Cybersecurity-focused Information Technology student with hands-on experience in
+penetration testing labs, CTF competitions, and security tooling.
+Strong interest in offensive security, vulnerability assessment, and security operations.
+Actively seeking an industrial attachment or remote internship to gain real-world exposure
+in cybersecurity operations, SOC workflows, or application security.
  }
 \end{cvpersonalstatement}
 
@@ -86,36 +86,35 @@ Driven by curiosity, continuous learning, and the mission to make cyberspace saf
 \cvsection{Experience}
 \begin{cventries}
     \cventry
-    { Member of the 51l3nt\_br34ch CTF Team }
-    { 51l3nt\_br34ch }
+    { CTF Team Member \textbar{} Offensive Security Practice }
+    { 51l3nt\_br34ch CTF Team }
     {}
     { July 2025 – Present }
     {\begin{cvitems}
-        \item { collaborated with the team and solved ctf challenges and participated in bug bounties. }
-        \item { contributed to open-source security tools }
-        \item { Conducted security audits for web applications and networks }
-        \item { Developed the team\textquotesingle{}s website and managed online presence }
+        \item { Solved web, network, and basic binary exploitation challenges in team-based CTFs }
+        \item { Practiced vulnerability discovery using Burp Suite, Nmap, and manual testing techniques }
+        \item { Collaborated on writeups and shared methodologies for common vulnerability classes }
+        \item { Contributed minor improvements and documentation to open-source security repositories }
     \end{cvitems}}
     \cventry
-    { Information Technology Student \& Innovation Club Member }
+    { IT Student \textbar{} Innovation Club Member }
     { Karatina University }
     {}
     { August 2023 – Present }
     {\begin{cvitems}
-        \item { Pursuing BSc Information Technology with cybersecurity focus }
-        \item { Active member of university innovation club }
-        \item { Organized CTF competitions for students }
-        \item { Participating in cybersecurity workshops and training }
+        \item { Supported organization of beginner-friendly CTF competitions and technical demos }
+        \item { Assisted peers with Linux usage, networking concepts, and basic security tooling }
+        \item { Participated in cybersecurity awareness sessions and hands-on labs }
     \end{cvitems}}
     \cventry
-    { Junior Software Developer (Part-time) }
-    { Freelance }
+    { Junior Developer (Security-Aware) }
+    { Freelance / Academic Projects }
     {}
     { November 2023 – May 2024 }
     {\begin{cvitems}
-        \item { Implemented security controls and secure coding practices }
-        \item { Assisted in code reviews and security testing }
-        \item { Worked on mobile banking security enhancements }
+        \item { Assisted with secure coding practices and basic application security testing }
+        \item { Performed simple vulnerability checks and dependency reviews }
+        \item { Gained exposure to fintech-related security considerations through coursework projects }
     \end{cvitems}}
 \end{cventries}
 
@@ -128,13 +127,13 @@ Driven by curiosity, continuous learning, and the mission to make cyberspace saf
 \cvsection{Education}
 \begin{cventries}
     \cventry
-    { BSc in Information Technology (Cybersecurity Focus) — Grade: In Progress }
+    { Bachelor of Science (BSc) in Information Technology — Grade: Ongoing }
     { Karatina University }
     {}
     { 2023 – 2027 }
     {}
     \cventry
-    { Certificate in Computer Fundamentals \& Security Operations — Grade: Graduated Top of Class (Distinction) }
+    { Certificate in Computer Fundamentals \& Security Operations — Grade: Distinction }
     { I-Tech Computer College }
     {}
     { August 2022 – January 2023 }
@@ -149,12 +148,11 @@ Driven by curiosity, continuous learning, and the mission to make cyberspace saf
 \cvsection{Skills}
 \vspace{0.5mm}  % match Stats/Awards
 \begin{cvskills}
-  \cvskill{ Penetration Testing }{ Web Application Testing, Network Penetration Testing, API Security testing }
-  \cvskill{ Security Tools }{ Burp Suite Professional, Metasploit Framework, Nmap, Wireshark }
-  \cvskill{ Programming \& Scripting }{ Python, Bash, JavaScript, Go }
-  \cvskill{ Cloud }{ AWS, Kubernetes, Docker, Vercel, Netlify }
-  \cvskill{ CI/CD }{ Argo CD, GitHub Actions }
-  \cvskill{ Cryptography \& Forensics }{ Digital Forensics, Malware Analysis, Reverse Engineering, Cryptographic Protocols }
+  \cvskill{ Cybersecurity \& Offensive Security }{ Web Application Security Testing, Basic Network Penetration Testing, Vulnerability Assessment, OWASP Top 10 }
+  \cvskill{ Security Tools }{ Burp Suite, Nmap, Metasploit (basic usage), Wireshark, Linux CLI }
+  \cvskill{ Programming \& Scripting }{ Python, Bash, JavaScript, Go (fundamentals) }
+  \cvskill{ Systems \& Platforms }{ Linux (Parrot OS, Ubuntu), Git \& GitHub, Docker (fundamentals), Cloud basics (vercel,netlify) }
+  \cvskill{ Documentation \& Research }{ CTF Writeups, Technical Documentation, Security Research Basics }
 \end{cvskills}
 
 
@@ -167,8 +165,7 @@ Driven by curiosity, continuous learning, and the mission to make cyberspace saf
 \vspace{0.5mm}
 \begin{cvachievements}
 \setlength{\itemsep}{0mm}
-  \item { 🏆 \textbf{Top 10 Ethical Hackers} - CyberGame Kenya 2025 \href{https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent}{\faLink} }
-  \item { 🥉 \textbf{3rd Place} - Kenya National Cybersecurity Hackathon 2024 \href{https://hackathon.cybersecurity.go.ke/winners}{\faLink} }
+  \item { 🏆 \textbf{Top 10 Finalist} – CyberGame Kenya 2025 \href{https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent}{\faLink} }
 \end{cvachievements}
 
 
@@ -180,7 +177,7 @@ Driven by curiosity, continuous learning, and the mission to make cyberspace saf
 \vspace{0.5mm}
 \begin{cvachievements}
 \setlength{\itemsep}{0mm}
-  \item { \textbf{ CyberGame Kenya - Top 10 Ethical Hacker (2025) } - Recognized among Kenya\textquotesingle{}s top young cybersecurity talents for outstanding performance in national hacking competition \href{https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent}{\faLink} }
+  \item { \textbf{ CyberGame Kenya – Top 10 Finalist (2025) } - Recognized for strong performance in national-level cybersecurity competition focused on practical skills }
 \end{cvachievements}
 
 
@@ -192,29 +189,29 @@ Driven by curiosity, continuous learning, and the mission to make cyberspace saf
 \vspace{0.5mm}
 \begin{cvachievements}
   \setlength{\itemsep}{0mm}
-  \item {
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
-      \href{ https://portfolio.havocsec.me }{\textbf{ MacOS\_Portfolio }} 
-      - A macOS-inspired React portfolio app .
-      & 
-      \href{https://github.com/Daniel-wambua/MacOS\_Portfolio}{\faGithub\ GitHub} \\
-    \end{tabular*}
+  \item {\hspace{-5pt}
+    	\textbf{ CTF Writeups \& Security Blog } (21 \raisebox{0.5pt}{\scriptsize\faStar})
+    \href{ https://havocsec.me }{\scriptsize\color{lightgray}\faExternalLink~Live}
+    \hfill
+    \href{https://github.com/Daniel-wambua/blog}{\hspace{1pt}\faGithub~Daniel-wambua/blog}\\
+    Personal blog documenting CTF solutions, tooling notes, and security concepts
+    \vspace{2mm} % Add vertical space between projects
   }
-  \item {
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
-      \href{ https://datapulse.vercel.app }{\textbf{ DataPulse Command Center }} 
-      - Real-time dashboard with FastAPI backend
-      & 
-      \href{https://github.com/Daniel-wambua/Datapulse}{\faGithub\ GitHub} \\
-    \end{tabular*}
+  \item {\hspace{-5pt}
+    	\textbf{ Cyberhub } (3 \raisebox{0.5pt}{\scriptsize\faStar})
+    \href{ https://cyberhub.havocsec.tech }{\scriptsize\color{lightgray}\faExternalLink~Live}
+    \hfill
+    \href{https://github.com/Daniel-wambua/cyberhub}{\hspace{1pt}\faGithub~Daniel-wambua/cyberhub}\\
+    A curated living, automated knowledge base for cybersecurity professional
+    \vspace{2mm} % Add vertical space between projects
   }
-  \item {
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l r}
-      \href{ https://havocsec.me }{\textbf{ CTF Writeups \& Security Blog }} 
-      - Technical blog with CTF solutions and security research
-      & 
-      \href{https://github.com/Daniel-wambua/blog}{\faGithub\ GitHub} \\
-    \end{tabular*}
+  \item {\hspace{-5pt}
+    	\textbf{ MacOS\_Portfolio } (10 \raisebox{0.5pt}{\scriptsize\faStar})
+    \href{ https://macfolio.havocsec.me }{\scriptsize\color{lightgray}\faExternalLink~Live}
+    \hfill
+    \href{https://github.com/Daniel-wambua/MacOS\_Portfolio}{\hspace{1pt}\faGithub~Daniel-wambua/MacOS\_Portfolio}\\
+    Personal portfolio project demonstrating frontend skills and deployment workflows
+    \vspace{2mm} % Add vertical space between projects
   }
 \end{cvachievements}
 
