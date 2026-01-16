@@ -8,6 +8,12 @@
 <b>🌐 <a href="https://danielwambua.dev/">danielwambua.dev</a> | 📄 <a href="https://cv.danielwambua.dev/download"><code>Daniel-Wambua-CV.pdf</code></a></b> <br />
 </p>
 
+<p align="center">
+  <a href="https://paystack.shop/pay/fbcnebxyye" target="_blank">
+    <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee%20%E2%98%95%EF%B8%8F-Sponsor-blue" alt="Buy Me a Coffee via Paystack" style="height:40px;" />
+  </a>
+</p>
+
 
 
 ## Motive
@@ -20,7 +26,7 @@ I did it this way so that I don't need to f\*\*k around with Microsoft Word.
 
 
 > **Professional Background**<br>
-> I'm an experienced, Principal-level full stack engineer with a passion for quality, performance, mentoring, technology and open source. I believe the best judge of a developer is their code, and while I cannot share proprietary work, I have many open source projects on my [GitHub](https://github.com/Daniel-wambua) and showcase my skills at [lab.havocsec.me](https://lab.havocsec.me).
+> I'm an Information Technology student with a strong focus on cybersecurity, offensive security, and vulnerability assessment. My experience includes hands-on work in penetration testing labs, CTF competitions, and security tooling. I am passionate about learning, security research, and building systems that automate and simplify technical workflows. You can find my open source projects on [GitHub](https://github.com/Daniel-wambua) and learn more at [danielwambua.dev](https://danielwambua.dev).
 >
 > This CV automation project reflects my philosophy: why spend time on repetitive tasks when you can build systems that work for you? The entire CV generation pipeline is designed for maximum efficiency and maintainability.
 
@@ -56,21 +62,21 @@ Why? ...Because why spend 30 minutes writing your CV, when you could spend 30 ho
 
 | Workflow     | Description      | Status                     |
 | :----------- | :--------------- | :------------------------: |
-| `tag`        | Creates a new Git tag. Optionally specify the tag name and description, or by default it will just bump the sem ver patch number by 1 | [![🏷️ Tag](https://github.com/Daniel-wambua/cv/actions/workflows/tag.yml/badge.svg)](https://github.com/Daniel-wambua/cv/actions/workflows/tag.yml)  |
-| `generate`   | Generates your resume in PDF form as an artifact. If triggered by a tag, then a new release will be created, with the PDF attatched   | [![Generate PDF](https://github.com/Daniel-wambua/cv/actions/workflows/compile.yml/badge.svg)](https://github.com/Daniel-wambua/cv/actions/workflows/compile.yml) |
-| `validate`   | Validates your resume data against the schema. This will also run whenever a new PR is opened, to ensure it's valid and working | [![☑️ Validate Resume](https://github.com/Daniel-wambua/cv/actions/workflows/validate.yml/badge.svg)](https://github.com/Daniel-wambua/cv/actions/workflows/validate.yml) |
-| `mirror`     | Backups up repository and content to our (non-Microsoft) Codeberg mirror | [![🪞 Mirror to Codeberg](https://github.com/Daniel-wambua/cv/actions/workflows/mirror.yml/badge.svg)](https://github.com/Daniel-wambua/cv/actions/workflows/mirror.yml) |
+| `tag`        | Creates a new Git tag. Optionally specify the tag name and description, or by default it will just bump the sem ver patch number by 1 | ![🏷️ Tag](https://github.com/Daniel-wambua/cv/actions/workflows/tag.yml/badge.svg) |
+| `generate`   | Generates your resume in PDF form as an artifact. If triggered by a tag, then a new release will be created, with the PDF attached   | ![Generate PDF](https://github.com/Daniel-wambua/cv/actions/workflows/compile.yml/badge.svg) |
+| `validate`   | Validates your resume data against the schema. This will also run whenever a new PR is opened, to ensure it's valid and working | ![☑️ Validate Resume](https://github.com/Daniel-wambua/cv/actions/workflows/validate.yml/badge.svg) |
+| `mirror`     | Backs up repository and content to our (non-Microsoft) Codeberg mirror | ![🪞 Mirror to Codeberg](https://github.com/Daniel-wambua/cv/actions/workflows/mirror.yml/badge.svg) |
 
 </details>
 
 ---
 
 ### Option #2 - Local
-See the [`Makefile`](/Makefile) for all the available commands. Or, just run `make` from the root, to install deps, validate content, generate LaTex, and compile PDF
+See the [`Makefile`](/Makefile) for all the available commands. Or, just run `make` from the root, to install deps, validate content, generate LaTeX, and compile PDF
 
 1. Clone the repo
 2. Update resume.yml with your own content
-1. Run `make` from the root, to install deps, validate content, generate LaTex, and compile PDF
+1. Run `make` from the root, to install deps, validate content, generate LaTeX, and compile PDF
 
 Or, to deploy the web version
 1. Follow steps above (clone, edit, validate)
@@ -125,7 +131,7 @@ The source for the website version is located in [`web/`](/web)
 ## Screenshot
 
 <h3 align="center">Web 🌐</h3>
-<p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/main/web/static/assets/wmremove-transformed.png?raw=true" /></a></p>
+<p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/main/.github/screenshots/456shots.png?raw=true" /></a></p>
 
 <h3 align="center">PDF 📄</h3>
 <p align="center"><a href="https://danielwambua.dev"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/main/web/static/assets/image.png?raw=true" /></a></p>
