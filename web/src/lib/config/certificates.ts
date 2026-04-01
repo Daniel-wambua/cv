@@ -31,7 +31,7 @@ export const certificateImages = {
     h7ctf: 'https://drive.google.com/thumbnail?id=1cDzaJhC-SvU9Th-Ynm8AfRJWvG73f5rR&sz=w1000',
 
   //china osint
-  chinaosint: 'https://drive.google.com/thumbnail?id=1IDn_U7G1N6htAnC2pUPmThe6Q7zyqvrw&sz=w1000',
+  chinaosint: 'https://drive.google.com/thumbnail?id=12KWVdbFmKCZYPeGWEE8e-y34cF9Px1nC&sz=w1000',
 
 };
 
