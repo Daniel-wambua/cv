@@ -68,7 +68,9 @@ export const GET: RequestHandler = async ({ url }) => {
       scale: 0.96
     });
 
-    return new Response(pdf, {
+    const pdfBody = pdf as unknown as BodyInit;
+
+    return new Response(pdfBody, {
       headers: {
         'Content-Type': 'application/pdf',
         'Content-Disposition': 'inline; filename="Daniel-Wambua-CV.pdf"',

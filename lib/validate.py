@@ -2,6 +2,7 @@ import argparse
 import json
 import logging
 import os
+import sys
 import yaml
 from jsonschema import validate, ValidationError
 from jinja2 import Environment, FileSystemLoader, TemplateSyntaxError, select_autoescape
@@ -59,7 +60,7 @@ def validate_yaml_against_schema(yaml_data: dict, schema: dict) -> None:
         validate(instance=yaml_data, schema=schema)
         logger.info("YAML data is valid against the schema")
     except ValidationError as e:
-        logger.error("YAML data validation error: {e}")
+        logger.error(f"YAML data validation error: {e.message}")
         raise
 
 def fake_filter() -> str:
@@ -85,7 +86,7 @@ def validate_jinja_template(template_path: str) -> None:
         env.get_template(os.path.basename(template_path))
         logger.info("Jinja template syntax is valid")
     except TemplateSyntaxError as e:
-        logger.error("Jinja template syntax error: {e}")
+        logger.error(f"Jinja template syntax error: {e}")
         raise
 
 def main():
@@ -99,41 +100,42 @@ def main():
     if not os.path.isfile(args.resume):
         logger.error(f"Resume file not found: {args.resume}")
         print(f"{Fore.RED}❌ Error: Resume file not found: {args.resume}")
-        return
+        sys.exit(1)
     if not os.path.isfile(args.schema):
         logger.error(f"Schema file not found: {args.schema}")
         print(f"{Fore.RED}❌ Error: Schema file not found: {args.schema}")
-        return
+        sys.exit(1)
     if not os.path.isfile(args.template):
         logger.error(f"Template file not found: {args.template}")
         print(f"{Fore.RED}❌ Error: Template file not found: {args.template}")
-        return
+        sys.exit(1)
 
     try:
         yaml_data = load_yaml(args.resume)
     except Exception as e:
         print(f"{Fore.RED}❌ Error loading YAML file: {e}")
-        return
+        sys.exit(1)
 
     try:
         schema = load_json(args.schema)
     except Exception as e:
         print(f"{Fore.RED}❌ Error loading JSON schema file: {e}")
-        return
+        sys.exit(1)
 
     try:
         validate_yaml_against_schema(yaml_data, schema)
     except ValidationError:
         print(f"{Fore.RED}❌ YAML data is invalid against the schema.")
-        return
+        sys.exit(1)
 
     try:
         validate_jinja_template(args.template)
     except TemplateSyntaxError:
         print(f"{Fore.RED}❌ Jinja template syntax is invalid.")
-        return
+        sys.exit(1)
 
     print(f"{Fore.GREEN}✅ All validations passed successfully.")
+    sys.exit(0)
 
 if __name__ == '__main__':
     main()

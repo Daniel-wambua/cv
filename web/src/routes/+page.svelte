@@ -89,11 +89,11 @@
 				<div class="looking-for-work">
 					<div class="work-status">
 						<i class="fa-solid fa-briefcase-medical"></i>
-						<span class="status-text">Actively seeking internship and entry-level opportunities</span>
+						<span class="status-text">Actively seeking Attachments, internship, and entry-level opportunities</span>
 					</div>
 					<div class="availability">
 						<i class="fa-solid fa-calendar-check"></i>
-						<span>Available for immediate start</span>
+						<span>Open to security-focused roles and learning opportunities</span>
 					</div>
 				</div>
 			</div>

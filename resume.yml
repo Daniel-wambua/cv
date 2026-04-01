@@ -54,6 +54,15 @@ education:
 # EXPERIENCE (STUDENT / COMMUNITY / PRACTICAL)
 # ==============================================================================
 work:
+  - name: Team Wallz
+    position: Recruited Team Member | CTF Collaboration
+    startDate: '2026-03'
+    endDate: 'Present'
+    highlights:
+      - Recruited to join Team Wallz (https://ctftime.org/team/397301)
+      - Actively collaborating with teammates on CTF challenge solving and writeups
+      - 'Team profile and updates: https://w4llz.me/'
+
   - name: 51l3nt_br34ch CTF Team
     position: CTF Team Member | Offensive Security Practice
     startDate: '2025-07'

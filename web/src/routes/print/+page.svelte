@@ -1,13 +1,13 @@
 <script lang="ts">
   export let data: { resume: Record<string, unknown> };
-  const r = data?.resume || {};
-  const basics = r.basics || {};
-  const education = r.education || [];
-  const work = r.work || [];
-  const skills = r.skills || [];
-  const achievements = r.achievements || [];
-  const awards = r.awards || [];
-  const projects = r.projects || [];
+  const r: any = data?.resume || {};
+  const basics: any = r.basics || {};
+  const education: any[] = r.education || [];
+  const work: any[] = r.work || [];
+  const skills: any[] = r.skills || [];
+  const achievements: any[] = r.achievements || [];
+  const awards: any[] = r.awards || [];
+  const projects: any[] = r.projects || [];
 
   const fmt = (d?: string) => d || '';
   const first = (name?: string) => (name ? name.split(' ')[0] : '');

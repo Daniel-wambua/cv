@@ -27,21 +27,24 @@ fi
 echo "⚡ Activating virtual environment..."
 source .venv/bin/activate
 
+# Always use the venv interpreter directly to avoid system pip constraints.
+VENV_PYTHON=".venv/bin/python"
+
 # Install Python dependencies
 echo "📦 Installing Python dependencies..."
-pip install --quiet -r lib/requirements.txt
+"$VENV_PYTHON" -m pip install --quiet -r lib/requirements.txt
 
 # Validate resume
 echo "✅ Validating resume.yml..."
-.venv/bin/python lib/validate.py --schema schema.json --resume resume.yml --template template.jinja
+"$VENV_PYTHON" lib/validate.py --schema schema.json --resume resume.yml --template template.jinja
 
 # Generate LaTeX
 echo "📝 Generating LaTeX from resume.yml..."
-.venv/bin/python lib/generate.py --resume resume.yml --template template.jinja --output tex/resume.tex
+"$VENV_PYTHON" lib/generate.py --resume resume.yml --template template.jinja --output tex/resume.tex
 
 # Compile to PDF
 echo "🎨 Compiling PDF..."
-.venv/bin/python lib/compile.py --input tex/resume.tex --output out/Daniel-Wambua-CV.pdf
+"$VENV_PYTHON" lib/compile.py --input tex/resume.tex --output out/Daniel-Wambua-CV.pdf
 
 # Copy PDF to web static directory so it's served as a static asset
 echo "📋 Copying PDF to static directory..."
