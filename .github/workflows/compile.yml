@@ -3,10 +3,12 @@ name: 🔨 Compile and Generate PDF
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - 'tex/**'
-    tags:
-      - '**'
+  tags:
+    - '*'
   pull_request:
     paths:
       - 'tex/**'
