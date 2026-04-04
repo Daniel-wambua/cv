@@ -5,14 +5,11 @@ on:
   push:
     branches:
       - main
-    tags:
-      - '*'
   pull_request:
     branches:
       - main
 
 permissions:
-  contents: write
   actions: read
 
 env:
@@ -49,100 +46,3 @@ jobs:
       with:
         name: resume-pdf
         path: web/static/downloads/${{ env.PDF_NAME }}
-
-  release:
-    runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
-
-    steps:
-    - name: 🛎️ Checkout repository
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
-    - name: 🏷️ Determine Tag Name
-      run: |
-        TAG_NAME="${GITHUB_REF#refs/tags/}"
-        if [ -z "$TAG_NAME" ]; then
-          echo "No tag name found from ref: $GITHUB_REF"
-          exit 1
-        fi
-        echo "Using tag $TAG_NAME"
-        echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-
-    - name: 🐍 Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-
-    - name: 📦 Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        cd lib && pip install -r requirements.txt
-
-    - name: 📝 Install LaTeX
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y texlive-full latexmk
-
-    - name: 📄 Generate PDF
-      run: make
-
-    - name: 📋 Generate Release Notes
-      run: |
-        # Get the previous tag
-        PREV_TAG=$(git tag --sort=-version:refname | head -2 | tail -1)
-        
-        if [ -z "$PREV_TAG" ]; then
-          # First release - show all commits
-          CHANGELOG=$(git log --pretty=format:"- %s" | head -20)
-        else
-          # Show commits since previous tag
-          CHANGELOG=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s")
-        fi
-        
-        # Store for later use
-        echo "CHANGELOG<<EOF" >> $GITHUB_ENV
-        echo "$CHANGELOG" >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
-
-    - name: 📦 Create Source Archive
-      run: |
-        # Create a source archive excluding certain directories
-        zip -r source.zip . \
-          -x "node_modules/*" \
-          ".git/*" \
-          "web/build/*" \
-          "web/.svelte-kit/*" \
-          ".venv/*" \
-          "*.zip" \
-          ".env*" \
-          "**/__pycache__/*"
-
-    - name: 🔑 Set up GitHub CLI
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: gh auth status
-
-    - name: ✨ Create GitHub Release
-      env:
-        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        cat > release_notes.md <<EOF
-        ## What's New in $TAG_NAME
-
-        ### Changes
-        ${{ env.CHANGELOG }}
-
-        ### Assets
-        - **Resume PDF**: Compiled CV in PDF format
-        - **Source Code**: Complete project source code
-
-        Generated on: $(date +'%b %d, %Y')
-        EOF
-
-        gh release create "$TAG_NAME" \
-          "web/static/downloads/${{ env.PDF_NAME }}" \
-          source.zip \
-          --title "Release $TAG_NAME" \
-          --notes-file release_notes.md
