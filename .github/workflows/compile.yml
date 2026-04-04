@@ -5,9 +5,15 @@ on:
   push:
     branches:
       - main
+    tags:
+      - '*'
   pull_request:
     branches:
       - main
+
+permissions:
+  contents: write
+  actions: read
 
 env:
   PDF_NAME: Daniel-Wambua-CV.pdf
