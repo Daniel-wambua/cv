@@ -1,6 +1,9 @@
 name: 🏷️ Tag
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       tag:
@@ -11,6 +14,9 @@ on:
         description: 'Tag description'
         required: false
         default: ''
+
+permissions:
+  contents: write
 
 jobs:
   create_tag:
@@ -33,7 +39,7 @@ jobs:
       - name: 📝 Determine New Tag
         id: determine_new_tag
         run: |
-          INPUT_TAG=${{ github.event.inputs.tag }}
+          INPUT_TAG="${{ github.event.inputs.tag || '' }}"
           CURRENT_TAG=${{ env.CURRENT_TAG }}
           if [ -z "$INPUT_TAG" ]; then
             MAJOR=$(echo $CURRENT_TAG | cut -d. -f1)
@@ -74,7 +80,7 @@ jobs:
         id: create_new_tag
         run: |
           NEW_TAG=${{ env.NEW_TAG }}
-          DESCRIPTION="${{ github.event.inputs.description }}"
+          DESCRIPTION="${{ github.event.inputs.description || format('Auto tag for commit {0}', github.sha) }}"
           git tag -a "$NEW_TAG" -m "$DESCRIPTION"
           echo "new_tag=$NEW_TAG" >> $GITHUB_OUTPUT
 
@@ -94,6 +100,6 @@ jobs:
           else
             TOKEN=${{ secrets.GITHUB_TOKEN }}
           fi
-          git push https://$TOKEN@github.com/${{ github.repository }} "$NEW_TAG"
+          git push https://$TOKEN@github.com/${{ github.repository }} "refs/tags/$NEW_TAG"
         env:
           NEW_TAG: ${{ env.NEW_TAG }}
