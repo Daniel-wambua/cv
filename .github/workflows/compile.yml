@@ -94,7 +94,65 @@ jobs:
       run: |
         echo "${{ secrets.BOT_TOKEN }}" | gh auth login --with-token
 
+    - name: � Generate Release Notes
+      id: release_notes
+      run: |
+        # Get the previous tag
+        PREV_TAG=$(git tag --sort=-version:refname | head -2 | tail -1)
+        
+        if [ -z "$PREV_TAG" ]; then
+          # First release - show all commits
+          CHANGELOG=$(git log --pretty=format:"- %s" | head -20)
+        else
+          # Show commits since previous tag
+          CHANGELOG=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s")
+        fi
+        
+        # Create release notes
+        NOTES="## What's New in $TAG_NAME
+        
+$CHANGELOG
+
+## Downloads
+- **Resume PDF**: Daniel-Wambua-CV.pdf
+- **Source Code**: Available as source.zip
+
+Generated on: $(date)
+"
+        
+        # Write to output file and set output
+        echo "$NOTES" > release_notes.txt
+        echo "CHANGELOG=$(echo "$CHANGELOG")" >> $GITHUB_ENV
+        
+    - name: 📦 Create Source Archive
+      run: |
+        # Create a source archive excluding certain directories
+        zip -r source.zip . \
+          -x "node_modules/*" \
+          ".git/*" \
+          "web/build/*" \
+          "web/.svelte-kit/*" \
+          ".venv/*" \
+          "*.zip" \
+          ".env*" \
+          "**/__pycache__/*"
+
     - name: 📄 Create GitHub Release
       run: |
-        gh release create $TAG_NAME web/static/downloads/${{ env.PDF_NAME }} --title "Release $TAG_NAME" --notes "Generated CV PDF for release $TAG_NAME"
+        NOTES="## What's New in $TAG_NAME
+        
+### Changes
+$CHANGELOG
+
+### Assets
+- **Resume PDF**: Compiled CV in PDF format
+- **Source Code**: Complete project source code
+
+Generated on: $(date +'%b %d, %Y')"
+        
+        gh release create $TAG_NAME \
+          web/static/downloads/${{ env.PDF_NAME }} \
+          source.zip \
+          --title "Release $TAG_NAME" \
+          --notes "$NOTES"
         
