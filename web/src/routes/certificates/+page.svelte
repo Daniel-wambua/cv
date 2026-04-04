@@ -140,15 +140,16 @@
   ];
 
   // Filter state
-  let selectedSkill = 'all';
+  let selectedSkill: string = 'all';
   
   // Get unique skills for filtering
-  const allSkills = ['all', ...new Set(certificates.flatMap(cert => cert.skills))];
+  const allSkills: string[] = ['all', ...new Set(certificates.flatMap((cert) => cert.skills))];
   
   // Filtered certificates based on selected skill
-  $: filteredCertificates = selectedSkill === 'all' 
-    ? certificates 
-    : certificates.filter(cert => cert.skills.includes(selectedSkill));
+  let filteredCertificates: Certificate[] = certificates;
+  $: filteredCertificates = selectedSkill === 'all'
+    ? certificates
+    : certificates.filter((cert) => cert.skills.includes(selectedSkill));
 
   // Modal state
   let selectedCertificate: Certificate | null = null;
@@ -174,6 +175,38 @@
   const handleKeydown = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
       closeModal();
+      closeBadgeModal();
+    }
+  };
+
+  const createCertificateCardKeydownHandler = (certificate: Certificate) => {
+    return (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(certificate);
+      }
+    };
+  };
+
+  const createBadgeKeydownHandler = (badge: Badge) => {
+    return (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openBadgeModal(badge);
+      }
+    };
+  };
+
+  const handleModalOverlayKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      closeModal();
+    }
+  };
+
+  const handleBadgeOverlayKeydown = (e: KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
       closeBadgeModal();
     }
   };
@@ -260,7 +293,7 @@
   <!-- Certificates Grid -->
   <section class="certificates-grid">
     {#each filteredCertificates as certificate (certificate.id)}
-      <div class="certificate-card" on:click={() => openModal(certificate)} on:keydown={(e) => e.key === 'Enter' && openModal(certificate)} role="button" tabindex="0">
+      <div class="certificate-card" on:click={() => openModal(certificate)} on:keydown={createCertificateCardKeydownHandler(certificate)} role="button" tabindex="0">
         <div class="certificate-image-wrapper">
           {#if certificate.isPdf}
             <div class="pdf-placeholder">
@@ -381,7 +414,7 @@
             class:earned={badge.earned} 
             class:target={!badge.earned}
             on:click={() => openBadgeModal(badge)}
-            on:keydown={(e) => e.key === 'Enter' && openBadgeModal(badge)}
+            on:keydown={createBadgeKeydownHandler(badge)}
             role="button"
             tabindex="0"
           >
@@ -409,7 +442,7 @@
             class:earned={badge.earned} 
             class:target={!badge.earned}
             on:click={() => openBadgeModal(badge)}
-            on:keydown={(e) => e.key === 'Enter' && openBadgeModal(badge)}
+            on:keydown={createBadgeKeydownHandler(badge)}
             role="button"
             tabindex="0"
           >
@@ -448,7 +481,7 @@
 
 <!-- Modal for Certificate Details -->
 {#if selectedCertificate}
-  <div class="modal-overlay" on:click={closeModal} on:keydown={(e) => e.key === 'Enter' && closeModal()} role="button" tabindex="0">
+  <div class="modal-overlay" on:click={closeModal} on:keydown={handleModalOverlayKeydown} role="button" tabindex="0">
     <div class="modal-content" on:click|stopPropagation on:keydown|stopPropagation role="button" tabindex="0">
       <button class="modal-close" on:click={closeModal} aria-label="Close modal">
         <i class="fa-solid fa-times"></i>
@@ -505,8 +538,15 @@
 
 <!-- Badge Modal -->
 {#if selectedBadge}
-  <div class="modal-overlay" on:click={closeBadgeModal} on:keydown={(e) => e.key === 'Enter' && closeBadgeModal()} role="button" tabindex="0">
-    <div class="badge-modal-content" on:click|stopPropagation on:keydown|stopPropagation role="dialog" tabindex="0">
+  <div
+    class="modal-overlay"
+    on:click|self={closeBadgeModal}
+    on:keydown={handleBadgeOverlayKeydown}
+    role="button"
+    tabindex="0"
+    aria-label="Close badge modal"
+  >
+    <div class="badge-modal-content" role="dialog" aria-modal="true">
       <button class="modal-close" on:click={closeBadgeModal} aria-label="Close modal">
         <i class="fa-solid fa-times"></i>
       </button>

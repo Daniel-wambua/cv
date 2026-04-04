@@ -263,8 +263,8 @@
 % Configure styles for each CV elements
 % For fundamental structures
 
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{38pt}\headerfontlight\color{white} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{38pt}\headerfont\color{white} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{38pt}\headerfont\bfseries\color{white} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{38pt}\headerfont\bfseries\color{white} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{9pt}{1em}\headerfont\itshape\color{lighttext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{8pt}{10pt}\headerfont\color{text} #1}}
