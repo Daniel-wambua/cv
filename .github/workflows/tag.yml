@@ -95,11 +95,11 @@ jobs:
 
       - name: 🚀 Push New Tag
         run: |
-          if [ -n "${{ secrets.BOT_TOKEN }}" ]; then
-            TOKEN=${{ secrets.BOT_TOKEN }}
-          else
-            TOKEN=${{ secrets.GITHUB_TOKEN }}
+          if [ -z "${{ secrets.BOT_TOKEN }}" ]; then
+            echo "::error::BOT_TOKEN secret is required so tag pushes can trigger release workflows. GITHUB_TOKEN will not trigger downstream workflows."
+            exit 1
           fi
+          TOKEN=${{ secrets.BOT_TOKEN }}
           git push https://$TOKEN@github.com/${{ github.repository }} "refs/tags/$NEW_TAG"
         env:
           NEW_TAG: ${{ env.NEW_TAG }}
