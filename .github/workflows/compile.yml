@@ -48,7 +48,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: resume-pdf
-        path: out/${{ env.PDF_NAME }}
+        path: web/static/downloads/${{ env.PDF_NAME }}
 
   release:
     needs: build
@@ -109,7 +109,7 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: resume-pdf
-        path: out/
+        path: web/static/downloads/
 
     - name: 🔑 Set up GitHub CLI
       run: |
@@ -117,5 +117,5 @@ jobs:
 
     - name: 📄 Create GitHub Release
       run: |
-        gh release create $TAG_NAME out/${{ env.PDF_NAME }} --title "Release $TAG_NAME" --notes "Generated CV PDF for release $TAG_NAME"
+        gh release create $TAG_NAME web/static/downloads/${{ env.PDF_NAME }} --title "Release $TAG_NAME" --notes "Generated CV PDF for release $TAG_NAME"
         

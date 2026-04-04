@@ -106,7 +106,7 @@ flowchart LR
     PDF --> B1[📦 make install<br><sub>Install all dependencies</sub>]
     B1 --> B2[🛠 make generate<br><sub>Generate LaTeX from resume.yml</sub>]
     B2 --> B3[📄 make compile<br><sub>Compile LaTeX to PDF</sub>]
-    B3 --> B4([✅ View at <code>out/resume.pdf</code>])
+    B3 --> B4([✅ View at <code>web/static/downloads/Daniel-Wambua-CV.pdf</code>])
 
     %% WEB PATH
     A3 --> Web[🌐 Website Output]

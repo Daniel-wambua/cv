@@ -42,14 +42,10 @@ echo "✅ Validating resume.yml..."
 echo "📝 Generating LaTeX from resume.yml..."
 "$VENV_PYTHON" lib/generate.py --resume resume.yml --template template.jinja --output tex/resume.tex
 
-# Compile to PDF
+# Compile to PDF directly into web static directory
 echo "🎨 Compiling PDF..."
-"$VENV_PYTHON" lib/compile.py --input tex/resume.tex --output out/Daniel-Wambua-CV.pdf
-
-# Copy PDF to web static directory so it's served as a static asset
-echo "📋 Copying PDF to static directory..."
 mkdir -p web/static/downloads
-cp out/Daniel-Wambua-CV.pdf web/static/downloads/Daniel-Wambua-CV.pdf
+"$VENV_PYTHON" lib/compile.py --input tex/resume.tex --output web/static/downloads/Daniel-Wambua-CV.pdf
 
 echo "✅ Pre-build PDF generation complete!"
 echo "📄 PDF available at: web/static/downloads/Daniel-Wambua-CV.pdf"

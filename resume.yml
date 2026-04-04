@@ -56,7 +56,7 @@ education:
 work:
   - name: Team Wallz
     position: Recruited Team Member | CTF Collaboration
-    startDate: '2026-03'
+    startDate: '2026-02'
     endDate: 'Present'
     highlights:
       - Recruited to join Team Wallz (https://ctftime.org/team/397301)
@@ -97,16 +97,16 @@ work:
 skills:
   - name: Cybersecurity & Offensive Security
     keywords:
-      - Web Application Security Testing
-      - Basic Network Penetration Testing
-      - Vulnerability Assessment
+      - Web App Testing
+      - Network Pentesting
+      - Vuln Assessment
       - OWASP Top 10
 
   - name: Security Tools
     keywords:
       - Burp Suite
       - Nmap
-      - Metasploit (basic usage)
+      - Metasploit (Basics)
       - Wireshark
       - Linux CLI
 
@@ -115,20 +115,20 @@ skills:
       - Python
       - Bash
       - JavaScript
-      - Go (fundamentals)
+      - Go (Basics)
 
   - name: Systems & Platforms
     keywords:
-      - Linux (Parrot OS, Ubuntu)
+      - Linux (Parrot/Ubuntu)
       - Git & GitHub
-      - Docker (fundamentals)
-      - Cloud basics (vercel,netlify)
+      - Docker (Basics)
+      - Cloud (Vercel/Netlify)
 
   - name: Documentation & Research
     keywords:
       - CTF Writeups
-      - Technical Documentation
-      - Security Research Basics
+      - Tech Docs
+      - Security Research
 
 # ==============================================================================
 # ACHIEVEMENTS

@@ -62,7 +62,7 @@
   \end{center} %
 \end{tcolorbox}
 \endgroup
-\vspace{2mm} %
+\vspace{0mm} %
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -81,6 +81,7 @@
 \cvsection{Experience}
 \begin{cventries}
 {%- for job in work %}
+{%- if job.name != 'Freelance / Academic Projects' %}
     \cventry
     { {{ job.position | latex_escape }} }
     { {{ job.name | latex_escape }} }
@@ -91,6 +92,7 @@
         \item { {{ highlight | latex_escape }} }
         {%- endfor %}
     \end{cvitems}}
+    {%- endif %}
 {%- endfor %}
 \end{cventries}
 {% endif %}
@@ -118,7 +120,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {% if skills %}
 \cvsection{Skills}
-\vspace{0.5mm}  % match Stats/Awards
+\vspace{0.5mm}
 \begin{cvskills}
 {%- for skill in skills %}
   \cvskill{ {{ skill.name | latex_escape }} }{ {{ skill.keywords | join(', ') | latex_escape }} }
@@ -161,7 +163,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {% if projects %}
 \cvsection{Projects}
-\vspace{0.5mm}
+\vspace{0.2mm}
 \begin{cvachievements}
   \setlength{\itemsep}{0mm}
 {%- for proj in projects %}
@@ -172,7 +174,7 @@
     \hfill
     \href{https://github.com/{{ proj.github | latex_escape }}}{\hspace{1pt}\faGithub~{{ proj.github | latex_escape }}}\\
     {{ proj.description | latex_escape }}
-    \vspace{2mm} % Add vertical space between projects
+    \vspace{0.2mm}
   }
 {%- endfor %}
 \end{cvachievements}
@@ -182,7 +184,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %     Footer
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\vspace{10mm}
+\vspace{1.5mm}
 \begin{center}
     \tiny\color{lightgray}
     Resume built with LaTeX, view source at

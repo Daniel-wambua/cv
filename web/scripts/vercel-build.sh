@@ -22,11 +22,8 @@ echo "📝 Generating LaTeX from resume..."
 python lib/generate.py --resume resume.yml --template template.jinja --output tex/resume.tex
 
 echo "📄 Compiling PDF..."
-python lib/compile.py --input tex/resume.tex --output out/Daniel-Wambua-CV.pdf
-
-echo "📋 Copying PDF to static directory..."
 mkdir -p web/static/downloads
-cp out/Daniel-Wambua-CV.pdf web/static/downloads/Daniel-Wambua-CV.pdf
+python lib/compile.py --input tex/resume.tex --output web/static/downloads/Daniel-Wambua-CV.pdf
 
 echo "✅ Pre-build PDF generation complete!"
 

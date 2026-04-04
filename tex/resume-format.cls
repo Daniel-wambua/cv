@@ -120,13 +120,12 @@
 %-------------------------------------------------------------------------------
 
 %% Page Layout
-% Configure page margins with geometry - optimized for professional layout
-% Slightly tighter margins to help fit on a single A4 page while preserving readability
-\geometry{left=1.5cm, top=0.8cm, right=1.5cm, bottom=1.0cm, footskip=0.6cm}
+% Balanced margins for clean, readable layout
+\geometry{paperheight=41cm, left=1.5cm, top=0.6cm, right=1.5cm, bottom=0.7cm, footskip=0.5cm}
 
 % Ensure consistent page layout across all pages
 \AtBeginDocument{%
-  \newgeometry{left=1.5cm, top=0.8cm, right=1.5cm, bottom=1.0cm, footskip=0.6cm}
+  \newgeometry{paperheight=41cm, left=1.5cm, top=0.6cm, right=1.5cm, bottom=0.7cm, footskip=0.5cm}
 }
 
 % Prevent overfull boxes and improve line breaking
@@ -264,27 +263,24 @@
 % Configure styles for each CV elements
 % For fundamental structures
 
-% Slightly smaller header name to save vertical space
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{28pt}{1em}\headerfontlight\color{white} #1}}
-\newcommand*{\headerlastnamestyle}[1]{{\fontsize{28pt}{1em}\headerfont\color{white} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{32pt}{38pt}\headerfontlight\color{white} #1}}
+\newcommand*{\headerlastnamestyle}[1]{{\fontsize{32pt}{38pt}\headerfont\color{white} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{7.6pt}{1em}\bodyfont\scshape\color{awesome} #1}}
 \newcommand*{\headeraddressstyle}[1]{{\fontsize{9pt}{1em}\headerfont\itshape\color{lighttext} #1}}
-\newcommand*{\headersocialstyle}[1]{{\fontsize{6.9pt}{1em}\headerfont\color{text} #1}}
+\newcommand*{\headersocialstyle}[1]{{\fontsize{8pt}{10pt}\headerfont\color{text} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{10pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{9pt}{1em}\footerfont\scshape\color{lighttext} #1}}
-% Reduce section title size a bit
-\newcommand*{\sectionstyle}[1]{{\fontsize{14pt}{1em}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
+\newcommand*{\sectionstyle}[1]{{\fontsize{16pt}{18pt}\bodyfont\bfseries\color{text}\@sectioncolor #1}}
 \newcommand*{\subsectionstyle}[1]{{\fontsize{12pt}{1em}\bodyfont\scshape\textcolor{text}{#1}}}
 
 % For elements of entry
-\newcommand*{\entrytitlestyle}[1]{{\vspace*{0mm}\fontsize{12pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\entrypositionstyle}[1]{{\fontsize{10pt}{1em}\bodyfont\scshape\color{graytext} #1}}
+\newcommand*{\entrytitlestyle}[1]{{\vspace*{0mm}\fontsize{12pt}{14pt}\bodyfont\bfseries\color{darktext} #1}}
+\newcommand*{\entrypositionstyle}[1]{{\fontsize{11pt}{13pt}\bodyfont\scshape\color{graytext} #1}}
 
 
-\newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\slshape\color{graytext} #1}}
-\newcommand*{\entrylocationstyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
-% Slightly tighter body text leading
-\newcommand*{\descriptionstyle}[1]{{\fontsize{10pt}{11pt}\bodyfontlight\upshape\color{text} #1}}
+\newcommand*{\entrydatestyle}[1]{{\fontsize{9pt}{11pt}\bodyfontlight\slshape\color{graytext} #1}}
+\newcommand*{\entrylocationstyle}[1]{{\fontsize{10pt}{12pt}\bodyfontlight\slshape\color{awesome} #1}}
+\newcommand*{\descriptionstyle}[1]{{\fontsize{11pt}{13pt}\bodyfontlight\upshape\color{text} #1}}
 \newcommand*{\skill}[1]{{\fontsize{10pt}{1em}\bodyfontlight\upshape\color{text} \textnormal{#1}}}
 
 % For elements of subentry
@@ -301,8 +297,8 @@
 \newcommand*{\honorlocationstyle}[1]{{\fontsize{10pt}{1em}\bodyfontlight\slshape\color{awesome} #1}}
 
 % For elements of skill
-\newcommand*{\skilltypestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
-\newcommand*{\skillsetstyle}[1]{{\fontsize{10pt}{12pt}\bodyfontlight\color{text} #1}}
+\newcommand*{\skilltypestyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{text}\textbf{#1}}}
+\newcommand*{\skillsetstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\color{text} #1}}
 
 % For elements of Achievements
 \newcommand*{\achievementstyle}[1]{{\fontsize{9pt}{1em}\bodyfontlight\upshape\color{text} #1}}
@@ -337,20 +333,20 @@
 
 % Define an environment for cvitems(for cventry)
 \newenvironment{cvitems}{
-  \vspace{-2mm}
+  \vspace{-1.5mm}
   \begin{justify}
-  \begin{itemize}[leftmargin=0.5cm, nosep, itemsep=1.5pt]
+  \begin{itemize}[leftmargin=2ex, nosep, itemsep=0.8pt]
     \setlength{\parskip}{0pt}
-    \renewcommand{\labelitemi}{\textcolor{awesome}{\textbullet}}
+    \renewcommand{\labelitemi}{\bullet}
 }{
   \end{itemize}
   \end{justify}
-  \vspace{-1mm}
+  \vspace{0.4mm}
 }
 
 % Define an environment for cvparagraphs
 \newenvironment{cvparagraphs}{
-  \vspace{-4mm}
+  \vspace{-3mm}
   \begin{justify}
   \begin{itemize}[leftmargin=-2ex, nosep, noitemsep, before=\achievementstyle]
     \setlength{\parskip}{0pt}
@@ -358,7 +354,7 @@
 }{
   \end{itemize}
   \end{justify}
-  \vspace{-2mm}
+  \vspace{-1mm}
 }
 
 %-------------------------------------------------------------------------------
@@ -616,12 +612,11 @@
 % Define a section for CV
 % Usage: \cvsection{<section-title>}
 \newcommand{\cvsection}[1]{
-  % Tighter section spacing to save vertical space
-  \par\addvspace{1.6ex}
+  \par\addvspace{1.2ex}
   \phantomsection{}
   \sectionstyle{#1}
-  \color{gray}\vhrulefill{0.15pt}
-  \par\nobreak\addvspace{1.0ex}
+  \color{gray}\vhrulefill{0.10pt}
+  \par\nobreak\addvspace{0.7ex}
 }
 
 % Define a subsection for CV
@@ -641,15 +636,15 @@
 % Usage: \cventry{<position>}{<title>}{<location>}{<date>}{<description>}
 \newcommand*{\cventry}[5]{
   \setlength\tabcolsep{3pt}
-  \setlength{\extrarowheight}{2pt}
-  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} p{0.65\textwidth} p{0.3\textwidth}}
+  \setlength{\extrarowheight}{1.5pt}
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} p{0.72\textwidth} >{\raggedleft\arraybackslash}p{0.24\textwidth}}
     \ifempty{#2#3}
       {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
       {\entrytitlestyle{#2} & \entrylocationstyle{#3} \\
       \entrypositionstyle{#1} & \entrydatestyle{#4} \\}
     \multicolumn{2}{p{\textwidth}}{\descriptionstyle{#5}} \\
   \end{tabular*}%
-  \vspace{1mm}
+  \vspace{1.4mm}
 }
 
 % Define an environment for cvsubentry
@@ -661,8 +656,8 @@
 % Define a subentry of cv information
 % Usage: \cvsubentry{<position>}{<title>}{<date>}{<description>}
 \newcommand*{\cvsubentry}[4]{
-  \setlength\tabcolsep{3pt}
-  \setlength{\extrarowheight}{2pt}
+  \setlength\tabcolsep{2pt}
+  \setlength{\extrarowheight}{1.5pt}
   \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} p{0.65\textwidth} p{0.3\textwidth}}
     \setlength\leftskip{0.3cm}
     \subentrytitlestyle{#2} & \ifthenelse{\equal{#1}{}}
@@ -674,7 +669,7 @@
       {}
       {\multicolumn{2}{p{\textwidth}}{\subdescriptionstyle{#4}} \\}
   \end{tabular*}%
-  \vspace{1mm}
+  \vspace{0.3mm}
 }
 
 % Define an environment for cvhonor
@@ -696,25 +691,24 @@
 
 % Define an environment for cvachievements
 \newenvironment{cvachievements}{
-  % Slightly tighter spacing for lists
   \vspace{-1mm}
   \bodyfontlight
   \begin{justify}
-  \fontsize{9.8pt}{11pt}\selectfont
-  \begin{itemize}[leftmargin=0.5cm, label={\textcolor{awesome}{\textbullet}}, nosep, itemsep=1mm, before=\achievementstyle]
-    \setlength{\parskip}{0.5mm}
+  \fontsize{9pt}{1em}\selectfont
+  \begin{itemize}[leftmargin=0ex, label={}, nosep, noitemsep, before=\achievementstyle]
+    \setlength{\parskip}{0.8mm}
 }{
   \end{itemize}
   \end{justify}
-  \vspace{0.5mm}
+  \vspace{1mm}
 }
 
 % Compact personal statement (single paragraph, tight leading)
 \renewenvironment{cvpersonalstatement}{
-  \vspace{1mm}
+  \vspace{2mm}
   \bodyfontlight
   \begin{justify}
-  \fontsize{10pt}{11pt}\selectfont
+  \fontsize{10pt}{14pt}\selectfont
   \begin{itemize}[
     leftmargin=0ex,
     label={},
@@ -722,19 +716,19 @@
     noitemsep,
     before=\cvparagraphstyle
   ]
-  \setlength{\parskip}{1.2mm}
+  \setlength{\parskip}{2mm}
 }{
   \end{itemize}
   \end{justify}
-  \vspace{0.5mm}
+  \vspace{1mm}
 }
 
 % Define an environment for cvskill
 \newenvironment{cvskills}{
   \begin{center}
-    \setlength\tabcolsep{4pt}
-    \setlength{\extrarowheight}{3pt}
-    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} p{0.25\textwidth} p{0.7\textwidth}}
+    \setlength\tabcolsep{1ex}
+    \setlength{\extrarowheight}{0pt}
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} l L{20.2cm}}
 }{
     \end{tabular*}
   \end{center}

@@ -31,11 +31,8 @@ node_modules/
 # Ignore environment variables
 .env
 
-# Ignore compiled output
-out/*
-
-# Do not ignore specific files in out directory
-!out/Daniel-Wambua-CV.pdf
+# Ignore generated web markdown output
+web/generated/*
 
 # Other ignored files and directories
 .codacy/

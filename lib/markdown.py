@@ -41,6 +41,9 @@ def write_markdown(output_path: str, content: str) -> None:
         content (str): The content to write.
     """
     try:
+        output_dir = os.path.dirname(output_path)
+        if output_dir:
+            os.makedirs(output_dir, exist_ok=True)
         with open(output_path, 'w') as file:
             file.write(content)
         logger.info(f"Markdown file written to {output_path}")
