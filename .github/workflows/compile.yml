@@ -128,19 +128,21 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        NOTES="## What's New in $TAG_NAME
-        
-### Changes
-${{ env.CHANGELOG }}
+        cat > release_notes.md <<EOF
+        ## What's New in $TAG_NAME
 
-### Assets
-- **Resume PDF**: Compiled CV in PDF format
-- **Source Code**: Complete project source code
+        ### Changes
+        ${{ env.CHANGELOG }}
 
-Generated on: $(date +'%b %d, %Y')"
-        
+        ### Assets
+        - **Resume PDF**: Compiled CV in PDF format
+        - **Source Code**: Complete project source code
+
+        Generated on: $(date +'%b %d, %Y')
+        EOF
+
         gh release create "$TAG_NAME" \
           "web/static/downloads/${{ env.PDF_NAME }}" \
           source.zip \
           --title "Release $TAG_NAME" \
-          --notes "$NOTES"
+          --notes-file release_notes.md
