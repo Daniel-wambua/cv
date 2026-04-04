@@ -18,6 +18,19 @@
   
   const certificates: Certificate[] = [
     {
+    
+      id: 112,
+      name: 'China OSINT Certificate',
+      issuer: 'China OSINT',
+      date: '2026',
+      image: certificateImages.chinaosint,
+      description: 'Recognition for demonstrated open source intelligence techniques and investigative analysis on china related Osint.',
+      skills: ['OSINT', 'Investigation', 'Intelligence Gathering'],
+      credentialId: 'CHINA-OSINT-2026',
+      verified: true,
+      isPdf: false
+    },
+    {
       id: 101,
       name: 'NexHunt CTF — Top Performer',
       issuer: 'NexHunt CTF',
@@ -124,19 +137,8 @@
       credentialId: 'H7CTF-2025',
       verified: true,
       isPdf: false
-    },
-    {
-      id: 8,
-      name: 'China OSINT Certificate',
-      issuer: 'China OSINT',
-      date: '2026',
-      image: certificateImages.chinaosint,
-      description: 'Recognition for demonstrated open source intelligence techniques and investigative analysis on china related Osint.',
-      skills: ['OSINT', 'Investigation', 'Intelligence Gathering'],
-      credentialId: 'CHINA-OSINT-2026',
-      verified: true,
-      isPdf: false
     }
+ 
   ];
 
   // Filter state
