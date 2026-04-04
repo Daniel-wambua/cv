@@ -5,13 +5,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'tex/**'
-  tags:
-    - '*'
   pull_request:
-    paths:
-      - 'tex/**'
+    branches:
+      - main
 
 env:
   PDF_NAME: Daniel-Wambua-CV.pdf
@@ -49,10 +45,8 @@ jobs:
         path: web/static/downloads/${{ env.PDF_NAME }}
 
   release:
-    needs: build
     runs-on: ubuntu-latest
-    if: |
-      github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    if: startsWith(github.ref, 'refs/tags/')
 
     steps:
     - name: 🛎️ Checkout repository
@@ -61,7 +55,6 @@ jobs:
         fetch-depth: 0
 
     - name: 🏷️ Determine Tag Name
-      id: determine_tag
       run: |
         TAG_NAME="${GITHUB_REF#refs/tags/}"
         if [ -z "$TAG_NAME" ]; then
@@ -70,34 +63,26 @@ jobs:
         fi
         echo "Using tag $TAG_NAME"
         echo "TAG_NAME=$TAG_NAME" >> $GITHUB_ENV
-    
 
-    - name: 🔍 Check if release already exists
-      id: check_release
-      run: |
-        if [ -z "$TAG_NAME" ]; then
-          echo "No tag name found, skipping release check"
-          exit 1
-        fi  
-        if gh release view "$TAG_NAME" > /dev/null 2>&1; then
-          echo "Release for tag $TAG_NAME already exists."
-          exit 1
-        else
-          echo "Tag is present, valid and no existing releases exist. Continuing with $TAG_NAME...."
-        fi
-
-    - name: 📤 Download PDF artifact
-      uses: actions/download-artifact@v4
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v2
       with:
-        name: resume-pdf
-        path: web/static/downloads/
+        python-version: '3.x'
 
-    - name: 🔑 Set up GitHub CLI
+    - name: 📦 Install Python dependencies
       run: |
-        echo "${{ secrets.BOT_TOKEN }}" | gh auth login --with-token
+        python -m pip install --upgrade pip
+        cd lib && pip install -r requirements.txt
 
-    - name: � Generate Release Notes
-      id: release_notes
+    - name: 📝 Install LaTeX
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-full latexmk
+
+    - name: 📄 Generate PDF
+      run: make
+
+    - name: 📋 Generate Release Notes
       run: |
         # Get the previous tag
         PREV_TAG=$(git tag --sort=-version:refname | head -2 | tail -1)
@@ -110,22 +95,11 @@ jobs:
           CHANGELOG=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s")
         fi
         
-        # Create release notes
-        NOTES="## What's New in $TAG_NAME
-        
-$CHANGELOG
+        # Store for later use
+        echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+        echo "$CHANGELOG" >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
 
-## Downloads
-- **Resume PDF**: Daniel-Wambua-CV.pdf
-- **Source Code**: Available as source.zip
-
-Generated on: $(date)
-"
-        
-        # Write to output file and set output
-        echo "$NOTES" > release_notes.txt
-        echo "CHANGELOG=$(echo "$CHANGELOG")" >> $GITHUB_ENV
-        
     - name: 📦 Create Source Archive
       run: |
         # Create a source archive excluding certain directories
@@ -139,12 +113,19 @@ Generated on: $(date)
           ".env*" \
           "**/__pycache__/*"
 
-    - name: 📄 Create GitHub Release
+    - name: 🔑 Set up GitHub CLI
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh auth status
+
+    - name: ✨ Create GitHub Release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         NOTES="## What's New in $TAG_NAME
         
 ### Changes
-$CHANGELOG
+${{ env.CHANGELOG }}
 
 ### Assets
 - **Resume PDF**: Compiled CV in PDF format
@@ -152,9 +133,8 @@ $CHANGELOG
 
 Generated on: $(date +'%b %d, %Y')"
         
-        gh release create $TAG_NAME \
-          web/static/downloads/${{ env.PDF_NAME }} \
+        gh release create "$TAG_NAME" \
+          "web/static/downloads/${{ env.PDF_NAME }}" \
           source.zip \
           --title "Release $TAG_NAME" \
           --notes "$NOTES"
-        
