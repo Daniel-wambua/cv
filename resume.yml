@@ -137,7 +137,9 @@ skills:
 # Fields: text (description with emoji), source (URL for verification)
 # Use markdown formatting for bold text: **text**
 achievements:
-  - text: "🏆 **Top 10 Finalist** – CyberGame Kenya 2025"
+  - text: "🥉 **3rd Place - Connected Africa Summit 2026 CTF** (Team JOINT, Karatina University)"
+    source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing'
+  - text: "🏆 **Top 10 Finalist** - CyberGame Kenya 2025"
     source: 'https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent'
 
 
@@ -147,7 +149,9 @@ achievements:
 # Formal awards and recognitions with detailed descriptions
 # Fields: title, summary, source (optional URL)
 awards:
-  - title: "CyberGame Kenya – Top 10 Finalist (2025)"
+  - title: "Connected Africa Summit 2026 CTF - 3rd Position (May 2026)"
+    summary: "Achieved 3rd place in the Connected Africa Summit 2026 Capture The Flag competition as part of Team JOINT from Karatina University. Demonstrated advanced skills in vulnerability assessment, exploitation techniques, and collaborative problem-solving under competitive conditions."
+  - title: "CyberGame Kenya - Top 10 Finalist (2025)"
     summary: "Recognized for strong performance in national-level cybersecurity competition focused on practical skills"
 
 # ==============================================================================
@@ -159,21 +163,21 @@ projects:
   - name: 'CTF Writeups & Security Blog'
     description: 'Personal blog documenting CTF solutions, tooling notes, and security concepts'
     github: 'Daniel-wambua/blog'
-    url: 'https://havocsec.me'
+    url: 'https://havocsec.dev'
     language: 'Technical Writing'
     stars: '21'
 
   - name: 'Cyberhub'
     description: 'A curated living, automated knowledge base for cybersecurity professional'
     github: 'Daniel-wambua/cyberhub'
-    url: 'https://cyberhub.havocsec.tech'
+    url: 'https://cyberhub.havocsec.dev'
     language: 'Astro,javascript,yaml,Bash'
     stars: '3'
 
   - name: 'MacOS_Portfolio'
     description: 'Personal portfolio project demonstrating frontend skills and deployment workflows'
     github: 'Daniel-wambua/MacOS_Portfolio'
-    url: 'https://macfolio.havocsec.me'
+    url: 'https://macfolio.havocx.me'
     language: 'JavaScript, React, CSS'
     stars: '10'
 

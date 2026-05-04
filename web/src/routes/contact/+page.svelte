@@ -49,9 +49,9 @@
       </p>
       <p>
         For other communication channels, visit my
-        <a target="_blank" href="https://linktree.havocsec.me" rel="noopener noreferrer">
+        <a target="_blank" href="https://guns.lol/0xhavoc" rel="noopener noreferrer">
           <i class="fa-solid fa-tree"></i>
-          linktree
+          Guns.lol account
         </a>
       </p>
     </div>

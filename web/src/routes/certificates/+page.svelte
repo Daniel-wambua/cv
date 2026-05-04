@@ -18,6 +18,18 @@
   
   const certificates: Certificate[] = [
     {
+      id: 113,
+      name: 'Connected Africa Summit 2026 CTF - 3rd Position',
+      issuer: 'Connected Africa Summit',
+      date: 'May 2026',
+      image: certificateImages.connectedafricactf,
+      description: 'Achieved 3rd place in the Connected Africa Summit 2026 Capture The Flag competition as a member of Team JOINT from Karatina University. Demonstrated advanced skills in vulnerability identification, exploitation, and collaborative problem-solving.',
+      skills: ['CTF', 'Exploitation', 'Team Collaboration', 'Vulnerability Assessment'],
+      credentialId: 'CAS-CTF-2026-3RD',
+      verified: true,
+      isPdf: false
+    },
+    {
     
       id: 112,
       name: 'China OSINT Certificate',

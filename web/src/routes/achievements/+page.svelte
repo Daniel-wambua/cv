@@ -4,7 +4,7 @@ import Language from '../../components/Language.svelte';
 const stats = [
   {
     stat: 'Published research on web application and API security',
-    source: 'https://havocsec.me',
+    source: 'https://havocsec.dev',
     icon: 'fa-book-open'
   },
   {
@@ -26,6 +26,12 @@ const stats = [
 
 const awards = [
   {
+    award: '3rd Place - Connected Africa Summit 2026 CTF',
+    issuer: 'Connected Africa Summit (Team JOINT, Karatina University)',
+    source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing',
+    date: '2026'
+  },
+  {
     award: 'Best cybergame male winner-2025',
     issuer: 'Ministry of ICT Kenya and Embassy of the Slovak Nation Kenya',
     source: '',
@@ -41,16 +47,16 @@ const awards = [
 
 const hackathonWins = [
   {
+    title: 'Connected Africa Summit 2026 CTF',
+    achievement: '3rd Place',
+    description: 'Collaborated with Team JOINT from Karatina University to solve complex capture-the-flag challenges, demonstrating advanced offensive security and problem-solving skills in a competitive environment.',
+    date: '2026'
+  },
+  {
     title: 'University Innovation Challenge',
     achievement: 'Won 3rd place overall',
     description: 'Developed a cybersecurity awareness platform for students',
     date: '2024'
-  },
-  {
-    title: 'Kenya Tech Hackathon',
-    achievement: 'Top 10 Finalist',
-    description: 'Created a secure fintech solution for mobile payments',
-    date: '2025'
   }
 ];
 
@@ -62,7 +68,7 @@ const projects = [
     logo: '📖',
     stars: '10',
     repo: 'Daniel-wambua/blog',
-    web: 'https://havocsec.me',
+    web: 'https://havocsec.dev',
   },
   {
     name: 'cyberhub',
@@ -71,7 +77,7 @@ const projects = [
     logo: '🛡️',
     stars: '8',
     repo: 'Daniel-wambua/cyberhub',
-    web: 'https://cyberhub.havocsec.tech',
+    web: 'https://cyberhub.havocsec.dev',
   }
 ];
 

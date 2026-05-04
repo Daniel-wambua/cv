@@ -3,6 +3,9 @@
 // The sz=w1000 parameter requests a 1000px wide thumbnail (max quality)
 
 export const certificateImages = {
+  // Connected Africa Summit 2026 CTF - 3rd Position (Team JOINT)
+  connectedafricactf: 'https://drive.google.com/thumbnail?id=1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1&sz=w1000',
+
   // NexHunt CTF — Top Performer
   nexhuntctf: 'https://drive.google.com/thumbnail?id=1-CPtYRlMvlH9_S4KWCmb5KKs4h2_J7jC&sz=w1000',
 

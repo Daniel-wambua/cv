@@ -73,7 +73,7 @@
 		{ name: 'Twitter', url: 'https://twitter.com/wambuahdaniel', icon: 'fa-twitter', color: '#1DA1F2' },
 		{ name: 'LinkedIn', url: 'https://www.linkedin.com/in/daniel-wambua-a312b32b8', icon: 'fa-linkedin', color: '#0A66C2' },
 		{ name: 'CTFtime', url: 'https://ctftime.org/team/409004', icon: 'fa-flag', iconType: 'fa-solid', color: '#00ff41' },
-		{ name: 'Linktree', url: 'https://linktree.havocsec.me' , icon: 'fa-tree', iconType: 'fa-solid', color: '#43E55E' },
+		{ name: 'Linktree', url: 'https://guns.lol/0xhavoc' , icon: 'fa-tree', iconType: 'fa-solid', color: '#43E55E' },
     ];
 	const navLinks = [
 		{ name: 'Intro', url: '/intro', icon: 'fa-terminal' },
@@ -85,9 +85,9 @@
 	];
 
 	const headerLinks = [
-		{ name: 'Security Blog', url: 'https://havocsec.me/blog' },
-		{ name: 'CTF Writeups', url: 'https://havocsec.me/ctf/' },
-		{ name: 'Research', url: 'https://havocsec.me/pentesting' },
+		{ name: 'Security Blog', url: 'https://havocsec.dev/blog' },
+		{ name: 'CTF Writeups', url: 'https://havocsec.dev/ctf/' },
+		{ name: 'Research', url: 'https://havocsec.dev/pentesting' },
 	];
 </script>
 

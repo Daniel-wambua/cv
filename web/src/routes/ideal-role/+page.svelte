@@ -16,7 +16,7 @@
     `With a strong foundation in CTF competitions, vulnerability assessment, and 
     security tools, I'm eager to contribute to a security team while continuously 
     learning from experienced professionals.`,
-    `I bring a hacker's mindset combined with a defender's discipline—I think like 
+    `I bring a hacker's mindset combined with a defender's discipline - I think like 
     an attacker to build and maintain robust security defenses.`,
     `I'm committed to staying current with the latest threats, attack vectors, and 
     security best practices through continuous learning, certifications, and 
@@ -125,7 +125,7 @@
   and <a href="/achievements">achievements</a> from CTF competitions and security training programs.
   You can learn more about my background and security mindset on my <a href="/intro">intro</a> page.
   I actively participate in CTFs, bug bounties, and security challenges to continuously sharpen my skills.
-  See my security research and write-ups at <a href="https://havocsec.me">havocsec.me</a>
+  See my security research and write-ups at <a href="https://havocsec.dev">havocsec.dev</a>
 </p>
 
 <h2>Get in Touch</h2>
