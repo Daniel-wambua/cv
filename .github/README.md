@@ -28,7 +28,7 @@ I did it this way so that I don't need to f\*\*k around with Microsoft Word.
 > **Professional Background**<br>
 > I'm an Information Technology student with a strong focus on cybersecurity, offensive security, and vulnerability assessment. My experience includes hands-on work in penetration testing labs, CTF competitions, and security tooling. I am passionate about learning, security research, and building systems that automate and simplify technical workflows. You can find my open source projects on [GitHub](https://github.com/Daniel-wambua) and learn more at [danielwambua.dev](https://danielwambua.dev).
 >
-> This CV automation project reflects my philosophy: why spend time on repetitive tasks when you can build systems that work for you? The entire CV generation pipeline is designed for maximum efficiency and maintainability.
+> This CV automation project reflects my philosophy.: why spend time on repetitive tasks when you can build systems that work for you? The entire CV generation pipeline is designed for maximum efficiency and maintainability.
 
   
 </details>
