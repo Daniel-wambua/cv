@@ -100,6 +100,7 @@
 \newunicodechar{🏅}{{\color{awesome}\faTrophy}}
 \newunicodechar{🥉}{{\color{awesome}\faTrophy}}
 \newunicodechar{🏆}{{\color{awesome}\faTrophy}}
+\newunicodechar{🚩}{{\color{awesome}\faFlag}}
 % Needed to deal a paragraphs
 \RequirePackage{parskip}
 % Needed to deal hyperlink

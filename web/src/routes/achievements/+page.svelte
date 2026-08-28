@@ -28,7 +28,13 @@ const awards = [
   {
     award: 'Top 10 Finalist (6th Place) - CyberGame Kenya 2026',
     issuer: 'CyberGame Kenya',
-    source: '',
+    source: 'https://drive.google.com/file/d/1TnOp-KgKDr4i5hWWWvq6uKJU5GO9brEV/view?usp=sharing',
+    date: '2026'
+  },
+  {
+    award: 'Participant - Thryve CTF',
+    issuer: 'Thryve',
+    source: 'https://drive.google.com/file/d/1gGUIxMeQ6Cqy4N13vQHu7E_-rM9IHw3M/view?usp=sharing',
     date: '2026'
   },
   {

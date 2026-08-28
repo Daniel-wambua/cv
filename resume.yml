@@ -138,9 +138,11 @@ skills:
 # Use markdown formatting for bold text: **text**
 achievements:
   - text: "🏅 **Top 10 Finalist (6th Place)** - CyberGame Kenya 2026"
-    source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing'  # TODO: replace with 2026 results/certificate link
+    source: 'https://drive.google.com/file/d/1TnOp-KgKDr4i5hWWWvq6uKJU5GO9brEV/view?usp=sharing'
   - text: "🥉 **3rd Place - Connected Africa Summit 2026 CTF** (Team JOINT, Karatina University)"
     source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing'
+  - text: "🚩 **Competed in Thryve CTF** (14 August 2026)"
+    source: 'https://drive.google.com/file/d/1gGUIxMeQ6Cqy4N13vQHu7E_-rM9IHw3M/view?usp=sharing'
   - text: "🏆 **Top 10 Finalist** - CyberGame Kenya 2025"
     source: 'https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent'
 
