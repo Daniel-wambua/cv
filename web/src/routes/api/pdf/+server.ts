@@ -4,6 +4,16 @@ import { join } from 'path';
 import chromium from '@sparticuz/chromium';
 import puppeteer from 'puppeteer-core';
 
+// Vercel functions run on AWS Lambda but strip the AWS env vars that
+// @sparticuz/chromium uses to detect the host. Without them it skips
+// extracting its shared libraries (libnss3.so & friends) and the font
+// config, so the browser fails to launch. Emulate the detection.
+process.env.AWS_LAMBDA_JS_RUNTIME ??= 'nodejs20.x';
+process.env.FONTCONFIG_PATH ??= '/tmp/fonts';
+process.env.LD_LIBRARY_PATH = ['/tmp/al2023/lib', process.env.LD_LIBRARY_PATH]
+  .filter(Boolean)
+  .join(':');
+
 // Headless Chromium needs more than the default memory/time budget to
 // extract its binary, launch and render the /print page on serverless.
 export const config = {
