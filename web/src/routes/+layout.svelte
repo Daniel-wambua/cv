@@ -148,7 +148,7 @@
 			<br>
 			<small class="license">
 				<a href="https://github.com/Daniel-wambua/cv">Daniel-wambua/cv</a>
-				is licensed under <a href="https://github.com/Daniel-wambua/cv/blob/main/LICENSE">MIT</a>, &copy; <a href="https://danielwambua.dev">Daniel Wambua</a> 2025
+				is licensed under <a href="https://github.com/Daniel-wambua/cv/blob/main/LICENSE">MIT</a>, &copy; <a href="https://cv.havocsec.me">Daniel Wambua</a> 2025
 			</small>
 		</div>
 	</aside>
