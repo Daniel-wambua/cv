@@ -63,12 +63,31 @@ export const GET: RequestHandler = async ({ url }) => {
   let browser;
   try {
     const executablePath = await chromium.executablePath();
-    browser = await puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: { width: 1240, height: 1754 }, // ~A4 at 96dpi
-      executablePath,
-      headless: true
-    });
+    // ETXTBSY race: right after @sparticuz/chromium finishes extracting the
+    // binary to /tmp, the filesystem can still report it busy for a moment.
+    // Retrying the launch with a short backoff is the standard workaround.
+    const launch = () =>
+      puppeteer.launch({
+        args: chromium.args,
+        defaultViewport: { width: 1240, height: 1754 }, // ~A4 at 96dpi
+        executablePath,
+        headless: true
+      });
+
+    let lastError: unknown;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        browser = await launch();
+        break;
+      } catch (e) {
+        lastError = e;
+        const msg = e instanceof Error ? e.message : String(e);
+        if (!msg.includes('ETXTBSY') || attempt === 2) throw e;
+        console.warn(`Chromium launch failed with ETXTBSY, retrying (attempt ${attempt + 2}/3)...`);
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      }
+    }
+    if (!browser) throw lastError;
 
     const page = await browser.newPage();
     await page.emulateMediaType('print');
