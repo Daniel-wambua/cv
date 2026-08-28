@@ -59,7 +59,13 @@
 		display: block;
 		margin-top: var(--space-sm);
 		height: 1px;
-		background: linear-gradient(90deg, var(--border-color-lighter), var(--border-color) 60%, transparent);
+		background: linear-gradient(
+			90deg,
+			var(--accent) 0,
+			var(--border-color-lighter) 10%,
+			var(--border-color) 55%,
+			transparent
+		);
 	}
 
 	.lede {

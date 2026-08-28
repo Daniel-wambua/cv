@@ -226,6 +226,61 @@ ul, ol {
 }
 
 /* ==========================================================================
+   Ambient backdrop - fixed layer of soft glows and a faint grid.
+   Everything translucent (glass panels) layers over this, so the blur has
+   something to be glass over. Rendered once, pointer-events none.
+   ========================================================================== */
+.app-backdrop {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse 60% 50% at 12% 0%, rgba(0, 255, 136, 0.09) 0%, transparent 60%),
+		radial-gradient(ellipse 50% 40% at 88% 12%, rgba(0, 153, 79, 0.07) 0%, transparent 55%),
+		radial-gradient(ellipse 55% 45% at 70% 95%, rgba(0, 204, 106, 0.05) 0%, transparent 60%);
+}
+
+.app-backdrop::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(rgba(232, 240, 236, 0.025) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(232, 240, 236, 0.025) 1px, transparent 1px);
+	background-size: 48px 48px;
+	-webkit-mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, black 20%, transparent 80%);
+	mask-image: radial-gradient(ellipse 90% 70% at 50% 20%, black 20%, transparent 80%);
+}
+
+/* ==========================================================================
+   Glass treatment - blur for every translucent panel. Class names are the
+   unscoped originals from Card/StatBlock and the page styles, so this one
+   rule covers all of them.
+   ========================================================================== */
+.card,
+.stat,
+.job,
+.tech-card,
+.extra-card,
+.soft-card,
+.note,
+.certificate-card,
+.upcoming-item,
+.badge-item,
+.statement,
+.value-item,
+.req-item,
+.explore-card,
+.email-panel,
+.guide,
+.thanks,
+.banner {
+	backdrop-filter: blur(14px) saturate(135%);
+	-webkit-backdrop-filter: blur(14px) saturate(135%);
+}
+
+/* ==========================================================================
    Utilities
    ========================================================================== */
 .text-center { text-align: center; }

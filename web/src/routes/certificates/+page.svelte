@@ -878,11 +878,13 @@
 		flex-direction: column;
 		max-width: 56rem;
 		max-height: 90vh;
-		background: var(--background-elevated);
-		border: 1px solid var(--border-color-light);
+		background: var(--glass-strong);
+		backdrop-filter: blur(24px) saturate(150%);
+		-webkit-backdrop-filter: blur(24px) saturate(150%);
+		border: 1px solid var(--glass-border);
 		border-radius: var(--radius-lg);
 		overflow-y: auto;
-		box-shadow: var(--shadow-2xl);
+		box-shadow: var(--shadow-2xl), inset 0 1px 0 var(--glass-highlight);
 		animation: modal-in 250ms cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
@@ -1001,10 +1003,12 @@
 		gap: var(--space-md);
 		max-width: 28rem;
 		padding: var(--space-xl);
-		background: var(--background-elevated);
-		border: 1px solid var(--border-color-light);
+		background: var(--glass-strong);
+		backdrop-filter: blur(24px) saturate(150%);
+		-webkit-backdrop-filter: blur(24px) saturate(150%);
+		border: 1px solid var(--glass-border);
 		border-radius: var(--radius-lg);
-		box-shadow: var(--shadow-2xl);
+		box-shadow: var(--shadow-2xl), inset 0 1px 0 var(--glass-highlight);
 		animation: modal-in 250ms cubic-bezier(0.22, 1, 0.36, 1);
 
 		img {

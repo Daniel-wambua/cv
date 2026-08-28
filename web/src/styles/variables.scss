@@ -5,7 +5,8 @@
 :root {
   /* Layout */
   --header-height: 4rem;
-  --sidebar-width: 19rem;
+  --sidebar-width: 18rem;
+  --content-offset: calc(var(--sidebar-width) + 3.25rem);
   --max-content-width: 1200px;
   --page-padding: 2rem;
 
@@ -64,15 +65,23 @@
   --secondary: var(--accent-dim);
   --secondary-hover: var(--accent-deep);
 
-  /* Surfaces - near-black ink */
+  /* Surfaces - ink base with translucent glass layers on top */
   --background: #060907;
   --background-elevated: #0c1210;
   --background-hover: #111917;
-  --surface: #0c1210;
-  --surface-elevated: #111917;
-  --surface-hover: #161f1c;
-  --card-background: #0c1210;
-  --card-background-hover: #111917;
+
+  /* Glass panels: translucent so the ambient backdrop shows through,
+     paired with backdrop-filter blur applied in app.css */
+  --glass: rgba(16, 24, 21, 0.55);
+  --glass-strong: rgba(14, 21, 18, 0.78);
+  --glass-border: rgba(232, 240, 236, 0.14);
+  --glass-highlight: rgba(232, 240, 236, 0.06);
+
+  --surface: rgba(16, 24, 21, 0.42);
+  --surface-elevated: rgba(20, 29, 25, 0.58);
+  --surface-hover: rgba(24, 34, 29, 0.68);
+  --card-background: rgba(18, 26, 23, 0.45);
+  --card-background-hover: rgba(24, 34, 29, 0.64);
 
   /* Text */
   --text-color: #e8f0ec;
@@ -81,11 +90,11 @@
   --text-color-muted: #5f7168;
   --text-color-accent: var(--accent);
 
-  /* Borders */
-  --border-color: rgba(232, 240, 236, 0.1);
-  --border-color-light: rgba(232, 240, 236, 0.16);
-  --border-color-lighter: rgba(232, 240, 236, 0.24);
-  --border-color-accent: rgba(0, 255, 136, 0.35);
+  /* Borders - slightly stronger so glass edges read clearly */
+  --border-color: rgba(232, 240, 236, 0.13);
+  --border-color-light: rgba(232, 240, 236, 0.2);
+  --border-color-lighter: rgba(232, 240, 236, 0.28);
+  --border-color-accent: rgba(0, 255, 136, 0.4);
 
   /* Semantic status colors - the only other hues allowed */
   --success: var(--accent-dim);

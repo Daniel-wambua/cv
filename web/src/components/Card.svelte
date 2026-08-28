@@ -36,6 +36,7 @@
 		background: var(--card-background);
 		border: 1px solid var(--border-color);
 		border-radius: var(--radius-lg);
+		box-shadow: inset 0 1px 0 var(--glass-highlight);
 		transition:
 			background var(--transition-base),
 			border-color var(--transition-base),
@@ -51,7 +52,7 @@
 			background: var(--card-background-hover);
 			border-color: var(--border-color-accent);
 			transform: translateY(-3px);
-			box-shadow: var(--shadow-colored);
+			box-shadow: var(--shadow-colored), inset 0 1px 0 var(--glass-highlight);
 		}
 	}
 </style>

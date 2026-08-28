@@ -101,6 +101,8 @@
 
 <svelte:window on:keydown={(e) => e.key === 'Escape' && (drawerOpen = false)} />
 
+<div class="app-backdrop" aria-hidden="true"></div>
+
 <div class="app">
 	<a class="skip-link visually-hidden" href="#main">Skip to content</a>
 
@@ -198,7 +200,8 @@
 
 		<main id="main">
 			{#if pagesToShowBanner.includes(path) && isSeekingOpportunities}
-				<div class="banner">
+				<div class="banner-wrap">
+					<div class="banner">
 					<span class="banner-icon" aria-hidden="true"><BriefcaseIcon /></span>
 					<p class="banner-text">
 						<strong>Open to new opportunities since {startDateFormatted}.</strong>
@@ -209,6 +212,7 @@
 						View ideal role
 						<ArrowRightIcon />
 					</a>
+				</div>
 				</div>
 			{/if}
 
@@ -252,23 +256,28 @@
 	/* ============ Sidebar ============ */
 	aside {
 		width: var(--sidebar-width);
-		background: var(--background-elevated);
-		border-right: 1px solid var(--border-color);
+		background: var(--glass);
+		backdrop-filter: blur(24px) saturate(150%);
+		-webkit-backdrop-filter: blur(24px) saturate(150%);
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-xl);
+		box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-highlight);
 		display: flex;
 		flex-direction: column;
 		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
+		top: var(--space-md);
+		bottom: var(--space-md);
+		left: var(--space-md);
 		z-index: 100;
 		overflow-y: auto;
 		overflow-x: hidden;
 
 		@media (max-width: 900px) {
-			position: fixed;
 			top: 0;
 			bottom: 0;
+			left: 0;
 			width: min(20rem, 85vw);
+			border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
 			transform: translateX(-100%);
 			transition: transform var(--transition-medium);
 			box-shadow: none;
@@ -490,9 +499,10 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 0.75rem 1rem;
-		background: color-mix(in srgb, var(--background) 88%, transparent);
-		backdrop-filter: blur(12px);
-		border-bottom: 1px solid var(--border-color);
+		background: var(--glass-strong);
+		backdrop-filter: blur(20px) saturate(150%);
+		-webkit-backdrop-filter: blur(20px) saturate(150%);
+		border-bottom: 1px solid var(--glass-border);
 
 		@media (max-width: 900px) {
 			display: flex;
@@ -559,7 +569,7 @@
 		min-width: 0;
 		height: 100vh;
 		overflow: hidden;
-		margin-left: var(--sidebar-width);
+		margin-left: var(--content-offset);
 
 		@media (max-width: 900px) {
 			height: auto;
@@ -573,13 +583,22 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: var(--space-lg);
-		padding: var(--space-sm) var(--space-xl);
-		border-bottom: 1px solid var(--border-color);
-		background: color-mix(in srgb, var(--background) 88%, transparent);
-		backdrop-filter: blur(12px);
+		margin: var(--space-md) var(--space-lg) 0;
+		padding: var(--space-sm) var(--space-lg);
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-lg);
+		background: var(--glass);
+		backdrop-filter: blur(20px) saturate(150%);
+		-webkit-backdrop-filter: blur(20px) saturate(150%);
+		box-shadow: var(--shadow-md), inset 0 1px 0 var(--glass-highlight);
 		position: sticky;
-		top: 0;
+		top: var(--space-md);
 		z-index: 50;
+
+		@media (max-width: 900px) {
+			top: calc(4rem + var(--space-sm));
+			margin: var(--space-sm) var(--space-md) 0;
+		}
 	}
 
 	.header-links {
@@ -673,12 +692,20 @@
 	}
 
 	/* ============ Banner ============ */
+	.banner-wrap {
+		max-width: var(--max-content-width);
+		margin: var(--space-lg) auto 0;
+		padding: 0 var(--space-xl);
+
+		@media (max-width: 600px) {
+			padding: 0 var(--space-md);
+		}
+	}
+
 	.banner {
 		display: flex;
 		align-items: center;
 		gap: var(--space-lg);
-		max-width: var(--max-content-width);
-		margin: var(--space-lg) auto 0;
 		padding: var(--space-md) var(--space-lg);
 		border: 1px solid var(--border-color-accent);
 		border-left: 3px solid var(--accent);
@@ -689,13 +716,6 @@
 			flex-direction: column;
 			align-items: flex-start;
 			gap: var(--space-sm);
-			margin-left: var(--space-xl);
-			margin-right: var(--space-xl);
-		}
-
-		@media (max-width: 600px) {
-			margin-left: var(--space-md);
-			margin-right: var(--space-md);
 		}
 	}
 
