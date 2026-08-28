@@ -41,6 +41,10 @@ echo "✅ Pre-build PDF generation complete!"
 # Navigate back to web directory
 cd web
 
+# Fetch certificate images from Google Drive (not committed to the repo to
+# keep forks free of certificate files - see web/scripts/fetch-certificates.sh)
+bash scripts/fetch-certificates.sh
+
 echo "📦 Installing Node dependencies..."
 npm install
 

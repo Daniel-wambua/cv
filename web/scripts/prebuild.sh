@@ -59,3 +59,7 @@ fi
 
 echo "✅ Pre-build PDF generation complete!"
 echo "📄 PDF available at: web/static/downloads/Daniel-Wambua-CV.pdf"
+
+# Fetch certificate images from Google Drive (not committed to the repo to
+# keep forks free of certificate files - see web/scripts/fetch-certificates.sh)
+bash web/scripts/fetch-certificates.sh

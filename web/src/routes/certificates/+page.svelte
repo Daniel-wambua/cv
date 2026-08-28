@@ -18,6 +18,30 @@
   
   const certificates: Certificate[] = [
     {
+      id: 114,
+      name: 'CyberGame Kenya 2026 - Top 10 Finalist (6th Place)',
+      issuer: 'CyberGame Kenya',
+      date: '2026',
+      image: certificateImages.cybergame2026,
+      description: 'Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya\'s best practical security talent.',
+      skills: ['CTF', 'Penetration Testing', 'Security Analysis'],
+      credentialId: 'CYBERGAME-2026-6TH',
+      verified: true,
+      isPdf: false
+    },
+    {
+      id: 115,
+      name: 'Thryve CTF - Participant',
+      issuer: 'Thryve',
+      date: 'August 2026',
+      image: certificateImages.thryvectf,
+      description: 'Participated in the Thryve Capture The Flag competition held on 14 August 2026, solving challenges across web, network, and misc categories.',
+      skills: ['CTF', 'Problem Solving', 'Security Research'],
+      credentialId: 'THRYVE-CTF-2026',
+      verified: true,
+      isPdf: false
+    },
+    {
       id: 113,
       name: 'Connected Africa Summit 2026 CTF - 3rd Position',
       issuer: 'Connected Africa Summit',

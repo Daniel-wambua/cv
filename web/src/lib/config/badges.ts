@@ -1,41 +1,38 @@
 // Cybersecurity Certification Badges - Auto-scrolling marquee on certificates page
-// To add a new badge:
-// 1. Upload badge image to Google Drive
-// 2. Set sharing to "Anyone with the link" → Viewer
-// 3. Get the file ID from the share link
-// 4. Use format: https://drive.google.com/thumbnail?id=FILE_ID&sz=w200
+// Badge images are self-hosted in /static/certificates (Google Drive thumbnail
+// hotlinks break intermittently in browsers).
+// To add a new badge: drop the image in web/static/certificates/ and reference
+// it as /certificates/<filename>
 
 export interface Badge {
   name: string;
-  imageUrl: string;    // Google Drive thumbnail URL
+  imageUrl: string;    // Local image path under /static/certificates
   link?: string;       // Optional link to certification page
   earned: boolean;     // true = earned, false = working towards
 }
 
 export const certificationBadges: Badge[] = [
   // === EARNED BADGES ===
-  // Upload your badge images to Google Drive and paste the thumbnail URLs here
-  
+
   {
     name: 'OWASP API Security Top 10',
-    imageUrl: 'https://drive.google.com/thumbnail?id=1n2tSxldiiCf2NpEZDUyB_Ht9vzpJAzHA&sz=w200',
+    imageUrl: '/certificates/badge-owasp-api-security.png',
     link: 'https://www.apisecuniversity.com/',
     earned: true
   },
     {
     name: 'API Security Fundamentals',
-    imageUrl: 'https://drive.google.com/thumbnail?id=1TEk9qBIRSSLuxetDWbTuxGfZP-aXuWKp&sz=w200',
+    imageUrl: '/certificates/badge-api-security-fundamentals.png',
     link: 'https://www.apisecuniversity.com/',
     earned: true
   },
-  
+
 
   // === TARGET BADGES (Working towards) ===
-  // You can use official logo images or placeholder icons
-  
+
   {
     name: 'OSCP',
-    imageUrl: 'https://drive.google.com/thumbnail?id=1U6qAjqhDPR_EAzWrA1MHpRP2a6k-Qf2q&sz=w1000',
+    imageUrl: '/certificates/badge-oscp.png',
     link: 'https://www.offsec.com/courses/pen-200/',
     earned: false
   },

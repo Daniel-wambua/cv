@@ -67,3 +67,7 @@ Thumbs.db
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+
+# Certificate images are fetched from Google Drive at build time
+# (web/scripts/fetch-certificates.sh) - never committed, so forks stay clean
+web/static/certificates/
