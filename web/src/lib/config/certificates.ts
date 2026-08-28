@@ -13,7 +13,7 @@ export const certificateImages = {
   // Connected Africa Summit 2026 CTF - 3rd Position (Team JOINT)
   connectedafricactf: '/certificates/connectedafricactf.jpg',
 
-  // NexHunt CTF — Top Performer
+  // NexHunt CTF, Top Performer
   nexhuntctf: '/certificates/nexhuntctf.jpg',
 
   // p3rf3ctr00t CTF Certificate

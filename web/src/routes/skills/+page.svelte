@@ -1,644 +1,365 @@
 <script lang="ts">
-	import '../../styles/resume-main.scss';
-	import '../../styles/other-pages.scss';
-  import Language from '../../components/Language.svelte';
-  export let data: any = {};
- 
-  const techStack = data.additionalData?.techStack || data.techStack || {};
-  const techStackExtras = data.additionalData?.techStackExtras || data.techStackExtras || {};
+	import PageHero from '$components/PageHero.svelte';
+	import SectionHeading from '$components/SectionHeading.svelte';
+	import StatBlock from '$components/StatBlock.svelte';
+	import Language from '$components/Language.svelte';
+	import { reveal } from '$lib/actions/reveal';
 
-  // Calculate stats
-  let totalTechnologies = 0;
-  let totalProjects = 0;
-  Object.values(techStack).forEach((category: any) => {
-    totalTechnologies += category.length;
-    category.forEach((tech: any) => {
-      totalProjects += tech.projects.length;
-    });
-  });
+	import BoltIcon from '~icons/fa6-solid/bolt';
+	import PuzzleIcon from '~icons/fa6-solid/puzzle-piece';
+	import MagnifierIcon from '~icons/fa6-solid/magnifying-glass';
+	import UsersIcon from '~icons/fa6-solid/users';
+	import RotateIcon from '~icons/fa6-solid/rotate';
+	import LockIcon from '~icons/fa6-solid/lock';
+	import InfoIcon from '~icons/fa6-solid/circle-info';
+	import FolderIcon from '~icons/fa6-solid/folder-open';
+	import ArrowUpRightIcon from '~icons/fa6-solid/arrow-up-right-from-square';
 
-  const softSkills = [
-    { name: 'Quick Learner', description: 'Fast at picking up new concepts and technologies', icon: '⚡' },
-    { name: 'Problem Solver', description: 'Approaching challenges with solution-oriented mindset', icon: '🧩' },
-    { name: 'Attention to Detail', description: 'Careful and thorough in all aspects of work', icon: '🔍' },
-    { name: 'Team Player', description: 'Comfortable working collaboratively in team environments', icon: '🤝' },
-    { name: 'Adaptable', description: 'Flexible and able to adjust to changing requirements', icon: '🔄' },
-    { name: 'Security Focused', description: 'Prioritizing security best practices in development', icon: '🔒' },
-  ];
+	export let data: any = {};
 
-  // Map category keys to display names and icons
-  const categoryInfo: Record<string, { name: string; icon: string; description: string }> = {
-    backend: { 
-      name: 'Backend', 
-      icon: '⚙️',
-      description: 'Server-side development & APIs'
-    },
-    frontend: { 
-      name: 'Frontend', 
-      icon: '🎨',
-      description: 'UI/UX & client-side frameworks'
-    },
-    mobile: { 
-      name: 'Mobile', 
-      icon: '📱',
-      description: 'iOS & Android development'
-    },
-    security: {
-      name: 'Cybersecurity Tools',
-      icon: '🔒',
-      description: 'Penetration testing & security tools'
-    },
-    other: { 
-      name: 'Other Technologies', 
-      icon: '🔧',
-      description: 'DevOps, scripting & tools'
-    }
-  };
+	const techStack = data.additionalData?.techStack || data.techStack || {};
+	const techStackExtras = data.additionalData?.techStackExtras || data.techStackExtras || {};
+
+	let totalTechnologies = 0;
+	let totalProjects = 0;
+	Object.values(techStack).forEach((category: any) => {
+		totalTechnologies += category.length;
+		category.forEach((tech: any) => {
+			totalProjects += tech.projects.length;
+		});
+	});
+
+	const softSkills = [
+		{ name: 'Quick learner', description: 'Fast at picking up new concepts and technologies', icon: BoltIcon },
+		{ name: 'Problem solver', description: 'Approaches challenges with a solution-oriented mindset', icon: PuzzleIcon },
+		{ name: 'Attention to detail', description: 'Careful and thorough in all aspects of work', icon: MagnifierIcon },
+		{ name: 'Team player', description: 'Comfortable working collaboratively in team environments', icon: UsersIcon },
+		{ name: 'Adaptable', description: 'Flexible and able to adjust to changing requirements', icon: RotateIcon },
+		{ name: 'Security focused', description: 'Prioritizes security best practices in development', icon: LockIcon }
+	];
+
+	const categoryInfo: Record<string, { name: string; description: string }> = {
+		backend: { name: 'Backend', description: 'Server-side development and APIs' },
+		frontend: { name: 'Frontend', description: 'UI and client-side frameworks' },
+		mobile: { name: 'Mobile', description: 'iOS and Android development' },
+		security: { name: 'Cybersecurity Tools', description: 'Penetration testing and security tooling' },
+		other: { name: 'Other Technologies', description: 'DevOps, scripting, and tooling' }
+	};
 </script>
 
-<svelte:head>	
-	<title>Daniel Wambua | CV | Skills</title>
+<svelte:head>
+	<title>Daniel Wambua | Skills</title>
+	<meta
+		name="description"
+		content="Technical skills of Daniel Wambua across cybersecurity tooling, backend and frontend
+		development, and scripting, backed by public GitHub projects."
+	/>
 </svelte:head>
 
-<section class="skills-container">
-  <!-- Terminal Header -->
-  <div class="terminal-header">
-    <div class="terminal-buttons">
-      <span class="btn close"></span>
-      <span class="btn minimize"></span>
-      <span class="btn maximize"></span>
-    </div>
-    <div class="terminal-title">~/skills</div>
-  </div>
+<section class="skills">
+	<PageHero
+		eyebrow="03 / Skills"
+		title="Tools I work with"
+		summary="A technology stack built through coursework, CTF competitions, and shipped projects. Every entry links back to public work."
+	/>
 
-  <!-- Command Prompt -->
-  <div class="command-prompt">
-    <span class="prompt-symbol">$</span>
-    <span class="command">cat technical_skills.txt</span>
-    <span class="cursor">_</span>
-  </div>
+	<div class="stats">
+		<StatBlock value={totalTechnologies} label="Technologies" revealDelay={0} />
+		<StatBlock value={totalProjects} label="Projects" revealDelay={80} />
+		<StatBlock value={Object.keys(techStack).length} label="Categories" revealDelay={160} />
+	</div>
 
-  <!-- Stats Overview -->
-  <div class="stats-grid">
-    <div class="stat-box" style="--delay: 0s">
-      <div class="stat-icon">
-        <i class="fas fa-code"></i>
-      </div>
-      <div class="stat-content">
-        <div class="stat-value">{totalTechnologies}</div>
-        <div class="stat-label">Technologies</div>
-      </div>
-    </div>
-    <div class="stat-box" style="--delay: 0.1s">
-      <div class="stat-icon">
-        <i class="fas fa-project-diagram"></i>
-      </div>
-      <div class="stat-content">
-        <div class="stat-value">{totalProjects}</div>
-        <div class="stat-label">Projects</div>
-      </div>
-    </div>
-    <div class="stat-box" style="--delay: 0.2s">
-      <div class="stat-icon">
-        <i class="fas fa-layer-group"></i>
-      </div>
-      <div class="stat-content">
-        <div class="stat-value">{Object.keys(techStack).length}</div>
-        <div class="stat-label">Categories</div>
-      </div>
-    </div>
-  </div>
+	{#each Object.keys(techStack) as categoryKey, catIndex}
+		<SectionHeading
+			index={String(catIndex + 1).padStart(2, '0')}
+			title={categoryInfo[categoryKey]?.name || categoryKey}
+			meta={`${techStack[categoryKey].length} technologies`}
+		>
+			{categoryInfo[categoryKey]?.description || ''}
+		</SectionHeading>
 
-  <!-- Technology Stack -->
-  <h2 class="section-title">
-    <i class="fas fa-terminal"></i> Technology Stack
-  </h2>
+		<div class="tech-grid">
+			{#each techStack[categoryKey] as tech, techIndex}
+				<div class="tech-card" use:reveal style={`--reveal-delay: ${(catIndex * 4 + techIndex) * 60}ms`}>
+					<div class="tech-head">
+						<Language language={tech.language} />
+						<span class="count">{tech.projects.length} project{tech.projects.length !== 1 ? 's' : ''}</span>
+					</div>
+					<ul class="projects">
+						{#each tech.projects as project}
+							<li>
+								<a
+									href="https://github.com/Daniel-wambua/{project.trim()}"
+									target="_blank"
+									rel="noopener noreferrer"
+									title="View on GitHub"
+								>
+									<FolderIcon />
+									<span>{project}</span>
+									<ArrowUpRightIcon class="external" />
+								</a>
+							</li>
+						{/each}
+					</ul>
+				</div>
+			{/each}
+		</div>
+	{/each}
 
-  {#each Object.keys(techStack) as categoryKey, catIndex}
-    <div class="category-section" style="--delay: {catIndex * 0.1}s">
-      <div class="category-header">
-        <span class="category-icon">{categoryInfo[categoryKey]?.icon || '💻'}</span>
-        <div class="category-info">
-          <h3>{categoryInfo[categoryKey]?.name || categoryKey}</h3>
-          <p class="category-description">{categoryInfo[categoryKey]?.description || ''}</p>
-        </div>
-        <div class="category-badge">{techStack[categoryKey].length} techs</div>
-      </div>
+	{#if techStackExtras && Object.keys(techStackExtras).length > 0}
+		<SectionHeading title="Additional technologies">
+			Working knowledge across adjacent areas.
+		</SectionHeading>
+		<div class="extras-grid">
+			{#each Object.keys(techStackExtras) as extraCategory, index}
+				<div class="extra-card" use:reveal style={`--reveal-delay: ${index * 80}ms`}>
+					<h3>{extraCategory.charAt(0).toUpperCase() + extraCategory.slice(1)}</h3>
+					<div class="extra-list">
+						{#each techStackExtras[extraCategory] as tech}
+							<Language language={tech} small={true} />
+						{/each}
+					</div>
+				</div>
+			{/each}
+		</div>
+	{/if}
 
-      <div class="tech-grid">
-        {#each techStack[categoryKey] as tech, techIndex}
-          <div class="tech-card" style="--delay: {(catIndex * 0.1) + (techIndex * 0.05)}s">
-            <div class="tech-card-header">
-              <Language language={tech.language} />
-              <span class="project-count">{tech.projects.length} project{tech.projects.length !== 1 ? 's' : ''}</span>
-            </div>
-            
-            <div class="projects-container">
-              <div class="projects-header">
-                <i class="fab fa-github"></i>
-                <span>Projects</span>
-              </div>
-              <div class="projects-grid">
-                {#each tech.projects as project}
-                  <a 
-                    href="https://github.com/Daniel-wambua/{project.trim()}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="project-link"
-                    title="View on GitHub"
-                  >
-                    <i class="fas fa-folder-open"></i>
-                    <span>{project}</span>
-                    <i class="fas fa-external-link-alt external-icon"></i>
-                  </a>
-                {/each}
-              </div>
-            </div>
-          </div>
-        {/each}
-      </div>
-    </div>
-  {/each}
+	<SectionHeading title="Working style">
+		The habits behind the technical list.
+	</SectionHeading>
+	<div class="soft-grid">
+		{#each softSkills as skill, index}
+			<div class="soft-card" use:reveal style={`--reveal-delay: ${index * 60}ms`}>
+				<span class="soft-icon"><svelte:component this={skill.icon} /></span>
+				<h3>{skill.name}</h3>
+				<p>{skill.description}</p>
+			</div>
+		{/each}
+	</div>
 
-  <!-- Additional Technologies -->
-  {#if techStackExtras}
-    <h2 class="section-title extras-title">
-      <i class="fas fa-plus-circle"></i> Additional Technologies
-    </h2>
-    
-    <div class="extras-grid">
-      {#each Object.keys(techStackExtras) as extraCategory, index}
-        <div class="extra-card" style="--delay: {index * 0.1}s">
-          <h4 class="extra-category-title">
-            {extraCategory.charAt(0).toUpperCase() + extraCategory.slice(1)}
-          </h4>
-          <div class="extra-tech-list">
-            {#each techStackExtras[extraCategory] as tech}
-              <Language language={tech} small={true} />
-            {/each}
-          </div>
-        </div>
-      {/each}
-    </div>
-  {/if}
-
-  <!-- Soft Skills -->
-  <h2 class="section-title soft-skills-title">
-    <i class="fas fa-brain"></i> Soft Skills
-  </h2>
-
-  <div class="soft-skills-grid">
-    {#each softSkills as skill, index}
-      <div class="soft-skill-card" style="--delay: {index * 0.1}s">
-        <div class="skill-icon-circle">{skill.icon}</div>
-        <h4>{skill.name}</h4>
-        <p>{skill.description}</p>
-      </div>
-    {/each}
-  </div>
-
-  <!-- Note -->
-  <div class="info-note">
-    <i class="fas fa-info-circle"></i>
-    <p><strong>Note:</strong> This list showcases public GitHub repositories and may not be fully exhaustive of all technologies and projects.</p>
-  </div>
+	<div class="note" use:reveal>
+		<InfoIcon />
+		<p>
+			<strong>Note:</strong>
+			this list reflects public GitHub repositories and may not cover every technology and project I have worked with.
+		</p>
+	</div>
 </section>
 
 <style lang="scss">
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+	.skills {
+		position: relative;
+	}
 
-  @keyframes pulse {
-    0%, 100% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.05);
-    }
-  }
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
 
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
+	.tech-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-lg);
 
-  .skills-container {
-    max-width: 1400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    animation: fadeInUp 0.6s ease-out;
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
+	}
 
-    @media (max-width: 768px) {
-      padding: 1rem;
-    }
-  }
+	.tech-card {
+		padding: var(--space-lg);
+		background: var(--card-background);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-lg);
+		transition:
+			border-color var(--transition-base),
+			background var(--transition-base),
+			transform var(--transition-base);
 
-  // Terminal Header
-  .terminal-header {
-    background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    border-bottom: none;
-    border-radius: 8px 8px 0 0;
-    padding: 0.75rem 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  }
+		&:hover {
+			background: var(--card-background-hover);
+			border-color: var(--border-color-accent);
+			transform: translateY(-2px);
+		}
+	}
 
-  .terminal-buttons {
-    display: flex;
-    gap: 0.5rem;
+	.tech-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-sm);
+		padding-bottom: var(--space-sm);
+		border-bottom: 1px solid var(--border-color);
+		margin-bottom: var(--space-sm);
+	}
 
-    .btn {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      
-      &.close { background: #ff5f56; }
-      &.minimize { background: #ffbd2e; }
-      &.maximize { background: #27c93f; }
-    }
-  }
+	.count {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--text-color-muted);
+		white-space: nowrap;
+	}
 
-  .terminal-title {
-    color: #06b6d4;
-    font-family: 'Courier New', monospace;
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
+	.projects {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.375rem;
 
-  // Command Prompt
-  .command-prompt {
-    background: #1a1a1a;
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    border-top: none;
-    padding: 1rem;
-    font-family: 'Courier New', monospace;
-    color: #06b6d4;
-    margin-bottom: 2rem;
+		a {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			padding: 0.5rem 0.625rem;
+			border: 1px solid var(--border-color);
+			border-radius: var(--radius-sm);
+			color: var(--text-color-secondary);
+			font-family: var(--font-mono);
+			font-size: var(--font-size-xs);
+			text-decoration: none;
+			transition: all var(--transition-fast);
 
-    .prompt-symbol {
-      color: #ff6b6b;
-      margin-right: 0.5rem;
-    }
+			:global(svg) {
+				width: 0.8rem;
+				height: 0.8rem;
+				color: var(--accent);
+				flex-shrink: 0;
+			}
 
-    .command {
-      color: #06b6d4;
-    }
+			span {
+				flex: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 
-    .cursor {
-      animation: blink 1s step-end infinite;
-      color: #06b6d4;
-    }
-  }
+			:global(.external) {
+				width: 0.7rem;
+				height: 0.7rem;
+				opacity: 0;
+				transition: opacity var(--transition-fast);
+			}
 
-  // Stats Grid
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
+			&:hover {
+				background: var(--accent-transparent);
+				border-color: var(--border-color-accent);
+				color: var(--accent);
 
-  .stat-box {
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, rgba(6, 182, 212, 0.05) 100%);
-    border: 1px solid rgba(6, 182, 212, 0.3);
-    border-radius: 8px;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    animation: fadeInUp 0.6s ease-out var(--delay, 0s) both;
-    transition: all 0.3s ease;
+				:global(.external) {
+					opacity: 1;
+				}
+			}
+		}
+	}
 
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2);
-      border-color: #06b6d4;
-    }
-  }
+	.extras-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-lg);
+	}
 
-  .stat-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #06b6d4 0%, rgba(6, 182, 212, 0.6) 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: #000;
-    animation: pulse 2s ease-in-out infinite;
-  }
+	.extra-card {
+		padding: var(--space-lg);
+		background: var(--card-background);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-lg);
 
-  .stat-content {
-    flex: 1;
-  }
+		h3 {
+			font-size: var(--font-size-base);
+			letter-spacing: var(--tracking-tight);
+			margin-bottom: var(--space-sm);
+		}
+	}
 
-  .stat-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #06b6d4;
-    line-height: 1;
-  }
+	.extra-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
 
-  .stat-label {
-    font-size: 0.9rem;
-    color: #fff;
-    opacity: 0.7;
-    margin-top: 0.25rem;
-  }
+	.soft-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
 
-  // Section Titles
-  .section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #06b6d4;
-    margin: 3rem 0 1.5rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+	.soft-card {
+		padding: var(--space-lg);
+		background: var(--card-background);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-lg);
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		transition:
+			border-color var(--transition-base),
+			transform var(--transition-base);
 
-    i {
-      font-size: 1.5rem;
-    }
-  }
+		&:hover {
+			border-color: var(--border-color-accent);
+			transform: translateY(-2px);
+		}
 
-  // Category Section
-  .category-section {
-    margin-bottom: 3rem;
-    animation: fadeInUp 0.6s ease-out var(--delay, 0s) both;
-  }
+		h3 {
+			font-size: var(--font-size-base);
+			letter-spacing: var(--tracking-tight);
+		}
 
-  .category-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
-    background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(6, 182, 212, 0.05) 100%);
-    border: 1px solid rgba(6, 182, 212, 0.3);
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
+		p {
+			font-size: var(--font-size-sm);
+			color: var(--text-color-dim);
+		}
+	}
 
-    .category-icon {
-      font-size: 2rem;
-    }
+	.soft-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: var(--radius-md);
+		background: var(--accent-transparent);
+		color: var(--accent);
 
-    .category-info {
-      flex: 1;
+		:global(svg) {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
 
-      h3 {
-        margin: 0;
-        font-size: 1.5rem;
-        color: #06b6d4;
-      }
+	.note {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-sm);
+		padding: var(--space-md) var(--space-lg);
+		border: 1px solid rgba(245, 185, 62, 0.25);
+		border-left: 3px solid var(--warning);
+		border-radius: var(--radius-md);
+		background: rgba(245, 185, 62, 0.05);
 
-      .category-description {
-        margin: 0.25rem 0 0 0;
-        font-size: 0.9rem;
-        color: #fff;
-        opacity: 0.7;
-      }
-    }
+		:global(svg) {
+			width: 1rem;
+			height: 1rem;
+			color: var(--warning);
+			margin-top: 0.2rem;
+			flex-shrink: 0;
+		}
 
-    .category-badge {
-      background: #06b6d4;
-      color: #000;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-weight: 600;
-      font-size: 0.85rem;
-    }
-  }
+		p {
+			font-size: var(--font-size-sm);
+			color: var(--text-color-secondary);
+			line-height: var(--line-height-normal);
+		}
 
-  // Tech Grid
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-
-    @media (max-width: 768px) {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .tech-card {
-    background: #1e1e1e;
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    border-radius: 8px;
-    padding: 1.5rem;
-    animation: fadeInUp 0.6s ease-out var(--delay, 0s) both;
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-      border-color: #06b6d4;
-      box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2);
-    }
-  }
-
-  .tech-card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-
-    .project-count {
-      font-size: 0.85rem;
-      color: #fff;
-      opacity: 0.6;
-      background: rgba(6, 182, 212, 0.1);
-      padding: 0.25rem 0.75rem;
-      border-radius: 12px;
-    }
-  }
-
-  // Projects Container
-  .projects-container {
-    .projects-header {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.9rem;
-      color: #06b6d4;
-      margin-bottom: 0.75rem;
-      font-weight: 600;
-    }
-
-    .projects-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .project-link {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 0.75rem;
-      background: rgba(6, 182, 212, 0.05);
-      border: 1px solid rgba(6, 182, 212, 0.2);
-      border-radius: 6px;
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-
-      i {
-        color: #06b6d4;
-        font-size: 0.85rem;
-      }
-
-      span {
-        flex: 1;
-      }
-
-      .external-icon {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-
-      &:hover {
-        background: rgba(6, 182, 212, 0.15);
-        border-color: #06b6d4;
-        transform: translateX(5px);
-
-        .external-icon {
-          opacity: 1;
-        }
-      }
-    }
-  }
-
-  // Extras Grid
-  .extras-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .extra-card {
-    background: #1e1e1e;
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    border-radius: 8px;
-    padding: 1.5rem;
-    animation: fadeInUp 0.6s ease-out var(--delay, 0s) both;
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-      border-color: #06b6d4;
-      box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2);
-    }
-
-    .extra-category-title {
-      margin: 0 0 1rem 0;
-      color: #06b6d4;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    .extra-tech-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-  }
-
-  // Soft Skills Grid
-  .soft-skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .soft-skill-card {
-    background: #1e1e1e;
-    border: 1px solid rgba(6, 182, 212, 0.2);
-    border-radius: 8px;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    animation: fadeInUp 0.6s ease-out var(--delay, 0s) both;
-    transition: all 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-      border-color: #06b6d4;
-      box-shadow: 0 8px 16px rgba(6, 182, 212, 0.2);
-
-      .skill-icon-circle {
-        transform: rotate(360deg) scale(1.1);
-      }
-    }
-
-    .skill-icon-circle {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #06b6d4 0%, rgba(6, 182, 212, 0.6) 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      margin: 0 auto 1rem auto;
-      transition: all 0.5s ease;
-    }
-
-    h4 {
-      margin: 0 0 0.75rem 0;
-      color: #06b6d4;
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-
-    p {
-      margin: 0;
-      color: #fff;
-      opacity: 0.8;
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-  }
-
-  // Info Note
-  .info-note {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(255, 165, 0, 0.1) 0%, rgba(255, 165, 0, 0.05) 100%);
-    border: 1px solid rgba(255, 165, 0, 0.3);
-    border-radius: 8px;
-    animation: fadeInUp 0.6s ease-out;
-
-    i {
-      color: #ffa500;
-      font-size: 1.5rem;
-      margin-top: 0.25rem;
-    }
-
-    p {
-      margin: 0;
-      color: #fff;
-      opacity: 0.9;
-      line-height: 1.6;
-
-      strong {
-        color: #ffa500;
-      }
-    }
-  }
+		strong {
+			color: var(--warning);
+		}
+	}
 </style>

@@ -15,7 +15,7 @@
 </script>
 
 <svelte:head>
-  <title>{basics.name ? `${basics.name} — CV` : 'CV'}</title>
+  <title>{basics.name ? `${basics.name} · CV` : 'CV'}</title>
   <meta name="robots" content="noindex" />
   <style>
     :root { --fg: #111; --muted: #555; --accent: #D64343; --light: #ffffff; --rule: #e9e9e9; }
@@ -87,8 +87,8 @@
     {#each work as job}
       <div>
         <div class="row">
-          <h3>{job.position} — {job.name}</h3>
-          <div class="muted">{fmt(job.startDate)} – {fmt(job.endDate) || 'Present'}</div>
+          <h3>{job.position} · {job.name}</h3>
+          <div class="muted">{fmt(job.startDate)} - {fmt(job.endDate) || 'Present'}</div>
         </div>
         {#if job.highlights?.length}
           <ul>
@@ -108,8 +108,8 @@
     {#each education as edu}
       <div>
         <div class="row">
-          <h3>{edu.studyType} in {edu.area} — {edu.institution}</h3>
-          <div class="muted">{fmt(edu.startDate)} – {fmt(edu.endDate)}</div>
+          <h3>{edu.studyType} in {edu.area} · {edu.institution}</h3>
+          <div class="muted">{fmt(edu.startDate)} - {fmt(edu.endDate)}</div>
         </div>
         {#if edu.score}<div class="muted">Grade: {edu.score}</div>{/if}
         {#if edu.highlights?.length}
@@ -156,7 +156,7 @@
     <h2>Awards</h2>
     <ul>
       {#each awards as a}
-        <li><strong>{a.title}</strong> — {a.summary}</li>
+        <li><strong>{a.title}</strong> · {a.summary}</li>
       {/each}
     </ul>
   </section>
@@ -171,8 +171,8 @@
           <div class="projrow">
             <div>
               <strong>{p.name}</strong>
-              {#if p.description} — {p.description}{/if}
-              {#if p.url} — {p.url}{/if}
+              {#if p.description} · {p.description}{/if}
+              {#if p.url} · {p.url}{/if}
             </div>
             {#if p.github}
               <span class="muted">github.com/{p.github}</span>

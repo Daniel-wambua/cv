@@ -1,351 +1,353 @@
-<script>
-  import '../../styles/other-pages.scss';
-  
-  let emailVisible = false;
-  const revealEmail = () => {
-    emailVisible = true;
-    navigator.clipboard.writeText('wambuahdaniel@gmail.com');
-  }
+<script lang="ts">
+	import PageHero from '$components/PageHero.svelte';
+	import Card from '$components/Card.svelte';
+	import { reveal } from '$lib/actions/reveal';
+
+	import EnvelopeIcon from '~icons/fa6-solid/envelope';
+	import EyeIcon from '~icons/fa6-solid/eye';
+	import FlagIcon from '~icons/fa6-solid/flag';
+	import ArrowRightIcon from '~icons/fa6-solid/arrow-right';
+	import CompassIcon from '~icons/fa6-solid/compass';
+	import HeartIcon from '~icons/fa6-solid/heart';
+	import CheckIcon from '~icons/fa6-solid/circle-check';
+	import LinkedinIcon from '~icons/fa6-brands/linkedin';
+	import GithubIcon from '~icons/fa6-brands/github';
+
+	let emailVisible = false;
+	let copied = false;
+
+	const revealEmail = () => {
+		emailVisible = true;
+		copied = true;
+		navigator.clipboard.writeText('wambuahdaniel@gmail.com');
+		setTimeout(() => (copied = false), 2000);
+	};
+
+	const channels = [
+		{
+			name: 'LinkedIn',
+			description: 'Connect with me professionally',
+			url: 'https://www.linkedin.com/in/daniel-wambua-a312b32b8/',
+			action: 'View profile',
+			icon: LinkedinIcon
+		},
+		{
+			name: 'GitHub',
+			description: 'Review my open source work',
+			url: 'https://github.com/Daniel-wambua',
+			action: 'View repositories',
+			icon: GithubIcon
+		},
+		{
+			name: 'CTFtime',
+			description: 'Follow my CTF journey',
+			url: 'https://ctftime.org/team/409004',
+			action: 'View team',
+			icon: FlagIcon
+		}
+	];
 </script>
 
-<svelte:head>	
-	<title>Daniel Wambua | CV | Contact</title>
-	<meta name="description" content="Get in touch with Daniel Wambua for cybersecurity, penetration testing, and ethical hacking opportunities.">
+<svelte:head>
+	<title>Daniel Wambua | Contact</title>
+	<meta
+		name="description"
+		content="Get in touch with Daniel Wambua for cybersecurity, penetration testing, and ethical hacking opportunities."
+	/>
 </svelte:head>
 
-<div class="contact-page">
-  <div class="terminal-header">
-    <div class="terminal-controls">
-      <div class="terminal-dot red"></div>
-      <div class="terminal-dot yellow"></div>
-      <div class="terminal-dot green"></div>
-    </div>
-    <div class="terminal-title">contact.sh</div>
-  </div>
+<div class="contact">
+	<PageHero
+		eyebrow="06 / Contact"
+		title="Let's talk"
+		summary="Open to junior security roles, internships, collaborations, and interesting problems. Email is the fastest way to reach me."
+	/>
 
-  <div class="contact-content">
-    <h1>
-      <i class="fa-solid fa-paper-plane"></i>
-      Let's Connect
-    </h1>
+	<div class="email-panel" use:reveal>
+		<span class="panel-icon"><EnvelopeIcon /></span>
+		{#if emailVisible}
+			<a class="email-link" href="mailto:wambuahdaniel@gmail.com">
+				wambuahdaniel@gmail.com
+			</a>
+			<span class="copied" class:show={copied}>
+				<CheckIcon />
+				Copied to clipboard
+			</span>
+		{:else}
+			<button class="reveal-btn" on:click={revealEmail} title="Show email address and copy to clipboard">
+				<EyeIcon />
+				Reveal email address
+			</button>
+			<span class="panel-hint">Click to reveal and copy</span>
+		{/if}
+	</div>
 
-    <div class="intro-text">
-      <p>
-        If you're looking for a passionate cybersecurity professional or full-stack developer, I'd love to hear from you!
-      </p>
-      <p>
-        You can get in touch by dropping me an email 
-        {#if emailVisible}
-          <a href="mailto:wambuahdaniel@gmail.com" class="email-link">
-            <i class="fa-solid fa-envelope"></i>
-            wambuahdaniel@gmail.com
-          </a>
-        {:else}
-          <button on:click={revealEmail} class="small-btn no-float" title="Click to show email address and copy to clipboard">
-            <i class="fa-solid fa-eye"></i>
-            Reveal Email Address
-          </button>
-        {/if}
-      </p>
-      <p>
-        For other communication channels, visit my
-        <a target="_blank" href="https://guns.lol/0xhavoc" rel="noopener noreferrer">
-          <i class="fa-solid fa-tree"></i>
-          Guns.lol account
-        </a>
-      </p>
-    </div>
+	<div class="channels">
+		{#each channels as channel, i}
+			<Card revealDelay={i * 90} href={channel.url} class="channel-card">
+				<span class="channel-icon"><svelte:component this={channel.icon} /></span>
+				<h3>{channel.name}</h3>
+				<p>{channel.description}</p>
+				<span class="channel-link">
+					{channel.action}
+					<ArrowRightIcon class="arrow" />
+				</span>
+			</Card>
+		{/each}
+	</div>
 
-    <div class="contact-cards">
-      <div class="contact-card">
-        <div class="card-icon">
-          <i class="fa-brands fa-linkedin"></i>
-        </div>
-        <h3>LinkedIn</h3>
-        <p>Connect with me professionally</p>
-        <a href="https://www.linkedin.com/in/daniel-wambua-a312b32b8/" target="_blank" rel="noopener noreferrer" class="card-link">
-          Visit Profile
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
+	<div class="elsewhere" use:reveal>
+		<p>
+			You can also find me on my
+			<a href="https://guns.lol/0xhavoc" target="_blank" rel="noopener noreferrer">guns.lol page</a>,
+			which lists all my other communication channels.
+		</p>
+	</div>
 
-      <div class="contact-card">
-        <div class="card-icon">
-          <i class="fa-brands fa-github"></i>
-        </div>
-        <h3>GitHub</h3>
-        <p>Check out my open source work</p>
-        <a href="https://github.com/Daniel-wambua" target="_blank" rel="noopener noreferrer" class="card-link">
-          View Repositories
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
+	<div class="guide" use:reveal>
+		<h3><CompassIcon /> Explore more</h3>
+		<p>
+			Learn more about me on the <a href="/intro">intro</a> page, or browse my
+			<a href="/skills">skills</a>, <a href="/experience">experience</a>, and
+			<a href="/achievements">achievements</a> to see whether I align with what you are looking
+			for.
+		</p>
+		<p>
+			A shortened version of my CV in PDF format can be downloaded <a href="/download">here</a>.
+			To check whether I would be a good fit for your team, view my <a href="/ideal-role">ideal
+			role</a> page.
+		</p>
+	</div>
 
-      <div class="contact-card">
-        <div class="card-icon">
-          <i class="fa-solid fa-flag"></i>
-        </div>
-        <h3>CTFtime</h3>
-        <p>Follow my CTF journey</p>
-        <a href="https://ctftime.org/team/409004" target="_blank" rel="noopener noreferrer" class="card-link">
-          View Team
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-
-    <div class="some-text">
-      <h3>
-        <i class="fa-solid fa-compass"></i>
-        Explore More
-      </h3>
-      <p>
-        Learn more about me on the <a href="/intro">intro</a> page, or browse my 
-        <a href="/skills">skills</a>, <a href="/experience">experience</a>, and
-        <a href="/achievements">achievements</a> to see if I align with what you're looking for.
-      </p>
-      <p>
-        A shortened version of my CV in PDF format can be downloaded <a href="/download">here</a>.
-        To see if I'd be a good fit for your team, view my <a href="/ideal-role">ideal role</a>.
-      </p>
-      <p>
-        If you have any questions or would like references, feel free to reach out! 😊
-      </p>
-    </div>
-
-    <div class="thank-you">
-      <i class="fa-solid fa-heart"></i>
-      <p>Thank you for stopping by, and I really hope to hear from you!</p>
-    </div>
-  </div>
+	<div class="thanks" use:reveal>
+		<HeartIcon />
+		<p>Thank you for stopping by. I hope to hear from you.</p>
+	</div>
 </div>
 
 <style lang="scss">
-  .contact-page {
-    animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+	.contact {
+		position: relative;
+	}
 
-  .terminal-header {
-    background: var(--surface);
-    padding: var(--space-md) var(--space-lg);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    border: 1px solid var(--border-color);
-    border-bottom: none;
-    margin-bottom: 0;
-    
-    .terminal-controls {
-      display: flex;
-      gap: var(--space-sm);
-      
-      .terminal-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: var(--radius-full);
-        
-        &.red { background: #ff5f56; }
-        &.yellow { background: #ffbd2e; }
-        &.green { background: #27ca3f; }
-      }
-    }
-    
-    .terminal-title {
-      color: var(--text-color-dim);
-      font-family: var(--font-mono);
-      font-size: var(--font-size-sm);
-      margin-left: auto;
-    }
-  }
+	/* ============ Email panel ============ */
+	.email-panel {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: var(--space-md);
+		padding: var(--space-lg) var(--space-xl);
+		margin-bottom: var(--space-xl);
+		border: 1px solid var(--border-color-accent);
+		border-radius: var(--radius-lg);
+		background: var(--accent-transparent);
+	}
 
-  .contact-content {
-    background: var(--surface);
-    border: 1px solid var(--border-color);
-    border-top: none;
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-    padding: var(--space-2xl);
-    
-    @media (max-width: 768px) {
-      padding: var(--space-xl);
-    }
-    
-    h1 {
-      color: var(--primary);
-      margin-bottom: var(--space-xl);
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      
-      i {
-        font-size: var(--font-size-3xl);
-      }
-    }
-  }
+	.panel-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: var(--radius-md);
+		background: var(--accent);
+		color: var(--background);
+		flex-shrink: 0;
 
-  .intro-text {
-    margin-bottom: var(--space-2xl);
-    
-    p {
-      color: var(--text-color-secondary);
-      line-height: var(--line-height-relaxed);
-      margin-bottom: var(--space-lg);
-      font-size: var(--font-size-base);
-    }
-    
-    .email-link {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      color: var(--primary);
-      font-weight: 600;
-      padding: var(--space-sm) var(--space-lg);
-      background: var(--primary-transparent);
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--primary);
-      transition: all var(--transition-base);
-      
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
-      }
-    }
-  }
+		:global(svg) {
+			width: 1.1rem;
+			height: 1.1rem;
+		}
+	}
 
-  .contact-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--space-xl);
-    margin: var(--space-2xl) 0;
-  }
+	.email-link {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-lg);
+		font-weight: 600;
+		color: var(--accent);
+		text-decoration: none;
 
-  .contact-card {
-    background: var(--background-elevated);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-xl);
-    padding: var(--space-2xl);
-    text-align: center;
-    transition: all var(--transition-medium);
-    
-    &:hover {
-      border-color: var(--primary);
-      box-shadow: var(--shadow-lg), var(--shadow-colored);
-      transform: translateY(-4px);
-      
-      .card-icon {
-        transform: scale(1.1);
-      }
-    }
-    
-    .card-icon {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto var(--space-lg);
-      background: var(--gradient-primary);
-      color: var(--background);
-      border-radius: var(--radius-xl);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: var(--font-size-3xl);
-      box-shadow: var(--shadow-colored);
-      transition: all var(--transition-medium);
-    }
-    
-    h3 {
-      color: var(--primary);
-      margin: 0 0 var(--space-sm) 0;
-      font-size: var(--font-size-xl);
-    }
-    
-    p {
-      color: var(--text-color-dim);
-      margin: 0 0 var(--space-lg) 0;
-      font-size: var(--font-size-sm);
-    }
-    
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-sm);
-      color: var(--primary);
-      font-weight: 600;
-      font-size: var(--font-size-sm);
-      transition: all var(--transition-base);
-      
-      &:hover {
-        gap: var(--space-md);
-      }
-    }
-  }
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 
-  .some-text {
-    background: var(--primary-transparent);
-    border: 2px solid var(--primary);
-    padding: var(--space-2xl);
-    margin: var(--space-2xl) 0;
-    border-radius: var(--radius-xl);
-    
-    h3 {
-      color: var(--primary);
-      margin: 0 0 var(--space-lg) 0;
-      display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      font-size: var(--font-size-xl);
-    }
-    
-    p {
-      margin-bottom: var(--space-md);
-      line-height: var(--line-height-relaxed);
-      
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
+	.reveal-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.65rem 1.25rem;
+		border: 1px solid var(--accent);
+		border-radius: var(--radius-md);
+		background: transparent;
+		color: var(--accent);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		cursor: pointer;
+		transition: all var(--transition-fast);
 
-  .thank-you {
-    text-align: center;
-    margin-top: var(--space-2xl);
-    padding: var(--space-xl);
-    background: var(--gradient-surface);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-    
-    i {
-      color: var(--primary);
-      font-size: var(--font-size-2xl);
-      margin-bottom: var(--space-md);
-      animation: pulse 2s infinite;
-    }
-    
-    p {
-      color: var(--text-color-secondary);
-      font-size: var(--font-size-lg);
-      font-weight: 500;
-      margin: 0;
-    }
-  }
+		:global(svg) {
+			width: 0.9rem;
+			height: 0.9rem;
+		}
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+		&:hover {
+			background: var(--accent);
+			color: var(--background);
+		}
+	}
 
-  @keyframes pulse {
-    0%, 100% { 
-      transform: scale(1); 
-    }
-    50% { 
-      transform: scale(1.1); 
-    }
-  }
+	.panel-hint,
+	.copied {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--text-color-muted);
+	}
+
+	.copied {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		color: var(--accent);
+		opacity: 0;
+		transition: opacity var(--transition-fast);
+
+		&.show {
+			opacity: 1;
+		}
+
+		:global(svg) {
+			width: 0.75rem;
+			height: 0.75rem;
+		}
+	}
+
+	/* ============ Channels ============ */
+	.channels {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
+
+	:global(.channel-card) {
+		text-align: center;
+	}
+
+	.channel-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 3rem;
+		height: 3rem;
+		border-radius: var(--radius-lg);
+		background: var(--accent-transparent);
+		color: var(--accent);
+		margin-bottom: var(--space-sm);
+
+		:global(svg) {
+			width: 1.35rem;
+			height: 1.35rem;
+		}
+	}
+
+	h3 {
+		font-size: var(--font-size-lg);
+		letter-spacing: var(--tracking-tight);
+	}
+
+	.channels p {
+		font-size: var(--font-size-sm);
+		color: var(--text-color-dim);
+		margin-top: 0.25rem;
+	}
+
+	.channel-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		margin-top: var(--space-sm);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--accent);
+
+		:global(.arrow) {
+			width: 0.65rem;
+			height: 0.65rem;
+			transition: transform var(--transition-fast);
+		}
+	}
+
+	:global(.channel-card:hover .arrow) {
+		transform: translateX(3px);
+	}
+
+	/* ============ Elsewhere ============ */
+	.elsewhere {
+		margin-bottom: var(--space-lg);
+
+		p {
+			font-size: var(--font-size-sm);
+			color: var(--text-color-dim);
+		}
+	}
+
+	/* ============ Guide ============ */
+	.guide {
+		padding: var(--space-lg) var(--space-xl);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-lg);
+		background: var(--surface);
+		margin-bottom: var(--space-xl);
+
+		h3 {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: var(--font-size-lg);
+			letter-spacing: var(--tracking-tight);
+			margin-bottom: var(--space-sm);
+
+			:global(svg) {
+				width: 1rem;
+				height: 1rem;
+				color: var(--accent);
+			}
+		}
+
+		p {
+			font-size: var(--font-size-sm);
+			color: var(--text-color-secondary);
+			line-height: var(--line-height-relaxed);
+			margin-bottom: var(--space-sm);
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	/* ============ Thanks ============ */
+	.thanks {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-sm);
+		padding: var(--space-xl);
+		border: 1px dashed var(--border-color-light);
+		border-radius: var(--radius-lg);
+		text-align: center;
+
+		:global(svg) {
+			width: 1.5rem;
+			height: 1.5rem;
+			color: var(--accent);
+		}
+
+		p {
+			font-size: var(--font-size-base);
+			font-weight: 500;
+			color: var(--text-color-secondary);
+		}
+	}
 </style>
-
