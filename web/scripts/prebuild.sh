@@ -43,9 +43,19 @@ echo "📝 Generating LaTeX from resume.yml..."
 "$VENV_PYTHON" lib/generate.py --resume resume.yml --template template.jinja --output tex/resume.tex
 
 # Compile to PDF directly into web static directory
-echo "🎨 Compiling PDF..."
 mkdir -p web/static/downloads
-"$VENV_PYTHON" lib/compile.py --input tex/resume.tex --output web/static/downloads/Daniel-Wambua-CV.pdf
+if command -v xelatex >/dev/null 2>&1; then
+    echo "🎨 Compiling PDF..."
+    "$VENV_PYTHON" lib/compile.py --input tex/resume.tex --output web/static/downloads/Daniel-Wambua-CV.pdf
+else
+    # Builders without a LaTeX toolchain (e.g. Vercel) deploy the committed
+    # PDF, which the CI workflow rebuilds on every change to the resume data.
+    echo "⚠️ xelatex not available on this builder - using the committed PDF from web/static/downloads/"
+    if [ ! -f web/static/downloads/Daniel-Wambua-CV.pdf ]; then
+        echo "❌ No committed PDF found and xelatex is unavailable - cannot produce a PDF"
+        exit 1
+    fi
+fi
 
 echo "✅ Pre-build PDF generation complete!"
 echo "📄 PDF available at: web/static/downloads/Daniel-Wambua-CV.pdf"

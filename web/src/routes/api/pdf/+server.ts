@@ -4,6 +4,18 @@ import { join } from 'path';
 import chromium from '@sparticuz/chromium';
 import puppeteer from 'puppeteer-core';
 
+// Headless Chromium needs more than the default memory/time budget to
+// extract its binary, launch and render the /print page on serverless.
+export const config = {
+  memory: 3008,
+  maxDuration: 60
+};
+
+const PDF_HEADERS = {
+  'Content-Type': 'application/pdf',
+  'Content-Disposition': 'inline; filename="Daniel-Wambua-CV.pdf"'
+};
+
 // Fast readiness probe for the download page (avoid spinning up Chromium on HEAD requests)
 export const HEAD: RequestHandler = async () => {
   return new Response(null, {
@@ -12,10 +24,19 @@ export const HEAD: RequestHandler = async () => {
   });
 };
 
+// Turn an unknown thrown value into a short, log-safe description so
+// serverless failures are diagnosable from the response body alone.
+const describeError = (e: unknown): string => {
+  if (e instanceof Error) {
+    const stack = (e.stack || '').split('\n').slice(0, 4).join('\n');
+    return `${e.name}: ${e.message}\n${stack}`;
+  }
+  return String(e);
+};
+
 // Dynamic, on-demand PDF generation using headless Chromium on Vercel
 export const GET: RequestHandler = async ({ url }) => {
-  // Behavior aligned with lissy93/cv pipeline:
-  // 1) Serve the prebuilt, versioned static PDF by default (exactly matches the LaTeX output under /out)
+  // 1) Serve the prebuilt, versioned static PDF by default (matches the LaTeX output)
   // 2) Allow an explicit fresh render via headless Chromium when `?fresh=1` is provided
   const wantFresh = url.searchParams.get('fresh') === '1';
 
@@ -27,14 +48,13 @@ export const GET: RequestHandler = async ({ url }) => {
       const file = readFileSync(staticPath);
       return new Response(file, {
         headers: {
-          'Content-Type': 'application/pdf',
-          'Content-Disposition': 'inline; filename="Daniel-Wambua-CV.pdf"',
+          ...PDF_HEADERS,
           // Cache moderately; consumers can add cache-busting if needed
           'Cache-Control': 'public, max-age=86400'
         }
       });
-    } catch (e) {
-      // If we can't read from FS (e.g., serverless env), just redirect to the public static URL
+    } catch {
+      // If we can't read from FS (e.g. serverless env), just redirect to the public static URL
       const redirectUrl = `${url.protocol}//${url.host}/downloads/Daniel-Wambua-CV.pdf`;
       return Response.redirect(redirectUrl, 302);
     }
@@ -57,7 +77,12 @@ export const GET: RequestHandler = async ({ url }) => {
     const origin = `${url.protocol}//${url.host}`;
     const printUrl = `${origin}/print`;
 
-    await page.goto(printUrl, { waitUntil: 'networkidle0', timeout: 90_000 });
+    // Don't block forever on networkidle0: long-polling/font CDNs can keep
+    // connections open. Load the DOM, then wait briefly for the network to settle.
+    await page.goto(printUrl, { waitUntil: 'domcontentloaded', timeout: 60_000 });
+    await page.waitForNetworkIdle({ idleTime: 1000, timeout: 20_000 }).catch(() => {});
+    // Give client-rendered content a beat to paint before printing
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     const pdf = await page.pdf({
       format: 'A4',
@@ -72,15 +97,18 @@ export const GET: RequestHandler = async ({ url }) => {
 
     return new Response(pdfBody, {
       headers: {
-        'Content-Type': 'application/pdf',
-        'Content-Disposition': 'inline; filename="Daniel-Wambua-CV.pdf"',
+        ...PDF_HEADERS,
         // Cache for 1 hour to balance freshness and performance
         'Cache-Control': 'public, max-age=3600'
       }
     });
   } catch (e) {
     console.error('PDF generation error:', e);
-    return new Response('Failed to generate PDF', { status: 500 });
+    // Include the cause so the failure can be diagnosed without access to logs
+    return new Response(`Failed to generate PDF\n\n${describeError(e)}`, {
+      status: 500,
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+    });
   } finally {
     try {
       await browser?.close();
