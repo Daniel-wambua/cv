@@ -76,6 +76,7 @@
 \RequirePackage{xifthen}
 % Needed to use a toolbox of programming tools
 \RequirePackage{etoolbox}
+\RequirePackage{needspace}
 % Needed to change line spacing in specific environment
 \RequirePackage{setspace}
 % Needed to manage fonts
@@ -93,6 +94,12 @@
 % Needed to use icons from font-awesome
 % (https://github.com/posquit0/latex-fontawesome)
 \RequirePackage{fontawesome}
+% The body font (Roboto) has no emoji glyphs, so map the trophy/medal
+% emoji used in resume.yml to FontAwesome icons instead of dropping them.
+\RequirePackage{newunicodechar}
+\newunicodechar{🏅}{{\color{awesome}\faTrophy}}
+\newunicodechar{🥉}{{\color{awesome}\faTrophy}}
+\newunicodechar{🏆}{{\color{awesome}\faTrophy}}
 % Needed to deal a paragraphs
 \RequirePackage{parskip}
 % Needed to deal hyperlink
@@ -120,13 +127,8 @@
 %-------------------------------------------------------------------------------
 
 %% Page Layout
-% Balanced margins for clean, readable layout
-\geometry{paperheight=41cm, left=1.5cm, top=0.6cm, right=1.5cm, bottom=0.7cm, footskip=0.5cm}
-
-% Ensure consistent page layout across all pages
-\AtBeginDocument{%
-  \newgeometry{paperheight=41cm, left=1.5cm, top=0.6cm, right=1.5cm, bottom=0.7cm, footskip=0.5cm}
-}
+% Standard A4 paper with tight margins for a clean, printable layout
+\geometry{a4paper, left=1.5cm, top=0.5cm, right=1.5cm, bottom=0.5cm, footskip=.5cm}
 
 % Prevent overfull boxes and improve line breaking
 \sloppy
@@ -612,6 +614,9 @@
 % Define a section for CV
 % Usage: \cvsection{<section-title>}
 \newcommand{\cvsection}[1]{
+  % Keep the heading on the same page as at least a few lines of its
+  % content, so a section title is never orphaned at a page break.
+  \needspace{5\baselineskip}
   \par\addvspace{1.2ex}
   \phantomsection{}
   \sectionstyle{#1}
