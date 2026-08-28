@@ -26,6 +26,12 @@ const stats = [
 
 const awards = [
   {
+    award: 'Top 10 Finalist (6th Place) - CyberGame Kenya 2026',
+    issuer: 'CyberGame Kenya',
+    source: '',
+    date: '2026'
+  },
+  {
     award: '3rd Place - Connected Africa Summit 2026 CTF',
     issuer: 'Connected Africa Summit (Team JOINT, Karatina University)',
     source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing',

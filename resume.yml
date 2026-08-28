@@ -137,6 +137,8 @@ skills:
 # Fields: text (description with emoji), source (URL for verification)
 # Use markdown formatting for bold text: **text**
 achievements:
+  - text: "🏅 **Top 10 Finalist (6th Place)** - CyberGame Kenya 2026"
+    source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing'  # TODO: replace with 2026 results/certificate link
   - text: "🥉 **3rd Place - Connected Africa Summit 2026 CTF** (Team JOINT, Karatina University)"
     source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing'
   - text: "🏆 **Top 10 Finalist** - CyberGame Kenya 2025"
@@ -149,6 +151,8 @@ achievements:
 # Formal awards and recognitions with detailed descriptions
 # Fields: title, summary, source (optional URL)
 awards:
+  - title: "CyberGame Kenya - Top 10 Finalist, 6th Place (2026)"
+    summary: "Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya's best practical security talent."
   - title: "Connected Africa Summit 2026 CTF - 3rd Position (May 2026)"
     summary: "Achieved 3rd place in the Connected Africa Summit 2026 Capture The Flag competition as part of Team JOINT from Karatina University. Demonstrated advanced skills in vulnerability assessment, exploitation techniques, and collaborative problem-solving under competitive conditions."
   - title: "CyberGame Kenya - Top 10 Finalist (2025)"

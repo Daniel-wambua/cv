@@ -103,13 +103,16 @@ skills:
   - MongoDB
 
 achievements:
+  - text: Top 10 Finalist (6th Place) - CyberGame Kenya 2026
   - text: Top 10 hackers in CyberGame kenya event-2025
     source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
 
 awards:
-- title: CyberGame Kenya - Top 10 Ethical Hacker (2025)
-  summary: Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition
-  source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+  - title: CyberGame Kenya - Top 10 Finalist, 6th Place (2026)
+    summary: Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya's best practical security talent
+  - title: CyberGame Kenya - Top 10 Ethical Hacker (2025)
+    summary: Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition
+    source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
 
 projects:
 - name: 'TypingMaster Pro'
