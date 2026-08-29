@@ -164,6 +164,13 @@ awards:
 # Showcase your best technical projects
 # Fields: name, description, url, github, language, stars (optional), tags (optional)
 projects:
+  - name: 'BlackBook MCP'
+    description: 'Read-only, source-grounded cybersecurity knowledge MCP server: hybrid FTS5 and semantic retrieval, a knowledge graph, and exact citations from HackTricks, 0xdf, and PDF corpora'
+    github: 'Daniel-wambua/BlackBook'
+    url: 'https://github.com/Daniel-wambua/BlackBook'
+    language: 'Python'
+    stars: '1'
+
   - name: 'CTF Writeups & Security Blog'
     description: 'Personal blog documenting CTF solutions, tooling notes, and security concepts'
     github: 'Daniel-wambua/blog'
