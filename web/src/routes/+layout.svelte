@@ -225,7 +225,8 @@
 	.app {
 		display: flex;
 		height: 100vh;
-		background: var(--background);
+		/* No background here: the fixed .app-backdrop layer (glows + grid) must
+		   show through the glass panels, and body already paints the ink base. */
 		color: var(--text-color);
 		overflow: hidden;
 
@@ -675,9 +676,17 @@
 		flex: 1;
 		overflow-y: auto;
 		scroll-behavior: smooth;
+		margin: var(--space-md) var(--space-lg) var(--space-lg);
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-xl);
+		background: var(--glass-soft);
+		backdrop-filter: blur(24px) saturate(150%);
+		-webkit-backdrop-filter: blur(24px) saturate(150%);
+		box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-highlight);
 
 		@media (max-width: 900px) {
 			overflow: visible;
+			margin: var(--space-sm) var(--space-md) var(--space-md);
 		}
 	}
 
