@@ -11,6 +11,9 @@
 	import BullseyeIcon from '~icons/fa6-solid/bullseye';
 	import XMarkIcon from '~icons/fa6-solid/xmark';
 	import ExpandIcon from '~icons/fa6-solid/expand';
+	import MagnifyPlusIcon from '~icons/fa6-solid/magnifying-glass-plus';
+	import MagnifyMinusIcon from '~icons/fa6-solid/magnifying-glass-minus';
+	import CompressIcon from '~icons/fa6-solid/compress';
 	import ArrowRightIcon from '~icons/fa6-solid/arrow-right';
 	import ShieldIcon from '~icons/fa6-solid/shield-halved';
 	import CertificateIcon from '~icons/fa6-solid/certificate';
@@ -218,16 +221,37 @@
 			? certificates
 			: certificates.filter((cert) => cert.skills.includes(selectedSkill));
 
-	// Modal state
+	// Lightbox state
 	let selectedCertificate: Certificate | null = null;
 	let selectedBadge: Badge | null = null;
 
+	// Zoom state for the certificate lightbox
+	let zoom = 1;
+	const MIN_ZOOM = 1;
+	const MAX_ZOOM = 4;
+	const ZOOM_STEP = 0.25;
+
+	const clampZoom = (value: number) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, +value.toFixed(2)));
+	const zoomIn = () => (zoom = clampZoom(zoom + ZOOM_STEP));
+	const zoomOut = () => (zoom = clampZoom(zoom - ZOOM_STEP));
+	const resetZoom = () => (zoom = 1);
+
+	// Portals a fixed overlay out to <body>. main has backdrop-filter, which
+	// creates a containing block and would otherwise clip position: fixed
+	// children to the glass panel instead of the viewport.
+	const portal = (node: HTMLElement) => {
+		document.body.appendChild(node);
+		return { destroy: () => node.remove() };
+	};
+
 	const openModal = (cert: Certificate) => {
 		selectedCertificate = cert;
+		resetZoom();
 	};
 
 	const closeModal = () => {
 		selectedCertificate = null;
+		resetZoom();
 	};
 
 	const openBadgeModal = (badge: Badge) => {
@@ -238,12 +262,21 @@
 		selectedBadge = null;
 	};
 
-	// Handle ESC key to close modal
+	// Handle ESC key to close, plus lightbox zoom shortcuts
 	const handleKeydown = (e: KeyboardEvent) => {
 		if (e.key === 'Escape') {
 			closeModal();
 			closeBadgeModal();
 		}
+		if (!selectedCertificate) return;
+		if (e.key === '+' || e.key === '=') zoomIn();
+		if (e.key === '-' || e.key === '_') zoomOut();
+		if (e.key === '0') resetZoom();
+	};
+
+	const handleWheel = (e: WheelEvent) => {
+		if (e.deltaY < 0) zoomIn();
+		else zoomOut();
 	};
 
 	const createCertificateCardKeydownHandler = (certificate: Certificate) => {
@@ -287,7 +320,7 @@
 	<PageHero
 		eyebrow="05 / Certificates"
 		title="Credentials, on record"
-		summary="Certifications, training achievements, and competition credentials in cybersecurity and information technology. Click any card for the full certificate."
+		summary="Certifications, training achievements, and competition credentials in cybersecurity and information technology. Click any card to open the certificate image in a lightbox with zoom controls."
 	/>
 
 	<div class="stats">
@@ -355,7 +388,7 @@
 					<div class="footer">
 						<span class="credential">ID {certificate.credentialId}</span>
 						<span class="view-cta">
-							View details
+							View certificate
 							<ArrowRightIcon />
 						</span>
 					</div>
@@ -414,55 +447,63 @@
 	</div>
 </div>
 
-<!-- Modal for certificate details -->
+<!-- Certificate lightbox: image only, with magnify controls -->
 {#if selectedCertificate}
-	<div class="modal-overlay" on:click|self={closeModal} aria-hidden="true">
-		<div
-			class="modal"
-			role="dialog"
-			aria-modal="true"
-			aria-label={selectedCertificate.name}
-			on:click|stopPropagation
-		>
-			<button class="modal-close" on:click={closeModal} aria-label="Close modal">
+	<div class="lightbox-overlay" use:portal role="dialog" aria-modal="true" aria-label={selectedCertificate.name}>
+		<div class="lightbox-topbar">
+			<p class="lightbox-title">{selectedCertificate.name}</p>
+			<button class="lightbox-btn" on:click={closeModal} aria-label="Close lightbox">
 				<XMarkIcon />
 			</button>
+		</div>
 
-			<div class="modal-image">
-				<img src={selectedCertificate.image} alt={selectedCertificate.name} />
-			</div>
+		<div class="lightbox-stage" on:click|self={closeModal} on:wheel|preventDefault={handleWheel}>
+			<img
+				class="lightbox-image"
+				src={selectedCertificate.image}
+				alt={selectedCertificate.name}
+				style={`transform: scale(${zoom})`}
+				draggable="false"
+			/>
+		</div>
 
-			<div class="modal-body">
-				<h2>{selectedCertificate.name}</h2>
-				<p class="modal-issuer">{selectedCertificate.issuer}</p>
-				<p class="modal-description">{selectedCertificate.description}</p>
-
-				<div class="modal-rows">
-					<div class="row">
-						<span class="label">Date issued</span>
-						<span>{selectedCertificate.date}</span>
-					</div>
-					<div class="row">
-						<span class="label">Credential ID</span>
-						<span class="mono">{selectedCertificate.credentialId}</span>
-					</div>
-					<div class="row">
-						<span class="label">Skills demonstrated</span>
-						<div class="skills">
-							{#each selectedCertificate.skills as skill}
-								<Tag>{skill}</Tag>
-							{/each}
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="lightbox-toolbar" role="toolbar" aria-label="Zoom controls">
+			<button
+				class="lightbox-btn"
+				on:click={zoomOut}
+				disabled={zoom <= MIN_ZOOM}
+				aria-label="Zoom out"
+				title="Zoom out"
+			>
+				<MagnifyMinusIcon />
+			</button>
+			<span class="lightbox-zoom-label">{Math.round(zoom * 100)}%</span>
+			<button
+				class="lightbox-btn"
+				on:click={zoomIn}
+				disabled={zoom >= MAX_ZOOM}
+				aria-label="Zoom in"
+				title="Zoom in"
+			>
+				<MagnifyPlusIcon />
+			</button>
+			<span class="lightbox-divider" aria-hidden="true"></span>
+			<button
+				class="lightbox-btn"
+				on:click={resetZoom}
+				disabled={zoom === MIN_ZOOM}
+				aria-label="Reset zoom"
+				title="Reset zoom"
+			>
+				<CompressIcon />
+			</button>
 		</div>
 	</div>
 {/if}
 
 <!-- Badge modal -->
 {#if selectedBadge}
-	<div class="modal-overlay" on:click|self={closeBadgeModal} aria-hidden="true">
+	<div class="modal-overlay" use:portal on:click|self={closeBadgeModal} aria-hidden="true">
 		<div
 			class="badge-modal"
 			role="dialog"
@@ -875,22 +916,6 @@
 		}
 	}
 
-	.modal {
-		position: relative;
-		display: flex;
-		flex-direction: column;
-		max-width: 56rem;
-		max-height: 90vh;
-		background: var(--glass-strong);
-		backdrop-filter: blur(24px) saturate(150%);
-		-webkit-backdrop-filter: blur(24px) saturate(150%);
-		border: 1px solid var(--glass-border);
-		border-radius: var(--radius-lg);
-		overflow-y: auto;
-		box-shadow: var(--shadow-2xl), inset 0 1px 0 var(--glass-highlight);
-		animation: modal-in 250ms cubic-bezier(0.22, 1, 0.36, 1);
-	}
-
 	@keyframes modal-in {
 		from {
 			opacity: 0;
@@ -928,74 +953,109 @@
 		}
 	}
 
-	.modal-image {
-		background: var(--background);
-		border-bottom: 1px solid var(--border-color);
-
-		img {
-			width: 100%;
-			max-height: 50vh;
-			object-fit: contain;
-			margin: 0 auto;
-		}
-	}
-
-	.modal-body {
-		padding: var(--space-lg);
+	/* ============ Certificate lightbox ============ */
+	.lightbox-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 300;
 		display: flex;
 		flex-direction: column;
-		gap: 0.5rem;
+		background: rgba(3, 5, 4, 0.92);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		animation: overlay-in 200ms ease-out;
+	}
 
-		h2 {
-			font-size: var(--font-size-xl);
-			letter-spacing: var(--tracking-tight);
-			padding-right: 2.5rem;
+	.lightbox-topbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-lg);
+		padding: var(--space-md) var(--space-lg);
+	}
+
+	.lightbox-title {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		color: var(--text-color-secondary);
+		letter-spacing: 0.02em;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.lightbox-stage {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: auto;
+		padding: 0 var(--space-lg) var(--space-sm);
+	}
+
+	.lightbox-image {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		border-radius: var(--radius-sm);
+		box-shadow: var(--shadow-2xl);
+		transform-origin: center center;
+		transition: transform var(--transition-medium);
+		user-select: none;
+		-webkit-user-drag: none;
+	}
+
+	.lightbox-toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-sm);
+		padding: var(--space-md);
+	}
+
+	.lightbox-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border: 1px solid var(--border-color-light);
+		border-radius: var(--radius-md);
+		background: var(--glass-strong);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		color: var(--text-color-secondary);
+		transition: all var(--transition-fast);
+
+		:global(svg) {
+			width: 1rem;
+			height: 1rem;
+		}
+
+		&:hover:not(:disabled) {
+			color: var(--accent);
+			border-color: var(--border-color-accent);
+			background: var(--accent-transparent);
+		}
+
+		&:disabled {
+			opacity: 0.35;
+			cursor: not-allowed;
 		}
 	}
 
-	.modal-issuer {
-		font-size: var(--font-size-sm);
-		font-weight: 500;
-		color: var(--accent);
-	}
-
-	.modal-description {
-		font-size: var(--font-size-sm);
+	.lightbox-zoom-label {
+		min-width: 3.5rem;
+		text-align: center;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
 		color: var(--text-color-dim);
-		line-height: var(--line-height-normal);
 	}
 
-	.modal-rows {
-		margin-top: var(--space-sm);
-		display: flex;
-		flex-direction: column;
-		gap: 0.625rem;
-	}
-
-	.row {
-		display: flex;
-		flex-direction: column;
-		gap: 0.25rem;
-		padding-bottom: 0.625rem;
-		border-bottom: 1px solid var(--border-color);
-
-		&:last-child {
-			border-bottom: none;
-			padding-bottom: 0;
-		}
-
-		.label {
-			font-family: var(--font-mono);
-			font-size: var(--font-size-xs);
-			letter-spacing: var(--tracking-label);
-			text-transform: uppercase;
-			color: var(--text-color-muted);
-		}
-
-		.mono {
-			font-family: var(--font-mono);
-			font-size: var(--font-size-sm);
-		}
+	.lightbox-divider {
+		width: 1px;
+		height: 1.5rem;
+		background: var(--border-color);
 	}
 
 	.badge-modal {
@@ -1053,6 +1113,10 @@
 			animation: none;
 			flex-wrap: wrap;
 			width: 100%;
+		}
+
+		.lightbox-image {
+			transition: none;
 		}
 	}
 </style>
