@@ -134,7 +134,7 @@ The source for the website version is located in [`web/`](/web)
 <p align="center"><a href="https://cv.havocsec.me"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/110f8421bec07de005cb1ea3141b3b21becac5d9/.github/screenshots/daniel-wambua-macbook-mockup.png" /></a></p>
 
 <h3 align="center">PDF 📄</h3>
-<p align="center"><a href="https://cv.havocsec.me"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/main/web/static/assets/image.png?raw=true" /></a></p>
+<p align="center"><a href="https://cv.havocsec.me/download"><img width="650" src="https://github.com/Daniel-wambua/cv/blob/01afad088f81b3048243eb285de9a1dacdc4eee0/.github/screenshots/cv-pdf-mockup.png" /></a></p>
 
 ---
 
