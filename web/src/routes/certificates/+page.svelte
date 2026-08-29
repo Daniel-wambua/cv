@@ -1,1649 +1,1122 @@
 <script lang="ts">
-  import { certificateImages } from '$lib/config/certificates';
-  import { certificationBadges, type Badge } from '$lib/config/badges';
-  
-  // Certificate data - each certificate entry
-  interface Certificate {
-    id: number;
-    name: string;
-    issuer: string;
-    date: string;
-    image: string;
-    description: string;
-    skills: string[];
-    credentialId: string;
-    verified: boolean;
-    isPdf?: boolean;
-  }
-  
-  const certificates: Certificate[] = [
-    {
-      id: 114,
-      name: 'CyberGame Kenya 2026 - Top 10 Finalist (6th Place)',
-      issuer: 'CyberGame Kenya',
-      date: '2026',
-      image: certificateImages.cybergame2026,
-      description: 'Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya\'s best practical security talent.',
-      skills: ['CTF', 'Penetration Testing', 'Security Analysis'],
-      credentialId: 'CYBERGAME-2026-6TH',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 115,
-      name: 'Thryve CTF - Participant',
-      issuer: 'Thryve',
-      date: 'August 2026',
-      image: certificateImages.thryvectf,
-      description: 'Participated in the Thryve Capture The Flag competition held on 14 August 2026, solving challenges across web, network, and misc categories.',
-      skills: ['CTF', 'Problem Solving', 'Security Research'],
-      credentialId: 'THRYVE-CTF-2026',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 113,
-      name: 'Connected Africa Summit 2026 CTF - 3rd Position',
-      issuer: 'Connected Africa Summit',
-      date: 'May 2026',
-      image: certificateImages.connectedafricactf,
-      description: 'Achieved 3rd place in the Connected Africa Summit 2026 Capture The Flag competition as a member of Team JOINT from Karatina University. Demonstrated advanced skills in vulnerability identification, exploitation, and collaborative problem-solving.',
-      skills: ['CTF', 'Exploitation', 'Team Collaboration', 'Vulnerability Assessment'],
-      credentialId: 'CAS-CTF-2026-3RD',
-      verified: true,
-      isPdf: false
-    },
-    {
-    
-      id: 112,
-      name: 'China OSINT Certificate',
-      issuer: 'China OSINT',
-      date: '2026',
-      image: certificateImages.chinaosint,
-      description: 'Recognition for demonstrated open source intelligence techniques and investigative analysis on china related Osint.',
-      skills: ['OSINT', 'Investigation', 'Intelligence Gathering'],
-      credentialId: 'CHINA-OSINT-2026',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 101,
-      name: 'NexHunt CTF — Top Performer',
-      issuer: 'NexHunt CTF',
-      date: 'December 2025',
-      image: certificateImages.nexhuntctf,
-      description: 'Top performer in the NexHunt Capture The Flag competition demonstrating advanced exploitation and problem solving.',
-      skills: ['CTF', 'Web Exploitation', 'Forensics'],
-      credentialId: 'NH-2025-01',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 102,
-      name: 'p3rf3ctr00t CTF Certificate',
-      issuer: 'PERFECTROOT CTF Team',
-      date: 'December 2025',
-      image: certificateImages.perfectroot,
-      description: 'Recognition for contributions as a member of the 51l3nt_br34ch CTF team during competitive events and research.',
-      skills: ['CTF', 'Team Collaboration', 'Exploit Development'],
-      credentialId: '51B-2025-HAVOC',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 1,
-      name: 'API Security Course Certificate',
-      issuer: 'API Security Academy',
-      date: 'September 2024',
-      image: certificateImages.apisec,
-      description: 'Comprehensive training in API security best practices, vulnerabilities, and protection mechanisms',
-      skills: ['API Security', 'REST APIs', 'OAuth', 'JWT'],
-      credentialId: 'APISEC-2024',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 2,
-      name: 'Cybersecurity Essentials',
-      issuer: 'CSEM',
-      date: 'September 2025',
-      image: certificateImages.csem,
-      description: 'Foundation course covering essential cybersecurity principles, threat analysis, and defense strategies',
-      skills: ['CTF','Network Security', 'Threat Analysis', 'Risk Management'],
-      credentialId: 'CSEM-BA-159',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 3,
-      name: 'OSINT Platform Certificate',
-      issuer: 'Myosint.training',
-      date: 'October 2025',
-      image: certificateImages.osint,
-      description: 'OSINT certification demonstrating ethical hacking and proficiency in open source intelligence gathering and analysis',
-      skills: ['OSINT', 'Ethical Hacking', 'Intelligence Gathering', 'Information Analysis'],
-      credentialId: 'MOT-OSINT-2025',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 4,
-      name: 'CTF Competition Achievement',
-      issuer: 'CRHCCTF',
-      date: '2025',
-      image: certificateImages.crhcctf,
-      description: 'Recognition for competitive performance in Capture The Flag cybersecurity competitions',
-      skills: ['CTF', 'Problem Solving', 'Security Research'],
-      credentialId: 'RANK-375',
-      verified: true,
-      isPdf: false
-    },
-    {
-      id: 5,
-      name: 'Cybersecurity Training Achievement',
-      issuer: 'Indian Institute Of Information Technology(IIIT)',
-      date: 'October 2025',
-      image: certificateImages.iiit,
-      description: 'Completion of advanced cybersecurity training modules and practical exercises',
-      skills: ['CTF','Penetration Testing', 'Security Analysis', 'Incident Response'],
-      credentialId: 'CYBER-2025',
-      verified: true,
-      isPdf: false
-    },
-     {
-      id: 6,
-      name: 'Cybersecurity Training Achievement',
-      issuer: 'Ministry of Information Technology and Communications & Embassy of the Slovak Republic Kenya',
-      date: 'July 2025',
-      image: certificateImages.cybergame,
-      description: 'Completion of advanced cybersecurity training modules and practical exercises',
-      skills: ['CTF','Penetration Testing', 'Security Analysis', 'Incident Response'],
-      credentialId: 'CYBERGAME-2025',
-      verified: true,
-      isPdf: false
-    },
-       {
-      id: 7,
-      name: 'Cybersecurity Training Achievement',
-      issuer: 'H7TEX ctf team',
-      date: 'October 2025',
-      image: certificateImages.h7ctf,
-      description: 'Completion of h7ctf international cybersecurity competition',
-      skills: ['CTF','Penetration Testing', 'Security Analysis', 'Incident Response'],
-      credentialId: 'H7CTF-2025',
-      verified: true,
-      isPdf: false
-    }
- 
-  ];
+	import PageHero from '$components/PageHero.svelte';
+	import SectionHeading from '$components/SectionHeading.svelte';
+	import StatBlock from '$components/StatBlock.svelte';
+	import Tag from '$components/Tag.svelte';
+	import { reveal } from '$lib/actions/reveal';
+	import { certificateImages } from '$lib/config/certificates';
+	import { certificationBadges, type Badge } from '$lib/config/badges';
 
-  // Filter state
-  let selectedSkill: string = 'all';
-  
-  // Get unique skills for filtering
-  const allSkills: string[] = ['all', ...new Set(certificates.flatMap((cert) => cert.skills))];
-  
-  // Filtered certificates based on selected skill
-  let filteredCertificates: Certificate[] = certificates;
-  $: filteredCertificates = selectedSkill === 'all'
-    ? certificates
-    : certificates.filter((cert) => cert.skills.includes(selectedSkill));
+	import CircleCheckIcon from '~icons/fa6-solid/circle-check';
+	import BullseyeIcon from '~icons/fa6-solid/bullseye';
+	import XMarkIcon from '~icons/fa6-solid/xmark';
+	import ExpandIcon from '~icons/fa6-solid/expand';
+	import MagnifyPlusIcon from '~icons/fa6-solid/magnifying-glass-plus';
+	import MagnifyMinusIcon from '~icons/fa6-solid/magnifying-glass-minus';
+	import CompressIcon from '~icons/fa6-solid/compress';
+	import ArrowRightIcon from '~icons/fa6-solid/arrow-right';
+	import ShieldIcon from '~icons/fa6-solid/shield-halved';
+	import CertificateIcon from '~icons/fa6-solid/certificate';
+	import NetworkIcon from '~icons/fa6-solid/network-wired';
+	import CloudIcon from '~icons/fa6-solid/cloud';
+	import InboxIcon from '~icons/fa6-solid/inbox';
 
-  // Modal state
-  let selectedCertificate: Certificate | null = null;
-  let selectedBadge: Badge | null = null;
-  
-  const openModal = (cert: Certificate) => {
-    selectedCertificate = cert;
-  };
-  
-  const closeModal = () => {
-    selectedCertificate = null;
-  };
+	// Certificate data - each certificate entry
+	interface Certificate {
+		id: number;
+		name: string;
+		issuer: string;
+		date: string;
+		image: string;
+		description: string;
+		skills: string[];
+		credentialId: string;
+		verified: boolean;
+		isPdf?: boolean;
+	}
 
-  const openBadgeModal = (badge: Badge) => {
-    selectedBadge = badge;
-  };
+	const certificates: Certificate[] = [
+		{
+			id: 114,
+			name: 'CyberGame Kenya 2026, Top 10 Finalist (6th Place)',
+			issuer: 'CyberGame Kenya',
+			date: '2026',
+			image: certificateImages.cybergame2026,
+			description:
+				"Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya's best practical security talent.",
+			skills: ['CTF', 'Penetration Testing', 'Security Analysis'],
+			credentialId: 'CYBERGAME-2026-6TH',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 115,
+			name: 'Thryve CTF, Participant',
+			issuer: 'Thryve',
+			date: 'August 2026',
+			image: certificateImages.thryvectf,
+			description:
+				'Participated in the Thryve Capture The Flag competition held on 14 August 2026, solving challenges across web, network, and misc categories.',
+			skills: ['CTF', 'Problem Solving', 'Security Research'],
+			credentialId: 'THRYVE-CTF-2026',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 113,
+			name: 'Connected Africa Summit 2026 CTF, 3rd Position',
+			issuer: 'Connected Africa Summit',
+			date: 'May 2026',
+			image: certificateImages.connectedafricactf,
+			description:
+				'Achieved 3rd place in the Connected Africa Summit 2026 Capture The Flag competition as a member of Team JOINT from Karatina University. Demonstrated advanced skills in vulnerability identification, exploitation, and collaborative problem-solving.',
+			skills: ['CTF', 'Exploitation', 'Team Collaboration', 'Vulnerability Assessment'],
+			credentialId: 'CAS-CTF-2026-3RD',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 112,
+			name: 'China OSINT Certificate',
+			issuer: 'China OSINT',
+			date: '2026',
+			image: certificateImages.chinaosint,
+			description:
+				'Recognition for demonstrated open source intelligence techniques and investigative analysis on China related OSINT.',
+			skills: ['OSINT', 'Investigation', 'Intelligence Gathering'],
+			credentialId: 'CHINA-OSINT-2026',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 101,
+			name: 'NexHunt CTF, Top Performer',
+			issuer: 'NexHunt CTF',
+			date: 'December 2025',
+			image: certificateImages.nexhuntctf,
+			description:
+				'Top performer in the NexHunt Capture The Flag competition demonstrating advanced exploitation and problem solving.',
+			skills: ['CTF', 'Web Exploitation', 'Forensics'],
+			credentialId: 'NH-2025-01',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 102,
+			name: 'p3rf3ctr00t CTF Certificate',
+			issuer: 'PERFECTROOT CTF Team',
+			date: 'December 2025',
+			image: certificateImages.perfectroot,
+			description:
+				'Recognition for contributions as a member of the 51l3nt_br34ch CTF team during competitive events and research.',
+			skills: ['CTF', 'Team Collaboration', 'Exploit Development'],
+			credentialId: '51B-2025-HAVOC',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 1,
+			name: 'API Security Course Certificate',
+			issuer: 'API Security Academy',
+			date: 'September 2024',
+			image: certificateImages.apisec,
+			description:
+				'Comprehensive training in API security best practices, vulnerabilities, and protection mechanisms.',
+			skills: ['API Security', 'REST APIs', 'OAuth', 'JWT'],
+			credentialId: 'APISEC-2024',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 2,
+			name: 'Cybersecurity Essentials',
+			issuer: 'CSEM',
+			date: 'September 2025',
+			image: certificateImages.csem,
+			description:
+				'Foundation course covering essential cybersecurity principles, threat analysis, and defense strategies.',
+			skills: ['CTF', 'Network Security', 'Threat Analysis', 'Risk Management'],
+			credentialId: 'CSEM-BA-159',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 3,
+			name: 'OSINT Platform Certificate',
+			issuer: 'Myosint.training',
+			date: 'October 2025',
+			image: certificateImages.osint,
+			description:
+				'OSINT certification demonstrating ethical hacking and proficiency in open source intelligence gathering and analysis.',
+			skills: ['OSINT', 'Ethical Hacking', 'Intelligence Gathering', 'Information Analysis'],
+			credentialId: 'MOT-OSINT-2025',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 4,
+			name: 'CTF Competition Achievement',
+			issuer: 'CRHCCTF',
+			date: '2025',
+			image: certificateImages.crhcctf,
+			description:
+				'Recognition for competitive performance in Capture The Flag cybersecurity competitions.',
+			skills: ['CTF', 'Problem Solving', 'Security Research'],
+			credentialId: 'RANK-375',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 5,
+			name: 'Cybersecurity Training Achievement',
+			issuer: 'Indian Institute Of Information Technology (IIIT)',
+			date: 'October 2025',
+			image: certificateImages.iiit,
+			description: 'Completion of advanced cybersecurity training modules and practical exercises.',
+			skills: ['CTF', 'Penetration Testing', 'Security Analysis', 'Incident Response'],
+			credentialId: 'CYBER-2025',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 6,
+			name: 'Cybersecurity Training Achievement',
+			issuer:
+				'Ministry of Information Technology and Communications and Embassy of the Slovak Republic Kenya',
+			date: 'July 2025',
+			image: certificateImages.cybergame,
+			description: 'Completion of advanced cybersecurity training modules and practical exercises.',
+			skills: ['CTF', 'Penetration Testing', 'Security Analysis', 'Incident Response'],
+			credentialId: 'CYBERGAME-2025',
+			verified: true,
+			isPdf: false
+		},
+		{
+			id: 7,
+			name: 'Cybersecurity Training Achievement',
+			issuer: 'H7TEX CTF Team',
+			date: 'October 2025',
+			image: certificateImages.h7ctf,
+			description: 'Completion of the h7ctf international cybersecurity competition.',
+			skills: ['CTF', 'Penetration Testing', 'Security Analysis', 'Incident Response'],
+			credentialId: 'H7CTF-2025',
+			verified: true,
+			isPdf: false
+		}
+	];
 
-  const closeBadgeModal = () => {
-    selectedBadge = null;
-  };
-  
-  // Handle ESC key to close modal
-  const handleKeydown = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      closeModal();
-      closeBadgeModal();
-    }
-  };
+	// Certificate activity window: fixed start year, rolling end year
+	const startYear = 2023;
+	const currentYear = new Date().getFullYear();
 
-  const createCertificateCardKeydownHandler = (certificate: Certificate) => {
-    return (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openModal(certificate);
-      }
-    };
-  };
+	// Filter state
+	let selectedSkill: string = 'all';
 
-  const createBadgeKeydownHandler = (badge: Badge) => {
-    return (e: KeyboardEvent) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openBadgeModal(badge);
-      }
-    };
-  };
+	// Get unique skills for filtering
+	const allSkills: string[] = ['all', ...new Set(certificates.flatMap((cert) => cert.skills))];
 
-  const handleModalOverlayKeydown = (e: KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      closeModal();
-    }
-  };
+	// Filtered certificates based on selected skill
+	$: filteredCertificates =
+		selectedSkill === 'all'
+			? certificates
+			: certificates.filter((cert) => cert.skills.includes(selectedSkill));
 
-  const handleBadgeOverlayKeydown = (e: KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      closeBadgeModal();
-    }
-  };
+	// Lightbox state
+	let selectedCertificate: Certificate | null = null;
+	let selectedBadge: Badge | null = null;
+
+	// Zoom state for the certificate lightbox
+	let zoom = 1;
+	const MIN_ZOOM = 1;
+	const MAX_ZOOM = 4;
+	const ZOOM_STEP = 0.25;
+
+	const clampZoom = (value: number) => Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, +value.toFixed(2)));
+	const zoomIn = () => (zoom = clampZoom(zoom + ZOOM_STEP));
+	const zoomOut = () => (zoom = clampZoom(zoom - ZOOM_STEP));
+	const resetZoom = () => (zoom = 1);
+
+	// Portals a fixed overlay out to <body>. main has backdrop-filter, which
+	// creates a containing block and would otherwise clip position: fixed
+	// children to the glass panel instead of the viewport.
+	const portal = (node: HTMLElement) => {
+		document.body.appendChild(node);
+		return { destroy: () => node.remove() };
+	};
+
+	const openModal = (cert: Certificate) => {
+		selectedCertificate = cert;
+		resetZoom();
+	};
+
+	const closeModal = () => {
+		selectedCertificate = null;
+		resetZoom();
+	};
+
+	const openBadgeModal = (badge: Badge) => {
+		selectedBadge = badge;
+	};
+
+	const closeBadgeModal = () => {
+		selectedBadge = null;
+	};
+
+	// Handle ESC key to close, plus lightbox zoom shortcuts
+	const handleKeydown = (e: KeyboardEvent) => {
+		if (e.key === 'Escape') {
+			closeModal();
+			closeBadgeModal();
+		}
+		if (!selectedCertificate) return;
+		if (e.key === '+' || e.key === '=') zoomIn();
+		if (e.key === '-' || e.key === '_') zoomOut();
+		if (e.key === '0') resetZoom();
+	};
+
+	const handleWheel = (e: WheelEvent) => {
+		if (e.deltaY < 0) zoomIn();
+		else zoomOut();
+	};
+
+	const createCertificateCardKeydownHandler = (certificate: Certificate) => {
+		return (e: KeyboardEvent) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				openModal(certificate);
+			}
+		};
+	};
+
+	const createBadgeKeydownHandler = (badge: Badge) => {
+		return (e: KeyboardEvent) => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault();
+				openBadgeModal(badge);
+			}
+		};
+	};
+
+	const upcoming = [
+		{ name: 'Offensive Security Certified Professional (OSCP)', icon: ShieldIcon },
+		{ name: 'Certified Ethical Hacker (CEH)', icon: CertificateIcon },
+		{ name: 'CompTIA Security+', icon: NetworkIcon },
+		{ name: 'AWS Security Specialty', icon: CloudIcon }
+	];
 </script>
 
 <svelte:head>
-	<title>Daniel Wambua | Professional Certificates & Certifications</title>
-	<meta name="description" content="Professional cybersecurity certifications, training certificates, and achievements earned by Daniel Wambua in penetration testing, ethical hacking, and information security.">
+	<title>Daniel Wambua | Certificates</title>
+	<meta
+		name="description"
+		content="Professional cybersecurity certifications, training certificates, and competition
+		credentials earned by Daniel Wambua in penetration testing, ethical hacking, and information security."
+	/>
 </svelte:head>
 
 <svelte:window on:keydown={handleKeydown} />
 
-<div class="certificates-container">
-  <div class="terminal-header">
-    <div class="terminal-controls">
-      <div class="terminal-dot red"></div>
-      <div class="terminal-dot yellow"></div>
-      <div class="terminal-dot green"></div>
-    </div>
-    <div class="terminal-title">certificates.sh - Professional Credentials</div>
-  </div>
+<div class="certificates">
+	<PageHero
+		eyebrow="05 / Certificates"
+		title="Credentials, on record"
+		summary="Certifications, training achievements, and competition credentials in cybersecurity and information technology. Click any card to open the certificate image in a lightbox with zoom controls."
+	/>
 
-  <div class="command-prompt">
-    <span class="prompt">daniel@kali:~$</span>
-    <span class="command">ls -la /credentials/certificates/</span>
-    <span class="cursor">_</span>
-  </div>
+	<div class="stats">
+		<StatBlock value={certificates.length} label="Certificates" revealDelay={0} />
+		<StatBlock value={allSkills.length - 1} label="Skills covered" revealDelay={80} />
+		<StatBlock value={`${startYear} to ${currentYear}`} label="Active period" revealDelay={160} />
+	</div>
 
-  <!-- Page Header -->
-  <section class="page-header">
-    <h1 class="page-title">
-      <i class="fa-solid fa-certificate"></i>
-      Professional Certificates
-    </h1>
-    <p class="page-subtitle">
-      A comprehensive collection of my professional certifications, training achievements, and recognized credentials in cybersecurity and information technology.
-    </p>
-  </section>
+	<!-- Filter -->
+	<div class="filters" use:reveal>
+		<span class="filter-label">Filter by skill</span>
+		<div class="filter-buttons">
+			{#each allSkills as skill}
+				<button
+					class="filter-btn"
+					class:active={selectedSkill === skill}
+					on:click={() => (selectedSkill = skill)}
+				>
+					{skill === 'all' ? 'All' : skill}
+				</button>
+			{/each}
+		</div>
+	</div>
 
-  <!-- Stats Overview -->
-  <section class="stats-overview">
-    <div class="stat-box">
-      <div class="stat-icon">
-        <i class="fa-solid fa-award"></i>
-      </div>
-      <div class="stat-number">{certificates.length}</div>
-      <div class="stat-label">Total Certificates</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-icon">
-        <i class="fa-solid fa-brain"></i>
-      </div>
-      <div class="stat-number">{allSkills.length - 1}</div>
-      <div class="stat-label">Skills Covered</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-icon">
-        <i class="fa-solid fa-calendar-days"></i>
-      </div>
-      <div class="stat-number">2023-2026</div>
-      <div class="stat-label">Active Period</div>
-    </div>
-  </section>
+	<!-- Certificates grid -->
+	<div class="grid">
+		{#each filteredCertificates as certificate, i (certificate.id)}
+			<article
+				class="certificate-card"
+				use:reveal
+				style={`--reveal-delay: ${Math.min(i, 8) * 60}ms`}
+				on:click={() => openModal(certificate)}
+				on:keydown={createCertificateCardKeydownHandler(certificate)}
+				role="button"
+				tabindex="0"
+			>
+				<div class="image-wrapper">
+					<img src={certificate.image} alt={certificate.name} loading="lazy" />
+					<div class="image-overlay">
+						<ExpandIcon />
+						<span>View</span>
+					</div>
+				</div>
 
-  <!-- Filter Section -->
-  <section class="filter-section">
-    <h2 class="filter-title">
-      <i class="fa-solid fa-filter"></i>
-      Filter by Skill
-    </h2>
-    <div class="filter-buttons">
-      {#each allSkills as skill}
-        <button 
-          class="filter-btn" 
-          class:active={selectedSkill === skill}
-          on:click={() => selectedSkill = skill}
-        >
-          {skill === 'all' ? 'All Certificates' : skill}
-        </button>
-      {/each}
-    </div>
-  </section>
+				<div class="content">
+					<div class="head">
+						<h3>
+							{certificate.name}
+							{#if certificate.verified}
+								<span class="verified" title="Verified certificate"><CircleCheckIcon /></span>
+							{/if}
+						</h3>
+						<span class="date">{certificate.date}</span>
+					</div>
 
-  <!-- Certificates Grid -->
-  <section class="certificates-grid">
-    {#each filteredCertificates as certificate (certificate.id)}
-      <div class="certificate-card" on:click={() => openModal(certificate)} on:keydown={createCertificateCardKeydownHandler(certificate)} role="button" tabindex="0">
-        <div class="certificate-image-wrapper">
-          {#if certificate.isPdf}
-            <div class="pdf-placeholder">
-              <i class="fa-solid fa-file-pdf"></i>
-              <span>PDF Certificate</span>
-            </div>
-          {:else}
-            <img src={certificate.image} alt={certificate.name} class="certificate-image" loading="lazy" />
-          {/if}
-          <div class="certificate-overlay">
-            <i class="fa-solid fa-expand"></i>
-            <span>Click to View</span>
-          </div>
-        </div>
-        
-        <div class="certificate-content">
-          <div class="certificate-header">
-            <h3 class="certificate-name">
-              {certificate.name}
-              {#if certificate.verified}
-                <span class="verified-badge" title="Verified Certificate">
-                  <i class="fa-solid fa-circle-check"></i>
-                </span>
-              {/if}
-            </h3>
-            <span class="certificate-date">{certificate.date}</span>
-          </div>
-          
-          <p class="certificate-issuer">
-            <i class="fa-solid fa-building"></i>
-            {certificate.issuer}
-          </p>
-          
-          <p class="certificate-description">{certificate.description}</p>
-          
-          <div class="certificate-skills">
-            {#each certificate.skills as skill}
-              <span class="skill-tag">{skill}</span>
-            {/each}
-          </div>
-          
-          <div class="certificate-footer">
-            <span class="credential-id">
-              <i class="fa-solid fa-id-card"></i>
-              ID: {certificate.credentialId}
-            </span>
-            <button class="view-btn" on:click|stopPropagation={() => openModal(certificate)}>
-              View Details
-              <i class="fa-solid fa-arrow-right"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    {/each}
-  </section>
+					<p class="issuer">{certificate.issuer}</p>
+					<p class="description">{certificate.description}</p>
 
-  <!-- Empty State -->
-  {#if filteredCertificates.length === 0}
-    <div class="empty-state">
-      <i class="fa-solid fa-inbox"></i>
-      <p>No certificates found for the selected filter.</p>
-    </div>
-  {/if}
+					<div class="skills">
+						{#each certificate.skills as skill}
+							<Tag>{skill}</Tag>
+						{/each}
+					</div>
 
-  <!-- Future Certificates Section -->
-  <section class="future-certificates">
-    <div class="future-header">
-      <h2>
-        <i class="fa-solid fa-road"></i>
-        Upcoming Certifications
-      </h2>
-    </div>
-    <div class="future-content">
-      <p class="future-text">
-        I'm continuously expanding my expertise and working towards additional certifications in:
-      </p>
-      <div class="future-grid">
-        <div class="future-item">
-          <i class="fa-solid fa-shield-halved"></i>
-          <span>Offensive Security Certified Professional (OSCP)</span>
-        </div>
-        <div class="future-item">
-          <i class="fa-solid fa-certificate"></i>
-          <span>Certified Ethical Hacker (CEH)</span>
-        </div>
-        <div class="future-item">
-          <i class="fa-solid fa-network-wired"></i>
-          <span>CompTIA Security+</span>
-        </div>
-        <div class="future-item">
-          <i class="fa-solid fa-cloud"></i>
-          <span>AWS Security Specialty</span>
-        </div>
-      </div>
-      <p class="future-note">
-        <i class="fa-solid fa-lightbulb"></i>
-        This section will be updated as I achieve new certifications. Stay tuned!
-      </p>
-    </div>
-  </section>
+					<div class="footer">
+						<span class="credential">ID {certificate.credentialId}</span>
+						<span class="view-cta">
+							View certificate
+							<ArrowRightIcon />
+						</span>
+					</div>
+				</div>
+			</article>
+		{/each}
+	</div>
 
-  <!-- Scrolling Certification Badges -->
-  <section class="badges-section">
-    <div class="badges-header">
-      <h2>
-        <i class="fa-solid fa-medal"></i>
-        Certification Journey
-      </h2>
-      <p class="badges-subtitle">Earned credentials & upcoming targets</p>
-    </div>
-    
-    <div class="marquee-container">
-      <div class="marquee-track">
-        <!-- First set of badges -->
-        {#each certificationBadges as badge}
-          <div 
-            class="badge-item" 
-            class:earned={badge.earned} 
-            class:target={!badge.earned}
-            on:click={() => openBadgeModal(badge)}
-            on:keydown={createBadgeKeydownHandler(badge)}
-            role="button"
-            tabindex="0"
-          >
-            <div class="badge-link">
-              <div class="badge-icon">
-                <img src={badge.imageUrl} alt={badge.name} />
-              </div>
-              <span class="badge-name">{badge.name}</span>
-              {#if badge.earned}
-                <span class="badge-status earned-status">
-                  <i class="fa-solid fa-circle-check"></i>
-                </span>
-              {:else}
-                <span class="badge-status target-status">
-                  <i class="fa-solid fa-bullseye"></i>
-                </span>
-              {/if}
-            </div>
-          </div>
-        {/each}
-        <!-- Duplicate for seamless loop -->
-        {#each certificationBadges as badge}
-          <div 
-            class="badge-item" 
-            class:earned={badge.earned} 
-            class:target={!badge.earned}
-            on:click={() => openBadgeModal(badge)}
-            on:keydown={createBadgeKeydownHandler(badge)}
-            role="button"
-            tabindex="0"
-          >
-            <div class="badge-link">
-              <div class="badge-icon">
-                <img src={badge.imageUrl} alt={badge.name} />
-              </div>
-              <span class="badge-name">{badge.name}</span>
-              {#if badge.earned}
-                <span class="badge-status earned-status">
-                  <i class="fa-solid fa-circle-check"></i>
-                </span>
-              {:else}
-                <span class="badge-status target-status">
-                  <i class="fa-solid fa-bullseye"></i>
-                </span>
-              {/if}
-            </div>
-          </div>
-        {/each}
-      </div>
-    </div>
-    
-    <div class="badges-legend">
-      <div class="legend-item">
-        <span class="legend-icon earned"><i class="fa-solid fa-circle-check"></i></span>
-        <span>Earned</span>
-      </div>
-      <div class="legend-item">
-        <span class="legend-icon target"><i class="fa-solid fa-bullseye"></i></span>
-        <span>In Progress</span>
-      </div>
-    </div>
-  </section>
+	{#if filteredCertificates.length === 0}
+		<div class="empty" use:reveal>
+			<InboxIcon />
+			<p>No certificates found for the selected filter.</p>
+		</div>
+	{/if}
+
+	<!-- Upcoming certifications -->
+	<SectionHeading title="Upcoming certifications">
+		Currently working toward these targets.
+	</SectionHeading>
+	<div class="upcoming">
+		{#each upcoming as item, i}
+			<div class="upcoming-item" use:reveal style={`--reveal-delay: ${i * 70}ms`}>
+				<svelte:component this={item.icon} />
+				<span>{item.name}</span>
+			</div>
+		{/each}
+	</div>
+
+	<!-- Certification badges marquee -->
+	<SectionHeading title="Certification journey" meta="Earned and in progress">
+		Click a badge for details.
+	</SectionHeading>
+	<div class="marquee" use:reveal>
+		<div class="marquee-track">
+			{#each [...certificationBadges, ...certificationBadges] as badge, i (i)}
+				<div
+					class="badge-item"
+					class:earned={badge.earned}
+					on:click={() => openBadgeModal(badge)}
+					on:keydown={createBadgeKeydownHandler(badge)}
+					role="button"
+					tabindex="0"
+				>
+					<img src={badge.imageUrl} alt={badge.name} loading="lazy" />
+					<span class="badge-name">{badge.name}</span>
+					<span class="badge-status" class:is-target={!badge.earned}>
+						{#if badge.earned}<CircleCheckIcon />{:else}<BullseyeIcon />{/if}
+					</span>
+				</div>
+			{/each}
+		</div>
+	</div>
+	<div class="legend">
+		<span><CircleCheckIcon /> Earned</span>
+		<span><BullseyeIcon /> In progress</span>
+	</div>
 </div>
 
-<!-- Modal for Certificate Details -->
+<!-- Certificate lightbox: image only, with magnify controls -->
 {#if selectedCertificate}
-  <div class="modal-overlay" on:click={closeModal} on:keydown={handleModalOverlayKeydown} role="button" tabindex="0">
-    <div class="modal-content" on:click|stopPropagation on:keydown|stopPropagation role="button" tabindex="0">
-      <button class="modal-close" on:click={closeModal} aria-label="Close modal">
-        <i class="fa-solid fa-times"></i>
-      </button>
-      
-      <div class="modal-header">
-        <h2>{selectedCertificate.name}</h2>
-        <p class="modal-issuer">
-          <i class="fa-solid fa-building"></i>
-          {selectedCertificate.issuer}
-        </p>
-      </div>
-      
-      <div class="modal-image">
-        {#if selectedCertificate.isPdf}
-          <div class="pdf-viewer">
-            <i class="fa-solid fa-file-pdf"></i>
-            <p>PDF Certificate</p>
-            <a href={selectedCertificate.image} target="_blank" rel="noopener noreferrer" class="download-pdf">
-              <i class="fa-solid fa-download"></i>
-              Download Certificate
-            </a>
-          </div>
-        {:else}
-          <img src={selectedCertificate.image} alt={selectedCertificate.name} />
-        {/if}
-      </div>
-      
-      <div class="modal-details">
-        <div class="detail-row">
-          <span class="detail-label">Date Issued:</span>
-          <span class="detail-value">{selectedCertificate.date}</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Credential ID:</span>
-          <span class="detail-value">{selectedCertificate.credentialId}</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Description:</span>
-          <span class="detail-value">{selectedCertificate.description}</span>
-        </div>
-        <div class="detail-row">
-          <span class="detail-label">Skills Demonstrated:</span>
-          <div class="modal-skills">
-            {#each selectedCertificate.skills as skill}
-              <span class="skill-tag">{skill}</span>
-            {/each}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="lightbox-overlay" use:portal role="dialog" aria-modal="true" aria-label={selectedCertificate.name}>
+		<div class="lightbox-topbar">
+			<p class="lightbox-title">{selectedCertificate.name}</p>
+			<button class="lightbox-btn" on:click={closeModal} aria-label="Close lightbox">
+				<XMarkIcon />
+			</button>
+		</div>
+
+		<div class="lightbox-stage" on:click|self={closeModal} on:wheel|preventDefault={handleWheel}>
+			<img
+				class="lightbox-image"
+				src={selectedCertificate.image}
+				alt={selectedCertificate.name}
+				style={`transform: scale(${zoom})`}
+				draggable="false"
+			/>
+		</div>
+
+		<div class="lightbox-toolbar" role="toolbar" aria-label="Zoom controls">
+			<button
+				class="lightbox-btn"
+				on:click={zoomOut}
+				disabled={zoom <= MIN_ZOOM}
+				aria-label="Zoom out"
+				title="Zoom out"
+			>
+				<MagnifyMinusIcon />
+			</button>
+			<span class="lightbox-zoom-label">{Math.round(zoom * 100)}%</span>
+			<button
+				class="lightbox-btn"
+				on:click={zoomIn}
+				disabled={zoom >= MAX_ZOOM}
+				aria-label="Zoom in"
+				title="Zoom in"
+			>
+				<MagnifyPlusIcon />
+			</button>
+			<span class="lightbox-divider" aria-hidden="true"></span>
+			<button
+				class="lightbox-btn"
+				on:click={resetZoom}
+				disabled={zoom === MIN_ZOOM}
+				aria-label="Reset zoom"
+				title="Reset zoom"
+			>
+				<CompressIcon />
+			</button>
+		</div>
+	</div>
 {/if}
 
-<!-- Badge Modal -->
+<!-- Badge modal -->
 {#if selectedBadge}
-  <div
-    class="modal-overlay"
-    on:click|self={closeBadgeModal}
-    on:keydown={handleBadgeOverlayKeydown}
-    role="button"
-    tabindex="0"
-    aria-label="Close badge modal"
-  >
-    <div class="badge-modal-content" role="dialog" aria-modal="true">
-      <button class="modal-close" on:click={closeBadgeModal} aria-label="Close modal">
-        <i class="fa-solid fa-times"></i>
-      </button>
-      
-      <div class="badge-modal-image">
-        <img src={selectedBadge.imageUrl} alt={selectedBadge.name} />
-      </div>
-      
-      <div class="badge-modal-info">
-        <h2>{selectedBadge.name}</h2>
-        <div class="badge-modal-status" class:earned={selectedBadge.earned} class:target={!selectedBadge.earned}>
-          {#if selectedBadge.earned}
-            <i class="fa-solid fa-circle-check"></i>
-            <span>Earned</span>
-          {:else}
-            <i class="fa-solid fa-bullseye"></i>
-            <span>In Progress</span>
-          {/if}
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="modal-overlay" use:portal on:click|self={closeBadgeModal} aria-hidden="true">
+		<div
+			class="badge-modal"
+			role="dialog"
+			aria-modal="true"
+			aria-label={selectedBadge.name}
+			on:click|stopPropagation
+		>
+			<button class="modal-close" on:click={closeBadgeModal} aria-label="Close modal">
+				<XMarkIcon />
+			</button>
+			<img src={selectedBadge.imageUrl} alt={selectedBadge.name} />
+			<div class="badge-modal-info">
+				<h2>{selectedBadge.name}</h2>
+				<span class="badge-modal-status" class:is-target={!selectedBadge.earned}>
+					{#if selectedBadge.earned}
+						<CircleCheckIcon /> Earned
+					{:else}
+						<BullseyeIcon /> In progress
+					{/if}
+				</span>
+			</div>
+		</div>
+	</div>
 {/if}
 
 <style lang="scss">
-  .certificates-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 1rem;
-    scroll-behavior: smooth;
-  }
+	.certificates {
+		position: relative;
+	}
 
-  .terminal-header {
-    background: var(--gradient-dark);
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem 0.5rem 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid var(--border-color);
-    
-    .terminal-controls {
-      display: flex;
-      gap: 0.5rem;
-      
-      .terminal-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        
-        &.red { background: #ff5f56; }
-        &.yellow { background: #ffbd2e; }
-        &.green { background: #27ca3f; }
-      }
-    }
-    
-    .terminal-title {
-      color: var(--text-color);
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-    }
-  }
+	/* ============ Stats ============ */
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
 
-  .command-prompt {
-    background: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-top: none;
-    border-radius: 0 0 0.5rem 0.5rem;
-    padding: 1rem;
-    font-family: var(--font-mono);
-    margin-bottom: 2rem;
-    
-    .prompt {
-      color: var(--primary);
-      font-weight: 700;
-    }
-    
-    .command {
-      color: var(--text-color);
-      margin-left: 0.5rem;
-    }
-    
-    .cursor {
-      color: var(--primary);
-      animation: blink 1s infinite;
-    }
-  }
+	/* ============ Filters ============ */
+	.filters {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-sm);
+		margin-bottom: var(--space-lg);
+	}
 
-  .page-header {
-    text-align: center;
-    margin: 2rem 0 3rem 0;
-    
-    .page-title {
-      color: var(--primary);
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin: 0 0 1rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      
-      i {
-        font-size: 2rem;
-      }
-    }
-    
-    .page-subtitle {
-      color: var(--text-color);
-      font-size: 1.1rem;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-  }
+	.filter-label {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		letter-spacing: var(--tracking-label);
+		text-transform: uppercase;
+		color: var(--text-color-muted);
+	}
 
-  .stats-overview {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin: 2rem 0 3rem 0;
-    
-    .stat-box {
-      background: linear-gradient(135deg, var(--card-background), rgba(0, 255, 136, 0.03));
-      border: 1px solid var(--border-color);
-      border-radius: var(--button-radius);
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 3px;
-        background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        transform: translateX(-100%);
-        transition: transform 0.5s ease;
-      }
-      
-      &:hover {
-        border-color: var(--primary);
-        box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
-        transform: translateY(-5px);
-        
-        &::before {
-          transform: translateX(100%);
-        }
-        
-        .stat-icon {
-          transform: scale(1.1) rotate(5deg);
-        }
-      }
-      
-      .stat-icon {
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 1rem;
-        background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 255, 136, 0.1));
-        border: 2px solid rgba(0, 255, 136, 0.3);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        
-        i {
-          color: var(--primary);
-          font-size: 1.5rem;
-        }
-      }
-      
-      .stat-number {
-        color: var(--primary);
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-        font-family: var(--font-mono);
-        text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
-      }
-      
-      .stat-label {
-        color: var(--text-color-dim);
-        font-size: 0.85rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-weight: 600;
-      }
-    }
-  }
+	.filter-buttons {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.375rem;
+	}
 
-  .filter-section {
-    margin: 3rem 0;
-    
-    .filter-title {
-      color: var(--primary);
-      font-size: 1.3rem;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    
-    .filter-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      
-      .filter-btn {
-        background: var(--card-background);
-        color: var(--text-color);
-        border: 1px solid var(--border-color);
-        padding: 0.65rem 1.5rem;
-        border-radius: var(--button-radius);
-        font-family: var(--font-family);
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        
-        &:hover {
-          border-color: var(--primary);
-          color: var(--primary);
-        }
-        
-        &.active {
-          background: var(--gradient-cyber);
-          color: #000;
-          border-color: var(--primary);
-          font-weight: 600;
-        }
-      }
-    }
-  }
+	.filter-btn {
+		padding: 0.3rem 0.75rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-full);
+		background: transparent;
+		color: var(--text-color-dim);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		transition: all var(--transition-fast);
 
-  .certificates-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0 3rem 0;
-  }
+		&:hover {
+			color: var(--accent);
+			border-color: var(--border-color-accent);
+		}
 
-  .certificate-card {
-    background: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: var(--button-radius);
-    overflow: hidden;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    animation: fadeInUp 0.5s ease-out backwards;
-    
-    @for $i from 1 through 10 {
-      &:nth-child(#{$i}) {
-        animation-delay: #{$i * 0.1}s;
-      }
-    }
-    
-    &:hover {
-      border-color: var(--primary);
-      box-shadow: 0 8px 30px rgba(0, 255, 136, 0.2);
-      transform: translateY(-5px);
-      
-      .certificate-overlay {
-        opacity: 1;
-      }
-    }
-    
-    .certificate-image-wrapper {
-      position: relative;
-      width: 100%;
-      height: 250px;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
-      
-      .certificate-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease;
-      }
-      
-      .pdf-placeholder {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        background: linear-gradient(135deg, rgba(220, 53, 69, 0.1), rgba(220, 53, 69, 0.05));
-        
-        i {
-          font-size: 4rem;
-          color: #dc3545;
-        }
-        
-        span {
-          color: var(--text-color);
-          font-weight: 600;
-        }
-      }
-      
-      .certificate-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.8);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        
-        i {
-          font-size: 2rem;
-          color: var(--primary);
-        }
-        
-        span {
-          color: var(--text-color);
-          font-weight: 600;
-        }
-      }
-    }
-    
-    &:hover .certificate-image {
-      transform: scale(1.1);
-    }
-    
-    .certificate-content {
-      padding: 1.5rem;
-      
-      .certificate-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 0.75rem;
-        gap: 1rem;
-        
-        .certificate-name {
-          color: var(--text-color);
-          font-size: 1.2rem;
-          font-weight: 600;
-          margin: 0;
-          flex: 1;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          
-          .verified-badge {
-            color: var(--primary);
-            font-size: 1rem;
-            display: inline-flex;
-            animation: pulse 2s ease-in-out infinite;
-            
-            i {
-              filter: drop-shadow(0 0 3px rgba(0, 255, 136, 0.5));
-            }
-          }
-        }
-        
-        .certificate-date {
-          background: var(--primary);
-          color: #000;
-          padding: 0.25rem 0.75rem;
-          border-radius: 1rem;
-          font-size: 0.75rem;
-          font-weight: 600;
-          white-space: nowrap;
-        }
-      }
-      
-      .certificate-issuer {
-        color: var(--text-color-dim);
-        margin: 0 0 1rem 0;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        
-        i {
-          color: var(--primary);
-        }
-      }
-      
-      .certificate-description {
-        color: var(--text-color);
-        margin: 0 0 1rem 0;
-        line-height: 1.5;
-        font-size: 0.9rem;
-      }
-      
-      .certificate-skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-        
-        .skill-tag {
-          background: rgba(0, 255, 136, 0.1);
-          color: var(--primary);
-          padding: 0.35rem 0.75rem;
-          border-radius: 1rem;
-          font-size: 0.75rem;
-          border: 1px solid rgba(0, 255, 136, 0.3);
-          font-weight: 500;
-        }
-      }
-      
-      .certificate-footer {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border-color);
-        
-        .credential-id {
-          color: var(--text-color-dim);
-          font-size: 0.8rem;
-          font-family: var(--font-mono);
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          
-          i {
-            color: var(--primary);
-          }
-        }
-        
-        .view-btn {
-          background: transparent;
-          color: var(--primary);
-          border: 1px solid var(--primary);
-          padding: 0.5rem 1rem;
-          border-radius: var(--button-radius);
-          font-size: 0.85rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          
-          &:hover {
-            background: var(--primary);
-            color: #000;
-          }
-        }
-      }
-    }
-  }
+		&.active {
+			background: var(--accent);
+			border-color: var(--accent);
+			color: var(--background);
+		}
+	}
 
-  .empty-state {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--text-color-dim);
-    
-    i {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      opacity: 0.5;
-    }
-    
-    p {
-      font-size: 1.2rem;
-      margin: 0;
-    }
-  }
+	/* ============ Grid ============ */
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr));
+		gap: var(--space-lg);
+	}
 
-  .future-certificates {
-    background: linear-gradient(135deg, var(--card-background), rgba(0, 255, 136, 0.05));
-    border: 1px solid var(--border-color);
-    border-radius: var(--button-radius);
-    padding: 2rem;
-    margin: 3rem 0;
-    
-    .future-header {
-      margin-bottom: 1.5rem;
-      
-      h2 {
-        color: var(--primary);
-        font-size: 1.5rem;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-    }
-    
-    .future-content {
-      .future-text {
-        color: var(--text-color);
-        margin: 0 0 1.5rem 0;
-        font-size: 1rem;
-      }
-      
-      .future-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-        margin-bottom: 1.5rem;
-        
-        .future-item {
-          background: rgba(0, 255, 136, 0.05);
-          border: 1px solid rgba(0, 255, 136, 0.2);
-          border-radius: 0.5rem;
-          padding: 1rem;
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          transition: all 0.3s ease;
-          
-          &:hover {
-            border-color: var(--primary);
-            background: rgba(0, 255, 136, 0.1);
-          }
-          
-          i {
-            color: var(--primary);
-            font-size: 1.5rem;
-          }
-          
-          span {
-            color: var(--text-color);
-            font-size: 0.9rem;
-          }
-        }
-      }
-      
-      .future-note {
-        background: rgba(255, 193, 7, 0.1);
-        border: 1px solid rgba(255, 193, 7, 0.3);
-        border-radius: 0.5rem;
-        padding: 1rem;
-        color: var(--text-color);
-        margin: 0;
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 0.9rem;
-        
-        i {
-          color: #ffc107;
-          font-size: 1.2rem;
-        }
-      }
-    }
-  }
+	.certificate-card {
+		display: flex;
+		flex-direction: column;
+		background: var(--card-background);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		cursor: pointer;
+		transition:
+			border-color var(--transition-base),
+			transform var(--transition-base),
+			box-shadow var(--transition-base);
 
-  // Modal Styles
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    padding: 2rem;
-    backdrop-filter: blur(5px);
-    
-    .modal-content {
-      background: var(--card-background);
-      border: 2px solid var(--primary);
-      border-radius: var(--button-radius);
-      max-width: 900px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      position: relative;
-      box-shadow: 0 20px 60px rgba(0, 255, 136, 0.3);
-      
-      .modal-close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        background: rgba(255, 0, 0, 0.1);
-        color: #ff5f56;
-        border: 1px solid #ff5f56;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        z-index: 10;
-        
-        &:hover {
-          background: #ff5f56;
-          color: #fff;
-          transform: rotate(90deg);
-        }
-      }
-      
-      .modal-header {
-        background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 255, 136, 0.05));
-        padding: 2rem;
-        border-bottom: 1px solid var(--border-color);
-        
-        h2 {
-          color: var(--primary);
-          font-size: 1.8rem;
-          margin: 0 0 0.5rem 0;
-        }
-        
-        .modal-issuer {
-          color: var(--text-color-dim);
-          margin: 0;
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          
-          i {
-            color: var(--primary);
-          }
-        }
-      }
-      
-      .modal-image {
-        padding: 2rem;
-        text-align: center;
-        background: #000;
-        
-        img {
-          max-width: 100%;
-          height: auto;
-          border-radius: 0.5rem;
-          border: 1px solid var(--border-color);
-        }
-        
-        .pdf-viewer {
-          padding: 3rem 2rem;
-          
-          i {
-            font-size: 5rem;
-            color: #dc3545;
-            margin-bottom: 1rem;
-          }
-          
-          p {
-            color: var(--text-color);
-            font-size: 1.2rem;
-            margin: 0 0 1.5rem 0;
-          }
-          
-          .download-pdf {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--primary);
-            color: #000;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--button-radius);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            
-            &:hover {
-              transform: translateY(-2px);
-              box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
-            }
-          }
-        }
-      }
-      
-      .modal-details {
-        padding: 2rem;
-        
-        .detail-row {
-          margin-bottom: 1.5rem;
-          
-          &:last-child {
-            margin-bottom: 0;
-          }
-          
-          .detail-label {
-            color: var(--primary);
-            font-weight: 600;
-            display: block;
-            margin-bottom: 0.5rem;
-          }
-          
-          .detail-value {
-            color: var(--text-color);
-            line-height: 1.6;
-          }
-          
-          .modal-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            
-            .skill-tag {
-              background: rgba(0, 255, 136, 0.1);
-              color: var(--primary);
-              padding: 0.5rem 1rem;
-              border-radius: 1rem;
-              font-size: 0.85rem;
-              border: 1px solid rgba(0, 255, 136, 0.3);
-              font-weight: 500;
-            }
-          }
-        }
-      }
-    }
-  }
+		&:hover,
+		&:focus-visible {
+			border-color: var(--border-color-accent);
+			transform: translateY(-3px);
+			box-shadow: var(--shadow-colored);
 
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
+			.image-overlay {
+				opacity: 1;
+			}
+		}
+	}
 
-  @keyframes pulse {
-    0%, 100% { 
-      opacity: 1;
-      transform: scale(1);
-    }
-    50% { 
-      opacity: 0.8;
-      transform: scale(1.05);
-    }
-  }
+	.image-wrapper {
+		position: relative;
+		aspect-ratio: 4 / 3;
+		background: var(--surface-elevated);
+		border-bottom: 1px solid var(--border-color);
+		overflow: hidden;
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: top;
+		}
+	}
 
-  @media (max-width: 768px) {
-    .certificates-container {
-      padding: 0.5rem;
-    }
-    
-    .page-title {
-      font-size: 1.8rem !important;
-      flex-direction: column;
-    }
-    
-    .page-subtitle {
-      font-size: 1rem !important;
-    }
-    
-    .certificates-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .stats-overview {
-      grid-template-columns: 1fr;
-    }
-    
-    .future-grid {
-      grid-template-columns: 1fr !important;
-    }
-    
-    .modal-overlay {
-      padding: 1rem;
-      
-      .modal-content {
-        max-height: 95vh;
-      }
-    }
+	.image-overlay {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		background: rgba(6, 9, 7, 0.72);
+		color: var(--accent);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		letter-spacing: 0.04em;
+		opacity: 0;
+		transition: opacity var(--transition-base);
 
-    .badges-section {
-      .marquee-container {
-        .marquee-track {
-          .badge-item {
-            min-width: 140px;
-            padding: 0.75rem 1rem;
-            
-            .badge-icon {
-              font-size: 1.5rem;
-            }
-            
-            .badge-name {
-              font-size: 0.7rem;
-            }
-          }
-        }
-      }
-    }
-  }
+		:global(svg) {
+			width: 1.25rem;
+			height: 1.25rem;
+		}
+	}
 
-  /* Scrolling Badges Section */
-  .badges-section {
-    margin-top: 3rem;
-    padding: 2rem 0;
-    background: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    overflow: hidden;
+	.content {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		padding: var(--space-md) var(--space-lg) var(--space-lg);
+	}
 
-    .badges-header {
-      text-align: center;
-      margin-bottom: 2rem;
-      padding: 0 1rem;
+	.head {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: var(--space-sm);
 
-      h2 {
-        font-size: 1.8rem;
-        color: var(--text-color);
-        margin: 0 0 0.5rem 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.75rem;
+		h3 {
+			font-size: var(--font-size-base);
+			letter-spacing: var(--tracking-tight);
+			line-height: var(--line-height-normal);
+			display: flex;
+			align-items: baseline;
+			gap: 0.375rem;
+		}
+	}
 
-        i {
-          color: var(--primary);
-        }
-      }
+	.verified {
+		display: inline-flex;
+		color: var(--accent);
 
-      .badges-subtitle {
-        color: var(--text-color-dim);
-        font-size: 1rem;
-        margin: 0;
-      }
-    }
+		:global(svg) {
+			width: 0.85rem;
+			height: 0.85rem;
+		}
+	}
 
-    .marquee-container {
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      
-      &::before,
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100px;
-        z-index: 2;
-        pointer-events: none;
-      }
-      
-      &::before {
-        left: 0;
-        background: linear-gradient(to right, var(--card-background), transparent);
-      }
-      
-      &::after {
-        right: 0;
-        background: linear-gradient(to left, var(--card-background), transparent);
-      }
+	.date {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--text-color-muted);
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
 
-      .marquee-track {
-        display: flex;
-        gap: 1.5rem;
-        animation: marquee 40s linear infinite;
-        width: fit-content;
-        
-        &:hover {
-          animation-play-state: paused;
-        }
+	.issuer {
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+		color: var(--accent);
+	}
 
-        .badge-item {
-          flex-shrink: 0;
-          min-width: 160px;
-          background: var(--gradient-dark);
-          border: 1px solid var(--border-color);
-          border-radius: 0.75rem;
-          padding: 1rem 1.25rem;
-          transition: all 0.3s ease;
-          position: relative;
+	.description {
+		font-size: var(--font-size-sm);
+		color: var(--text-color-dim);
+		line-height: var(--line-height-normal);
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
 
-          &:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
-          }
+	.skills {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.375rem;
+	}
 
-          &.earned {
-            border-color: rgba(0, 255, 136, 0.4);
-            
-            .badge-icon {
-              color: var(--primary);
-            }
-          }
+	.footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-sm);
+		margin-top: var(--space-xs);
+		padding-top: var(--space-sm);
+		border-top: 1px solid var(--border-color);
+	}
 
-          &.target {
-            border-color: rgba(255, 193, 7, 0.3);
-            opacity: 0.85;
-            
-            .badge-icon {
-              color: #ffc107;
-            }
-            
-            .badge-name {
-              color: var(--text-color-dim);
-            }
-          }
+	.credential {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--text-color-muted);
+	}
 
-          .badge-link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: inherit;
-          }
+	.view-cta {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--accent);
 
-          .badge-icon {
-            width: 70px;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.3s ease;
-            
-            img {
-              width: 100%;
-              height: 100%;
-              object-fit: contain;
-              border-radius: 0.5rem;
-            }
-          }
+		:global(svg) {
+			width: 0.7rem;
+			height: 0.7rem;
+		}
+	}
 
-          &:hover .badge-icon {
-            transform: scale(1.15);
-          }
+	/* ============ Empty state ============ */
+	.empty {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-sm);
+		padding: var(--space-2xl);
+		color: var(--text-color-muted);
 
-          .badge-name {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-color);
-            text-align: center;
-            line-height: 1.2;
-            max-width: 100px;
-          }
+		:global(svg) {
+			width: 2rem;
+			height: 2rem;
+			opacity: 0.5;
+		}
+	}
 
-          .badge-status {
-            position: absolute;
-            top: -6px;
-            right: -6px;
-            font-size: 0.9rem;
-            
-            &.earned-status {
-              color: var(--primary);
-            }
-            
-            &.target-status {
-              color: #ffc107;
-            }
-          }
-        }
-      }
-    }
+	/* ============ Upcoming ============ */
+	.upcoming {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+		gap: var(--space-md);
+	}
 
-    .badges-legend {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-top: 1.5rem;
-      padding: 0 1rem;
+	.upcoming-item {
+		display: flex;
+		align-items: center;
+		gap: var(--space-md);
+		padding: var(--space-md) var(--space-lg);
+		border: 1px dashed var(--border-color-light);
+		border-radius: var(--radius-md);
+		color: var(--text-color-dim);
+		font-size: var(--font-size-sm);
+		transition: all var(--transition-base);
 
-      .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-        color: var(--text-color-dim);
+		&:hover {
+			border-color: var(--border-color-accent);
+			color: var(--text-color);
+		}
 
-        .legend-icon {
-          font-size: 1rem;
-          
-          &.earned {
-            color: var(--primary);
-          }
-          
-          &.target {
-            color: #ffc107;
-          }
-        }
-      }
-    }
-  }
+		:global(svg) {
+			width: 1.25rem;
+			height: 1.25rem;
+			color: var(--accent);
+			flex-shrink: 0;
+		}
+	}
 
-  /* Badge Modal */
-  .badge-modal-content {
-    background: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: 1rem;
-    max-width: 400px;
-    width: 90%;
-    overflow: hidden;
-    position: relative;
-    animation: fadeInUp 0.3s ease;
+	/* ============ Badges marquee ============ */
+	.marquee {
+		overflow: hidden;
+		position: relative;
+		-webkit-mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+		mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+	}
 
-    .badge-modal-image {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      padding: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+	.marquee-track {
+		display: flex;
+		gap: var(--space-lg);
+		width: max-content;
+		padding: var(--space-xs) 0;
+		animation: marquee 40s linear infinite;
 
-      img {
-        max-width: 250px;
-        max-height: 250px;
-        object-fit: contain;
-        border-radius: 0.5rem;
-      }
-    }
+		&:hover {
+			animation-play-state: paused;
+		}
+	}
 
-    .badge-modal-info {
-      padding: 1.5rem;
-      text-align: center;
+	@keyframes marquee {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
 
-      h2 {
-        color: var(--text-color);
-        font-size: 1.3rem;
-        margin: 0 0 1rem 0;
-      }
+	.badge-item {
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+		padding: 0.625rem 1rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-md);
+		background: var(--surface);
+		cursor: pointer;
+		transition: all var(--transition-base);
 
-      .badge-modal-status {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        border-radius: 2rem;
-        font-weight: 600;
-        font-size: 0.9rem;
+		&:hover {
+			border-color: var(--border-color-accent);
+			background: var(--surface-elevated);
+		}
 
-        &.earned {
-          background: rgba(0, 255, 136, 0.15);
-          color: var(--primary);
-          border: 1px solid rgba(0, 255, 136, 0.3);
-        }
+		&.earned {
+			border-color: var(--border-color-accent);
+		}
 
-        &.target {
-          background: rgba(255, 193, 7, 0.15);
-          color: #ffc107;
-          border: 1px solid rgba(255, 193, 7, 0.3);
-        }
-      }
-    }
-  }
+		img {
+			width: 2rem;
+			height: 2rem;
+			object-fit: contain;
+		}
+	}
 
-  @keyframes marquee {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
+	.badge-name {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--text-color-secondary);
+		white-space: nowrap;
+	}
+
+	.badge-status {
+		display: inline-flex;
+		color: var(--accent);
+
+		:global(svg) {
+			width: 0.85rem;
+			height: 0.85rem;
+		}
+
+		&.is-target {
+			color: var(--warning);
+		}
+	}
+
+	.legend {
+		display: flex;
+		gap: var(--space-lg);
+		justify-content: center;
+		margin-top: var(--space-md);
+
+		span {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.375rem;
+			font-family: var(--font-mono);
+			font-size: var(--font-size-xs);
+			color: var(--text-color-muted);
+
+			:global(svg) {
+				width: 0.75rem;
+				height: 0.75rem;
+				color: var(--accent);
+			}
+		}
+	}
+
+	/* ============ Modals ============ */
+	.modal-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 200;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: var(--space-lg);
+		background: rgba(3, 5, 4, 0.85);
+		backdrop-filter: blur(6px);
+		animation: overlay-in 200ms ease-out;
+	}
+
+	@keyframes overlay-in {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	@keyframes modal-in {
+		from {
+			opacity: 0;
+			transform: translateY(16px) scale(0.98);
+		}
+		to {
+			opacity: 1;
+			transform: none;
+		}
+	}
+
+	.modal-close {
+		position: absolute;
+		top: var(--space-sm);
+		right: var(--space-sm);
+		z-index: 2;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-sm);
+		background: var(--background);
+		color: var(--text-color-secondary);
+
+		:global(svg) {
+			width: 1rem;
+			height: 1rem;
+		}
+
+		&:hover {
+			color: var(--accent);
+			border-color: var(--border-color-accent);
+		}
+	}
+
+	/* ============ Certificate lightbox ============ */
+	.lightbox-overlay {
+		position: fixed;
+		inset: 0;
+		z-index: 300;
+		display: flex;
+		flex-direction: column;
+		background: rgba(3, 5, 4, 0.92);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		animation: overlay-in 200ms ease-out;
+	}
+
+	.lightbox-topbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--space-lg);
+		padding: var(--space-md) var(--space-lg);
+	}
+
+	.lightbox-title {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		color: var(--text-color-secondary);
+		letter-spacing: 0.02em;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.lightbox-stage {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: auto;
+		padding: 0 var(--space-lg) var(--space-sm);
+	}
+
+	.lightbox-image {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		border-radius: var(--radius-sm);
+		box-shadow: var(--shadow-2xl);
+		transform-origin: center center;
+		transition: transform var(--transition-medium);
+		user-select: none;
+		-webkit-user-drag: none;
+	}
+
+	.lightbox-toolbar {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: var(--space-sm);
+		padding: var(--space-md);
+	}
+
+	.lightbox-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.5rem;
+		height: 2.5rem;
+		border: 1px solid var(--border-color-light);
+		border-radius: var(--radius-md);
+		background: var(--glass-strong);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+		color: var(--text-color-secondary);
+		transition: all var(--transition-fast);
+
+		:global(svg) {
+			width: 1rem;
+			height: 1rem;
+		}
+
+		&:hover:not(:disabled) {
+			color: var(--accent);
+			border-color: var(--border-color-accent);
+			background: var(--accent-transparent);
+		}
+
+		&:disabled {
+			opacity: 0.35;
+			cursor: not-allowed;
+		}
+	}
+
+	.lightbox-zoom-label {
+		min-width: 3.5rem;
+		text-align: center;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--text-color-dim);
+	}
+
+	.lightbox-divider {
+		width: 1px;
+		height: 1.5rem;
+		background: var(--border-color);
+	}
+
+	.badge-modal {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: var(--space-md);
+		max-width: 28rem;
+		padding: var(--space-xl);
+		background: var(--glass-strong);
+		backdrop-filter: blur(24px) saturate(150%);
+		-webkit-backdrop-filter: blur(24px) saturate(150%);
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-lg);
+		box-shadow: var(--shadow-2xl), inset 0 1px 0 var(--glass-highlight);
+		animation: modal-in 250ms cubic-bezier(0.22, 1, 0.36, 1);
+
+		img {
+			width: 10rem;
+			height: 10rem;
+			object-fit: contain;
+		}
+
+		h2 {
+			font-size: var(--font-size-xl);
+			text-align: center;
+		}
+	}
+
+	.badge-modal-status {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.375rem;
+		padding: 0.35rem 0.875rem;
+		border-radius: var(--radius-full);
+		background: var(--accent-transparent);
+		color: var(--accent);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+
+		&.is-target {
+			background: rgba(245, 185, 62, 0.1);
+			color: var(--warning);
+		}
+
+		:global(svg) {
+			width: 0.8rem;
+			height: 0.8rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.marquee-track {
+			animation: none;
+			flex-wrap: wrap;
+			width: 100%;
+		}
+
+		.lightbox-image {
+			transition: none;
+		}
+	}
 </style>

@@ -187,8 +187,8 @@
     // Fallback for unmapped languages
     return {
       name: lang,
-      color: '06b6d4', // cyan color
-      icon: 'gnubash' // generic bash icon as fallback
+      color: '00ff88',
+      icon: 'gnubash'
     };
   };
 
@@ -213,7 +213,7 @@
       on:error={handleImageError}
     />
   {:else}
-    <span class="icon-fallback">🔧</span>
+    <span class="icon-fallback" aria-hidden="true"></span>
   {/if}
   {langAttributes.name}
 </div>
@@ -232,9 +232,14 @@
   }
   
   .icon-fallback {
-    font-size: 1rem;
+    width: 1rem;
+    height: 1rem;
     margin-right: 0.25rem;
     display: inline-block;
+    border-radius: 50%;
+    background: var(--lang-color, var(--accent));
+    opacity: 0.7;
+    vertical-align: -0.15em;
   }
   
   .language {

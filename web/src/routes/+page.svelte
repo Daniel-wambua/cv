@@ -1,350 +1,599 @@
 <script lang="ts">
-	import '../styles/resume-main.scss';
 	import { marked } from 'marked';
+	import PageHero from '$components/PageHero.svelte';
+	import SectionHeading from '$components/SectionHeading.svelte';
+	import Card from '$components/Card.svelte';
+	import Tag from '$components/Tag.svelte';
+	import StatBlock from '$components/StatBlock.svelte';
+	import { reveal } from '$lib/actions/reveal';
+
+	import EnvelopeIcon from '~icons/fa6-solid/envelope';
+	import GithubIcon from '~icons/fa6-brands/github';
+	import LocationIcon from '~icons/fa6-solid/location-dot';
+	import ArrowRightIcon from '~icons/fa6-solid/arrow-right';
+	import TrophyIcon from '~icons/fa6-solid/trophy';
+	import LinkIcon from '~icons/fa6-solid/link';
+	import ShieldIcon from '~icons/fa6-solid/shield-halved';
 
 	export let data: any;
 
-	const makeUrlretty = (url: string) => {
-		return url.replace(/(^\w+:|^)\/\//, '');
-	}
+	// Certificate activity window start year; the end year always rolls forward
+	const certStartYear = 2023;
+	const currentYear = new Date().getFullYear();
 
-	const formatData = (date: string) => {
-		if (!date.match(/^\d{4}-\d{2}$/)) {
-			return date;
-		}
+	const prettifyUrl = (url: string) => url.replace(/(^\w+:|^)\/\//, '');
+
+	const formatDate = (date: string) => {
+		if (!date?.match(/^\d{4}-\d{2}$/)) return date;
 		const [year, month] = date.split('-');
 		const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-		return `${months[parseInt(month) - 1]} ${year}`;
-	}
+		return `${months[parseInt(month, 10) - 1]} ${year}`;
+	};
 
-	const mdToHtml = (md: { text: string, source: string }) => {
-		if (!md || !md.text) {
-			return '';
-		}
-		return marked(md.text);
-	}
+	const stripMd = (md: { text: string }) => {
+		if (!md?.text) return '';
+		return marked.parse(md.text, { async: false }) as string;
+	};
 
+	$: achievementCount = (data.achievements || []).length + (data.awards || []).length;
 </script>
 
-<svelte:head>	
-	<title>Daniel Wambua | Information Technology Student & Cybersecurity Enthusiast</title>
-	<meta name="description" content="Information Technology student at Karatina University specializing in cybersecurity, penetration testing, and ethical hacking. Actively seeking internship opportunities in information security.">
+<svelte:head>
+	<title>Daniel Wambua | Security Analyst and Pentester</title>
+	<meta
+		name="description"
+		content="Cybersecurity analyst and IT student at Karatina University, focused on penetration
+		testing, SOC operations, and application security. Active CTF competitor and bug bounty hunter."
+	/>
 </svelte:head>
 
-<div class="resume cyber-theme">
-  <!-- Resume head -->
-	<section class="basics">
-		<div class="terminal-header">
-			<span class="terminal-dot red"></span>
-			<span class="terminal-dot yellow"></span>
-			<span class="terminal-dot green"></span>
-			<span class="terminal-title">daniel@cybersec:~$</span>
-		</div>
-    <h1 class="cyber-name">
-			<span class="prompt">└─$ </span>
-			{data.basics.name}
-			<span class="cursor">_</span>
-		</h1>
-		<div class="role-badge">
-			<i class="fa-solid fa-graduation-cap"></i>
-			Information Technology (IT) Student & Cybersecurity Enthusiast
-		</div>
-		<div class="contacts">
-			<div class="contact-item">
-				<i class="fa-solid fa-envelope"></i>
-				<span>{data.basics.email}</span>
-			</div>
-			<div class="contact-item">
-				<i class="fa-brands fa-github"></i>
-				<a href={data.basics.url}>{makeUrlretty(data.basics.url)}</a>
-			</div>
-			<div class="contact-item">
-				<i class="fa-solid fa-location-dot"></i>
-				<span>{data.basics.location.address}</span>
-			</div>
-		</div>
+<div class="home">
+	<!-- Hero -->
+	<section class="hero">
+		<div class="hero-glow" aria-hidden="true"></div>
+		<div class="grid-backdrop" aria-hidden="true"></div>
 
-		<!-- Professional Summary -->
-		<div class="professional-summary">
-			<div class="summary-card">
-				<div class="summary-icon">
-					<i class="fa-solid fa-graduation-cap"></i>
-				</div>
-				<div class="summary-content">
-					<h3>Student & Aspiring Cybersecurity Professional</h3>
-					<p>Passionate about ethical hacking, penetration testing, and cybersecurity research. Currently building skills through CTFs, bug bounty programs, and hands-on projects.</p>
-				</div>
+		<div class="hero-inner">
+			<h1 class="hero-title" use:reveal style="--reveal-delay: 40ms">
+				{data.basics.name}
+			</h1>
+			<div class="statement" use:reveal style="--reveal-delay: 100ms">
+				<p class="hero-summary">
+					{data['personal-statement']}
+				</p>
 			</div>
-		</div>
-  </section>
 
-	<!-- Career Objective -->
-  <section class="career-objective">
-		<div class="objective-container">
-			<div class="objective-header">
-				<h2><i class="fa-solid fa-target"></i> Career Objective</h2>
+			<div class="hero-meta" use:reveal style="--reveal-delay: 160ms">
+				<span class="meta-item">
+					<EnvelopeIcon />
+					{data.basics.email}
+				</span>
+				<a class="meta-item" href={data.basics.url} target="_blank" rel="noopener noreferrer">
+					<GithubIcon />
+					{prettifyUrl(data.basics.url)}
+				</a>
+				<span class="meta-item">
+					<LocationIcon />
+					{data.basics.location.address}
+				</span>
 			</div>
-			<div class="objective-content">
-				<p class="objective-text">{data['personal-statement']}</p>
-				<div class="looking-for-work">
-					<div class="work-status">
-						<i class="fa-solid fa-briefcase-medical"></i>
-						<span class="status-text">Actively seeking Attachments, internship, and entry-level opportunities</span>
-					</div>
-					<div class="availability">
-						<i class="fa-solid fa-calendar-check"></i>
-						<span>Open to security-focused roles and learning opportunities</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="action-buttons">
-			<a href="/intro" class="btn-link">
-				<button class="cyber-btn primary">
-					<i class="fa-solid fa-user"></i>
-					Learn More About Me
-					<i class="fa-solid fa-arrow-right"></i>
-				</button>
-			</a>
-			<a href="/contact" class="btn-link">
-				<button class="cyber-btn secondary">
-					<i class="fa-solid fa-envelope"></i>
-					Get In Touch
-				</button>
-			</a>
-		</div>
-  </section>
 
-	{#if data.work && data.work.length > 0}
-		<section class="work modern-section">
-			<div class="section-header">
-				<h2><i class="fa-solid fa-briefcase"></i> Recent Experience</h2>
-			</div>
-			<div class="section-content">
-				{#each data.work.slice(0, 2) as job}
-					<div class="experience-card">
-						<div class="company-info">
-							<h3>{job.name}</h3>
-							<div class="position-details">
-								<h4>{job.position}</h4>
-								<span class="date-range">{formatData(job.startDate)} - {formatData(job.endDate)}</span>
-							</div>
-						</div>
-						<ul class="highlights">
-							{#each job.highlights.slice(0, 2) as highlight}
-								<li>{highlight}</li>
-							{/each}
-						</ul>
-					</div>
-				{/each}
-			</div>
-			<div class="section-footer">
-				<a href="/experience" class="view-more-btn">
-					<i class="fa-solid fa-briefcase"></i>
-					View All Experience
-					<i class="fa-solid fa-arrow-right"></i>
+			<div class="hero-actions" use:reveal style="--reveal-delay: 220ms">
+				<a href="/intro" class="btn primary">
+					More about me
+					<ArrowRightIcon />
+				</a>
+				<a href="/contact" class="btn ghost">
+					<EnvelopeIcon />
+					Get in touch
 				</a>
 			</div>
+		</div>
+	</section>
+
+	<!-- Quick stats -->
+	{#if achievementCount}
+		<section class="stats">
+			<StatBlock value="Top 10" label="CyberGame Kenya 2026" revealDelay={0} />
+			<StatBlock value="3rd" label="Connected Africa CTF 2026" revealDelay={80} />
+			<StatBlock value="2x" label="CyberGame finalist" revealDelay={160} />
+			<StatBlock value="5+" label="Certificates earned" revealDelay={240} />
 		</section>
 	{/if}
 
-	{#if data.education && data.education.length > 0}
-	<section class="education modern-section">
-		<div class="section-header">
-			<h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
-		</div>
-		<div class="section-content">
-			{#each data.education as edu}
-				<div class="education-card">
-					<div class="institution-info">
-						<h3>{edu.institution}</h3>
-						<h4>{edu.area} ({edu.studyType})</h4>
-						{#if edu.score}
-							<p class="score">{edu.score}</p>
-						{/if}
+	<!-- Recent experience -->
+	{#if data.work && data.work.length > 0}
+		<SectionHeading index="01" title="Recent experience" meta={`${data.work.length} roles`}>
+			A snapshot of where I have been working. The full history lives on the experience page.
+		</SectionHeading>
+		<div class="stack">
+			{#each data.work.slice(0, 2) as job, i}
+				<Card revealDelay={i * 100}>
+					<div class="job-head">
+						<h3>{job.name}</h3>
+						<span class="date">{formatDate(job.startDate)} to {formatDate(job.endDate)}</span>
 					</div>
-				</div>
+					<p class="position">{job.position}</p>
+					<ul class="highlights">
+						{#each job.highlights.slice(0, 3) as highlight}
+							<li>{highlight}</li>
+						{/each}
+					</ul>
+				</Card>
 			{/each}
 		</div>
-	</section>
+		<a href="/experience" class="view-more" use:reveal>
+			View all experience
+			<ArrowRightIcon />
+		</a>
 	{/if}
 
-  <section class="skills modern-section">
-		<div class="section-header">
-			<h2><i class="fa-solid fa-code"></i> Key Skills</h2>
-		</div>
-		<div class="section-content">
-			<div class="skills-grid">
-				{#each data.skills.slice(0, 4) as skill}
-					<div class="skill-category">
-						<h4>{skill.name}</h4>
-						<div class="skill-tags">
-							{#each skill.keywords.slice(0, 3) as keyword}
-								<span class="skill-tag">{keyword}</span>
-							{/each}
-							{#if skill.keywords.length > 3}
-								<span class="skill-tag more">+{skill.keywords.length - 3} more</span>
-							{/if}
-						</div>
+	<!-- Education -->
+	{#if data.education && data.education.length > 0}
+		<SectionHeading index="02" title="Education" meta={`${data.education.length} entries`}>
+			Academic background and training.
+		</SectionHeading>
+		<div class="stack">
+			{#each data.education as edu, i}
+				<Card revealDelay={i * 100}>
+					<div class="job-head">
+						<h3>{edu.institution}</h3>
+						{#if edu.startDate && edu.endDate}
+							<span class="date">{formatDate(edu.startDate)} to {formatDate(edu.endDate)}</span>
+						{/if}
 					</div>
-				{/each}
-			</div>
-		</div>
-		<div class="section-footer">
-			<a href="/skills" class="view-more-btn">
-				<i class="fa-solid fa-code"></i>
-				View All Skills
-				<i class="fa-solid fa-arrow-right"></i>
-			</a>
-		</div>
-  </section>
-
-  <section class="achievements modern-section">
-		<div class="section-header">
-			<h2><i class="fa-solid fa-star"></i> Recent Achievements</h2>
-		</div>
-		<div class="section-content">
-			<div class="achievements-list">
-				{#each (data.achievements || []).slice(0, 3) as achievement}
-					<div class="achievement-item">
-						<i class="fa-solid fa-trophy achievement-icon"></i>
-						<div class="achievement-text">
-							{ achievement.text }
-							{#if achievement.source}
-								<a href={achievement.source} title={makeUrlretty(achievement.source)} target="_blank" rel="nofollow" class="achievement-link">
-									<i class="fa-solid fa-external-link"></i>
-								</a>
-							{/if}
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
-		<div class="section-footer">
-			<a href="/achievements" class="view-more-btn">
-				<i class="fa-solid fa-star"></i>
-				View All Achievements
-				<i class="fa-solid fa-arrow-right"></i>
-			</a>
-		</div>
-	</section>
-
-	<section class="certificates modern-section">
-		<div class="section-header">
-			<h2><i class="fa-solid fa-certificate"></i> Professional Certificates</h2>
-		</div>
-		<div class="section-content">
-			<div class="certificates-preview">
-				<p class="certificates-intro">
-					<i class="fa-solid fa-shield-halved"></i>
-					Continuously expanding my cybersecurity expertise through professional certifications and specialized training programs.
-				</p>
-				<div class="certificates-stats">
-					<div class="cert-stat">
-						<span class="cert-number">5+</span>
-						<span class="cert-label">Certificates Earned</span>
-					</div>
-					<div class="cert-stat">
-						<span class="cert-number">2023-2025</span>
-						<span class="cert-label">Recent Achievements</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="section-footer">
-			<a href="/certificates" class="view-more-btn">
-				<i class="fa-solid fa-certificate"></i>
-				View All Certificates
-				<i class="fa-solid fa-arrow-right"></i>
-			</a>
-		</div>
-	</section>
-
-	<section class="achievements">
-		<h2>Awards</h2>
-		<ul>
-			{#each (data.awards || []) as award}
-				<li>
-					<b>{ award.title }</b> - <i>{ award.summary}</i>
-					{#if award.source}
-						<a href={award.source} title={makeUrlretty(award.source)} target="_blank" rel="nofollow">
-							<i class="achievement-link fa-solid fa-link"></i>
-						</a>
-					{/if}
-				</li>
+					<p class="position">{edu.area} ({edu.studyType})</p>
+					{#if edu.score}<p class="score">{edu.score}</p>{/if}
+				</Card>
 			{/each}
-		</ul>
+		</div>
+	{/if}
 
-  </section>
+	<!-- Key skills -->
+	<SectionHeading index="03" title="Key skills" meta="Top categories">
+		The tools and techniques I reach for most often.
+	</SectionHeading>
+	<div class="skills-grid">
+		{#each data.skills.slice(0, 4) as skill, i}
+			<Card revealDelay={i * 80} class="skill-card">
+				<h3 class="skill-name">{skill.name}</h3>
+				<div class="tags">
+					{#each skill.keywords.slice(0, 4) as keyword}
+						<Tag>{keyword}</Tag>
+					{/each}
+					{#if skill.keywords.length > 4}
+						<Tag>+{skill.keywords.length - 4} more</Tag>
+					{/if}
+				</div>
+			</Card>
+		{/each}
+	</div>
+	<a href="/skills" class="view-more" use:reveal>
+		View all skills
+		<ArrowRightIcon />
+	</a>
+
+	<!-- Achievements -->
+	{#if data.achievements && data.achievements.length > 0}
+		<SectionHeading index="04" title="Recent achievements" meta={`${achievementCount} total`}>
+			Competition results and recognition from security work.
+		</SectionHeading>
+		<div class="stack">
+			{#each data.achievements.slice(0, 3) as achievement, i}
+				<Card revealDelay={i * 80} class="achievement-card">
+					<span class="achievement-icon"><TrophyIcon /></span>
+					<div class="achievement-text">
+						{@html stripMd(achievement)}
+						{#if achievement.source}
+							<a
+								href={achievement.source}
+								target="_blank"
+								rel="noopener noreferrer"
+								class="source-link"
+								title={prettifyUrl(achievement.source)}
+							>
+								<LinkIcon />
+							</a>
+						{/if}
+					</div>
+				</Card>
+			{/each}
+		</div>
+		<a href="/achievements" class="view-more" use:reveal>
+			View all achievements
+			<ArrowRightIcon />
+		</a>
+	{/if}
+
+	<!-- Awards -->
+	{#if data.awards && data.awards.length > 0}
+		<SectionHeading index="05" title="Awards">
+			Formal recognition with the full story behind each one.
+		</SectionHeading>
+		<div class="stack">
+			{#each data.awards as award, i}
+				<Card revealDelay={i * 80}>
+					<div class="job-head">
+						<h3>{award.title}</h3>
+						{#if award.date}<span class="date">{formatDate(award.date)}</span>{/if}
+					</div>
+					<p class="position">{award.summary}</p>
+				</Card>
+			{/each}
+		</div>
+	{/if}
+
+	<!-- Certificates -->
+	<SectionHeading index="06" title="Certificates">
+		Continuous learning through professional certifications and specialized training.
+	</SectionHeading>
+	<a href="/certificates" class="cert-cta" use:reveal>
+		<span class="cert-icon"><ShieldIcon /></span>
+		<span class="cert-copy">
+			<strong>5+ certificates earned between {certStartYear} and {currentYear}</strong>
+			<span>Browse the full gallery with verification links.</span>
+		</span>
+		<ArrowRightIcon />
+	</a>
 </div>
-<style lang="scss">
-.achievement-link {
-	color: var(--text-color);
-	opacity: 0.8;
-	font-size: 0.6rem;
-	transition: all 0.2s ease-in-out;
-	&:hover {
-		color: var(--primary);
-	}
-}
 
-.certificates-preview {
-	.certificates-intro {
+<style lang="scss">
+	.home {
+		position: relative;
+	}
+
+	/* ============ Hero ============ */
+	.hero {
+		position: relative;
+		padding: var(--space-2xl) var(--space-2xl) var(--space-xl);
+		overflow: hidden;
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-xl);
+		background: var(--glass-soft);
+		backdrop-filter: blur(14px) saturate(135%);
+		-webkit-backdrop-filter: blur(14px) saturate(135%);
+		box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-highlight);
+		margin-bottom: var(--space-xl);
+
+		@media (max-width: 600px) {
+			padding: var(--space-xl) var(--space-lg);
+		}
+	}
+
+	.hero-inner {
+		position: relative;
+		max-width: 52rem;
+	}
+
+	.hero-title {
+		font-size: clamp(2.75rem, 8vw, 5rem);
+		font-weight: 700;
+		letter-spacing: var(--tracking-display);
+		line-height: 1.02;
+		margin: var(--space-lg) 0 var(--space-md);
+	}
+
+	.statement {
+		padding: var(--space-md) var(--space-lg);
+		border: 1px solid var(--border-color);
+		border-left: 3px solid var(--accent);
+		border-radius: 0 var(--radius-md) var(--radius-md) 0;
+		background: linear-gradient(90deg, var(--accent-transparent), transparent 75%);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+	}
+
+	.hero-summary {
+		font-size: var(--font-size-base);
+		line-height: var(--line-height-relaxed);
+		color: var(--text-color-secondary);
+		max-width: 64ch;
+		white-space: pre-line;
+	}
+
+	.hero-meta {
+		margin-top: var(--space-lg);
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm) var(--space-lg);
+	}
+
+	.meta-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		color: var(--text-color-secondary);
+		text-decoration: none;
+
+		:global(svg) {
+			width: 0.95rem;
+			height: 0.95rem;
+			color: var(--accent);
+			flex-shrink: 0;
+		}
+
+		&:hover {
+			color: var(--accent);
+		}
+	}
+
+	.hero-actions {
+		margin-top: var(--space-xl);
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-sm);
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.7rem 1.25rem;
+		border-radius: var(--radius-md);
+		font-size: var(--font-size-sm);
+		font-weight: 600;
+		text-decoration: none;
+		transition: all var(--transition-base);
+
+		:global(svg) {
+			width: 0.95rem;
+			height: 0.95rem;
+			transition: transform var(--transition-fast);
+		}
+	}
+
+	.btn.primary {
+		background: var(--accent);
+		color: var(--background);
+
+		&:hover {
+			background: var(--accent-dim);
+			color: var(--background);
+			transform: translateY(-2px);
+			box-shadow: var(--shadow-colored);
+
+			:global(svg) {
+				transform: translateX(3px);
+			}
+		}
+	}
+
+	.btn.ghost {
+		border: 1px solid var(--border-color-light);
 		color: var(--text-color);
-		margin: 0 0 2rem 0;
-		font-size: 1rem;
-		line-height: 1.6;
+
+		&:hover {
+			border-color: var(--border-color-accent);
+			background: var(--accent-transparent);
+			color: var(--accent);
+		}
+	}
+
+	/* ============ Stats ============ */
+	.stats {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-xl);
+	}
+
+	/* ============ Content stacks ============ */
+	.stack {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-md);
+	}
+
+	.job-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: var(--space-md);
+		flex-wrap: wrap;
+
+		h3 {
+			font-size: var(--font-size-lg);
+			letter-spacing: var(--tracking-tight);
+		}
+	}
+
+	.date {
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		color: var(--text-color-muted);
+		white-space: nowrap;
+	}
+
+	.position {
+		font-size: var(--font-size-sm);
+		font-weight: 500;
+		color: var(--accent);
+	}
+
+	.score {
+		font-size: var(--font-size-sm);
+		color: var(--text-color-dim);
+	}
+
+	.highlights {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.375rem;
+
+		li {
+			position: relative;
+			padding-left: 1.125rem;
+			color: var(--text-color-secondary);
+			font-size: var(--font-size-sm);
+			line-height: var(--line-height-normal);
+
+			&::before {
+				content: '';
+				position: absolute;
+				left: 0;
+				top: 0.55em;
+				width: 0.4rem;
+				height: 1px;
+				background: var(--accent);
+			}
+		}
+	}
+
+	/* ============ Skills ============ */
+	.skills-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+		gap: var(--space-md);
+		margin-bottom: var(--space-md);
+	}
+
+	.skill-name {
+		font-size: var(--font-size-base);
+		letter-spacing: var(--tracking-tight);
+	}
+
+	.tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.375rem;
+	}
+
+	/* ============ Achievements ============ */
+	:global(.achievement-card) {
+		flex-direction: row;
+		align-items: flex-start;
+		gap: var(--space-md);
+	}
+
+	.achievement-icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: var(--radius-md);
+		background: var(--accent-transparent);
+		color: var(--accent);
+		flex-shrink: 0;
+
+		:global(svg) {
+			width: 1rem;
+			height: 1rem;
+		}
+	}
+
+	.achievement-text {
+		font-size: var(--font-size-sm);
+		color: var(--text-color-secondary);
+		line-height: var(--line-height-normal);
+
+		:global(strong) {
+			color: var(--text-color);
+		}
+	}
+
+	.source-link {
+		margin-left: 0.375rem;
+		color: var(--text-color-muted);
+
+		&:hover {
+			color: var(--accent);
+		}
+
+		:global(svg) {
+			width: 0.7rem;
+			height: 0.7rem;
+		}
+	}
+
+	/* ============ View more links ============ */
+	.view-more {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-top: var(--space-md);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-sm);
+		color: var(--accent);
+		text-decoration: none;
+
+		:global(svg) {
+			width: 0.85rem;
+			height: 0.85rem;
+			transition: transform var(--transition-fast);
+		}
+
+		&:hover {
+			:global(svg) {
+				transform: translateX(4px);
+			}
+		}
+	}
+
+	/* ============ Certificates CTA ============ */
+	.cert-cta {
 		display: flex;
 		align-items: center;
-		gap: 0.75rem;
-		padding: 1.5rem;
-		background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(6, 182, 212, 0.02));
-		border-radius: 0.5rem;
-		border: 1px solid rgba(6, 182, 212, 0.2);
-		
-		i {
-			color: var(--primary);
-			font-size: 1.5rem;
+		gap: var(--space-lg);
+		padding: var(--space-lg);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-lg);
+		background: var(--surface);
+		text-decoration: none;
+		color: inherit;
+		transition: all var(--transition-base);
+
+		&:hover {
+			border-color: var(--border-color-accent);
+			background: var(--surface-elevated);
+			transform: translateY(-2px);
+			box-shadow: var(--shadow-colored);
+		}
+
+		.cert-icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 2.75rem;
+			height: 2.75rem;
+			border-radius: var(--radius-md);
+			background: var(--accent-transparent);
+			color: var(--accent);
+			flex-shrink: 0;
+
+			:global(svg) {
+				width: 1.25rem;
+				height: 1.25rem;
+			}
+		}
+
+		.cert-copy {
+			display: flex;
+			flex-direction: column;
+			gap: 0.25rem;
+			flex: 1;
+
+			strong {
+				color: var(--text-color);
+				font-size: var(--font-size-base);
+			}
+
+			span {
+				color: var(--text-color-dim);
+				font-size: var(--font-size-sm);
+			}
+		}
+
+		& > :global(svg) {
+			width: 1rem;
+			height: 1rem;
+			color: var(--accent);
 			flex-shrink: 0;
 		}
 	}
-	
-	.certificates-stats {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-		gap: 1.5rem;
-		
-		.cert-stat {
-			background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(6, 182, 212, 0.05));
-			border: 1px solid rgba(6, 182, 212, 0.3);
-			border-radius: 0.5rem;
-			padding: 1.5rem;
-			text-align: center;
-			transition: all 0.3s ease;
-			
-			&:hover {
-				border-color: var(--primary);
-				box-shadow: 0 4px 15px rgba(6, 182, 212, 0.2);
-				transform: translateY(-2px);
-			}
-			
-			.cert-number {
-				display: block;
-				color: var(--primary);
-				font-size: 2rem;
-				font-weight: 700;
-				margin-bottom: 0.5rem;
-				font-family: var(--font-mono);
-			}
-			
-			.cert-label {
-				display: block;
-				color: var(--text-color-dim);
-				font-size: 0.85rem;
-				text-transform: uppercase;
-				letter-spacing: 0.5px;
-			}
-		}
-	}
-}
 </style>
