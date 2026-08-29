@@ -64,6 +64,10 @@
 	const isSeekingOpportunities = currentDate <= lookingForJobDates.end;
 	const pagesToShowBanner = ['/', '/achievements', '/skills', '/experience', '/certificates'];
 
+	// Footer copyright rolls forward automatically
+	const startYear = 2025;
+	const currentYear = currentDate.getFullYear();
+
 	$: path = $page.url.pathname;
 
 	// Mobile drawer state
@@ -176,7 +180,8 @@
 				<a href="https://github.com/Daniel-wambua/cv" target="_blank" rel="noopener noreferrer">Daniel-wambua/cv</a>
 				is licensed under
 				<a href="https://github.com/Daniel-wambua/cv/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT</a>,
-				&copy; <a href="https://cv.havocsec.me">Daniel Wambua</a> 2025
+				&copy; <a href="https://cv.havocsec.me">Daniel Wambua</a>
+				{startYear === currentYear ? startYear : `${startYear} to ${currentYear}`}
 			</small>
 		</div>
 	</aside>

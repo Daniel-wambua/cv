@@ -202,6 +202,10 @@
 		}
 	];
 
+	// Certificate activity window: fixed start year, rolling end year
+	const startYear = 2023;
+	const currentYear = new Date().getFullYear();
+
 	// Filter state
 	let selectedSkill: string = 'all';
 
@@ -289,7 +293,7 @@
 	<div class="stats">
 		<StatBlock value={certificates.length} label="Certificates" revealDelay={0} />
 		<StatBlock value={allSkills.length - 1} label="Skills covered" revealDelay={80} />
-		<StatBlock value="2023 to 2026" label="Active period" revealDelay={160} />
+		<StatBlock value={`${startYear} to ${currentYear}`} label="Active period" revealDelay={160} />
 	</div>
 
 	<!-- Filter -->
@@ -412,14 +416,14 @@
 
 <!-- Modal for certificate details -->
 {#if selectedCertificate}
-	<div
-		class="modal-overlay"
-		on:click={closeModal}
-		on:keydown={() => closeModal()}
-		role="button"
-		tabindex="0"
-	>
-		<div class="modal" role="dialog" aria-modal="true" aria-label={selectedCertificate.name}>
+	<div class="modal-overlay" on:click|self={closeModal} aria-hidden="true">
+		<div
+			class="modal"
+			role="dialog"
+			aria-modal="true"
+			aria-label={selectedCertificate.name}
+			on:click|stopPropagation
+		>
 			<button class="modal-close" on:click={closeModal} aria-label="Close modal">
 				<XMarkIcon />
 			</button>
@@ -458,15 +462,14 @@
 
 <!-- Badge modal -->
 {#if selectedBadge}
-	<div
-		class="modal-overlay"
-		on:click|self={closeBadgeModal}
-		on:keydown={() => closeBadgeModal()}
-		role="button"
-		tabindex="0"
-		aria-label="Close badge modal"
-	>
-		<div class="badge-modal" role="dialog" aria-modal="true">
+	<div class="modal-overlay" on:click|self={closeBadgeModal} aria-hidden="true">
+		<div
+			class="badge-modal"
+			role="dialog"
+			aria-modal="true"
+			aria-label={selectedBadge.name}
+			on:click|stopPropagation
+		>
 			<button class="modal-close" on:click={closeBadgeModal} aria-label="Close modal">
 				<XMarkIcon />
 			</button>

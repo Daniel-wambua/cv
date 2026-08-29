@@ -14,8 +14,21 @@
 	import TrophyIcon from '~icons/fa6-solid/trophy';
 	import LinkIcon from '~icons/fa6-solid/link';
 	import ShieldIcon from '~icons/fa6-solid/shield-halved';
+	import CrosshairsIcon from '~icons/fa6-solid/crosshairs';
+	import SatelliteDishIcon from '~icons/fa6-solid/satellite-dish';
+	import BugIcon from '~icons/fa6-solid/bug';
 
 	export let data: any;
+
+	const focusAreas = [
+		{ label: 'Penetration testing', icon: CrosshairsIcon },
+		{ label: 'SOC operations', icon: SatelliteDishIcon },
+		{ label: 'Application security', icon: BugIcon }
+	];
+
+	// Certificate activity window start year; the end year always rolls forward
+	const certStartYear = 2023;
+	const currentYear = new Date().getFullYear();
 
 	const prettifyUrl = (url: string) => url.replace(/(^\w+:|^)\/\//, '');
 
@@ -50,13 +63,26 @@
 		<div class="grid-backdrop" aria-hidden="true"></div>
 
 		<div class="hero-inner">
-			<p class="eyebrow" use:reveal>Penetration testing, SOC operations, application security</p>
+			<div class="focus-row">
+				{#each focusAreas as area, i}
+					<span
+						class="focus-chip"
+						use:reveal
+						style={`--reveal-delay: ${i * 70}ms`}
+					>
+						<svelte:component this={area.icon} />
+						{area.label}
+					</span>
+				{/each}
+			</div>
 			<h1 class="hero-title" use:reveal style="--reveal-delay: 80ms">
 				{data.basics.name}
 			</h1>
-			<p class="hero-summary" use:reveal style="--reveal-delay: 160ms">
-				{data['personal-statement']}
-			</p>
+			<div class="statement" use:reveal style="--reveal-delay: 160ms">
+				<p class="hero-summary">
+					{data['personal-statement']}
+				</p>
+			</div>
 
 			<div class="hero-meta" use:reveal style="--reveal-delay: 240ms">
 				<span class="meta-item">
@@ -225,7 +251,7 @@
 	<a href="/certificates" class="cert-cta" use:reveal>
 		<span class="cert-icon"><ShieldIcon /></span>
 		<span class="cert-copy">
-			<strong>5+ certificates earned between 2023 and 2026</strong>
+			<strong>5+ certificates earned between {certStartYear} and {currentYear}</strong>
 			<span>Browse the full gallery with verification links.</span>
 		</span>
 		<ArrowRightIcon />
@@ -240,8 +266,19 @@
 	/* ============ Hero ============ */
 	.hero {
 		position: relative;
-		padding: var(--space-3xl) 0 var(--space-2xl);
+		padding: var(--space-2xl) var(--space-2xl) var(--space-xl);
 		overflow: hidden;
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-xl);
+		background: var(--glass-soft);
+		backdrop-filter: blur(14px) saturate(135%);
+		-webkit-backdrop-filter: blur(14px) saturate(135%);
+		box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-highlight);
+		margin-bottom: var(--space-xl);
+
+		@media (max-width: 600px) {
+			padding: var(--space-xl) var(--space-lg);
+		}
 	}
 
 	.hero-inner {
@@ -249,19 +286,63 @@
 		max-width: 52rem;
 	}
 
+	.focus-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.focus-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.45rem 0.9rem;
+		border: 1px solid var(--border-color-accent);
+		border-radius: var(--radius-full);
+		background: var(--accent-transparent);
+		backdrop-filter: blur(10px) saturate(130%);
+		-webkit-backdrop-filter: blur(10px) saturate(130%);
+		font-family: var(--font-mono);
+		font-size: var(--font-size-xs);
+		letter-spacing: 0.04em;
+		color: var(--accent);
+		transition: all var(--transition-base);
+
+		&:hover {
+			background: var(--accent-transparent-hover);
+			box-shadow: var(--glow-effect);
+		}
+
+		:global(svg) {
+			width: 0.85rem;
+			height: 0.85rem;
+			flex-shrink: 0;
+		}
+	}
+
 	.hero-title {
 		font-size: clamp(2.75rem, 8vw, 5rem);
 		font-weight: 700;
 		letter-spacing: var(--tracking-display);
 		line-height: 1.02;
-		margin: var(--space-sm) 0 var(--space-md);
+		margin: var(--space-lg) 0 var(--space-md);
+	}
+
+	.statement {
+		padding: var(--space-md) var(--space-lg);
+		border: 1px solid var(--border-color);
+		border-left: 3px solid var(--accent);
+		border-radius: 0 var(--radius-md) var(--radius-md) 0;
+		background: linear-gradient(90deg, var(--accent-transparent), transparent 75%);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
 	}
 
 	.hero-summary {
-		font-size: var(--font-size-lg);
+		font-size: var(--font-size-base);
 		line-height: var(--line-height-relaxed);
-		color: var(--text-color-dim);
-		max-width: 58ch;
+		color: var(--text-color-secondary);
+		max-width: 64ch;
 		white-space: pre-line;
 	}
 
