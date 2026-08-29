@@ -14,17 +14,8 @@
 	import TrophyIcon from '~icons/fa6-solid/trophy';
 	import LinkIcon from '~icons/fa6-solid/link';
 	import ShieldIcon from '~icons/fa6-solid/shield-halved';
-	import CrosshairsIcon from '~icons/fa6-solid/crosshairs';
-	import SatelliteDishIcon from '~icons/fa6-solid/satellite-dish';
-	import BugIcon from '~icons/fa6-solid/bug';
 
 	export let data: any;
-
-	const focusAreas = [
-		{ label: 'Penetration testing', icon: CrosshairsIcon },
-		{ label: 'SOC operations', icon: SatelliteDishIcon },
-		{ label: 'Application security', icon: BugIcon }
-	];
 
 	// Certificate activity window start year; the end year always rolls forward
 	const certStartYear = 2023;
@@ -63,28 +54,16 @@
 		<div class="grid-backdrop" aria-hidden="true"></div>
 
 		<div class="hero-inner">
-			<div class="focus-row">
-				{#each focusAreas as area, i}
-					<span
-						class="focus-chip"
-						use:reveal
-						style={`--reveal-delay: ${i * 70}ms`}
-					>
-						<svelte:component this={area.icon} />
-						{area.label}
-					</span>
-				{/each}
-			</div>
-			<h1 class="hero-title" use:reveal style="--reveal-delay: 80ms">
+			<h1 class="hero-title" use:reveal style="--reveal-delay: 40ms">
 				{data.basics.name}
 			</h1>
-			<div class="statement" use:reveal style="--reveal-delay: 160ms">
+			<div class="statement" use:reveal style="--reveal-delay: 100ms">
 				<p class="hero-summary">
 					{data['personal-statement']}
 				</p>
 			</div>
 
-			<div class="hero-meta" use:reveal style="--reveal-delay: 240ms">
+			<div class="hero-meta" use:reveal style="--reveal-delay: 160ms">
 				<span class="meta-item">
 					<EnvelopeIcon />
 					{data.basics.email}
@@ -99,7 +78,7 @@
 				</span>
 			</div>
 
-			<div class="hero-actions" use:reveal style="--reveal-delay: 320ms">
+			<div class="hero-actions" use:reveal style="--reveal-delay: 220ms">
 				<a href="/intro" class="btn primary">
 					More about me
 					<ArrowRightIcon />
@@ -284,40 +263,6 @@
 	.hero-inner {
 		position: relative;
 		max-width: 52rem;
-	}
-
-	.focus-row {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.5rem;
-	}
-
-	.focus-chip {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.45rem 0.9rem;
-		border: 1px solid var(--border-color-accent);
-		border-radius: var(--radius-full);
-		background: var(--accent-transparent);
-		backdrop-filter: blur(10px) saturate(130%);
-		-webkit-backdrop-filter: blur(10px) saturate(130%);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		letter-spacing: 0.04em;
-		color: var(--accent);
-		transition: all var(--transition-base);
-
-		&:hover {
-			background: var(--accent-transparent-hover);
-			box-shadow: var(--glow-effect);
-		}
-
-		:global(svg) {
-			width: 0.85rem;
-			height: 0.85rem;
-			flex-shrink: 0;
-		}
 	}
 
 	.hero-title {

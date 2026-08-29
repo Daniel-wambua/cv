@@ -53,7 +53,7 @@
 
 	// Display banner if looking for job, within the specified dates
 	const lookingForJobDates = {
-		start: new Date('2025-07-01'),
+		start: new Date('2026-07-01'),
 		end: new Date('2026-12-30'),
 	};
 	const currentDate = new Date();
@@ -76,7 +76,7 @@
 
 	const socials = [
 		{ name: 'GitHub', url: 'https://github.com/Daniel-wambua', handle: 'Daniel-wambua', icon: 'github' },
-		{ name: 'Twitter', url: 'https://twitter.com/wambuahdaniel', handle: 'wambuahdaniel', icon: 'twitter' },
+		{ name: 'X', url: 'https://x.com/HavocRichie', handle: 'HavocRichie', icon: 'twitter' },
 		{
 			name: 'LinkedIn',
 			url: 'https://www.linkedin.com/in/daniel-wambua-a312b32b8',
@@ -722,10 +722,13 @@
 		align-items: center;
 		gap: var(--space-lg);
 		padding: var(--space-md) var(--space-lg);
+		/* Deliberately louder than the glass chrome (header pill, main panel):
+		   solid lime badge, accent border with glow, tinted background. */
 		border: 1px solid var(--border-color-accent);
-		border-left: 3px solid var(--accent);
+		border-left: 4px solid var(--accent);
 		border-radius: var(--radius-md);
-		background: linear-gradient(90deg, var(--accent-transparent), transparent 70%);
+		background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 255, 136, 0.02) 75%);
+		box-shadow: var(--glow-effect);
 
 		@media (max-width: 768px) {
 			flex-direction: column;
@@ -741,13 +744,23 @@
 		width: 2.5rem;
 		height: 2.5rem;
 		border-radius: var(--radius-md);
-		background: var(--accent-transparent);
-		color: var(--accent);
+		background: var(--accent);
+		color: var(--background);
 		flex-shrink: 0;
+		animation: banner-pulse 2.6s ease-in-out infinite;
 
 		:global(svg) {
 			width: 1.1rem;
 			height: 1.1rem;
+		}
+	}
+
+	@keyframes banner-pulse {
+		0%, 100% {
+			box-shadow: 0 0 12px rgba(0, 255, 136, 0.35);
+		}
+		50% {
+			box-shadow: 0 0 26px rgba(0, 255, 136, 0.6);
 		}
 	}
 
@@ -758,12 +771,15 @@
 		line-height: var(--line-height-normal);
 
 		strong {
-			color: var(--text-color);
+			color: var(--accent);
 		}
 
 		a {
 			color: var(--accent);
 			font-weight: 500;
+			text-decoration: underline;
+			text-decoration-color: rgba(0, 255, 136, 0.4);
+			text-underline-offset: 3px;
 		}
 	}
 
