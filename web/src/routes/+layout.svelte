@@ -99,7 +99,8 @@
 	const headerLinks = [
 		{ name: 'Blog', url: 'https://havocsec.dev/blog' },
 		{ name: 'CTF Writeups', url: 'https://havocsec.dev/ctf/' },
-		{ name: 'Research', url: 'https://havocsec.dev/pentesting' }
+		// /pentesting itself has no index page, it only holds category subfolders
+		{ name: 'Research', url: 'https://havocsec.dev/pentesting/hackthebox/' }
 	];
 </script>
 
