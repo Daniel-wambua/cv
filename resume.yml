@@ -6,7 +6,7 @@
 
 basics:
   name: Daniel Wambua
-  email: wambuahdaniel@gmail.com
+  email: havocxsec@proton.me
   url: https://github.com/Daniel-wambua
   location:
     address: Nairobi, Kenya
@@ -22,8 +22,7 @@ personal-statement: |
   Cybersecurity-focused Information Technology student with hands-on experience in
   penetration testing labs, CTF competitions, and security tooling.
   Strong interest in offensive security, vulnerability assessment, and security operations.
-  Actively seeking an industrial attachment or remote internship to gain real-world exposure
-  in cybersecurity operations, SOC workflows, or application security.
+  Actively seeking a job offer or position in technology/security.
 
 # ==============================================================================
 # EDUCATION
@@ -57,7 +56,7 @@ work:
   - name: Team Wallz
     position: Recruited Team Member | CTF Collaboration
     startDate: '2026-02'
-    endDate: 'Present'
+    endDate: '2026-10'
     highlights:
       - Recruited to join Team Wallz (https://ctftime.org/team/397301)
       - Actively collaborating with teammates on CTF challenge solving and writeups
@@ -137,6 +136,8 @@ skills:
 # Fields: text (description with emoji), source (URL for verification)
 # Use markdown formatting for bold text: **text**
 achievements:
+  - text: "🏆 **1st Place** - Jengase × NCBA Loop × Hack The Box × Strathmore University 2026 Red Team Hackathon (Team Pwners)"
+    source: 'https://drive.google.com/file/d/1mvwRVQU7Zyclt1lMjO_QyWrLMDhcRY6G/view?usp=sharing'
   - text: "🏅 **Top 10 Finalist (6th Place)** - CyberGame Kenya 2026"
     source: 'https://drive.google.com/file/d/1TnOp-KgKDr4i5hWWWvq6uKJU5GO9brEV/view?usp=sharing'
   - text: "🥉 **3rd Place - Connected Africa Summit 2026 CTF** (Team JOINT, Karatina University)"
@@ -196,10 +197,9 @@ projects:
 # END OF CV CONFIGURATION
 ################################################################################
 
-
 ################################################################################
 # END OF CV CONFIGURATION
-# 
+#
 # WHAT TO EDIT WHEN:
 # - Contact info changed? → Edit 'basics' section
 # - New job/internship? → Add to 'work' section (top of list)
@@ -211,4 +211,3 @@ projects:
 #
 # After editing, commit and push to GitHub - your CV will auto-regenerate!
 ################################################################################
-

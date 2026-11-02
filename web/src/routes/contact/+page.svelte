@@ -1,353 +1,459 @@
 <script lang="ts">
+	import { onDestroy } from 'svelte';
 	import PageHero from '$components/PageHero.svelte';
-	import Card from '$components/Card.svelte';
-	import { reveal } from '$lib/actions/reveal';
 
-	import EnvelopeIcon from '~icons/fa6-solid/envelope';
+	import ArrowUpRightIcon from '~icons/fa6-solid/arrow-up-right-from-square';
+	import CheckIcon from '~icons/fa6-solid/check';
+	import CopyIcon from '~icons/fa6-solid/copy';
 	import EyeIcon from '~icons/fa6-solid/eye';
-	import FlagIcon from '~icons/fa6-solid/flag';
-	import ArrowRightIcon from '~icons/fa6-solid/arrow-right';
-	import CompassIcon from '~icons/fa6-solid/compass';
-	import HeartIcon from '~icons/fa6-solid/heart';
-	import CheckIcon from '~icons/fa6-solid/circle-check';
-	import LinkedinIcon from '~icons/fa6-brands/linkedin';
+	import EyeSlashIcon from '~icons/fa6-solid/eye-slash';
 	import GithubIcon from '~icons/fa6-brands/github';
+	import LinkedinIcon from '~icons/fa6-brands/linkedin';
+	import FlagIcon from '~icons/fa6-solid/flag';
+	import LinkIcon from '~icons/fa6-solid/link';
 
-	let emailVisible = false;
+	export let data: { email: string };
+
+	let emailRevealed = false;
 	let copied = false;
+	let feedback = '';
+	let feedbackTimeout: ReturnType<typeof setTimeout>;
 
-	const revealEmail = () => {
-		emailVisible = true;
-		copied = true;
-		navigator.clipboard.writeText('wambuahdaniel@gmail.com');
-		setTimeout(() => (copied = false), 2000);
-	};
+	function maskEmail(email: string) {
+		const [localPart, domain] = email.split('@');
+		if (!localPart || !domain) return '••••••••';
+		return `${localPart[0]}${'•'.repeat(Math.max(4, localPart.length - 1))}@${domain}`;
+	}
+
+	$: maskedEmail = maskEmail(data.email);
 
 	const channels = [
 		{
-			name: 'LinkedIn',
-			description: 'Connect with me professionally',
-			url: 'https://www.linkedin.com/in/daniel-wambua-a312b32b8/',
-			action: 'View profile',
-			icon: LinkedinIcon
-		},
-		{
 			name: 'GitHub',
-			description: 'Review my open source work',
-			url: 'https://github.com/Daniel-wambua',
-			action: 'View repositories',
+			description: 'Projects, tools, and experiments',
+			url: 'https://github.com/Daniel-wambua?tab=repositories',
 			icon: GithubIcon
 		},
 		{
+			name: 'LinkedIn',
+			description: 'Professional updates and connections',
+			url: 'https://www.linkedin.com/in/daniel-wambua-a312b32b8/',
+			icon: LinkedinIcon
+		},
+		{
 			name: 'CTFtime',
-			description: 'Follow my CTF journey',
+			description: 'Competition history and team activity',
 			url: 'https://ctftime.org/team/409004',
-			action: 'View team',
 			icon: FlagIcon
+		},
+		{
+			name: 'guns.lol',
+			description: '0xhavoc · all my links',
+			url: 'https://guns.lol/0xhavoc',
+			icon: LinkIcon
 		}
 	];
+
+	function toggleEmail() {
+		emailRevealed = !emailRevealed;
+		copied = false;
+		feedback = '';
+		clearTimeout(feedbackTimeout);
+	}
+
+	async function copyEmail() {
+		try {
+			if (!navigator.clipboard?.writeText) throw new Error('Clipboard access is unavailable');
+			await navigator.clipboard.writeText(data.email);
+			copied = true;
+			feedback = 'Copied to clipboard';
+		} catch {
+			copied = false;
+			feedback = 'Select the address to copy it';
+		}
+
+		clearTimeout(feedbackTimeout);
+		feedbackTimeout = setTimeout(() => {
+			copied = false;
+			feedback = '';
+		}, 2400);
+	}
+
+	onDestroy(() => clearTimeout(feedbackTimeout));
 </script>
 
 <svelte:head>
-	<title>Daniel Wambua | Contact</title>
+	<title>Contact | Daniel Wambua</title>
 	<meta
 		name="description"
-		content="Get in touch with Daniel Wambua for cybersecurity, penetration testing, and ethical hacking opportunities."
+		content="Contact Daniel Wambua for cybersecurity roles, internships, collaborations, and technical conversations."
 	/>
 </svelte:head>
 
-<div class="contact">
+<div class="contact-page">
 	<PageHero
-		eyebrow="06 / Contact"
-		title="Let's talk"
-		summary="Open to junior security roles, internships, collaborations, and interesting problems. Email is the fastest way to reach me."
+		title="Contact Daniel"
+		summary="Open to security roles, internships, and collaborations. Email is the best way to reach me."
 	/>
 
-	<div class="email-panel" use:reveal>
-		<span class="panel-icon"><EnvelopeIcon /></span>
-		{#if emailVisible}
-			<a class="email-link" href="mailto:wambuahdaniel@gmail.com">
-				wambuahdaniel@gmail.com
-			</a>
-			<span class="copied" class:show={copied}>
-				<CheckIcon />
-				Copied to clipboard
-			</span>
-		{:else}
-			<button class="reveal-btn" on:click={revealEmail} title="Show email address and copy to clipboard">
-				<EyeIcon />
-				Reveal email address
+	<section class="contact-card" aria-labelledby="email-title">
+		<div class="contact-card-copy">
+			<p class="eyebrow">The quickest route</p>
+			<h2 id="email-title">Send me a note.</h2>
+			<p>For opportunities, project ideas, or a good technical question.</p>
+		</div>
+		<div class="email-actions">
+			{#if !emailRevealed}<span class="email-mask" aria-hidden="true">{maskedEmail}</span>{/if}
+			<button
+				class="reveal-button"
+				type="button"
+				on:click={toggleEmail}
+				aria-expanded={emailRevealed}
+				aria-controls="revealed-email"
+			>
+				{#if emailRevealed}<EyeSlashIcon />{:else}<EyeIcon />{/if}
+				{emailRevealed ? 'Hide email' : 'Reveal email'}
 			</button>
-			<span class="panel-hint">Click to reveal and copy</span>
-		{/if}
-	</div>
+			{#if emailRevealed}
+				<div class="revealed-email" id="revealed-email">
+					<a class="email-link" href={`mailto:${data.email}`}>{data.email}</a>
+					<button class="copy-button" type="button" on:click={copyEmail}>
+						{#if copied}<CheckIcon />{:else}<CopyIcon />{/if}
+						{copied ? 'Copied' : 'Copy address'}
+					</button>
+				</div>
+			{/if}
+			<span class="feedback" aria-live="polite">{feedback}</span>
+		</div>
+	</section>
 
-	<div class="channels">
-		{#each channels as channel, i}
-			<Card revealDelay={i * 90} href={channel.url} class="channel-card">
-				<span class="channel-icon"><svelte:component this={channel.icon} /></span>
-				<h3>{channel.name}</h3>
-				<p>{channel.description}</p>
-				<span class="channel-link">
-					{channel.action}
-					<ArrowRightIcon class="arrow" />
-				</span>
-			</Card>
-		{/each}
-	</div>
+	<section class="channels" aria-labelledby="channels-title">
+		<div class="section-heading">
+			<div>
+				<p class="eyebrow">Elsewhere</p>
+				<h2 id="channels-title">Find me online.</h2>
+			</div>
+		</div>
+		<div class="channel-grid">
+			{#each channels as channel (channel.url)}
+				<a class="channel-card" href={channel.url} target="_blank" rel="noopener noreferrer">
+					<span class="channel-icon" aria-hidden="true"
+						><svelte:component this={channel.icon} /></span
+					>
+					<span class="channel-copy">
+						<strong>{channel.name}</strong>
+						<span>{channel.description}</span>
+					</span>
+					<ArrowUpRightIcon class="channel-arrow" />
+				</a>
+			{/each}
+		</div>
+	</section>
 
-	<div class="elsewhere" use:reveal>
+	<div class="contact-note">
+		<span class="availability-dot" aria-hidden="true"></span>
 		<p>
-			You can also find me on my
-			<a href="https://guns.lol/0xhavoc" target="_blank" rel="noopener noreferrer">guns.lol page</a>,
-			which lists all my other communication channels.
+			Based in Nairobi, Kenya. You can also explore my <a href="/experience">experience</a>,
+			<a href="/achievements">achievements</a>, or <a href="/download">download my resume</a>.
 		</p>
-	</div>
-
-	<div class="guide" use:reveal>
-		<h3><CompassIcon /> Explore more</h3>
-		<p>
-			Learn more about me on the <a href="/intro">intro</a> page, or browse my
-			<a href="/skills">skills</a>, <a href="/experience">experience</a>, and
-			<a href="/achievements">achievements</a> to see whether I align with what you are looking
-			for.
-		</p>
-		<p>
-			A shortened version of my CV in PDF format can be downloaded <a href="/download">here</a>.
-			To check whether I would be a good fit for your team, view my <a href="/ideal-role">ideal
-			role</a> page.
-		</p>
-	</div>
-
-	<div class="thanks" use:reveal>
-		<HeartIcon />
-		<p>Thank you for stopping by. I hope to hear from you.</p>
 	</div>
 </div>
 
 <style lang="scss">
-	.contact {
-		position: relative;
+	.contact-page {
+		padding-top: clamp(2.5rem, 7vw, 5rem);
 	}
 
-	/* ============ Email panel ============ */
-	.email-panel {
+	:global(.contact-page .page-hero) {
+		padding-top: 0;
+	}
+
+	.contact-card {
+		display: grid;
+		grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+		align-items: center;
+		gap: 2rem;
+		padding: clamp(1.4rem, 4vw, 2.5rem);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-xl);
+		background: linear-gradient(120deg, var(--accent-transparent), transparent 58%), var(--surface);
+		box-shadow: var(--shadow-sm);
+
+		.eyebrow {
+			margin-bottom: 0.8rem;
+		}
+
+		h2 {
+			font-size: clamp(1.6rem, 3.5vw, 2.35rem);
+			letter-spacing: var(--tracking-tight);
+		}
+
+		.contact-card-copy > p:last-child {
+			margin-top: 0.65rem;
+			color: var(--text-color-dim);
+			font-size: var(--font-size-sm);
+		}
+	}
+
+	.email-actions {
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: var(--space-md);
-		padding: var(--space-lg) var(--space-xl);
-		margin-bottom: var(--space-xl);
-		border: 1px solid var(--border-color-accent);
-		border-radius: var(--radius-lg);
-		background: var(--accent-transparent);
+		gap: 0.75rem;
 	}
 
-	.panel-icon {
+	.email-mask {
+		color: var(--text-color-dim);
+		font-family: var(--font-mono);
+		font-size: clamp(1rem, 2.2vw, 1.2rem);
+		letter-spacing: -0.035em;
+	}
+
+	.reveal-button {
 		display: inline-flex;
+		min-height: 2.5rem;
 		align-items: center;
-		justify-content: center;
-		width: 2.5rem;
-		height: 2.5rem;
-		border-radius: var(--radius-md);
-		background: var(--accent);
-		color: var(--background);
-		flex-shrink: 0;
+		gap: 0.45rem;
+		padding: 0.55rem 0.85rem;
+		border: 1px solid var(--border-color-light);
+		border-radius: var(--radius-full);
+		background: var(--background-elevated);
+		color: var(--text-color-secondary);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		white-space: nowrap;
+		transition:
+			background var(--transition-fast),
+			border-color var(--transition-fast),
+			color var(--transition-fast);
 
 		:global(svg) {
-			width: 1.1rem;
-			height: 1.1rem;
+			width: 0.8rem;
+			height: 0.8rem;
+		}
+
+		&:hover {
+			border-color: var(--border-color-accent);
+			background: var(--accent-transparent);
+			color: var(--text-color);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--accent);
+			outline-offset: 3px;
+		}
+	}
+
+	.revealed-email {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 0.75rem;
+		animation: reveal-email 320ms cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+
+	@keyframes reveal-email {
+		from {
+			clip-path: inset(0 100% 0 0);
+			filter: blur(3px);
+		}
+
+		to {
+			clip-path: inset(0);
+			filter: blur(0);
 		}
 	}
 
 	.email-link {
+		max-width: 100%;
+		overflow-wrap: anywhere;
+		color: var(--text-color);
 		font-family: var(--font-mono);
-		font-size: var(--font-size-lg);
-		font-weight: 600;
-		color: var(--accent);
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
+		font-size: clamp(1rem, 2.2vw, 1.2rem);
+		font-weight: 500;
+		letter-spacing: -0.035em;
 	}
 
-	.reveal-btn {
+	.copy-button {
 		display: inline-flex;
+		min-height: 2.5rem;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.65rem 1.25rem;
-		border: 1px solid var(--accent);
-		border-radius: var(--radius-md);
-		background: transparent;
-		color: var(--accent);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-sm);
-		cursor: pointer;
-		transition: all var(--transition-fast);
-
-		:global(svg) {
-			width: 0.9rem;
-			height: 0.9rem;
-		}
-
-		&:hover {
-			background: var(--accent);
-			color: var(--background);
-		}
-	}
-
-	.panel-hint,
-	.copied {
-		font-family: var(--font-mono);
+		gap: 0.45rem;
+		padding: 0.55rem 0.85rem;
+		border: 1px solid var(--border-color-light);
+		border-radius: var(--radius-full);
+		background: var(--background-elevated);
+		color: var(--text-color-secondary);
 		font-size: var(--font-size-xs);
-		color: var(--text-color-muted);
-	}
-
-	.copied {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.375rem;
-		color: var(--accent);
-		opacity: 0;
-		transition: opacity var(--transition-fast);
-
-		&.show {
-			opacity: 1;
-		}
+		font-weight: 600;
+		white-space: nowrap;
+		transition:
+			background var(--transition-fast),
+			border-color var(--transition-fast),
+			color var(--transition-fast);
 
 		:global(svg) {
-			width: 0.75rem;
-			height: 0.75rem;
+			width: 0.8rem;
+			height: 0.8rem;
+		}
+
+		&:hover {
+			border-color: var(--border-color-accent);
+			background: var(--accent-transparent);
+			color: var(--text-color);
 		}
 	}
 
-	/* ============ Channels ============ */
-	.channels {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-		gap: var(--space-md);
-		margin-bottom: var(--space-xl);
+	.feedback {
+		min-height: 1em;
+		color: var(--text-color-dim);
+		font-size: var(--font-size-xs);
 	}
 
-	:global(.channel-card) {
-		text-align: center;
+	@media (prefers-reduced-motion: reduce) {
+		.revealed-email {
+			animation: none;
+		}
+	}
+
+	.channels {
+		padding: clamp(3rem, 7vw, 5rem) 0 2.5rem;
+	}
+
+	.section-heading {
+		display: flex;
+		align-items: end;
+		justify-content: space-between;
+		gap: 1rem;
+		margin-bottom: 1.2rem;
+
+		.eyebrow {
+			margin-bottom: 0.55rem;
+		}
+
+		h2 {
+			font-size: clamp(1.6rem, 3vw, 2rem);
+		}
+	}
+
+	.channel-grid {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		border-top: 1px solid var(--border-color);
+		border-bottom: 1px solid var(--border-color);
+	}
+
+	.channel-card {
+		display: flex;
+		min-height: 6rem;
+		align-items: center;
+		gap: 0.85rem;
+		padding: 1rem 1.2rem;
+		transition: background var(--transition-fast);
+
+		& + & {
+			border-left: 1px solid var(--border-color);
+		}
+
+		&:hover {
+			background: var(--surface);
+		}
 	}
 
 	.channel-icon {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 3rem;
-		height: 3rem;
-		border-radius: var(--radius-lg);
-		background: var(--accent-transparent);
-		color: var(--accent);
-		margin-bottom: var(--space-sm);
-
-		:global(svg) {
-			width: 1.35rem;
-			height: 1.35rem;
-		}
-	}
-
-	h3 {
-		font-size: var(--font-size-lg);
-		letter-spacing: var(--tracking-tight);
-	}
-
-	.channels p {
-		font-size: var(--font-size-sm);
-		color: var(--text-color-dim);
-		margin-top: 0.25rem;
-	}
-
-	.channel-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.4rem;
-		margin-top: var(--space-sm);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--accent);
-
-		:global(.arrow) {
-			width: 0.65rem;
-			height: 0.65rem;
-			transition: transform var(--transition-fast);
-		}
-	}
-
-	:global(.channel-card:hover .arrow) {
-		transform: translateX(3px);
-	}
-
-	/* ============ Elsewhere ============ */
-	.elsewhere {
-		margin-bottom: var(--space-lg);
-
-		p {
-			font-size: var(--font-size-sm);
-			color: var(--text-color-dim);
-		}
-	}
-
-	/* ============ Guide ============ */
-	.guide {
-		padding: var(--space-lg) var(--space-xl);
+		display: inline-grid;
+		width: 2.5rem;
+		height: 2.5rem;
+		flex: 0 0 auto;
+		place-items: center;
 		border: 1px solid var(--border-color);
-		border-radius: var(--radius-lg);
-		background: var(--surface);
-		margin-bottom: var(--space-xl);
+		border-radius: 50%;
+		color: var(--accent);
 
-		h3 {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-			font-size: var(--font-size-lg);
-			letter-spacing: var(--tracking-tight);
-			margin-bottom: var(--space-sm);
-
-			:global(svg) {
-				width: 1rem;
-				height: 1rem;
-				color: var(--accent);
-			}
-		}
-
-		p {
-			font-size: var(--font-size-sm);
-			color: var(--text-color-secondary);
-			line-height: var(--line-height-relaxed);
-			margin-bottom: var(--space-sm);
-
-			&:last-child {
-				margin-bottom: 0;
-			}
+		:global(svg) {
+			width: 1rem;
+			height: 1rem;
 		}
 	}
 
-	/* ============ Thanks ============ */
-	.thanks {
+	.channel-copy {
 		display: flex;
+		min-width: 0;
+		flex: 1;
 		flex-direction: column;
-		align-items: center;
-		gap: var(--space-sm);
-		padding: var(--space-xl);
-		border: 1px dashed var(--border-color-light);
-		border-radius: var(--radius-lg);
-		text-align: center;
+		gap: 0.22rem;
 
-		:global(svg) {
-			width: 1.5rem;
-			height: 1.5rem;
-			color: var(--accent);
+		strong {
+			color: var(--text-color);
+			font-size: var(--font-size-sm);
 		}
 
-		p {
-			font-size: var(--font-size-base);
-			font-weight: 500;
-			color: var(--text-color-secondary);
+		> span {
+			color: var(--text-color-dim);
+			font-size: var(--font-size-xs);
+			line-height: 1.45;
+		}
+	}
+
+	:global(.channel-arrow) {
+		width: 0.75rem;
+		height: 0.75rem;
+		flex: 0 0 auto;
+		color: var(--text-color-dim);
+	}
+
+	.contact-note {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.7rem;
+		padding: 1rem 0;
+		border-top: 1px solid var(--border-color);
+		color: var(--text-color-dim);
+		font-size: var(--font-size-sm);
+
+		a {
+			color: var(--text-color);
+			text-decoration: underline;
+			text-decoration-color: var(--border-color-light);
+			text-underline-offset: 0.18em;
+		}
+	}
+
+	.availability-dot {
+		width: 0.5rem;
+		height: 0.5rem;
+		flex: 0 0 auto;
+		margin-top: 0.45rem;
+		border-radius: 50%;
+		background: var(--secondary);
+		box-shadow: 0 0 0 0.25rem var(--accent-transparent);
+	}
+
+	@media (max-width: 760px) {
+		.contact-card {
+			grid-template-columns: 1fr;
+			gap: 1.25rem;
+		}
+
+		.channel-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.channel-card + .channel-card {
+			border-top: 1px solid var(--border-color);
+			border-left: 0;
+		}
+	}
+
+	@media (max-width: 460px) {
+		.section-heading {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		.email-actions {
+			align-items: flex-start;
+			flex-direction: column;
 		}
 	}
 </style>

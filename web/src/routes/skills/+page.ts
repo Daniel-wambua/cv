@@ -1,72 +1,12 @@
-
-
-// Fetch skills from local data
-export const prerender = false;
-
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ fetch }) => {
-  try {
-    // Try to fetch from local static data first
-    const response = await fetch('/data/additional-data.json');
-    if (response.ok) {
-      const data = await response.json();
-      return {
-        techStack: data.techStack || {},
-        techStackExtras: data.techStackExtras || {},
-        additionalData: data
-      };
-    }
-  } catch {
-		// If file doesn't exist or there's an error, return fallback data structure
-  }
-  
-  // Fallback data if local file is not available
-  return {
-    additionalData: {
-      techStack: {
-        "backend": [
-          {
-            "language": "Python",
-            "projects": ["VulnScanner Pro", "CryptoBreaker Toolkit", "Network Security Monitor"]
-          },
-          {
-            "language": "Go", 
-            "projects": ["SecureAPI Framework"]
-          },
-          {
-            "language": "Bash",
-            "projects": ["Security Automation Scripts"]
-          }
-        ],
-        "frontend": [
-          {
-            "language": "JavaScript",
-            "projects": ["CTF Platform", "Security Dashboard"]
-          },
-          {
-            "language": "React",
-            "projects": ["Security Tools UI"]
-          }
-        ],
-        "security": [
-          {
-            "language": "Burp Suite",
-            "projects": ["Web App Penetration Testing"]
-          },
-          {
-            "language": "Metasploit",
-            "projects": ["Network Penetration Testing"]
-          },
-          {
-            "language": "Wireshark",
-            "projects": ["Network Traffic Analysis"]
-          }
-        ]
-      },
-      techStackExtras: {}
-    },
-    techStack: {},
-    techStackExtras: {}
-  };
+	try {
+		const response = await fetch('/api/resume');
+		if (!response.ok) throw new Error(`Resume data request failed (${response.status})`);
+		return await response.json();
+	} catch (error) {
+		console.error('Failed to load skills data:', error);
+		return { skills: [] };
+	}
 };

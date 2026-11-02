@@ -51,13 +51,13 @@
 
 <div class="intro">
 	<PageHero
-		eyebrow="01 / Intro"
+		eyebrow="About"
 		title="Security mindset, developer hands"
 		summary="Information Technology student at Karatina University with hands-on experience in ethical hacking, penetration testing, and secure application development. Actively seeking opportunities to apply this expertise to real-world problems."
 	/>
 
 	<div class="grid">
-		{#each sections as section, i}
+		{#each sections as section, i (section.title)}
 			<Card revealDelay={i * 100}>
 				<span class="section-icon"><svelte:component this={section.icon} /></span>
 				<h3>{section.title}</h3>
@@ -69,7 +69,7 @@
 	<section class="explore">
 		<h2 use:reveal>Keep exploring</h2>
 		<div class="explore-grid">
-			{#each navLinks as { name, url, icon }, i}
+			{#each navLinks as { name, url, icon }, i (url)}
 				<a href={url} class="explore-card" use:reveal style={`--reveal-delay: ${i * 80}ms`}>
 					<svelte:component this={icon} />
 					<span>{name}</span>
@@ -160,7 +160,9 @@
 			width: 0.75rem;
 			height: 0.75rem;
 			opacity: 0.5;
-			transition: transform var(--transition-fast), opacity var(--transition-fast);
+			transition:
+				transform var(--transition-fast),
+				opacity var(--transition-fast);
 		}
 
 		&:hover {

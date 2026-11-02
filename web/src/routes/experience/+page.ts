@@ -1,26 +1,41 @@
 export const prerender = false;
 import type { PageLoad } from './$types';
 
-export const load: PageLoad = async ({ fetch }) => {
-  try {
-    const resumeResponse = await fetch('/api/resume');
-    const resumeData = await resumeResponse.json();
-    const cvData = resumeData?.work || [];
+interface ResumeWorkEntry {
+	name: string;
+	position: string;
+	startDate: string;
+	endDate?: string;
+	highlights?: string[];
+}
 
-    return {
-      combinedJobData: cvData.map((job: any) => ({
-        company: job.name,
-        position: job.position,
-        datesWorked: `${job.startDate} - ${job.endDate}`,
-        highlights: job.highlights,
-        responsibilities: job.highlights?.join(' ') || '',
-        technologies: []
-      }))
-    };
-  } catch (error) {
-    console.error('Failed to load experience data:', error);
-    return {
-      combinedJobData: []
-    };
-  }
+interface ResumeData {
+	work?: ResumeWorkEntry[];
+}
+
+export const load: PageLoad = async ({ fetch }) => {
+	try {
+		const resumeResponse = await fetch('/api/resume');
+		if (!resumeResponse.ok) {
+			throw new Error(`Resume data request failed (${resumeResponse.status})`);
+		}
+		const resumeData: ResumeData = await resumeResponse.json();
+		const cvData = Array.isArray(resumeData.work) ? resumeData.work : [];
+
+		return {
+			combinedJobData: cvData.map((job) => ({
+				company: job.name,
+				position: job.position,
+				datesWorked: `${job.startDate} - ${job.endDate ?? 'Present'}`,
+				highlights: job.highlights,
+				responsibilities: job.highlights?.join(' ') || '',
+				technologies: []
+			}))
+		};
+	} catch (error) {
+		console.error('Failed to load experience data:', error);
+		return {
+			combinedJobData: []
+		};
+	}
 };

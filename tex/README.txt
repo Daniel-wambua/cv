@@ -30,16 +30,16 @@ resume.aux, resume.log, resume.out
 
 resume.tex
 ----------
-- Sample LaTeX document that uses the resume-format class.
-- Customize this file to create your own resume.
+- Generated LaTeX document created from the root `resume.yml` and `template.jinja`.
+- Do not edit this generated file directly; change the YAML content or source template, then run `make` from the repository root.
 
 ===============================================================================
                                Usage Instructions
 ===============================================================================
-1. Ensure that you have LaTeX and xelatex installed on your system
-2. Clone the contents of this repository, and navigate into it
-3. Run `xelatex resume.tex` to generate the PDF, or use Overlea (https://overleaf.com/)
-4. From the parent directory, you can also run `make` to generate the PDF with the content of resume.yml
+1. Ensure you have LaTeX and xelatex installed on your system.
+2. Clone the repository and navigate to its root directory.
+3. Run `make` to validate the YAML, generate the LaTeX source, and compile the PDF.
+4. To compile an already generated `resume.tex` manually, run `xelatex resume.tex` from the `tex/` directory, or use Overleaf (https://overleaf.com/).
 
 ===============================================================================
                                License Information
@@ -69,5 +69,4 @@ Dependencies and their Licenses:
 - fontawesome: LaTeX Project Public License (LPPL) (http://www.latex-project.org/lppl)
 - parskip: LaTeX Project Public License (LPPL) (http://www.latex-project.org/lppl)
 - hyperref: LaTeX Project Public License (LPPL) (http://www.latex-project.org/lppl)
-
 

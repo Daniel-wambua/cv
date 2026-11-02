@@ -12,11 +12,8 @@
 	import ArrowRightIcon from '~icons/fa6-solid/arrow-right';
 	import CheckIcon from '~icons/fa6-solid/circle-check';
 
-	// ============================================================
-	// CYBERSECURITY JUNIOR ROLE (ACTIVE)
-	// ============================================================
 	const intro = [
-		`I'm seeking an entry-level cybersecurity role where I can apply my passion for
+		`I'm seeking a cybersecurity role where I can apply my focus on
     security research, penetration testing, and ethical hacking to protect organizations
     from evolving threats.`,
 		`With a strong foundation in CTF competitions, vulnerability assessment, and
@@ -38,7 +35,7 @@
 		{ lbl: 'Workspace', desc: 'Remote, hybrid, or on-site' },
 		{
 			lbl: 'Discipline',
-			desc: 'Junior Penetration Tester, SOC Analyst, Security Engineer, or Vulnerability Analyst,Network Security Engineer'
+			desc: 'Penetration Tester, SOC Analyst, Security Engineer, Vulnerability Analyst, or Network Security Engineer'
 		},
 		{
 			lbl: 'Industry',
@@ -57,7 +54,7 @@
 		'Provides hands-on experience with real-world security challenges',
 		'Values continuous learning and knowledge sharing',
 		'Supports participation in CTFs and security research',
-		'Mentorship programs for junior security professionals',
+		'Mentorship and growth for security professionals',
 		'Collaborative environment where questions are welcomed'
 	];
 
@@ -73,7 +70,7 @@
 	<title>Daniel Wambua | Ideal Role</title>
 	<meta
 		name="description"
-		content="What Daniel Wambua is looking for in a junior cybersecurity role: penetration testing, SOC analysis, and security engineering opportunities."
+		content="What Daniel Wambua is looking for in a cybersecurity role: penetration testing, SOC analysis, and security engineering opportunities."
 	/>
 </svelte:head>
 
@@ -81,20 +78,18 @@
 	<PageHero
 		eyebrow="Ideal role"
 		title="What I'm looking for"
-		summary="An entry-level security role on a team that takes defense seriously and invests in its people."
+		summary="A security role on a team that takes defense seriously and invests in its people."
 	/>
 
 	<div class="statement" use:reveal>
-		{#each intro as paragraph}
+		{#each intro as paragraph, index (index)}
 			<p>{paragraph}</p>
 		{/each}
 	</div>
 
-	<SectionHeading title="Values">
-		The kind of company I do my best work for.
-	</SectionHeading>
+	<SectionHeading title="Values">The kind of company I do my best work for.</SectionHeading>
 	<div class="values">
-		{#each values as value, i}
+		{#each values as value, i (value)}
 			<div class="value-item" use:reveal style={`--reveal-delay: ${i * 50}ms`}>
 				<CheckIcon />
 				<span>{value}</span>
@@ -106,7 +101,7 @@
 		Flexible on the details, but ideally within these parameters.
 	</SectionHeading>
 	<div class="requirements">
-		{#each requirements as { lbl, desc }, i}
+		{#each requirements as { lbl, desc }, i (lbl)}
 			<div class="req-item" use:reveal style={`--reveal-delay: ${i * 60}ms`}>
 				<span class="req-label">{lbl}</span>
 				<span class="req-desc">{desc}</span>
@@ -114,18 +109,16 @@
 		{/each}
 	</div>
 
-	<SectionHeading title="Why me">
-		Proven skills, public receipts.
-	</SectionHeading>
+	<SectionHeading title="Why me">Proven skills, public receipts.</SectionHeading>
 	<div class="why" use:reveal>
 		<p>
 			I'm a passionate cybersecurity enthusiast with proven skills in penetration testing,
 			vulnerability assessment, and security research. Check out my
 			<a href="/certificates">certifications</a> and <a href="/achievements">achievements</a>
-			from CTF competitions and security training programs. You can learn more about my
-			background and security mindset on my <a href="/intro">intro</a> page. I actively
-			participate in CTFs, bug bounties, and security challenges to continuously sharpen my
-			skills. See my security research and write-ups at
+			from CTF competitions and security training programs. You can learn more about my background and
+			security mindset on my <a href="/intro">intro</a> page. I actively participate in CTFs, bug
+			bounties, and security challenges to continuously sharpen my skills. See my security research
+			and write-ups at
 			<a href="https://havocsec.dev" target="_blank" rel="noopener noreferrer">havocsec.dev</a>.
 		</p>
 	</div>
@@ -134,15 +127,15 @@
 		<div class="cta-body">
 			<h3>Get in touch</h3>
 			<p>
-				Looking for a motivated junior security professional? I would love to hear from you.
-				Reach out to discuss how I can contribute to your security team.
+				Looking for a motivated security professional? I would love to hear from you. Reach out to
+				discuss how I can contribute to your security team.
 			</p>
 		</div>
 		<PaperPlaneIcon class="cta-icon" />
 	</Card>
 
 	<div class="explore">
-		{#each navLinks as { name, url, icon }, i}
+		{#each navLinks as { name, url, icon }, i (url)}
 			<a href={url} class="explore-card" use:reveal style={`--reveal-delay: ${i * 70}ms`}>
 				<svelte:component this={icon} />
 				<span>{name}</span>
@@ -162,11 +155,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: var(--space-sm);
-		padding: var(--space-lg) var(--space-xl);
+		padding: var(--space-lg) 0;
 		margin-bottom: var(--space-xl);
-		border-left: 3px solid var(--accent);
-		border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-		background: var(--accent-transparent);
+		border-top: 1px solid var(--border-color);
+		border-bottom: 1px solid var(--border-color);
 
 		p {
 			font-size: var(--font-size-base);

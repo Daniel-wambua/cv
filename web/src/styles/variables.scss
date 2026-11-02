@@ -1,134 +1,165 @@
-/* ==========================================================================
-   Design tokens - refined dark theme with a single electric lime accent.
-   Dark-only by design: no light theme overrides.
-   ========================================================================== */
+/* Shared Graphite & Antique tokens for the portfolio and its existing pages. */
 :root {
-  /* Layout */
-  --header-height: 4rem;
-  --sidebar-width: 18rem;
-  --content-offset: calc(var(--sidebar-width) + 3.25rem);
-  --max-content-width: 1200px;
-  --page-padding: 2rem;
+	color-scheme: light;
 
-  /* Radii - kept subtle for a sharp, engineered feel */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-full: 9999px;
-  --button-radius: var(--radius-md);
+	--header-height: 4.25rem;
+	--sidebar-width: 18rem;
+	--content-offset: 0;
+	--max-content-width: 1120px;
+	--page-padding: 1.5rem;
 
-  /* Spacing */
-  --space-xs: 0.5rem;
-  --space-sm: 0.75rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-  --space-3xl: 4.5rem;
+	--radius-sm: 0.4rem;
+	--radius-md: 0.65rem;
+	--radius-lg: 0.9rem;
+	--radius-xl: 1.25rem;
+	--radius-full: 9999px;
+	--button-radius: var(--radius-md);
 
-  /* Typography */
-  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
-  --font-display: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'Fira Mono', 'SF Mono', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
-  --font-size-xs: 0.75rem;
-  --font-size-sm: 0.875rem;
-  --font-size-base: 1rem;
-  --font-size-lg: 1.125rem;
-  --font-size-xl: 1.25rem;
-  --font-size-2xl: 1.5rem;
-  --font-size-3xl: 1.875rem;
-  --font-size-4xl: 2.25rem;
-  --font-size-5xl: 3rem;
-  --font-size-6xl: 3.75rem;
-  --line-height-tight: 1.15;
-  --line-height-normal: 1.55;
-  --line-height-relaxed: 1.75;
-  --tracking-tight: -0.02em;
-  --tracking-display: -0.035em;
-  --tracking-label: 0.14em;
+	--space-xs: 0.5rem;
+	--space-sm: 0.75rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	--space-2xl: 3rem;
+	--space-3xl: 4.5rem;
 
-  /* Palette - ink and lime */
-  --accent: #00ff88;
-  --accent-dim: #00cc6a;
-  --accent-deep: #00994f;
-  --accent-transparent: rgba(0, 255, 136, 0.08);
-  --accent-transparent-hover: rgba(0, 255, 136, 0.14);
-  --accent-glow: rgba(0, 255, 136, 0.15);
+	--font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+	--font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+	--font-mono: 'Fira Mono', 'SF Mono', Consolas, monospace;
+	--font-size-xs: 0.75rem;
+	--font-size-sm: 0.875rem;
+	--font-size-base: 1rem;
+	--font-size-lg: 1.125rem;
+	--font-size-xl: 1.25rem;
+	--font-size-2xl: 1.5rem;
+	--font-size-3xl: 1.875rem;
+	--font-size-4xl: 2.25rem;
+	--font-size-5xl: 3rem;
+	--font-size-6xl: 3.75rem;
+	--line-height-tight: 1.15;
+	--line-height-normal: 1.55;
+	--line-height-relaxed: 1.75;
+	--tracking-tight: -0.02em;
+	--tracking-display: -0.045em;
+	--tracking-label: 0.1em;
 
-  /* Legacy accent aliases (pages still reference these) */
-  --primary: var(--accent);
-  --primary-hover: var(--accent-dim);
-  --primary-light: var(--accent);
-  --primary-transparent: var(--accent-transparent);
-  --primary-transparent-hover: var(--accent-transparent-hover);
-  --secondary: var(--accent-dim);
-  --secondary-hover: var(--accent-deep);
+	--background: #f4f1ea;
+	--background-elevated: #fcfbf8;
+	--background-hover: #ece8df;
+	--surface: #fcfbf8;
+	--surface-elevated: #fffefa;
+	--surface-hover: #ece8df;
+	--card-background: #fcfbf8;
+	--card-background-hover: #fffefa;
+	--glass: rgba(252, 251, 248, 0.96);
+	--glass-strong: rgba(252, 251, 248, 0.98);
+	--glass-soft: rgba(252, 251, 248, 0.8);
+	--glass-border: #e2ded5;
+	--glass-highlight: rgba(255, 255, 255, 0.8);
 
-  /* Surfaces - ink base with translucent glass layers on top */
-  --background: #060907;
-  --background-elevated: #0c1210;
-  --background-hover: #111917;
+	--text-color: #111312;
+	--text-color-secondary: #444c47;
+	--text-color-dim: #626b64;
+	--text-color-muted: #707873;
+	--text-color-accent: var(--accent);
 
-  /* Glass panels: translucent so the ambient backdrop shows through,
-     paired with backdrop-filter blur applied in app.css */
-  --glass: rgba(16, 24, 21, 0.55);
-  --glass-strong: rgba(14, 21, 18, 0.78);
-  --glass-soft: rgba(13, 20, 17, 0.38);
-  --glass-border: rgba(232, 240, 236, 0.14);
-  --glass-highlight: rgba(232, 240, 236, 0.06);
+	--accent: #90583f;
+	--accent-dim: #774832;
+	--accent-deep: #603a29;
+	--accent-transparent: rgba(160, 99, 72, 0.1);
+	--accent-transparent-hover: rgba(160, 99, 72, 0.16);
+	--accent-glow: rgba(160, 99, 72, 0.12);
+	--primary: var(--accent);
+	--primary-hover: var(--accent-dim);
+	--primary-light: var(--accent);
+	--primary-transparent: var(--accent-transparent);
+	--primary-transparent-hover: var(--accent-transparent-hover);
+	--secondary: #687461;
+	--secondary-hover: #56614f;
 
-  --surface: rgba(16, 24, 21, 0.42);
-  --surface-elevated: rgba(20, 29, 25, 0.58);
-  --surface-hover: rgba(24, 34, 29, 0.68);
-  --card-background: rgba(18, 26, 23, 0.45);
-  --card-background-hover: rgba(24, 34, 29, 0.64);
+	--border-color: #e2ded5;
+	--border-color-light: #d8d3c9;
+	--border-color-lighter: #c9c4ba;
+	--border-color-accent: rgba(144, 88, 63, 0.45);
+	--success: #566c55;
+	--warning: #8c5c13;
+	--error: #a53d33;
+	--info: #376b88;
 
-  /* Text */
-  --text-color: #e8f0ec;
-  --text-color-secondary: #b8c8c0;
-  --text-color-dim: #8fa39a;
-  --text-color-muted: #5f7168;
-  --text-color-accent: var(--accent);
+	--gradient-primary: linear-gradient(135deg, #a06348 0%, #845039 100%);
+	--gradient-surface: linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface) 100%);
+	--gradient-fade-bottom: linear-gradient(180deg, transparent 0%, var(--background) 100%);
 
-  /* Borders - slightly stronger so glass edges read clearly */
-  --border-color: rgba(232, 240, 236, 0.13);
-  --border-color-light: rgba(232, 240, 236, 0.2);
-  --border-color-lighter: rgba(232, 240, 236, 0.28);
-  --border-color-accent: rgba(0, 255, 136, 0.4);
+	--shadow-sm: 0 1px 2px rgba(31, 29, 24, 0.06);
+	--shadow-md: 0 5px 16px rgba(31, 29, 24, 0.08);
+	--shadow-lg: 0 16px 38px rgba(31, 29, 24, 0.08);
+	--shadow-xl: 0 24px 56px rgba(31, 29, 24, 0.12);
+	--shadow-2xl: 0 30px 70px rgba(31, 29, 24, 0.16);
+	--shadow-colored: 0 8px 24px rgba(160, 99, 72, 0.15);
+	--glow-effect: 0 8px 24px rgba(160, 99, 72, 0.1);
+	--glow-effect-strong: 0 12px 32px rgba(160, 99, 72, 0.14);
+	--neon-glow: none;
 
-  /* Semantic status colors - the only other hues allowed */
-  --success: var(--accent-dim);
-  --warning: #f5b93e;
-  --error: #ff5d5d;
-  --info: #6cb6ff;
+	--transition-fast: 150ms cubic-bezier(0.2, 0.7, 0.2, 1);
+	--transition-base: 200ms cubic-bezier(0.2, 0.7, 0.2, 1);
+	--transition-medium: 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
+	--transition-slow: 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+	--transition-bounce: 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+	--view-transition-duration: 180ms;
+}
 
-  /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--accent) 0%, var(--accent-dim) 100%);
-  --gradient-surface: linear-gradient(180deg, var(--surface-elevated) 0%, var(--surface) 100%);
-  --gradient-fade-bottom: linear-gradient(180deg, transparent 0%, var(--background) 100%);
+:root[data-theme='dark'] {
+	color-scheme: dark;
 
-  /* Effects */
-  --glow-effect: 0 0 24px var(--accent-glow);
-  --glow-effect-strong: 0 0 48px rgba(0, 255, 136, 0.25);
-  --neon-glow: 0 0 5px currentColor, 0 0 14px var(--accent-glow);
+	--background: #101311;
+	--background-elevated: #191e1b;
+	--background-hover: #222923;
+	--surface: #191e1b;
+	--surface-elevated: #222923;
+	--surface-hover: #2a322c;
+	--card-background: #191e1b;
+	--card-background-hover: #222923;
+	--glass: rgba(25, 30, 27, 0.96);
+	--glass-strong: rgba(25, 30, 27, 0.98);
+	--glass-soft: rgba(25, 30, 27, 0.88);
+	--glass-border: #303831;
+	--glass-highlight: rgba(255, 255, 255, 0.06);
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 12px 24px -8px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 40px -12px rgba(0, 0, 0, 0.55);
-  --shadow-2xl: 0 32px 64px -16px rgba(0, 0, 0, 0.6);
-  --box-shadow: var(--shadow-lg);
-  --shadow-colored: 0 8px 24px var(--accent-glow);
+	--text-color: #f2f0e9;
+	--text-color-secondary: #c6cbc4;
+	--text-color-dim: #a5aaa2;
+	--text-color-muted: #929991;
+	--accent: #d18a67;
+	--accent-dim: #e0a080;
+	--accent-deep: #efb18f;
+	--accent-transparent: rgba(193, 122, 88, 0.13);
+	--accent-transparent-hover: rgba(193, 122, 88, 0.2);
+	--accent-glow: rgba(193, 122, 88, 0.12);
+	--primary: var(--accent);
+	--primary-hover: var(--accent-dim);
+	--primary-light: var(--accent);
+	--primary-transparent: var(--accent-transparent);
+	--primary-transparent-hover: var(--accent-transparent-hover);
+	--secondary: #91a18a;
+	--secondary-hover: #a4b39d;
 
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-medium: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: 300ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	--border-color: #303831;
+	--border-color-light: #3a443c;
+	--border-color-lighter: #4a574c;
+	--border-color-accent: rgba(209, 138, 103, 0.5);
+	--success: #a4b39d;
+	--warning: #e2b864;
+	--error: #ed8b80;
+	--info: #88b9d1;
 
-  /* View transition */
-  --view-transition-duration: 180ms;
+	--gradient-primary: linear-gradient(135deg, #c17a58 0%, #d18a67 100%);
+	--gradient-fade-bottom: linear-gradient(180deg, transparent 0%, var(--background) 100%);
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.18);
+	--shadow-md: 0 5px 16px rgba(0, 0, 0, 0.22);
+	--shadow-lg: 0 16px 38px rgba(0, 0, 0, 0.25);
+	--shadow-xl: 0 24px 56px rgba(0, 0, 0, 0.3);
+	--shadow-2xl: 0 30px 70px rgba(0, 0, 0, 0.38);
+	--shadow-colored: 0 8px 24px rgba(193, 122, 88, 0.14);
+	--glow-effect: 0 8px 24px rgba(193, 122, 88, 0.1);
+	--glow-effect-strong: 0 12px 32px rgba(193, 122, 88, 0.14);
 }

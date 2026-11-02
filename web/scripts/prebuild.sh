@@ -11,6 +11,11 @@ echo "🔧 Starting pre-build PDF generation..."
 # Navigate to project root
 cd "$(dirname "$0")/../.."
 
+# Keep the public YAML copies in sync with the root source of truth.
+mkdir -p web/static/data
+cp resume.yml web/static/resume.yml
+cp resume.yml web/static/data/resume.yml
+
 # Check if Python is available
 if ! command -v python3 &> /dev/null; then
     echo "❌ Python 3 is not installed. Installing..."
@@ -60,6 +65,7 @@ fi
 echo "✅ Pre-build PDF generation complete!"
 echo "📄 PDF available at: web/static/downloads/Daniel-Wambua-CV.pdf"
 
-# Fetch certificate images from Google Drive (not committed to the repo to
+# Fetch public certificate, badge, and achievement images from Google Drive
+# (not committed to the repo to
 # keep forks free of certificate files - see web/scripts/fetch-certificates.sh)
 bash web/scripts/fetch-certificates.sh

@@ -1,160 +1,250 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
+	import DownloadIcon from '~icons/fa6-solid/download';
 
-  let status: 'init' | 'starting' | 'downloading' | 'error' = 'init';
-  let errorMsg = '';
+	let generating = false;
+	let statusMessage = '';
+	let errorMessage = '';
 
-  async function startDownload() {
-    status = 'starting';
-    try {
-      // Serve the prebuilt static PDF by default (matches LaTeX output exactly)
-      // Add a cache-busting query to avoid any stale CDN caches
-      const dynamicUrl = `/api/pdf?ts=${Date.now()}`;
+	async function downloadCurrentResume() {
+		if (generating) return;
 
-      // Probe the endpoint quickly to surface errors before redirecting
-      const res = await fetch(dynamicUrl, { method: 'HEAD' });
-      if (!res.ok) {
-        throw new Error(`Dynamic PDF generator unavailable (status ${res.status})`);
-      }
+		generating = true;
+		statusMessage = 'Fetching the current CV…';
+		errorMessage = '';
 
-      status = 'downloading';
-      setTimeout(() => {
-        window.location.href = dynamicUrl;
-      }, 300);
-    } catch (err: unknown) {
-      // If default download fails, surface error and offer fallbacks below
-      status = 'error';
-      if (err instanceof Error) {
-        errorMsg = err.message;
-      } else {
-        errorMsg = 'Unknown error while contacting dynamic PDF generator';
-      }
-    }
-  }
+		try {
+			const response = await fetch('/api/pdf', {
+				cache: 'no-store',
+				headers: { Accept: 'application/pdf' }
+			});
+			if (!response.ok) throw new Error(`The PDF service returned ${response.status}.`);
+			if (!response.headers.get('content-type')?.includes('application/pdf')) {
+				throw new Error('The PDF service returned an unexpected response.');
+			}
 
-  onMount(() => {
-    startDownload();
-  });
+			const pdf = await response.blob();
+			if ((await pdf.slice(0, 5).text()) !== '%PDF-') {
+				throw new Error('The generated file was not a valid PDF.');
+			}
+
+			const downloadUrl = URL.createObjectURL(pdf);
+			const link = document.createElement('a');
+			link.href = downloadUrl;
+			link.download = 'Daniel-Wambua-CV.pdf';
+			document.body.append(link);
+			link.click();
+			link.remove();
+			window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 60_000);
+			statusMessage = 'Your current CV is ready. The download has started.';
+		} catch (error) {
+			console.error('Current CV download failed:', error);
+			errorMessage =
+				error instanceof Error ? error.message : 'Something went wrong while generating the CV.';
+			statusMessage = '';
+		} finally {
+			generating = false;
+		}
+	}
 </script>
 
 <svelte:head>
-  <title>Downloading CV</title>
-  <meta name="robots" content="noindex" />
+	<title>Resume | Daniel Wambua</title>
+	<meta
+		name="description"
+		content="Download Daniel Wambua's current cybersecurity and software resume as a PDF."
+	/>
 </svelte:head>
 
-<div class="wrap">
-  <div class="card">
-    <h1>Downloading CV</h1>
-    <div class="spinner" aria-hidden="true"></div>
-    <p>Your download should start automatically.</p>
-    <p class="hint">If it does not start within a few seconds, please ensure JavaScript is enabled and not blocked by extensions such as ad or script blockers. You can also use the manual links below.</p>
-    <noscript>
-      <p class="warn">JavaScript is disabled. Please enable JavaScript and reload this page, or use the manual download links below.</p>
-    </noscript>
+<div class="resume-page">
+	<section class="download-content" aria-labelledby="resume-title">
+		<h1 id="resume-title">Download my CV</h1>
+		<p class="download-intro">Choose the current PDF or the saved backup.</p>
 
-    {#if status === 'error'}
-      <p class="warn">We couldn't generate the PDF right now.</p>
-      <pre class="error">{errorMsg}</pre>
-      <p>Try one of the alternatives:</p>
-    {/if}
+		<div class="download-control">
+			<button
+				class="download-button"
+				type="button"
+				on:click={downloadCurrentResume}
+				disabled={generating}
+				aria-busy={generating}
+			>
+				<span class:spinning={generating} aria-hidden="true"><DownloadIcon /></span>
+				{generating ? 'Preparing your CV…' : 'Download current CV'}
+			</button>
+			<div class="download-status" aria-live="polite" aria-atomic="true">
+				{#if generating}<div class="progress-track" aria-hidden="true"><span></span></div>{/if}
+				{#if statusMessage}<p>{statusMessage}</p>{/if}
+				{#if errorMessage}
+					<p class="download-error" role="alert">
+						{errorMessage} You can retry or use the static backup.
+					</p>
+				{/if}
+			</div>
+		</div>
 
-    <ul class="links">
-      <li><a href="/api/pdf" rel="nofollow">Download CV (recommended static build)</a></li>
-      <li><a href="/api/pdf?fresh=1" rel="nofollow">Render a fresh PDF now (headless browser)</a></li>
-      <li><a href="/downloads/Daniel-Wambua-CV.pdf">Direct link to static PDF</a></li>
-      <li><a href="https://github.com/Daniel-wambua/cv/releases" target="_blank" rel="noopener noreferrer">Get latest release on GitHub</a></li>
-    </ul>
-
-    <button class="retry" on:click={startDownload} disabled={status === 'starting' || status === 'downloading'}>
-      {status === 'starting' || status === 'downloading' ? 'Starting' : 'Retry download'}
-    </button>
-  </div>
+		<div class="download-details">
+			<span>PDF · Current version</span>
+			<a href="/downloads/Daniel-Wambua-CV.pdf" download="Daniel-Wambua-CV.pdf">
+				Download saved backup
+			</a>
+		</div>
+	</section>
 </div>
 
-<style>
-  .wrap {
-    min-height: 60vh;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-  }
-  .card {
-    width: 100%;
-    max-width: 560px;
-    background: var(--card-background);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 28px 24px;
-    text-align: center;
-  }
-  h1 {
-    margin: 0 0 10px;
-    font-family: var(--font-display);
-    font-size: var(--font-size-2xl);
-    letter-spacing: var(--tracking-tight);
-  }
-  p {
-    color: var(--text-color-dim);
-    margin: 6px 0 12px;
-  }
-  .links {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
-  }
-  .links li {
-    margin: 6px 0;
-  }
-  a {
-    color: var(--accent);
-    text-decoration: underline;
-  }
-  .warn {
-    color: var(--warning);
-  }
-  .hint {
-    font-size: 0.95em;
-  }
-  .error {
-    color: var(--error);
-    background: rgba(255, 93, 93, 0.08);
-    padding: 8px 10px;
-    border-radius: var(--radius-sm);
-    overflow: auto;
-    text-align: left;
-  }
-  .retry {
-    margin-top: 14px;
-    background: var(--accent);
-    color: var(--background);
-    border: 0;
-    padding: 10px 16px;
-    border-radius: var(--radius-sm);
-    font-family: var(--font-mono);
-    font-size: var(--font-size-sm);
-    cursor: pointer;
-    transition: background var(--transition-fast);
-  }
-  .retry:hover:not([disabled]) {
-    background: var(--accent-dim);
-  }
-  .retry[disabled] {
-    opacity: 0.6;
-    cursor: default;
-  }
+<style lang="scss">
+	.resume-page {
+		display: flex;
+		min-height: min(65vh, 38rem);
+		align-items: center;
+		padding: clamp(4rem, 11vw, 8rem) 0;
+	}
 
-  .spinner {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    border: 4px solid var(--border-color-light);
-    border-top-color: var(--accent);
-    margin: 14px auto;
-    animation: spin 900ms linear infinite;
-  }
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
+	.download-content {
+		--download-accent: #08b5c8;
+		--download-ink: #062428;
+
+		width: min(100%, 48rem);
+		margin: 0 auto;
+		padding: clamp(1.5rem, 5vw, 3rem);
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-xl);
+		background: linear-gradient(135deg, var(--accent-transparent), transparent 56%), var(--surface);
+	}
+
+	h1 {
+		max-width: 11ch;
+		font-size: clamp(3rem, 8vw, 5.7rem);
+		line-height: 0.99;
+		text-wrap: balance;
+	}
+
+	.download-intro {
+		max-width: 56ch;
+		margin-top: 1.3rem;
+		font-size: clamp(1rem, 2vw, 1.15rem);
+		line-height: var(--line-height-relaxed);
+	}
+
+	.download-control {
+		display: flex;
+		align-items: flex-start;
+		gap: 1rem 1.25rem;
+		margin-top: 2rem;
+	}
+
+	.download-button {
+		display: inline-flex;
+		min-height: 3.2rem;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		gap: 0.65rem;
+		padding: 0.8rem 1.2rem;
+		border: 0;
+		border-radius: var(--radius-full);
+		background: var(--download-accent);
+		color: var(--download-ink);
+		font-size: var(--font-size-sm);
+		font-weight: 650;
+		cursor: pointer;
+		transition:
+			filter var(--transition-fast),
+			transform var(--transition-fast);
+
+		:global(svg) {
+			width: 0.9rem;
+			height: 0.9rem;
+		}
+
+		&:hover:not(:disabled) {
+			filter: brightness(0.94);
+			transform: translateY(-1px);
+		}
+
+		&:disabled {
+			cursor: progress;
+			opacity: 0.78;
+		}
+	}
+
+	.spinning {
+		animation: spin 1.2s linear infinite;
+	}
+
+	.download-status {
+		min-width: 0;
+		flex: 1;
+		padding-top: 0.35rem;
+		color: var(--text-color-dim);
+		font-size: var(--font-size-xs);
+
+		p {
+			margin-top: 0.45rem;
+		}
+	}
+
+	.download-error {
+		color: var(--error);
+	}
+
+	.progress-track {
+		height: 2px;
+		overflow: hidden;
+		background: var(--background-hover);
+
+		span {
+			display: block;
+			width: 38%;
+			height: 100%;
+			background: var(--download-accent);
+			animation: progress 1.25s ease-in-out infinite;
+		}
+	}
+
+	.download-details {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		gap: 0.75rem 1rem;
+		margin-top: 2.2rem;
+		padding-top: 1rem;
+		border-top: 1px solid var(--border-color);
+		color: var(--text-color-dim);
+		font-size: var(--font-size-xs);
+
+		a {
+			color: var(--text-color);
+			text-decoration: underline;
+			text-decoration-color: var(--border-color-light);
+			text-underline-offset: 0.22em;
+		}
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	@keyframes progress {
+		from {
+			transform: translateX(-120%);
+		}
+		to {
+			transform: translateX(360%);
+		}
+	}
+
+	@media (max-width: 620px) {
+		.download-control {
+			flex-direction: column;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.spinning,
+		.progress-track span {
+			animation: none;
+		}
+	}
 </style>
