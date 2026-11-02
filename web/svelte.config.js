@@ -12,7 +12,7 @@ const config = {
 		// This ensures proper static asset handling and serverless function optimization
 		adapter: adapter({
 			// Ensure static assets (including the pre-built PDF) are properly served
-			runtime: 'nodejs20.x'
+			runtime: 'nodejs24.x'
 		}),
 		alias: {
 			$components: 'src/components'
