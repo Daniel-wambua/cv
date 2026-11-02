@@ -106,7 +106,7 @@
 \begin{cventries}
 {%- for edu in education %}
     \cventry
-    { {{ edu.studyType | latex_escape }} in {{ edu.area | latex_escape }} — Grade: {{ edu.score | latex_escape }} }
+    { {{ edu.studyType | latex_escape }} in {{ edu.area | latex_escape }}{% if edu.score %} — Grade: {{ edu.score | latex_escape }}{% endif %} }
     { {{ edu.institution | latex_escape }} }
     {}
     { {{ edu.startDate | latex_escape | format_date }} – {{ edu.endDate | latex_escape | format_date }} }
@@ -133,7 +133,7 @@
 %     Achievements Statistics
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 {% if achievements %}
-\cvsection{Stats}
+\cvsection{Achievements}
 \vspace{0.5mm}
 \begin{cvachievements}
 \setlength{\itemsep}{0mm}
@@ -168,7 +168,7 @@
   \setlength{\itemsep}{0mm}
 {%- for proj in projects %}
   \item {\hspace{-5pt}
-    	\textbf{ {{ proj.name | latex_escape }} }
+    \textbf{ {{ proj.name | latex_escape }} }
     {%- if proj.stars %} ({{ proj.stars | latex_escape }} \raisebox{0.5pt}{\scriptsize\faStar}){% endif %}
     \href{ {{ proj.url | latex_escape }} }{\scriptsize\color{lightgray}\faExternalLink~Live}
     \hfill

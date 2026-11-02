@@ -1,145 +1,213 @@
+################################################################################
+# CV CONFIGURATION FILE
+# This file generates your professional CV/resume using LaTeX
+# Edit this file to update your CV - changes will auto-generate a new PDF
+################################################################################
+
 basics:
   name: Daniel Wambua
-  email: wambuahdaniel@gmail.com
-  url: https://github.com/wambuahdaniel
+  email: havocxsec@proton.me
+  url: https://github.com/Daniel-wambua
   location:
     address: Nairobi, Kenya
+  profiles:
+    - network: GitHub
+      username: Daniel-wambua
+      url: https://github.com/Daniel-wambua
+
+# ==============================================================================
+# PERSONAL STATEMENT
+# ==============================================================================
 personal-statement: |
-  I'm a builder at heart. I care about clean, simple software that's fast,
-  secure, accessible—and actually helps people. Currently an IT student, ethical hacker, and developer 
-  passionate about AI and cybersecurity. Skilled in building secure, efficient software and modernising systems
-  with a security-first mindset. Driven by curiosity, innovation, and a commitment to using technology to make a positive impact.
+  Cybersecurity-focused Information Technology student with hands-on experience in
+  penetration testing labs, CTF competitions, and security tooling.
+  Strong interest in offensive security, vulnerability assessment, and security operations.
+  Actively seeking a job offer or position in technology/security.
 
-extra-links:
-  work_history:
-    text: See all previous roles at linkedin.com/in/wambuahdaniel
-    link: https://www.linkedin.com/in/daniel-wambua-a312b32b8/
-  projects:
-    text: See example projects built with each technology at wambuahdaniel.dev
-    link: https://wambuahdaniel.dev/
+# ==============================================================================
+# EDUCATION
+# ==============================================================================
 education:
-- institution: karatina university
-  area: information technology
-  studyType: BSc
-  startDate: ''
-  endDate: ''
-  score: in progress
-- institution: i-tech computer college
-  area: Computer Fundamentals & Operations
-  studyType: certificate
-  startDate: '2022-08'
-  endDate: '2023-01'
-  score: Graduated Top of Class (Distinction)
-- institution: Kitonyoni secondary school
-  area: Certificate of Secondary Education
-  studyType: KCSE
-  startDate: '2018'
-  endDate: '2022'
-  score: Distinction
-- institution: Muvau primary school
-  area: Certificate of Primary Education
-  studyType: KCPE
-  startDate: '2008'
-  endDate: '2017'
-  score: Distinction
+  - institution: Karatina University
+    area: Information Technology
+    studyType: Bachelor of Science (BSc)
+    startDate: '2023'
+    endDate: '2027'
+    score: Ongoing
+    highlights:
+      - Coursework: Network Security, Cryptography, Digital Forensics, Ethical Hacking
+      - Active member of University Innovation & Cybersecurity Club
+      - Participated in internal CTFs, technical workshops, and peer training sessions
 
+  - institution: I-Tech Computer College
+    area: Computer Fundamentals & Security Operations
+    studyType: Certificate
+    startDate: '2022-08'
+    endDate: '2023-01'
+    score: Distinction
+    highlights:
+      - Training in system administration, networking fundamentals, and basic security operations
+      - Final project: Designed a small-scale secure network architecture for an SME environment
+
+# ==============================================================================
+# EXPERIENCE (STUDENT / COMMUNITY / PRACTICAL)
+# ==============================================================================
 work:
-- name: Ridge Cybersecurity Inc.
-  position: cybersecurity engineer
-  startDate: '2025'
-  endDate: Present
-  highlights:
-  - Leading the development of a next-gen AI security platform, integrating advanced threat detection and response capabilities.
-  - As learning champion, I created resources and pathways to foster continuous learning,
-    mentoring, and upskilling across the engineering org.
-- name: Freelance
-  position: Contract Software Engineer Lead
-  startDate: 2024-06
-  endDate: 2025-01
-  highlights:
-  - Acted as engineering lead on high-impact React Native projects including
-    Shell Recharge, driving delivery from design to deployment across platforms.
-  - Built a performant, scalable component library from scratch for a kenyan fintech
-    startup, establishing strong frontend architecture and design consistency.
-  - Delivered a full-stack IoT dashboard for Machine Max, visualizing real-time
-    CO2 and idling metrics from edge devices (Raspberry Pi + cloud stack).
-  - Consistently embedded in client teams as a trusted lead, providing
-    architecture reviews, CI/CD pipeline improvements, and technical mentorship.
+  - name: Team Wallz
+    position: Recruited Team Member | CTF Collaboration
+    startDate: '2026-02'
+    endDate: '2026-10'
+    highlights:
+      - Recruited to join Team Wallz (https://ctftime.org/team/397301)
+      - Actively collaborating with teammates on CTF challenge solving and writeups
+      - 'Team profile and updates: https://w4llz.me/'
 
+  - name: 51l3nt_br34ch CTF Team
+    position: CTF Team Member | Offensive Security Practice
+    startDate: '2025-07'
+    endDate: 'Present'
+    highlights:
+      - Solved web, network, and basic binary exploitation challenges in team-based CTFs
+      - Practiced vulnerability discovery using Burp Suite, Nmap, and manual testing techniques
+      - Collaborated on writeups and shared methodologies for common vulnerability classes
+      - 'Team profile and updates: https://silent-breach.github.io/51l3nt_br34ch/'
+
+  - name: Karatina University
+    position: IT Student | Innovation Club Member
+    startDate: '2023-08'
+    endDate: 'Present'
+    highlights:
+      - Supported organization of beginner-friendly CTF competitions and technical demos
+      - Assisted peers with Linux usage, networking concepts, and basic security tooling
+      - Participated in cybersecurity awareness sessions and hands-on labs
+
+  - name: Freelance / Academic Projects
+    position: Junior Developer (Security-Aware)
+    startDate: '2023-11'
+    endDate: '2024-05'
+    highlights:
+      - Assisted with secure coding practices and basic application security testing
+      - Performed simple vulnerability checks and dependency reviews
+      - Gained exposure to fintech-related security considerations through coursework projects
+
+# ==============================================================================
+# SKILLS
+# ==============================================================================
 skills:
-- name: Frontend
-  keywords:
-  - React
-  - Html
-  - CSS
-  - JavaScript
-  - Svelte
-  - TypeScript
-- name: Backend
-  keywords:
-  - Go
-  - Rust
-  - Node.js
-  - Python
-  - Java
-  - PHP
-- name: DevOps
-  keywords:
-  - Ansible
-  - Kubernetes
-  - Terraform
-  - Docker
-- name: CI/CD
-  keywords:
-  - Argo CD
-  - GitHub Actions
-- name: Cloud
-  keywords:
-  - Vercel
-  - Netlify
-  - GCP
-  - Azure
-  - AWS
-- name: Databases
-  keywords:
-  - PostgreSQL
-  - SQLite
-  - Redis
-  - MySQL
-  - MongoDB
+  - name: Cybersecurity & Offensive Security
+    keywords:
+      - Web App Testing
+      - Network Pentesting
+      - Vuln Assessment
+      - OWASP Top 10
 
+  - name: Security Tools
+    keywords:
+      - Burp Suite
+      - Nmap
+      - Metasploit (Basics)
+      - Wireshark
+      - Linux CLI
+
+  - name: Programming & Scripting
+    keywords:
+      - Python
+      - Bash
+      - JavaScript
+      - Go (Basics)
+
+  - name: Systems & Platforms
+    keywords:
+      - Linux (Parrot/Ubuntu)
+      - Git & GitHub
+      - Docker (Basics)
+      - Cloud (Vercel/Netlify)
+
+  - name: Documentation & Research
+    keywords:
+      - CTF Writeups
+      - Tech Docs
+      - Security Research
+
+# ==============================================================================
+# ACHIEVEMENTS
+# ==============================================================================
+# Highlight your notable accomplishments, CTF wins, certifications, etc.
+# Fields: text (description with emoji), source (URL for verification)
+# Use markdown formatting for bold text: **text**
 achievements:
-  - text: Top 10 Finalist (6th Place) - CyberGame Kenya 2026
+  - text: "🏆 **1st Place** - Jengase × NCBA Loop × Hack The Box × Strathmore University 2026 Red Team Hackathon (Team Pwners)"
+    source: 'https://drive.google.com/file/d/1mvwRVQU7Zyclt1lMjO_QyWrLMDhcRY6G/view?usp=sharing'
+  - text: "🏅 **Top 10 Finalist (6th Place)** - CyberGame Kenya 2026"
     source: 'https://drive.google.com/file/d/1TnOp-KgKDr4i5hWWWvq6uKJU5GO9brEV/view?usp=sharing'
-  - text: Top 10 hackers in CyberGame kenya event-2025
-    source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+  - text: "🥉 **3rd Place - Connected Africa Summit 2026 CTF** (Team JOINT, Karatina University)"
+    source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing'
+  - text: "🏆 **Top 10 Finalist** - CyberGame Kenya 2025"
+    source: 'https://www.ict.go.ke/index.php/kenyas-cybergame-2025-awards-recognize-top-cybersecurity-talent'
 
+
+# ==============================================================================
+# AWARDS
+# ==============================================================================
+# Formal awards and recognitions with detailed descriptions
+# Fields: title, summary, source (optional URL)
 awards:
-  - title: CyberGame Kenya - Top 10 Finalist, 6th Place (2026)
-    summary: Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya's best practical security talent
-  - title: CyberGame Kenya - Top 10 Ethical Hacker (2025)
-    summary: Recognized among Kenya's top young cybersecurity talents for outstanding performance in national hacking competition
-    source: 'https://www.kenyanews.go.ke/kenya-fetes-young-cybersecurity-stars/'
+  - title: "CyberGame Kenya - Top 10 Finalist, 6th Place (2026)"
+    summary: "Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya's best practical security talent."
+  - title: "Connected Africa Summit 2026 CTF - 3rd Position (May 2026)"
+    summary: "Achieved 3rd place in the Connected Africa Summit 2026 Capture The Flag competition as part of Team JOINT from Karatina University. Demonstrated advanced skills in vulnerability assessment, exploitation techniques, and collaborative problem-solving under competitive conditions."
+  - title: "CyberGame Kenya - Top 10 Finalist (2025)"
+    summary: "Recognized for strong performance in national-level cybersecurity competition focused on practical skills"
 
+# ==============================================================================
+# PROJECTS (SECURITY-RELEVANT)
+# ==============================================================================
+# Showcase your best technical projects
+# Fields: name, description, url, github, language, stars (optional), tags (optional)
 projects:
-- name: 'TypingMaster Pro'
-  description: 'A comprehensive typing speed test application with real book content, multi-source fetching, and advanced analytics'
-  github: 'Daniel-wambua/TypingMaster-Pro'
-  url: 'https://typing-master-pro-eta.vercel.app/'
-  language: 'TypeScript'
-  stars: '1'
-- name: 'DataPulse Command Center'
-  description: 'Real-time dashboard aggregating data from multiple public APIs with FastAPI backend and Streamlit frontend'
-  github: 'Daniel-wambua/Datapulse'
-  url: 'https://github.com/Daniel-wambua/Datapulse'
-  language: 'Python'
-  stars: '1'
-- name: 'CTF Writeups & Security Blog'
-  description: 'Technical blog documenting cybersecurity research, CTF solutions, and security tutorials'
-  github: 'Daniel-wambua/blogz'
-  url: 'https://havocsec.dev'
-  language: 'Technical Writing'
-  stars: '1'
+  - name: 'BlackBook MCP'
+    description: 'Read-only, source-grounded cybersecurity knowledge MCP server: hybrid FTS5 and semantic retrieval, a knowledge graph, and exact citations from HackTricks, 0xdf, and PDF corpora'
+    github: 'Daniel-wambua/BlackBook'
+    url: 'https://blackbook.havocsec.me'
+    language: 'Python'
+    stars: '1'
 
+  - name: 'CTF Writeups & Security Blog'
+    description: 'Personal blog documenting CTF solutions, tooling notes, and security concepts'
+    github: 'Daniel-wambua/blog'
+    url: 'https://havocsec.dev'
+    language: 'Technical Writing'
+    stars: '21'
 
+  - name: 'Cyberhub'
+    description: 'A curated living, automated knowledge base for cybersecurity professional'
+    github: 'Daniel-wambua/cyberhub'
+    url: 'https://cyberhub.havocsec.dev'
+    language: 'Astro,javascript,yaml,Bash'
+    stars: '3'
 
+  - name: 'MacOS_Portfolio'
+    description: 'Personal portfolio project demonstrating frontend skills and deployment workflows'
+    github: 'Daniel-wambua/MacOS_Portfolio'
+    url: 'https://macfolio.havocx.me'
+    language: 'JavaScript, React, CSS'
+    stars: '10'
+
+################################################################################
+# END OF CV CONFIGURATION
+################################################################################
+
+################################################################################
+# END OF CV CONFIGURATION
+#
+# WHAT TO EDIT WHEN:
+# - Contact info changed? → Edit 'basics' section
+# - New job/internship? → Add to 'work' section (top of list)
+# - Graduated/new course? → Add to 'education' section
+# - Learned new skill? → Add to appropriate category in 'skills'
+# - Won competition? → Add to 'achievements' section
+# - Received award? → Add to 'awards' section
+# - Built new project? → Add to 'projects' section
+#
+# After editing, commit and push to GitHub - your CV will auto-regenerate!
+################################################################################

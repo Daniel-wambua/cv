@@ -1,439 +1,510 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { onNavigate } from '$app/navigation';
-	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import SocialLinks from '$components/SocialLinks.svelte';
 
-	import TerminalIcon from '~icons/fa6-solid/terminal';
-	import ShieldIcon from '~icons/fa6-solid/shield-halved';
-	import TrophyIcon from '~icons/fa6-solid/trophy';
-	import CodeIcon from '~icons/fa6-solid/code';
-	import CertificateIcon from '~icons/fa6-solid/certificate';
-	import EnvelopeIcon from '~icons/fa6-solid/envelope';
-	import HouseIcon from '~icons/fa6-solid/house';
-	import FileDownIcon from '~icons/fa6-solid/file-arrow-down';
-	import PaperPlaneIcon from '~icons/fa6-solid/paper-plane';
-	import BriefcaseIcon from '~icons/fa6-solid/briefcase';
-	import ArrowRightIcon from '~icons/fa6-solid/arrow-right';
-	import BarsIcon from '~icons/fa6-solid/bars';
-	import XMarkIcon from '~icons/fa6-solid/xmark';
+	import ChevronDownIcon from '~icons/fa6-solid/chevron-down';
+	import MoonIcon from '~icons/fa6-solid/moon';
+	import SunIcon from '~icons/fa6-solid/sun';
 
-	import '@fontsource/space-grotesk/400.css';
-	import '@fontsource/space-grotesk/500.css';
-	import '@fontsource/space-grotesk/600.css';
-	import '@fontsource/space-grotesk/700.css';
-	import '@fontsource/inter/400.css';
-	import '@fontsource/inter/500.css';
-	import '@fontsource/inter/600.css';
 	import '@fontsource/fira-mono/400.css';
 	import '@fontsource/fira-mono/500.css';
-
 	import '../app.css';
 	import '../styles/variables.scss';
 
-	// Initialize Vercel Speed Insights
-	injectSpeedInsights();
+	type MenuName = 'about' | 'work' | null;
+	type ThemeName = 'light' | 'dark';
 
-	interface Document {
-		startViewTransition?: (callback: () => Promise<void>) => void;
-	}
-
-	onNavigate((navigation) => {
-		const doc = document as Document;
-		if (!doc.startViewTransition) return;
-		return new Promise<void>((resolve) => {
-			doc.startViewTransition && doc.startViewTransition(async () => {
-				resolve();
-				await navigation.complete;
-			});
-		});
-	});
-
-	// Display banner if looking for job, within the specified dates
-	const lookingForJobDates = {
-		start: new Date('2026-07-01'),
-		end: new Date('2026-12-30'),
-	};
-	const currentDate = new Date();
-	const startDateFormatted = new Intl.DateTimeFormat('en-US', {
-		year: 'numeric',
-		month: 'long'
-	}).format(lookingForJobDates.start);
-	const isSeekingOpportunities = currentDate <= lookingForJobDates.end;
-	const pagesToShowBanner = ['/', '/achievements', '/skills', '/experience', '/certificates'];
-
-	// Footer copyright rolls forward automatically
-	const startYear = 2025;
-	const currentYear = currentDate.getFullYear();
+	let path: string;
+	let theme: ThemeName = 'light';
+	let openMenu: MenuName = null;
+	let mobileMenuOpen = false;
+	let mobileGroup: MenuName = null;
+	let navRoot: HTMLElement;
+	let aboutTrigger: HTMLButtonElement;
+	let workTrigger: HTMLButtonElement;
+	let mobileTrigger: HTMLButtonElement;
+	let dropdownCloseTimeout: ReturnType<typeof setTimeout>;
 
 	$: path = $page.url.pathname;
+	$: if (path) {
+		clearTimeout(dropdownCloseTimeout);
+		openMenu = null;
+		mobileMenuOpen = false;
+		mobileGroup = null;
+	}
 
-	// Mobile drawer state
-	let drawerOpen = false;
-	$: if (drawerOpen && path) drawerOpen = false;
+	const aboutLinks = [
+		{ name: 'About me', url: '/intro' },
+		{ name: 'Experience', url: '/experience' },
+		{ name: 'Achievements', url: '/achievements' },
+		{ name: 'Skills', url: '/skills' },
+		{ name: 'Certifications', url: '/certificates' }
+	];
+
+	const workLinks = [
+		{ name: 'Selected projects', url: '/work' },
+		{ name: 'Security research', url: 'https://havocsec.dev/pentesting/hackthebox/' },
+		{ name: 'CTF writeups', url: 'https://havocsec.dev/ctf/' }
+	];
 
 	const socials = [
-		{ name: 'GitHub', url: 'https://github.com/Daniel-wambua', handle: 'Daniel-wambua', icon: 'github' },
+		{
+			name: 'GitHub',
+			url: 'https://github.com/Daniel-wambua',
+			handle: 'Daniel-wambua',
+			icon: 'github'
+		},
 		{ name: 'X', url: 'https://x.com/HavocRichie', handle: 'HavocRichie', icon: 'twitter' },
 		{
 			name: 'LinkedIn',
 			url: 'https://www.linkedin.com/in/daniel-wambua-a312b32b8',
 			handle: 'daniel-wambua',
 			icon: 'linkedin'
-		},
-		{ name: 'CTFtime', url: 'https://ctftime.org/team/409004', handle: 'team 409004', icon: 'ctftime' },
-		{ name: 'Linktree', url: 'https://guns.lol/0xhavoc', handle: '0xhavoc', icon: 'linktree' }
+		}
 	];
 
-	const navLinks = [
-		{ name: 'Intro', url: '/intro', icon: TerminalIcon },
-		{ name: 'Experience', url: '/experience', icon: ShieldIcon },
-		{ name: 'Achievements', url: '/achievements', icon: TrophyIcon },
-		{ name: 'Skills', url: '/skills', icon: CodeIcon },
-		{ name: 'Certificates', url: '/certificates', icon: CertificateIcon },
-		{ name: 'Contact', url: '/contact', icon: EnvelopeIcon }
-	];
+	const isActive = (url: string) => path === url || (url !== '/' && path.startsWith(`${url}/`));
+	const isExternal = (url: string) => url.startsWith('http');
 
-	const headerLinks = [
-		{ name: 'Blog', url: 'https://havocsec.dev/blog' },
-		{ name: 'CTF Writeups', url: 'https://havocsec.dev/ctf/' },
-		// /pentesting itself has no index page, it only holds category subfolders
-		{ name: 'Research', url: 'https://havocsec.dev/pentesting/hackthebox/' }
-	];
+	onMount(() => {
+		theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+	});
+
+	function toggleTheme() {
+		theme = theme === 'light' ? 'dark' : 'light';
+		document.documentElement.dataset.theme = theme;
+		document
+			.querySelector('meta[name="theme-color"]')
+			?.setAttribute('content', theme === 'dark' ? '#101311' : '#F4F1EA');
+		try {
+			localStorage.setItem('havocsec-theme', theme);
+		} catch {
+			// The selected theme remains active for this page even when storage is unavailable.
+		}
+	}
+
+	function handleOutsideClick(event: MouseEvent) {
+		if (navRoot && event.target instanceof Node && !navRoot.contains(event.target)) {
+			openMenu = null;
+			mobileMenuOpen = false;
+			mobileGroup = null;
+		}
+	}
+
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.key !== 'Escape') return;
+
+		if (mobileMenuOpen) {
+			mobileMenuOpen = false;
+			mobileGroup = null;
+			mobileTrigger?.focus();
+			return;
+		}
+
+		if (openMenu) {
+			const trigger = openMenu === 'about' ? aboutTrigger : workTrigger;
+			openMenu = null;
+			trigger?.focus();
+		}
+	}
+
+	function openDropdown(menu: Exclude<MenuName, null>) {
+		clearTimeout(dropdownCloseTimeout);
+		openMenu = menu;
+	}
+
+	function closeDropdown(menu: Exclude<MenuName, null>) {
+		clearTimeout(dropdownCloseTimeout);
+		dropdownCloseTimeout = setTimeout(() => {
+			if (openMenu === menu) openMenu = null;
+		}, 140);
+	}
 </script>
 
-<svelte:window on:keydown={(e) => e.key === 'Escape' && (drawerOpen = false)} />
+<svelte:window on:keydown={handleKeydown} />
+<svelte:document on:click={handleOutsideClick} />
+
+<svelte:head>
+	<link rel="canonical" href={`https://cv.havocsec.me${path || '/'}`} />
+</svelte:head>
 
 <div class="app-backdrop" aria-hidden="true"></div>
+<div class="site-shell">
+	<a class="skip-link" href="#main">Skip to content</a>
 
-<div class="app">
-	<a class="skip-link visually-hidden" href="#main">Skip to content</a>
+	<header class="site-header" bind:this={navRoot}>
+		<a class="brand" href="/" aria-label="Home">
+			<img class="brand-mark" src="/favicon.png" alt="" width="40" height="40" />
+		</a>
 
-	<!-- Mobile top bar -->
-	<div class="mobile-bar">
-		<a class="mobile-name" href="/">Daniel Wambua</a>
-		<div class="mobile-actions">
-			<a class="icon-button" href="/download" aria-label="Download CV" title="Download CV">
-				<FileDownIcon />
-			</a>
+		<nav class="primary-nav" aria-label="Primary navigation">
+			<ul>
+				<li>
+					<a class:active={path === '/'} href="/" aria-current={path === '/' ? 'page' : undefined}>
+						Home
+					</a>
+				</li>
+				<li
+					class="nav-group"
+					class:menu-open={openMenu === 'about'}
+					on:mouseenter={() => openDropdown('about')}
+					on:mouseleave={() => closeDropdown('about')}
+				>
+					<button
+						bind:this={aboutTrigger}
+						class:active={aboutLinks.some((item) => isActive(item.url))}
+						type="button"
+						aria-haspopup="true"
+						aria-expanded={openMenu === 'about'}
+						on:click={() => openDropdown('about')}
+					>
+						About <ChevronDownIcon />
+					</button>
+					{#if openMenu === 'about'}
+						<ul class="dropdown" aria-label="About">
+							{#each aboutLinks as item (item.url)}
+								<li>
+									<a
+										class:active={isActive(item.url)}
+										href={item.url}
+										aria-current={isActive(item.url) ? 'page' : undefined}
+									>
+										{item.name}
+									</a>
+								</li>
+							{/each}
+						</ul>
+					{/if}
+				</li>
+				<li
+					class="nav-group"
+					class:menu-open={openMenu === 'work'}
+					on:mouseenter={() => openDropdown('work')}
+					on:mouseleave={() => closeDropdown('work')}
+				>
+					<button
+						bind:this={workTrigger}
+						class:active={isActive('/work')}
+						type="button"
+						aria-haspopup="true"
+						aria-expanded={openMenu === 'work'}
+						on:click={() => openDropdown('work')}
+					>
+						Work <ChevronDownIcon />
+					</button>
+					{#if openMenu === 'work'}
+						<ul class="dropdown" aria-label="Work">
+							{#each workLinks as item (item.url)}
+								<li>
+									<a
+										class:active={isActive(item.url)}
+										href={item.url}
+										target={isExternal(item.url) ? '_blank' : undefined}
+										rel={isExternal(item.url) ? 'noopener noreferrer' : undefined}
+										aria-current={isActive(item.url) ? 'page' : undefined}
+									>
+										{item.name}
+									</a>
+								</li>
+							{/each}
+						</ul>
+					{/if}
+				</li>
+				<li>
+					<a
+						class:active={isActive('/download')}
+						href="/download"
+						aria-current={isActive('/download') ? 'page' : undefined}
+					>
+						Resume
+					</a>
+				</li>
+				<li>
+					<a
+						class:active={isActive('/contact')}
+						href="/contact"
+						aria-current={isActive('/contact') ? 'page' : undefined}
+					>
+						Contact
+					</a>
+				</li>
+			</ul>
+		</nav>
+
+		<div class="header-actions">
 			<button
-				class="icon-button"
-				on:click={() => (drawerOpen = !drawerOpen)}
-				aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
-				aria-expanded={drawerOpen}
+				class="theme-toggle"
+				type="button"
+				on:click={toggleTheme}
+				aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} appearance`}
+				title={`Switch to ${theme === 'light' ? 'dark' : 'light'} appearance`}
 			>
-				{#if drawerOpen}<XMarkIcon />{:else}<BarsIcon />{/if}
+				{#if theme === 'light'}<MoonIcon />{:else}<SunIcon />{/if}
+			</button>
+			<button
+				bind:this={mobileTrigger}
+				class="mobile-menu-trigger"
+				type="button"
+				on:click={() => (mobileMenuOpen = !mobileMenuOpen)}
+				aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+				aria-expanded={mobileMenuOpen}
+				aria-controls="mobile-navigation"
+				class:open={mobileMenuOpen}
+			>
+				<span class="menu-icon" aria-hidden="true">
+					<span></span><span></span>
+				</span>
 			</button>
 		</div>
-	</div>
 
-	<!-- Sidebar / mobile drawer -->
-	<aside class:open={drawerOpen} aria-label="Site navigation">
-		<div class="aside-inner">
-			<a href="/" class="identity">
-				<p class="eyebrow">havocsec</p>
-				<h1 class="name">Daniel Wambua</h1>
-				<p class="role">Security Analyst, Pentester and Developer</p>
-			</a>
-
-			<div class="status">
-				<span class="status-dot" aria-hidden="true"></span>
-				<span class="status-text">Available for security consulting</span>
-			</div>
-
-			<SocialLinks {socials} />
-
-			<nav class="nav">
-				<ul>
-					{#each navLinks as { name, url, icon }}
-						<li class:is-active={path === url}>
-							<a href={url} aria-current={path === url ? 'page' : undefined}>
-								<svelte:component this={icon} />
-								{name}
-							</a>
-						</li>
-					{/each}
-					{#if path !== '/'}
-						<li>
-							<a href="/"><HouseIcon />Home</a>
-						</li>
+		{#if mobileMenuOpen}
+			<nav class="mobile-navigation" id="mobile-navigation" aria-label="Mobile navigation">
+				<a class:active={path === '/'} href="/" aria-current={path === '/' ? 'page' : undefined}
+					>Home</a
+				>
+				<div class="mobile-group">
+					<button
+						type="button"
+						aria-expanded={mobileGroup === 'about'}
+						on:click={() => (mobileGroup = mobileGroup === 'about' ? null : 'about')}
+					>
+						About <ChevronDownIcon />
+					</button>
+					{#if mobileGroup === 'about'}
+						<div class="mobile-submenu">
+							{#each aboutLinks as item (item.url)}
+								<a
+									class:active={isActive(item.url)}
+									href={item.url}
+									aria-current={isActive(item.url) ? 'page' : undefined}
+								>
+									{item.name}
+								</a>
+							{/each}
+						</div>
 					{/if}
-				</ul>
+				</div>
+				<div class="mobile-group">
+					<button
+						type="button"
+						aria-expanded={mobileGroup === 'work'}
+						on:click={() => (mobileGroup = mobileGroup === 'work' ? null : 'work')}
+					>
+						Work <ChevronDownIcon />
+					</button>
+					{#if mobileGroup === 'work'}
+						<div class="mobile-submenu">
+							{#each workLinks as item (item.url)}
+								<a
+									class:active={isActive(item.url)}
+									href={item.url}
+									target={isExternal(item.url) ? '_blank' : undefined}
+									rel={isExternal(item.url) ? 'noopener noreferrer' : undefined}
+								>
+									{item.name}
+								</a>
+							{/each}
+						</div>
+					{/if}
+				</div>
+				<a
+					class:active={isActive('/download')}
+					href="/download"
+					aria-current={isActive('/download') ? 'page' : undefined}>Resume</a
+				>
+				<a
+					class:active={isActive('/contact')}
+					href="/contact"
+					aria-current={isActive('/contact') ? 'page' : undefined}>Contact</a
+				>
 			</nav>
+		{/if}
+	</header>
 
-			<a href="/download" class="download">
-				<FileDownIcon />
-				Download CV
-			</a>
-			<a class="source-link" href="https://github.com/Daniel-wambua/cv" target="_blank" rel="noopener noreferrer">
-				View the source on GitHub
-			</a>
-		</div>
+	<main id="main" class="main-content">
+		<slot />
+	</main>
 
-		<div class="aside-bottom">
-			<a class="contact-link" href="/contact">
-				<PaperPlaneIcon />
-				Send me a message
-			</a>
-			<small class="license">
-				<a href="https://github.com/Daniel-wambua/cv" target="_blank" rel="noopener noreferrer">Daniel-wambua/cv</a>
-				is licensed under
-				<a href="https://github.com/Daniel-wambua/cv/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT</a>,
-				&copy; <a href="https://cv.havocsec.me">Daniel Wambua</a>
-				{startYear === currentYear ? startYear : `${startYear} to ${currentYear}`}
-			</small>
-		</div>
-	</aside>
-
-	{#if drawerOpen}
-		<button class="drawer-backdrop" on:click={() => (drawerOpen = false)} aria-label="Close menu"></button>
-	{/if}
-
-	<div class="content-wrapper">
-		<header>
-			<div class="header-links">
-				{#each headerLinks as { name, url }}
-					<a href={url} target="_blank" rel="noopener noreferrer">{name}</a>
-				{/each}
-			</div>
-			<a href="/download" class="header-download">
-				<FileDownIcon />
-				CV
-			</a>
-		</header>
-
-		<main id="main">
-			{#if pagesToShowBanner.includes(path) && isSeekingOpportunities}
-				<div class="banner-wrap">
-					<div class="banner">
-					<span class="banner-icon" aria-hidden="true"><BriefcaseIcon /></span>
-					<p class="banner-text">
-						<strong>Open to new opportunities since {startDateFormatted}.</strong>
-						Read my <a href="/intro">full bio</a> to learn more, and if I could be a good
-						fit for your team, <a href="/contact">get in touch</a>.
-					</p>
-					<a href="/ideal-role" class="banner-action">
-						View ideal role
-						<ArrowRightIcon />
-					</a>
-				</div>
-				</div>
-			{/if}
-
-			<div class="page"><slot /></div>
-		</main>
-	</div>
+	<footer class="site-footer">
+		<a class="footer-brand" href="/">Daniel Wambua <span>·</span> HavocSec</a>
+		<p>Cybersecurity, software, and practical research.</p>
+		<SocialLinks {socials} />
+		<small>© {new Date().getFullYear()} Daniel Wambua</small>
+	</footer>
 </div>
 
 <style lang="scss">
-	.app {
-		display: flex;
-		height: 100vh;
-		/* No background here: the fixed .app-backdrop layer (glows + grid) must
-		   show through the glass panels, and body already paints the ink base. */
-		color: var(--text-color);
-		overflow: hidden;
-
-		@media (max-width: 900px) {
-			flex-direction: column;
-			height: auto;
-			min-height: 100vh;
-			overflow: visible;
-		}
+	.site-shell {
+		width: min(var(--max-content-width), calc(100% - 3rem));
+		margin: 0 auto;
 	}
 
-	.skip-link:focus {
+	.skip-link {
 		position: fixed;
-		top: 0.5rem;
-		left: 0.5rem;
-		width: auto;
-		height: auto;
-		margin: 0;
-		padding: 0.5rem 1rem;
-		clip: auto;
-		white-space: normal;
-		z-index: 200;
-		background: var(--surface-elevated);
-		border: 1px solid var(--accent);
-		border-radius: var(--radius-sm);
-	}
-
-	/* ============ Sidebar ============ */
-	aside {
-		width: var(--sidebar-width);
-		background: var(--glass);
-		backdrop-filter: blur(24px) saturate(150%);
-		-webkit-backdrop-filter: blur(24px) saturate(150%);
-		border: 1px solid var(--glass-border);
-		border-radius: var(--radius-xl);
-		box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-highlight);
-		display: flex;
-		flex-direction: column;
-		position: fixed;
-		top: var(--space-md);
-		bottom: var(--space-md);
-		left: var(--space-md);
-		z-index: 100;
-		overflow-y: auto;
-		overflow-x: hidden;
-
-		@media (max-width: 900px) {
-			top: 0;
-			bottom: 0;
-			left: 0;
-			width: min(20rem, 85vw);
-			border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
-			transform: translateX(-100%);
-			transition: transform var(--transition-medium);
-			box-shadow: none;
-
-			&.open {
-				transform: translateX(0);
-				box-shadow: var(--shadow-2xl);
-			}
-		}
-
-		&::-webkit-scrollbar {
-			width: 6px;
-		}
-
-		&::-webkit-scrollbar-thumb {
-			background: var(--border-color);
-			border-radius: var(--radius-full);
-		}
-	}
-
-	.aside-inner {
-		flex: 1;
-		padding: var(--space-xl) var(--space-lg);
-		display: flex;
-		flex-direction: column;
-		gap: var(--space-lg);
-	}
-
-	.identity {
-		text-decoration: none;
-		color: inherit;
-
-		.eyebrow {
-			margin-bottom: 0.375rem;
-		}
-
-		.name {
-			font-size: 1.625rem;
-			font-weight: 700;
-			letter-spacing: var(--tracking-tight);
-			line-height: 1.1;
-		}
-
-		.role {
-			margin-top: 0.375rem;
-			font-size: var(--font-size-sm);
-			color: var(--text-color-dim);
-			line-height: var(--line-height-normal);
-		}
-	}
-
-	.status {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.5rem 0.75rem;
+		z-index: 300;
+		top: 0.75rem;
+		left: 0.75rem;
+		padding: 0.65rem 1rem;
+		transform: translateY(-180%);
 		border: 1px solid var(--border-color);
 		border-radius: var(--radius-md);
-		background: var(--accent-transparent);
+		background: var(--surface);
+		color: var(--text-color);
+		box-shadow: var(--shadow-md);
+
+		&:focus {
+			transform: translateY(0);
+		}
 	}
 
-	.status-dot {
-		width: 0.5rem;
-		height: 0.5rem;
-		border-radius: 50%;
-		background: var(--accent);
-		box-shadow: 0 0 8px var(--accent);
-		flex-shrink: 0;
-		animation: pulse 2.4s ease-in-out infinite;
-	}
-
-	.status-text {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--text-color-secondary);
-	}
-
-	@keyframes pulse {
-		0%, 100% { opacity: 1; }
-		50% { opacity: 0.45; }
-	}
-
-	.nav ul {
-		list-style: none;
-		display: flex;
-		flex-direction: column;
-		gap: 2px;
-		margin: 0;
-		padding: 0;
-	}
-
-	.nav a {
+	.site-header {
+		position: sticky;
+		z-index: 100;
+		top: max(0.85rem, env(safe-area-inset-top));
 		display: flex;
 		align-items: center;
-		gap: 0.625rem;
-		padding: 0.5rem 0.75rem;
-		border-radius: var(--radius-md);
-		color: var(--text-color-dim);
-		font-size: var(--font-size-sm);
-		font-weight: 500;
-		text-decoration: none;
-		border-left: 2px solid transparent;
-		transition:
-			color var(--transition-fast),
-			background var(--transition-fast),
-			border-color var(--transition-fast);
+		gap: 1.4rem;
+		width: fit-content;
+		max-width: 100%;
+		min-height: 3.75rem;
+		margin: 1rem auto 0;
+		padding: 0.4rem 0.55rem 0.4rem 0.8rem;
+		border: 1px solid var(--glass-border);
+		border-radius: var(--radius-full);
+		background: var(--glass);
+		box-shadow:
+			var(--shadow-md),
+			inset 0 1px 0 var(--glass-highlight);
+		backdrop-filter: blur(18px) saturate(130%);
+		-webkit-backdrop-filter: blur(18px) saturate(130%);
+	}
 
-		:global(svg) {
-			width: 0.95rem;
-			height: 0.95rem;
-			flex-shrink: 0;
-			opacity: 0.7;
-		}
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		color: var(--text-color);
+		font-size: 0.95rem;
+		font-weight: 650;
+		letter-spacing: -0.035em;
+		white-space: nowrap;
 
 		&:hover {
 			color: var(--text-color);
-			background: var(--accent-transparent);
-			border-left-color: var(--border-color-accent);
 		}
 	}
 
-	.nav li.is-active a {
-		color: var(--accent);
-		background: var(--accent-transparent);
-		border-left-color: var(--accent);
+	.brand-mark {
+		display: block;
+		width: 2rem;
+		height: 2rem;
+		object-fit: contain;
+	}
 
-		:global(svg) {
-			opacity: 1;
+	.primary-nav {
+		display: block;
+
+		ul {
+			display: flex;
+			align-items: center;
+			gap: 0.12rem;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		li {
+			position: relative;
+		}
+
+		.nav-group::after {
+			position: absolute;
+			top: 100%;
+			right: 0;
+			left: 0;
+			height: 0.75rem;
+			content: '';
+		}
+
+		a,
+		button {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.35rem;
+			min-height: 2.45rem;
+			padding: 0.45rem 0.75rem;
+			border-radius: var(--radius-full);
+			background: transparent;
+			color: var(--text-color-dim);
+			font-size: 0.86rem;
+			font-weight: 520;
+			white-space: nowrap;
+
+			:global(svg) {
+				width: 0.65rem;
+				height: 0.65rem;
+				opacity: 0.65;
+				transition: transform var(--transition-fast);
+			}
+
+			&:hover {
+				background: var(--background-hover);
+				color: var(--text-color);
+			}
+
+			&.active {
+				background: var(--background-hover);
+				color: var(--text-color);
+			}
+		}
+
+		.menu-open > button :global(svg) {
+			transform: rotate(180deg);
 		}
 	}
 
-	.download {
+	.dropdown {
+		position: absolute;
+		top: calc(100% + 0.6rem);
+		left: 50%;
+		display: flex !important;
+		min-width: 13rem;
+		flex-direction: column;
+		align-items: stretch !important;
+		gap: 0.2rem !important;
+		padding: 0.45rem !important;
+		transform: translateX(-50%);
+		border: 1px solid var(--border-color);
+		border-radius: 1.1rem;
+		background: var(--surface-elevated);
+		box-shadow: var(--shadow-lg);
+		animation: menu-in 130ms ease-out both;
+
+		a {
+			justify-content: flex-start;
+			width: 100%;
+			border-radius: 0.7rem !important;
+			font-size: 0.84rem !important;
+		}
+	}
+
+	.header-actions {
 		display: flex;
 		align-items: center;
-		justify-content: center;
-		gap: 0.5rem;
-		padding: 0.7rem 1rem;
-		border-radius: var(--radius-md);
-		background: var(--accent);
-		color: var(--background);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-sm);
-		font-weight: 600;
-		text-decoration: none;
-		letter-spacing: 0.02em;
+		gap: 0.25rem;
+	}
+
+	.theme-toggle,
+	.mobile-menu-trigger {
+		display: inline-grid;
+		width: 2.5rem;
+		height: 2.5rem;
+		place-items: center;
+		border-radius: 50%;
+		color: var(--text-color-secondary);
 		transition:
-			background var(--transition-base),
-			transform var(--transition-base),
-			box-shadow var(--transition-base);
+			background var(--transition-fast),
+			color var(--transition-fast);
 
 		:global(svg) {
 			width: 1rem;
@@ -441,376 +512,238 @@
 		}
 
 		&:hover {
-			background: var(--accent-dim);
-			color: var(--background);
-			transform: translateY(-1px);
-			box-shadow: var(--shadow-colored);
-		}
-	}
-
-	.source-link {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--text-color-muted);
-		text-decoration: none;
-		text-align: center;
-
-		&:hover {
+			background: var(--background-hover);
 			color: var(--accent);
 		}
 	}
 
-	.aside-bottom {
-		padding: var(--space-md) var(--space-lg) var(--space-lg);
-		border-top: 1px solid var(--border-color);
+	.mobile-menu-trigger,
+	.mobile-navigation {
+		display: none;
+	}
+
+	.menu-icon {
 		display: flex;
+		width: 1.2rem;
+		height: 0.9rem;
 		flex-direction: column;
-		gap: var(--space-sm);
-	}
-
-	.contact-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		font-size: var(--font-size-sm);
-		font-weight: 500;
-		color: var(--text-color-secondary);
-		text-decoration: none;
-
-		:global(svg) {
-			width: 0.9rem;
-			height: 0.9rem;
-		}
-
-		&:hover {
-			color: var(--accent);
-		}
-	}
-
-	.license {
-		font-size: var(--font-size-xs);
-		color: var(--text-color-muted);
-		line-height: var(--line-height-normal);
-
-		a {
-			color: var(--text-color-dim);
-		}
-	}
-
-	/* ============ Mobile bar ============ */
-	.mobile-bar {
-		display: none;
-		position: sticky;
-		top: 0;
-		z-index: 90;
-		align-items: center;
 		justify-content: space-between;
-		padding: 0.75rem 1rem;
-		background: var(--glass-strong);
-		backdrop-filter: blur(20px) saturate(150%);
-		-webkit-backdrop-filter: blur(20px) saturate(150%);
-		border-bottom: 1px solid var(--glass-border);
 
-		@media (max-width: 900px) {
-			display: flex;
-		}
-	}
-
-	.mobile-name {
-		font-family: var(--font-display);
-		font-weight: 700;
-		font-size: var(--font-size-base);
-		color: var(--text-color);
-		text-decoration: none;
-		letter-spacing: var(--tracking-tight);
-	}
-
-	.mobile-actions {
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.icon-button {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.5rem;
-		height: 2.5rem;
-		border: 1px solid var(--border-color);
-		border-radius: var(--radius-md);
-		color: var(--text-color-secondary);
-		background: transparent;
-		text-decoration: none;
-
-		:global(svg) {
-			width: 1.1rem;
-			height: 1.1rem;
-		}
-
-		&:hover {
-			color: var(--accent);
-			border-color: var(--border-color-accent);
-		}
-	}
-
-	.drawer-backdrop {
-		display: none;
-		position: fixed;
-		inset: 0;
-		z-index: 99;
-		background: rgba(0, 0, 0, 0.55);
-		backdrop-filter: blur(2px);
-		border: none;
-		cursor: pointer;
-
-		@media (max-width: 900px) {
+		span {
 			display: block;
+			width: 100%;
+			height: 2px;
+			border-radius: 2px;
+			background: currentColor;
+			transition:
+				transform var(--transition-fast),
+				width var(--transition-fast);
 		}
 	}
 
-	/* ============ Content ============ */
-	.content-wrapper {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
-		height: 100vh;
-		overflow: hidden;
-		margin-left: var(--content-offset);
-
-		@media (max-width: 900px) {
-			height: auto;
-			overflow: visible;
-			margin-left: 0;
-		}
+	.mobile-menu-trigger.open .menu-icon span:first-child {
+		transform: translateY(0.35rem) rotate(45deg);
 	}
 
-	header {
-		display: flex;
+	.mobile-menu-trigger.open .menu-icon span:last-child {
+		transform: translateY(-0.35rem) rotate(-45deg);
+	}
+
+	.main-content {
+		min-height: 65vh;
+		padding: 0 0 4.5rem;
+	}
+
+	.site-footer {
+		display: grid;
+		grid-template-columns: 1fr auto;
 		align-items: center;
-		justify-content: space-between;
-		gap: var(--space-lg);
-		margin: var(--space-md) var(--space-lg) 0;
-		padding: var(--space-sm) var(--space-lg);
-		border: 1px solid var(--glass-border);
-		border-radius: var(--radius-lg);
-		background: var(--glass);
-		backdrop-filter: blur(20px) saturate(150%);
-		-webkit-backdrop-filter: blur(20px) saturate(150%);
-		box-shadow: var(--shadow-md), inset 0 1px 0 var(--glass-highlight);
-		position: sticky;
-		top: var(--space-md);
-		z-index: 50;
+		gap: 0.6rem 1.5rem;
+		padding: 1.5rem 0 calc(2rem + env(safe-area-inset-bottom));
+		border-top: 1px solid var(--border-color);
 
-		@media (max-width: 900px) {
-			top: calc(4rem + var(--space-sm));
-			margin: var(--space-sm) var(--space-md) 0;
+		p,
+		small {
+			color: var(--text-color-dim);
+			font-size: var(--font-size-xs);
 		}
 	}
 
-	.header-links {
-		display: flex;
-		gap: var(--space-lg);
+	.site-footer :global(.social-links) {
+		grid-column: 2;
+		grid-row: 1 / span 2;
+		justify-content: flex-end;
+	}
 
-		a {
-			font-family: var(--font-mono);
-			font-size: var(--font-size-xs);
-			letter-spacing: 0.04em;
-			color: var(--text-color-dim);
-			text-decoration: none;
-			position: relative;
+	.site-footer :global(.social-links a) {
+		width: 2rem;
+		height: 2rem;
+		border-radius: 50%;
+	}
 
-			&::after {
-				content: '';
-				position: absolute;
-				left: 0;
-				bottom: -3px;
-				width: 100%;
-				height: 1px;
-				background: var(--accent);
-				transform: scaleX(0);
-				transform-origin: right;
-				transition: transform var(--transition-base);
+	.footer-brand {
+		color: var(--text-color);
+		font-size: 0.9rem;
+		font-weight: 600;
+
+		span {
+			color: var(--accent);
+		}
+	}
+
+	@keyframes menu-in {
+		from {
+			opacity: 0;
+			transform: translate(-50%, -0.25rem);
+		}
+		to {
+			opacity: 1;
+			transform: translate(-50%, 0);
+		}
+	}
+
+	@media (max-width: 860px) {
+		.site-shell {
+			width: min(100% - 2rem, 42rem);
+		}
+
+		.site-header {
+			position: sticky;
+			width: 100%;
+			justify-content: space-between;
+			gap: 0.5rem;
+			margin-top: max(0.6rem, env(safe-area-inset-top));
+			padding-left: 0.7rem;
+			border-radius: 1.25rem;
+		}
+
+		.primary-nav {
+			display: none;
+		}
+
+		.mobile-menu-trigger {
+			display: inline-grid;
+		}
+
+		.mobile-navigation {
+			position: absolute;
+			top: calc(100% + 0.55rem);
+			right: 0;
+			left: 0;
+			display: flex;
+			max-height: min(72vh, 34rem);
+			flex-direction: column;
+			gap: 0.2rem;
+			padding: 0.5rem;
+			overflow-y: auto;
+			border: 1px solid var(--border-color);
+			border-radius: 1.25rem;
+			background: var(--surface-elevated);
+			box-shadow: var(--shadow-lg);
+			animation: mobile-menu-in 140ms ease-out both;
+
+			& > a,
+			.mobile-group > button {
+				display: flex;
+				min-height: 2.9rem;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0.7rem 0.85rem;
+				border-radius: 0.8rem;
+				color: var(--text-color-secondary);
+				font-size: 0.95rem;
+				text-align: left;
+
+				&:hover {
+					background: var(--background-hover);
+					color: var(--text-color);
+				}
 			}
 
-			&:hover {
-				color: var(--accent);
+			.mobile-group > button {
+				width: 100%;
+				font-weight: 550;
 
-				&::after {
-					transform-origin: left;
-					transform: scaleX(1);
+				:global(svg) {
+					width: 0.75rem;
+					height: 0.75rem;
+					transition: transform var(--transition-fast);
 				}
 			}
 		}
 
-		@media (max-width: 600px) {
-			gap: var(--space-md);
-
-			a:nth-child(3) {
-				display: none;
-			}
-		}
-	}
-
-	.header-download {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.375rem;
-		padding: 0.35rem 0.75rem;
-		border: 1px solid var(--border-color);
-		border-radius: var(--radius-sm);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
-		color: var(--text-color-secondary);
-		text-decoration: none;
-		transition: all var(--transition-fast);
-
-		:global(svg) {
-			width: 0.85rem;
-			height: 0.85rem;
+		:global(.mobile-group > button[aria-expanded='true'] svg) {
+			transform: rotate(180deg);
 		}
 
-		&:hover {
-			color: var(--accent);
-			border-color: var(--border-color-accent);
-			background: var(--accent-transparent);
+		.mobile-navigation > a.active {
+			background: var(--background-hover);
+			color: var(--text-color);
 		}
-	}
 
-	main {
-		flex: 1;
-		overflow-y: auto;
-		scroll-behavior: smooth;
-		margin: var(--space-md) var(--space-lg) var(--space-lg);
-		border: 1px solid var(--glass-border);
-		border-radius: var(--radius-xl);
-		background: var(--glass-soft);
-		backdrop-filter: blur(24px) saturate(150%);
-		-webkit-backdrop-filter: blur(24px) saturate(150%);
-		box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-highlight);
-
-		@media (max-width: 900px) {
-			overflow: visible;
-			margin: var(--space-sm) var(--space-md) var(--space-md);
-		}
-	}
-
-	.page {
-		max-width: var(--max-content-width);
-		margin: 0 auto;
-		padding: 0 var(--space-xl) var(--space-2xl);
-
-		@media (max-width: 600px) {
-			padding: 0 var(--space-md) var(--space-xl);
-		}
-	}
-
-	/* ============ Banner ============ */
-	.banner-wrap {
-		max-width: var(--max-content-width);
-		margin: var(--space-lg) auto 0;
-		padding: 0 var(--space-xl);
-
-		@media (max-width: 600px) {
-			padding: 0 var(--space-md);
-		}
-	}
-
-	.banner {
-		display: flex;
-		align-items: center;
-		gap: var(--space-lg);
-		padding: var(--space-md) var(--space-lg);
-		/* Deliberately louder than the glass chrome (header pill, main panel):
-		   solid lime badge, accent border with glow, tinted background. */
-		border: 1px solid var(--border-color-accent);
-		border-left: 4px solid var(--accent);
-		border-radius: var(--radius-md);
-		background: linear-gradient(90deg, rgba(0, 255, 136, 0.16), rgba(0, 255, 136, 0.02) 75%);
-		box-shadow: var(--glow-effect);
-
-		@media (max-width: 768px) {
+		.mobile-submenu {
+			display: flex;
 			flex-direction: column;
-			align-items: flex-start;
-			gap: var(--space-sm);
-		}
-	}
+			gap: 0.1rem;
+			padding: 0 0 0.35rem 0.7rem;
 
-	.banner-icon {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.5rem;
-		height: 2.5rem;
-		border-radius: var(--radius-md);
-		background: var(--accent);
-		color: var(--background);
-		flex-shrink: 0;
-		animation: banner-pulse 2.6s ease-in-out infinite;
+			a {
+				display: flex;
+				min-height: 2.65rem;
+				align-items: center;
+				padding: 0.6rem 0.85rem;
+				border-left: 1px solid var(--border-color);
+				color: var(--text-color-dim);
+				font-size: 0.9rem;
 
-		:global(svg) {
-			width: 1.1rem;
-			height: 1.1rem;
-		}
-	}
-
-	@keyframes banner-pulse {
-		0%, 100% {
-			box-shadow: 0 0 12px rgba(0, 255, 136, 0.35);
-		}
-		50% {
-			box-shadow: 0 0 26px rgba(0, 255, 136, 0.6);
-		}
-	}
-
-	.banner-text {
-		flex: 1;
-		font-size: var(--font-size-sm);
-		color: var(--text-color-dim);
-		line-height: var(--line-height-normal);
-
-		strong {
-			color: var(--accent);
-		}
-
-		a {
-			color: var(--accent);
-			font-weight: 500;
-			text-decoration: underline;
-			text-decoration-color: rgba(0, 255, 136, 0.4);
-			text-underline-offset: 3px;
-		}
-	}
-
-	.banner-action {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 0.5rem 1rem;
-		border-radius: var(--radius-sm);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		font-weight: 500;
-		color: var(--accent);
-		text-decoration: none;
-		border: 1px solid var(--border-color-accent);
-		white-space: nowrap;
-		transition: all var(--transition-fast);
-
-		:global(svg) {
-			width: 0.75rem;
-			height: 0.75rem;
-			transition: transform var(--transition-fast);
-		}
-
-		&:hover {
-			background: var(--accent);
-			color: var(--background);
-
-			:global(svg) {
-				transform: translateX(3px);
+				&:hover,
+				&.active {
+					color: var(--accent);
+				}
 			}
+		}
+	}
+
+	@keyframes mobile-menu-in {
+		from {
+			opacity: 0;
+			transform: translateY(-0.2rem);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 520px) {
+		.site-shell {
+			width: calc(100% - 1.25rem);
+		}
+
+		.site-header {
+			min-height: 3.45rem;
+		}
+
+		.main-content {
+			padding-bottom: 3rem;
+		}
+
+		.site-footer {
+			grid-template-columns: 1fr;
+			gap: 0.7rem;
+		}
+
+		.site-footer :global(.social-links) {
+			grid-column: 1;
+			grid-row: auto;
+			justify-content: flex-start;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.dropdown,
+		.mobile-navigation {
+			animation: none;
 		}
 	}
 </style>

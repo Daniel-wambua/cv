@@ -1,0 +1,237 @@
+{
+	"achievementGallery": [
+		{
+			"file": "Hackathon-win-pictures.webp",
+			"image": "/assets/Hackathon-win-pictures.webp",
+			"width": 1600,
+			"height": 800,
+			"alt": "Event photographs from the Connected Africa Summit 2026 CTF",
+			"caption": "Connected Africa Summit · Team JOINT · 2026"
+		},
+		{
+			"file": "pwners-hackathon-01.jpg",
+			"driveFileId": "1mvwRVQU7Zyclt1lMjO_QyWrLMDhcRY6G",
+			"size": "w1200",
+			"alt": "Team Pwners at the Jengase x NCBA Loop x Hack The Box hackathon",
+			"caption": "Team Pwners at the awards"
+		},
+		{
+			"file": "pwners-hackathon-02.jpg",
+			"driveFileId": "1PkcDL3OYPCeTzhp7xqXNZdTHc0olgY_Y",
+			"size": "w1200",
+			"alt": "Team Pwners working together during the red-teaming hackathon",
+			"caption": "Working together during the challenge"
+		},
+		{
+			"file": "pwners-hackathon-03.jpg",
+			"driveFileId": "1_kGCbQP4EHFPLxfa8ya2T4I8VsVRzrQx",
+			"size": "w1200",
+			"alt": "Team Pwners holding the hackathon prize",
+			"caption": "Celebrating the first-place result"
+		},
+		{
+			"file": "pwners-hackathon-04.jpg",
+			"driveFileId": "1Viv0Unez65WotXsnZ5wevGw0HJa2aL2o",
+			"size": "w1200",
+			"alt": "Team Pwners collaborating on laptops during the hackathon",
+			"caption": "At work during the event"
+		}
+	],
+	"certificates": [
+		{
+			"id": 114,
+			"key": "cybergame2026",
+			"file": "cybergame2026.jpg",
+			"driveFileId": "1TnOp-KgKDr4i5hWWWvq6uKJU5GO9brEV",
+			"name": "CyberGame Kenya 2026, Top 10 Finalist (6th Place)",
+			"issuer": "CyberGame Kenya",
+			"date": "2026",
+			"description": "Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya's best practical security talent.",
+			"skills": ["CTF", "Penetration Testing", "Security Analysis"],
+			"credentialId": "CYBERGAME-2026-6TH",
+			"verified": true
+		},
+		{
+			"id": 115,
+			"key": "thryvectf",
+			"file": "thryvectf.png",
+			"driveFileId": "1gGUIxMeQ6Cqy4N13vQHu7E_-rM9IHw3M",
+			"name": "Thryve CTF, Participant",
+			"issuer": "Thryve",
+			"date": "August 2026",
+			"description": "Participated in the Thryve Capture The Flag competition held on 14 August 2026, solving challenges across web, network, and misc categories.",
+			"skills": ["CTF", "Problem Solving", "Security Research"],
+			"credentialId": "THRYVE-CTF-2026",
+			"verified": true
+		},
+		{
+			"id": 113,
+			"key": "connectedafricactf",
+			"file": "connectedafricactf.jpg",
+			"driveFileId": "1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1",
+			"name": "Connected Africa Summit 2026 CTF, 3rd Position",
+			"issuer": "Connected Africa Summit",
+			"date": "May 2026",
+			"description": "Achieved 3rd place in the Connected Africa Summit 2026 Capture The Flag competition as a member of Team JOINT from Karatina University. Demonstrated advanced skills in vulnerability identification, exploitation, and collaborative problem-solving.",
+			"skills": ["CTF", "Exploitation", "Team Collaboration", "Vulnerability Assessment"],
+			"credentialId": "CAS-CTF-2026-3RD",
+			"verified": true
+		},
+		{
+			"id": 112,
+			"key": "chinaosint",
+			"file": "chinaosint.png",
+			"driveFileId": "12KWVdbFmKCZYPeGWEE8e-y34cF9Px1nC",
+			"name": "China OSINT Certificate",
+			"issuer": "China OSINT",
+			"date": "2026",
+			"description": "Recognition for demonstrated open source intelligence techniques and investigative analysis on China related OSINT.",
+			"skills": ["OSINT", "Investigation", "Intelligence Gathering"],
+			"credentialId": "CHINA-OSINT-2026",
+			"verified": true
+		},
+		{
+			"id": 101,
+			"key": "nexhuntctf",
+			"file": "nexhuntctf.jpg",
+			"driveFileId": "1-CPtYRlMvlH9_S4KWCmb5KKs4h2_J7jC",
+			"name": "NexHunt CTF, Top Performer",
+			"issuer": "NexHunt CTF",
+			"date": "December 2025",
+			"description": "Top performer in the NexHunt Capture The Flag competition demonstrating advanced exploitation and problem solving.",
+			"skills": ["CTF", "Web Exploitation", "Forensics"],
+			"credentialId": "NH-2025-01",
+			"verified": true
+		},
+		{
+			"id": 102,
+			"key": "perfectroot",
+			"file": "perfectroot.png",
+			"driveFileId": "1y6-WO-TkMDPjmqnTATKQYvM-yC-4JP4U",
+			"name": "p3rf3ctr00t CTF Certificate",
+			"issuer": "PERFECTROOT CTF Team",
+			"date": "December 2025",
+			"description": "Recognition for contributions as a member of the 51l3nt_br34ch CTF team during competitive events and research.",
+			"skills": ["CTF", "Team Collaboration", "Exploit Development"],
+			"credentialId": "51B-2025-HAVOC",
+			"verified": true
+		},
+		{
+			"id": 1,
+			"key": "apisec",
+			"file": "apisec.jpg",
+			"driveFileId": "1OjcyouQdC1p4_68802-VJc0HAywmtpBA",
+			"name": "API Security Course Certificate",
+			"issuer": "API Security Academy",
+			"date": "September 2024",
+			"description": "Comprehensive training in API security best practices, vulnerabilities, and protection mechanisms.",
+			"skills": ["API Security", "REST APIs", "OAuth", "JWT"],
+			"credentialId": "APISEC-2024",
+			"verified": true
+		},
+		{
+			"id": 2,
+			"key": "csem",
+			"file": "csem.png",
+			"driveFileId": "1zK-t-b0eYdVPaL94dc6YztgjYHlKDZb9",
+			"name": "Cybersecurity Essentials",
+			"issuer": "CSEM",
+			"date": "September 2025",
+			"description": "Foundation course covering essential cybersecurity principles, threat analysis, and defense strategies.",
+			"skills": ["CTF", "Network Security", "Threat Analysis", "Risk Management"],
+			"credentialId": "CSEM-BA-159",
+			"verified": true
+		},
+		{
+			"id": 3,
+			"key": "osint",
+			"file": "osint.png",
+			"driveFileId": "1DjIMyf09RaNn-R_qcQJbGEbG5PT_JD2k",
+			"name": "OSINT Platform Certificate",
+			"issuer": "Myosint.training",
+			"date": "October 2025",
+			"description": "OSINT certification demonstrating ethical hacking and proficiency in open source intelligence gathering and analysis.",
+			"skills": ["OSINT", "Ethical Hacking", "Intelligence Gathering", "Information Analysis"],
+			"credentialId": "MOT-OSINT-2025",
+			"verified": true
+		},
+		{
+			"id": 4,
+			"key": "crhcctf",
+			"file": "crhcctf.png",
+			"driveFileId": "164J4ltJ9Zlg1hWUj56sUdFRy_NxQzC_I",
+			"name": "CTF Competition Achievement",
+			"issuer": "CRHCCTF",
+			"date": "2025",
+			"description": "Recognition for competitive performance in Capture The Flag cybersecurity competitions.",
+			"skills": ["CTF", "Problem Solving", "Security Research"],
+			"credentialId": "RANK-375",
+			"verified": true
+		},
+		{
+			"id": 5,
+			"key": "iiit",
+			"file": "iiit.jpg",
+			"driveFileId": "1mpPae39dAg-p_RFf6X2-RrUMVU47lrBO",
+			"name": "Cybersecurity Training Achievement",
+			"issuer": "Indian Institute Of Information Technology (IIIT)",
+			"date": "October 2025",
+			"description": "Completion of advanced cybersecurity training modules and practical exercises.",
+			"skills": ["CTF", "Penetration Testing", "Security Analysis", "Incident Response"],
+			"credentialId": "CYBER-2025",
+			"verified": true
+		},
+		{
+			"id": 6,
+			"key": "cybergame",
+			"file": "cybergame.jpg",
+			"driveFileId": "19Rq-JAR4FL5iDBI3YJ_eZTCv3D9SYG-w",
+			"name": "Cybersecurity Training Achievement",
+			"issuer": "Ministry of Information Technology and Communications and Embassy of the Slovak Republic Kenya",
+			"date": "July 2025",
+			"description": "Completion of advanced cybersecurity training modules and practical exercises.",
+			"skills": ["CTF", "Penetration Testing", "Security Analysis", "Incident Response"],
+			"credentialId": "CYBERGAME-2025",
+			"verified": true
+		},
+		{
+			"id": 7,
+			"key": "h7ctf",
+			"file": "h7ctf.jpg",
+			"driveFileId": "1cDzaJhC-SvU9Th-Ynm8AfRJWvG73f5rR",
+			"name": "Cybersecurity Training Achievement",
+			"issuer": "H7TEX CTF Team",
+			"date": "October 2025",
+			"description": "Completion of the h7ctf international cybersecurity competition.",
+			"skills": ["CTF", "Penetration Testing", "Security Analysis", "Incident Response"],
+			"credentialId": "H7CTF-2025",
+			"verified": true
+		}
+	],
+	"badges": [
+		{
+			"file": "badge-owasp-api-security.png",
+			"driveFileId": "1n2tSxldiiCf2NpEZDUyB_Ht9vzpJAzHA",
+			"size": "w400",
+			"name": "OWASP API Security Top 10",
+			"link": "https://www.apisecuniversity.com/",
+			"earned": true
+		},
+		{
+			"file": "badge-api-security-fundamentals.png",
+			"driveFileId": "1TEk9qBIRSSLuxetDWbTuxGfZP-aXuWKp",
+			"size": "w400",
+			"name": "API Security Fundamentals",
+			"link": "https://www.apisecuniversity.com/",
+			"earned": true
+		},
+		{
+			"file": "badge-oscp.png",
+			"driveFileId": "1U6qAjqhDPR_EAzWrA1MHpRP2a6k-Qf2q",
+			"size": "w400",
+			"name": "OSCP",
+			"link": "https://www.offsec.com/courses/pen-200/",
+			"earned": false
+		}
+	]
+}

@@ -3,15 +3,38 @@
 	import { reveal } from '$lib/actions/reveal';
 
 	import CircleCheckIcon from '~icons/fa6-solid/circle-check';
+	import ClockIcon from '~icons/fa6-solid/clock';
 	import ChevronRightIcon from '~icons/fa6-solid/chevron-right';
 
-	export let data: { combinedJobData: any[] };
+	interface ExperienceItem {
+		company: string;
+		position: string;
+		datesWorked: string;
+		highlights?: string[];
+		responsibilities?: string;
+		technologies?: string[];
+	}
+
+	export let data: { combinedJobData: ExperienceItem[] };
 	const experience = data.combinedJobData;
 
 	const formatDate = (date: string) => {
 		if (!date?.match(/^\d{4}-\d{2}$/)) return date;
 		const [year, month] = date.split('-');
-		const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+		const months = [
+			'Jan',
+			'Feb',
+			'Mar',
+			'Apr',
+			'May',
+			'Jun',
+			'Jul',
+			'Aug',
+			'Sep',
+			'Oct',
+			'Nov',
+			'Dec'
+		];
 		return `${months[parseInt(month, 10) - 1]} ${year}`;
 	};
 
@@ -20,6 +43,9 @@
 		if (!start) return range;
 		return `${formatDate(start)} to ${formatDate(end)}`;
 	};
+
+	const isCurrentRole = (range: string) =>
+		range.trim().split(' - ').pop()?.toLowerCase() === 'present';
 </script>
 
 <svelte:head>
@@ -33,26 +59,30 @@
 
 <div class="experience">
 	<PageHero
-		eyebrow="02 / Experience"
+		eyebrow="Experience"
 		title="Where I have worked"
 		summary="Roles in security operations, technical support, and student leadership. Each entry lists what I actually did, not just where I sat."
 	/>
 
 	<div class="timeline">
-		{#each experience as job, index}
-			<article class="job" use:reveal style={`--reveal-delay: ${index * 80}ms`}>
+		{#each experience as job (`${job.company}-${job.position}`)}
+			<article class="job" use:reveal>
 				<div class="job-head">
 					<div class="job-id">
-						<span class="index">{String(index + 1).padStart(2, '0')}</span>
 						<div>
 							<h2 class="position">{job.position}</h2>
 							<h3 class="company">{job.company}</h3>
 							<p class="duration">{formatRange(job.datesWorked)}</p>
 						</div>
 					</div>
-					<span class="status">
-						<CircleCheckIcon />
-						Completed
+					<span class="status" class:current={isCurrentRole(job.datesWorked)}>
+						{#if isCurrentRole(job.datesWorked)}
+							<ClockIcon />
+							Current
+						{:else}
+							<CircleCheckIcon />
+							Completed
+						{/if}
 					</span>
 				</div>
 
@@ -62,7 +92,7 @@
 
 				{#if job.highlights}
 					<ul class="highlights">
-						{#each job.highlights as highlight}
+						{#each job.highlights as highlight (highlight)}
 							<li>
 								<ChevronRightIcon />
 								<span>{highlight}</span>
@@ -73,7 +103,7 @@
 
 				{#if job.technologies && job.technologies.length > 0}
 					<div class="tech">
-						{#each job.technologies as technology}
+						{#each job.technologies as technology (technology)}
 							<span class="tech-item">{technology}</span>
 						{/each}
 					</div>
@@ -151,13 +181,6 @@
 		gap: var(--space-md);
 	}
 
-	.index {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-sm);
-		color: var(--accent);
-		padding-top: 0.35rem;
-	}
-
 	.position {
 		font-size: var(--font-size-xl);
 		letter-spacing: var(--tracking-tight);
@@ -200,9 +223,9 @@
 	.overview {
 		margin-top: var(--space-md);
 		padding: var(--space-md);
-		border-left: 2px solid var(--accent);
-		background: var(--accent-transparent);
-		border-radius: 0 var(--radius-md) var(--radius-md) 0;
+		border: 1px solid var(--border-color);
+		background: var(--surface-elevated);
+		border-radius: var(--radius-md);
 		color: var(--text-color-secondary);
 		font-size: var(--font-size-sm);
 		line-height: var(--line-height-normal);

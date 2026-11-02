@@ -1,548 +1,393 @@
 <script lang="ts">
+	import { achievementPhotos } from '$lib/config/certificates';
 	import PageHero from '$components/PageHero.svelte';
-	import SectionHeading from '$components/SectionHeading.svelte';
-	import Card from '$components/Card.svelte';
-	import Language from '$components/Language.svelte';
-	import { reveal } from '$lib/actions/reveal';
-
-	import BookIcon from '~icons/fa6-solid/book-open';
-	import UsersIcon from '~icons/fa6-solid/users';
-	import FlagIcon from '~icons/fa6-solid/flag';
-	import BugIcon from '~icons/fa6-solid/bug';
-	import TrophyIcon from '~icons/fa6-solid/trophy';
-	import MedalIcon from '~icons/fa6-solid/medal';
-	import StarIcon from '~icons/fa6-solid/star';
-	import LinkIcon from '~icons/fa6-solid/link';
-	import GithubIcon from '~icons/fa6-brands/github';
+	import ArrowRightIcon from '~icons/fa6-solid/arrow-right';
 	import ArrowUpRightIcon from '~icons/fa6-solid/arrow-up-right-from-square';
+	import TrophyIcon from '~icons/fa6-solid/trophy';
 
-	const stats = [
-		{
-			stat: 'Published research on web application and API security',
-			source: 'https://havocsec.dev',
-			icon: BookIcon
-		},
-		{
-			stat: '5k+ followers across GitHub, X, Dev, LinkedIn, Facebook, and Slack',
-			source: 'https://github.com/Daniel-wambua',
-			icon: UsersIcon
-		},
-		{
-			stat: 'Active CTF competitor and security researcher',
-			source: 'https://ctftime.org/team/409004',
-			icon: FlagIcon
-		},
-		{
-			stat: 'Bug bounty hunter',
-			source: '',
-			icon: BugIcon
-		}
-	];
+	interface Achievement {
+		text: string;
+		source?: string;
+	}
 
-	const awards = [
-		{
-			award: 'Top 10 Finalist (6th Place), CyberGame Kenya 2026',
-			issuer: 'CyberGame Kenya',
-			source: 'https://drive.google.com/file/d/1TnOp-KgKDr4i5hWWWvq6uKJU5GO9brEV/view?usp=sharing',
-			date: '2026'
-		},
-		{
-			award: 'Participant, Thryve CTF',
-			issuer: 'Thryve',
-			source: 'https://drive.google.com/file/d/1gGUIxMeQ6Cqy4N13vQHu7E_-rM9IHw3M/view?usp=sharing',
-			date: '2026'
-		},
-		{
-			award: '3rd Place, Connected Africa Summit 2026 CTF',
-			issuer: 'Connected Africa Summit (Team JOINT, Karatina University)',
-			source: 'https://drive.google.com/file/d/1XTcK8byXo-xYlFFIb6po5rU7VwoUAbl1/view?usp=sharing',
-			date: '2026'
-		},
-		{
-			award: 'Best CyberGame male winner, 2025',
-			issuer: 'Ministry of ICT Kenya and Embassy of the Slovak Nation Kenya',
-			source: '',
-			date: '2025'
-		},
-		{
-			award: 'Outstanding CTF Performance',
-			issuer: 'CTF Organizers',
-			source: '/certificates',
-			date: '2025'
-		}
-	];
+	interface Award {
+		title: string;
+		summary: string;
+		source?: string;
+	}
 
-	const hackathonWins = [
-		{
-			title: 'Connected Africa Summit 2026 CTF',
-			achievement: '3rd Place',
-			description:
-				'Collaborated with Team JOINT from Karatina University to solve complex capture the flag challenges, demonstrating advanced offensive security and problem-solving skills in a competitive environment.',
-			date: '2026'
-		},
-		{
-			title: 'University Innovation Challenge',
-			achievement: '3rd place overall',
-			description: 'Developed a cybersecurity awareness platform for students.',
-			date: '2024'
-		}
-	];
+	interface AchievementsData {
+		achievements?: Achievement[];
+		awards?: Award[];
+	}
 
-	const projects = [
-		{
-			name: 'blog',
-			description:
-				'My CTF writeups website with a focus on security topics, penetration testing, and ethical hacking.',
-			tech: 'Astro,Yaml,html,css,javascript,markdown',
-			stars: '10',
-			repo: 'Daniel-wambua/blog',
-			web: 'https://havocsec.dev'
-		},
-		{
-			name: 'cyberhub',
-			description: 'A curated living, automated knowledge base for cybersecurity professionals.',
-			tech: 'Astro,TailwindCSS,JSDOM,node-fetch,yaml',
-			stars: '8',
-			repo: 'Daniel-wambua/cyberhub',
-			web: 'https://cyberhub.havocsec.dev'
-		}
-	];
+	export let data: AchievementsData;
+	$: achievements = Array.isArray(data?.achievements) ? data.achievements : [];
+	$: awards = Array.isArray(data?.awards) ? data.awards : [];
+
+	const plainText = (text: string) => text.replace(/\*\*/g, '');
+	const yearFor = (text: string) => text.match(/\b20\d{2}\b/)?.[0] ?? '';
 </script>
 
 <svelte:head>
-	<title>Daniel Wambua | Achievements</title>
+	<title>Achievements | Daniel Wambua</title>
 	<meta
 		name="description"
-		content="Awards, competition results, and featured projects of Daniel Wambua: CyberGame Kenya
-		finalist, Connected Africa Summit CTF podium finisher, and active security researcher."
+		content="Competition results and recognition from Daniel Wambua's cybersecurity work, with links to supporting evidence."
 	/>
 </svelte:head>
 
-<div class="achievements">
+<div class="achievements-page">
 	<PageHero
-		eyebrow="04 / Achievements"
-		title="Results on the board"
-		summary="Competition placements, published research, and projects that keep shipping. Every claim links to something you can verify."
+		title="Cybersecurity achievements"
+		summary="Placements in red-team and CTF events, plus team awards."
 	/>
 
-	<SectionHeading index="01" title="Highlights">
-		Activity and reach across research, community, and competition.
-	</SectionHeading>
-	<div class="stats-grid">
-		{#each stats as { stat, source, icon }, i}
-			<Card revealDelay={i * 80} class="stat-card">
-				<span class="stat-icon"><svelte:component this={icon} /></span>
-				<div class="stat-body">
-					<p>{stat}</p>
-					{#if source}
-						<a
-							class="verify"
-							href={source}
-							target={source.startsWith('/') ? undefined : '_blank'}
-							rel={source.startsWith('/') ? undefined : 'noopener noreferrer'}
-						>
-							<LinkIcon />
-							Verify
-						</a>
-					{/if}
-				</div>
-			</Card>
-		{/each}
-	</div>
+	{#if achievements.length}
+		<section class="results" aria-labelledby="results-title">
+			<div class="section-label">
+				<p class="eyebrow">Competition results</p>
+				<h2 id="results-title">Competition placements</h2>
+			</div>
+			<div class="result-list">
+				{#each achievements as item, index (item.text ?? index)}
+					<article class="result">
+						<p>{plainText(item.text ?? String(item))}</p>
+						{#if item.source}
+							<a
+								href={item.source}
+								target="_blank"
+								rel="noopener noreferrer"
+								aria-label="View source for this result"
+							>
+								<ArrowUpRightIcon />
+							</a>
+						{/if}
+					</article>
+				{/each}
+			</div>
+		</section>
+	{/if}
 
-	<SectionHeading index="02" title="Awards and recognition" meta={`${awards.length} entries`}>
-		Formal recognition from competitions and programs.
-	</SectionHeading>
-	<div class="awards-grid">
-		{#each awards as { award, issuer, source, date }, i}
-			<Card revealDelay={i * 70} class="award-card">
-				<div class="award-head">
-					<span class="award-icon"><TrophyIcon /></span>
-					<span class="award-date">{date}</span>
-				</div>
-				<h3>{award}</h3>
-				<p class="issuer">Issued by {issuer}</p>
-				{#if source}
-					<a
-						class="award-link"
-						href={source}
-						target={source.startsWith('/') ? undefined : '_blank'}
-						rel={source.startsWith('/') ? undefined : 'noopener noreferrer'}
-					>
-						<LinkIcon />
-						View certificate
-					</a>
-				{/if}
-			</Card>
-		{/each}
-	</div>
+	{#if awards.length}
+		<section class="awards" aria-labelledby="awards-title">
+			<div class="section-label">
+				<p class="eyebrow">Recognition</p>
+				<h2 id="awards-title">Awards</h2>
+			</div>
+			<div class="award-list">
+				{#each awards as award (award.title)}
+					<article class="award">
+						<span class="award-icon" aria-hidden="true"><TrophyIcon /></span>
+						<div>
+							<div class="award-title">
+								<h3>{award.title}</h3>
+								{#if yearFor(award.title)}<span>{yearFor(award.title)}</span>{/if}
+							</div>
+							<p>{award.summary}</p>
+							{#if award.source}
+								<a href={award.source} target="_blank" rel="noopener noreferrer">
+									Supporting source <ArrowUpRightIcon />
+								</a>
+							{/if}
+						</div>
+					</article>
+				{/each}
+			</div>
+		</section>
+	{/if}
 
-	<SectionHeading index="03" title="Featured projects" meta={`${projects.length} highlighted`}>
-		Open source work maintained in public.
-	</SectionHeading>
-	<div class="projects-grid">
-		{#each projects as project, i}
-			<Card revealDelay={i * 100} class="project-card">
-				<div class="project-head">
-					<h3>{project.name}</h3>
-					<div class="project-links">
-						<a
-							href="https://github.com/{project.repo}"
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label="View repository"
-							title="View repository"
-						>
-							<GithubIcon />
-						</a>
-						<a
-							href={project.web}
-							target="_blank"
-							rel="noopener noreferrer"
-							aria-label="View live site"
-							title="View live site"
-						>
-							<ArrowUpRightIcon />
-						</a>
-					</div>
-				</div>
-				<p class="description">{project.description}</p>
-				<div class="tech">
-					<Language language={project.tech} small={true} />
-				</div>
-				<div class="project-meta">
-					<span class="stars"><StarIcon /> {project.stars}</span>
-					<span class="repo">{project.repo}</span>
-				</div>
-			</Card>
-		{/each}
-	</div>
-	<p class="more-link" use:reveal>
-		More projects live on my
-		<a href="https://github.com/Daniel-wambua" target="_blank" rel="noopener noreferrer">GitHub profile</a>.
-	</p>
+	{#if achievementPhotos.length}
+		<section class="photo-board" aria-labelledby="photo-board-title">
+			<div class="section-label">
+				<h2 id="photo-board-title">Hackathon gallery</h2>
+				<p class="photo-intro">
+					Photos from the Connected Africa CTF and Team Pwners red-team event.
+				</p>
+			</div>
+			<div class="photo-grid">
+				{#each achievementPhotos as photo (photo.file)}
+					<figure class="photo-card">
+						<img
+							src={photo.image}
+							alt={photo.alt}
+							width={photo.width ?? 1200}
+							height={photo.height ?? 800}
+							loading="lazy"
+							decoding="async"
+						/>
+						<figcaption>{photo.caption}</figcaption>
+					</figure>
+				{/each}
+			</div>
+		</section>
+	{/if}
 
-	<SectionHeading index="04" title="Hackathons and competitions">
-		Team-based work under competitive conditions.
-	</SectionHeading>
-	<div class="competitions-grid">
-		{#each hackathonWins as win, i}
-			<Card revealDelay={i * 100} class="competition-card">
-				<div class="competition-head">
-					<h3>{win.title}</h3>
-					<span class="competition-date">{win.date}</span>
-				</div>
-				<span class="badge"><MedalIcon /> {win.achievement}</span>
-				<p class="description">{win.description}</p>
-			</Card>
-		{/each}
-	</div>
-
-	<figure class="hackathon-figure" use:reveal>
-		<img
-			src="/assets/Hackathon-win-pictures.webp"
-			alt="Photos from hackathon and competition wins"
-			width="1600"
-			height="800"
-			loading="lazy"
-		/>
-		<figcaption>Competition moments from the Connected Africa Summit 2026 CTF.</figcaption>
-	</figure>
+	<section class="next-steps" aria-label="Explore more">
+		<div>
+			<p class="eyebrow">Explore further</p>
+			<h2>See the work behind the milestones.</h2>
+		</div>
+		<a href="/work">Browse selected projects <ArrowRightIcon /></a>
+		<a href="/certificates">View certificates <ArrowRightIcon /></a>
+		<a
+			href="https://github.com/Daniel-wambua?tab=repositories"
+			target="_blank"
+			rel="noopener noreferrer"
+		>
+			All GitHub repositories <ArrowUpRightIcon />
+		</a>
+	</section>
 </div>
 
 <style lang="scss">
-	.achievements {
-		position: relative;
+	.achievements-page {
+		padding-top: clamp(2.5rem, 7vw, 5rem);
 	}
 
-	/* ============ Stats ============ */
-	.stats-grid {
+	:global(.achievements-page .page-hero) {
+		padding-top: 0;
+	}
+
+	.results,
+	.awards {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-		gap: var(--space-md);
+		grid-template-columns: minmax(12rem, 0.65fr) minmax(0, 1.35fr);
+		gap: 1.5rem 2rem;
+		padding: 2rem 0;
+		border-top: 1px solid var(--border-color);
 	}
 
-	:global(.stat-card) {
-		flex-direction: row;
-		align-items: flex-start;
-		gap: var(--space-md);
-	}
+	.section-label {
+		.eyebrow {
+			margin-bottom: 0.75rem;
+		}
 
-	.stat-icon {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.5rem;
-		height: 2.5rem;
-		border-radius: var(--radius-md);
-		background: var(--accent-transparent);
-		color: var(--accent);
-		flex-shrink: 0;
-
-		:global(svg) {
-			width: 1.1rem;
-			height: 1.1rem;
+		h2 {
+			font-size: clamp(1.5rem, 3vw, 2rem);
 		}
 	}
 
-	.stat-body {
-		display: flex;
-		flex-direction: column;
-		gap: 0.375rem;
+	.result-list,
+	.award-list {
+		border-top: 1px solid var(--border-color);
+	}
+
+	.result {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) 2rem;
+		align-items: center;
+		gap: 0.75rem;
+		min-height: 4.5rem;
+		padding: 0.8rem 0;
+		border-bottom: 1px solid var(--border-color);
 
 		p {
-			font-size: var(--font-size-sm);
-			font-weight: 500;
 			color: var(--text-color);
-			line-height: var(--line-height-normal);
+			font-size: var(--font-size-sm);
 		}
 	}
 
-	.verify {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.375rem;
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--accent);
-		text-decoration: none;
-
-		:global(svg) {
-			width: 0.65rem;
-			height: 0.65rem;
-		}
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-
-	/* ============ Awards ============ */
-	.awards-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-		gap: var(--space-md);
-	}
-
-	:global(.award-card) {
-		gap: var(--space-sm);
-	}
-
-	.award-head {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.award-icon {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 2.25rem;
-		height: 2.25rem;
-		border-radius: var(--radius-md);
-		background: var(--accent-transparent);
-		color: var(--accent);
-
-		:global(svg) {
-			width: 1rem;
-			height: 1rem;
-		}
-	}
-
-	.award-date {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--text-color-muted);
-		padding: 0.2rem 0.6rem;
+	.result a {
+		display: inline-grid;
+		width: 2rem;
+		height: 2rem;
+		place-items: center;
 		border: 1px solid var(--border-color);
-		border-radius: var(--radius-full);
-	}
-
-	h3 {
-		font-size: var(--font-size-base);
-		letter-spacing: var(--tracking-tight);
-		line-height: var(--line-height-normal);
-	}
-
-	.issuer {
-		font-size: var(--font-size-sm);
-		color: var(--text-color-dim);
-	}
-
-	.award-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.375rem;
-		margin-top: auto;
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--accent);
-		text-decoration: none;
+		border-radius: 50%;
 
 		:global(svg) {
-			width: 0.65rem;
-			height: 0.65rem;
-		}
-
-		&:hover {
-			text-decoration: underline;
+			width: 0.8rem;
+			height: 0.8rem;
 		}
 	}
 
-	/* ============ Projects ============ */
-	.projects-grid {
+	.award {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
-		gap: var(--space-md);
-	}
+		grid-template-columns: 2.5rem minmax(0, 1fr);
+		gap: 1rem;
+		padding: 1.2rem 0;
+		border-bottom: 1px solid var(--border-color);
 
-	.project-head {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: var(--space-sm);
-
-		h3 {
-			font-family: var(--font-mono);
-			font-size: var(--font-size-lg);
+		> div > p {
+			margin-top: 0.45rem;
+			font-size: var(--font-size-sm);
 		}
-	}
 
-	.project-links {
-		display: flex;
-		gap: 0.375rem;
-
-		a {
+		> div > a {
 			display: inline-flex;
 			align-items: center;
-			justify-content: center;
-			width: 2rem;
-			height: 2rem;
-			border: 1px solid var(--border-color);
-			border-radius: var(--radius-sm);
-			color: var(--text-color-dim);
-			transition: all var(--transition-fast);
-
-			:global(svg) {
-				width: 0.9rem;
-				height: 0.9rem;
-			}
-
-			&:hover {
-				color: var(--accent);
-				border-color: var(--border-color-accent);
-				background: var(--accent-transparent);
-			}
+			gap: 0.4rem;
+			margin-top: 0.65rem;
+			font-size: var(--font-size-xs);
+			font-weight: 600;
 		}
-	}
 
-	.description {
-		font-size: var(--font-size-sm);
-		color: var(--text-color-dim);
-		line-height: var(--line-height-normal);
-	}
-
-	.tech {
-		margin-top: auto;
-	}
-
-	.project-meta {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: var(--space-sm);
-		font-size: var(--font-size-xs);
-		color: var(--text-color-muted);
-	}
-
-	.stars {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.3rem;
-		color: var(--accent);
-
-		:global(svg) {
+		> div > a :global(svg) {
 			width: 0.7rem;
 			height: 0.7rem;
 		}
 	}
 
-	.repo {
-		font-family: var(--font-mono);
-	}
-
-	.more-link {
-		margin-top: var(--space-md);
-		text-align: center;
-		font-size: var(--font-size-sm);
-		color: var(--text-color-dim);
-
-		a {
-			color: var(--accent);
-		}
-	}
-
-	/* ============ Competitions ============ */
-	.competitions-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-		gap: var(--space-md);
-	}
-
-	.competition-head {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		gap: var(--space-sm);
-
-		h3 {
-			font-size: var(--font-size-base);
-		}
-	}
-
-	.competition-date {
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		color: var(--text-color-muted);
-		white-space: nowrap;
-	}
-
-	.badge {
-		display: inline-flex;
-		align-items: center;
-		gap: 0.375rem;
-		align-self: flex-start;
-		padding: 0.35rem 0.75rem;
-		border-radius: var(--radius-sm);
-		background: var(--accent);
-		color: var(--background);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-xs);
-		font-weight: 600;
+	.award-icon {
+		display: inline-grid;
+		width: 2.4rem;
+		height: 2.4rem;
+		place-items: center;
+		border: 1px solid var(--border-color);
+		border-radius: 50%;
+		color: var(--accent);
 
 		:global(svg) {
+			width: 0.95rem;
+			height: 0.95rem;
+		}
+	}
+
+	.award-title {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		gap: 1rem;
+
+		h3 {
+			font-size: 1rem;
+			letter-spacing: -0.02em;
+		}
+
+		span {
+			flex-shrink: 0;
+			color: var(--text-color-dim);
+			font-family: var(--font-mono);
+			font-size: var(--font-size-xs);
+		}
+	}
+
+	.photo-board {
+		padding: 2rem 0;
+		border-top: 1px solid var(--border-color);
+	}
+
+	.photo-intro {
+		max-width: 39ch;
+		margin-top: 0.85rem;
+		color: var(--text-color-dim);
+		font-size: var(--font-size-sm);
+		line-height: var(--line-height-relaxed);
+	}
+
+	.photo-grid {
+		display: grid;
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		gap: 0.35rem;
+		margin-top: 1.2rem;
+		padding: 0.35rem;
+		border-radius: var(--radius-lg);
+		background: var(--background-hover);
+	}
+
+	.photo-card {
+		position: relative;
+		grid-column: span 2;
+		aspect-ratio: 16 / 10;
+		overflow: hidden;
+		margin: 0;
+		border-radius: var(--radius-sm);
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform var(--transition-medium);
+		}
+
+		&:nth-child(n + 4) {
+			grid-column: span 3;
+		}
+
+		&:hover img {
+			transform: scale(1.025);
+		}
+
+		figcaption {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			padding: 1.7rem 0.7rem 0.55rem;
+			background: linear-gradient(transparent, rgb(0 0 0 / 72%));
+			color: #fff;
+			font-size: var(--font-size-xs);
+			line-height: 1.35;
+		}
+	}
+
+	.next-steps {
+		display: grid;
+		grid-template-columns: 1fr auto auto auto;
+		align-items: center;
+		gap: 1rem 1.5rem;
+		margin-top: 3rem;
+		padding: 1.5rem 0;
+		border-top: 1px solid var(--border-color);
+
+		.eyebrow {
+			margin-bottom: 0.55rem;
+		}
+
+		h2 {
+			font-size: 1.25rem;
+		}
+
+		a {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.4rem;
+			font-size: var(--font-size-sm);
+			font-weight: 600;
+			white-space: nowrap;
+		}
+
+		a :global(svg) {
 			width: 0.75rem;
 			height: 0.75rem;
 		}
 	}
 
-	/* ============ Hackathon image ============ */
-	.hackathon-figure {
-		margin-top: var(--space-xl);
-
-		img {
-			width: 100%;
-			border-radius: var(--radius-lg);
-			border: 1px solid var(--border-color);
+	@media (max-width: 700px) {
+		.results,
+		.awards {
+			grid-template-columns: 1fr;
+			gap: 1rem;
 		}
 
-		figcaption {
-			margin-top: var(--space-sm);
-			text-align: center;
-			font-family: var(--font-mono);
-			font-size: var(--font-size-xs);
-			color: var(--text-color-muted);
+		.next-steps {
+			grid-template-columns: 1fr;
+			align-items: start;
+		}
+
+		.photo-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			padding: 0.25rem;
+			gap: 0.25rem;
+		}
+
+		.photo-card,
+		.photo-card:nth-child(n + 4) {
+			grid-column: span 1;
+		}
+
+		.photo-card:last-child:nth-child(odd) {
+			grid-column: 1 / -1;
+		}
+	}
+
+	@media (max-width: 430px) {
+		.photo-card:last-child:nth-child(odd) {
+			grid-column: 1 / -1;
+			width: calc(50% - 0.125rem);
+			justify-self: center;
 		}
 	}
 </style>

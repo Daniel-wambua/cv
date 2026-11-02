@@ -2,37 +2,67 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 
 		<!-- Core info -->
-		<title>Daniel Wambua | Security Analyst</title>
-		<meta name="description" content="Curriculum vitae of Daniel Wambua, a cybersecurity analyst focused on penetration testing, API security, and competitive CTF work.">
-		<meta name="keywords" content="Daniel Wambua, CV, Resume, Cybersecurity, Penetration Testing, API Security, CTF">
-		<meta name="author" content="Daniel Wambua">
-		<meta name="theme-color" content="#060907">
+		<title>Daniel Wambua | Cybersecurity</title>
+		<meta
+			name="description"
+			content="Curriculum vitae of Daniel Wambua, an Information Technology student focused on cybersecurity, CTF competitions, and security projects."
+		/>
+		<meta
+			name="keywords"
+			content="Daniel Wambua, CV, Resume, Cybersecurity, Penetration Testing, API Security, CTF"
+		/>
+		<meta name="author" content="Daniel Wambua" />
+		<meta name="theme-color" content="#F4F1EA" />
+		<script>
+			(() => {
+				let theme = 'light';
+				try {
+					const saved = localStorage.getItem('havocsec-theme');
+					theme =
+						saved === 'light' || saved === 'dark'
+							? saved
+							: matchMedia('(prefers-color-scheme: dark)').matches
+								? 'dark'
+								: 'light';
+				} catch {
+					theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+				}
+				document.documentElement.dataset.theme = theme;
+				document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute('content', theme === 'dark' ? '#101311' : '#F4F1EA');
+			})();
+		</script>
 
 		<!-- Icons and colors -->
-		<link rel="icon" type="image/png" sizes="512x512" href="https://cv.havocsec.me/favicon.png">
-		<link rel="apple-touch-icon" sizes="180x180" href="https://cv.havocsec.me/favicon.png">
+		<link rel="icon" type="image/png" sizes="512x512" href="%sveltekit.assets%/favicon.png" />
+		<link rel="apple-touch-icon" sizes="180x180" href="%sveltekit.assets%/favicon.png" />
 
 		<!-- Social media meta tags (Open Graph + Twitter) -->
-		<meta property="og:site_name" content="CV: Daniel Wambua">
-		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://cv.havocsec.me">
-		<meta property="og:title" content="Daniel Wambua | Security Analyst">
-		<meta property="og:description" content="Cybersecurity analyst focused on penetration testing, API security, and competitive CTF work.">
-		<meta property="og:image" content="https://cv.havocsec.me/banner.png">
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:url" content="https://cv.havocsec.me">
-		<meta name="twitter:title" content="Daniel Wambua | Security Analyst">
-		<meta name="twitter:description" content="Cybersecurity analyst focused on penetration testing, API security, and competitive CTF work.">
-		<meta name="twitter:image" content="https://cv.havocsec.me/banner.png">
-		<link rel="twitter:image" sizes="180x180" href="https://cv.havocsec.me/favicon.png">
-		<meta name="twitter:site" content="@Daniel_Wambua">
-		<meta name="twitter:creator" content="@Daniel_Wambua">
-
+		<meta property="og:site_name" content="CV: Daniel Wambua" />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://cv.havocsec.me" />
+		<meta property="og:title" content="Daniel Wambua | Cybersecurity" />
+		<meta
+			property="og:description"
+			content="Information Technology student focused on cybersecurity, CTF competitions, and security projects."
+		/>
+		<meta property="og:image" content="https://cv.havocsec.me/profile-picture.webp" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content="https://cv.havocsec.me" />
+		<meta name="twitter:title" content="Daniel Wambua | Cybersecurity" />
+		<meta
+			name="twitter:description"
+			content="Information Technology student focused on cybersecurity, CTF competitions, and security projects."
+		/>
+		<meta name="twitter:image" content="https://cv.havocsec.me/profile-picture.webp" />
+		<link rel="twitter:image" sizes="180x180" href="https://cv.havocsec.me/favicon.png" />
+		<meta name="twitter:site" content="@Daniel_Wambua" />
+		<meta name="twitter:creator" content="@Daniel_Wambua" />
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>

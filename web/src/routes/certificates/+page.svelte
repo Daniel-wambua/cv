@@ -4,7 +4,7 @@
 	import StatBlock from '$components/StatBlock.svelte';
 	import Tag from '$components/Tag.svelte';
 	import { reveal } from '$lib/actions/reveal';
-	import { certificateImages } from '$lib/config/certificates';
+	import { certificates, type Certificate } from '$lib/config/certificates';
 	import { certificationBadges, type Badge } from '$lib/config/badges';
 
 	import CircleCheckIcon from '~icons/fa6-solid/circle-check';
@@ -20,190 +20,6 @@
 	import NetworkIcon from '~icons/fa6-solid/network-wired';
 	import CloudIcon from '~icons/fa6-solid/cloud';
 	import InboxIcon from '~icons/fa6-solid/inbox';
-
-	// Certificate data - each certificate entry
-	interface Certificate {
-		id: number;
-		name: string;
-		issuer: string;
-		date: string;
-		image: string;
-		description: string;
-		skills: string[];
-		credentialId: string;
-		verified: boolean;
-		isPdf?: boolean;
-	}
-
-	const certificates: Certificate[] = [
-		{
-			id: 114,
-			name: 'CyberGame Kenya 2026, Top 10 Finalist (6th Place)',
-			issuer: 'CyberGame Kenya',
-			date: '2026',
-			image: certificateImages.cybergame2026,
-			description:
-				"Ranked 6th among the top ten finalists in CyberGame Kenya 2026, a national-level cybersecurity competition recognizing Kenya's best practical security talent.",
-			skills: ['CTF', 'Penetration Testing', 'Security Analysis'],
-			credentialId: 'CYBERGAME-2026-6TH',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 115,
-			name: 'Thryve CTF, Participant',
-			issuer: 'Thryve',
-			date: 'August 2026',
-			image: certificateImages.thryvectf,
-			description:
-				'Participated in the Thryve Capture The Flag competition held on 14 August 2026, solving challenges across web, network, and misc categories.',
-			skills: ['CTF', 'Problem Solving', 'Security Research'],
-			credentialId: 'THRYVE-CTF-2026',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 113,
-			name: 'Connected Africa Summit 2026 CTF, 3rd Position',
-			issuer: 'Connected Africa Summit',
-			date: 'May 2026',
-			image: certificateImages.connectedafricactf,
-			description:
-				'Achieved 3rd place in the Connected Africa Summit 2026 Capture The Flag competition as a member of Team JOINT from Karatina University. Demonstrated advanced skills in vulnerability identification, exploitation, and collaborative problem-solving.',
-			skills: ['CTF', 'Exploitation', 'Team Collaboration', 'Vulnerability Assessment'],
-			credentialId: 'CAS-CTF-2026-3RD',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 112,
-			name: 'China OSINT Certificate',
-			issuer: 'China OSINT',
-			date: '2026',
-			image: certificateImages.chinaosint,
-			description:
-				'Recognition for demonstrated open source intelligence techniques and investigative analysis on China related OSINT.',
-			skills: ['OSINT', 'Investigation', 'Intelligence Gathering'],
-			credentialId: 'CHINA-OSINT-2026',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 101,
-			name: 'NexHunt CTF, Top Performer',
-			issuer: 'NexHunt CTF',
-			date: 'December 2025',
-			image: certificateImages.nexhuntctf,
-			description:
-				'Top performer in the NexHunt Capture The Flag competition demonstrating advanced exploitation and problem solving.',
-			skills: ['CTF', 'Web Exploitation', 'Forensics'],
-			credentialId: 'NH-2025-01',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 102,
-			name: 'p3rf3ctr00t CTF Certificate',
-			issuer: 'PERFECTROOT CTF Team',
-			date: 'December 2025',
-			image: certificateImages.perfectroot,
-			description:
-				'Recognition for contributions as a member of the 51l3nt_br34ch CTF team during competitive events and research.',
-			skills: ['CTF', 'Team Collaboration', 'Exploit Development'],
-			credentialId: '51B-2025-HAVOC',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 1,
-			name: 'API Security Course Certificate',
-			issuer: 'API Security Academy',
-			date: 'September 2024',
-			image: certificateImages.apisec,
-			description:
-				'Comprehensive training in API security best practices, vulnerabilities, and protection mechanisms.',
-			skills: ['API Security', 'REST APIs', 'OAuth', 'JWT'],
-			credentialId: 'APISEC-2024',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 2,
-			name: 'Cybersecurity Essentials',
-			issuer: 'CSEM',
-			date: 'September 2025',
-			image: certificateImages.csem,
-			description:
-				'Foundation course covering essential cybersecurity principles, threat analysis, and defense strategies.',
-			skills: ['CTF', 'Network Security', 'Threat Analysis', 'Risk Management'],
-			credentialId: 'CSEM-BA-159',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 3,
-			name: 'OSINT Platform Certificate',
-			issuer: 'Myosint.training',
-			date: 'October 2025',
-			image: certificateImages.osint,
-			description:
-				'OSINT certification demonstrating ethical hacking and proficiency in open source intelligence gathering and analysis.',
-			skills: ['OSINT', 'Ethical Hacking', 'Intelligence Gathering', 'Information Analysis'],
-			credentialId: 'MOT-OSINT-2025',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 4,
-			name: 'CTF Competition Achievement',
-			issuer: 'CRHCCTF',
-			date: '2025',
-			image: certificateImages.crhcctf,
-			description:
-				'Recognition for competitive performance in Capture The Flag cybersecurity competitions.',
-			skills: ['CTF', 'Problem Solving', 'Security Research'],
-			credentialId: 'RANK-375',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 5,
-			name: 'Cybersecurity Training Achievement',
-			issuer: 'Indian Institute Of Information Technology (IIIT)',
-			date: 'October 2025',
-			image: certificateImages.iiit,
-			description: 'Completion of advanced cybersecurity training modules and practical exercises.',
-			skills: ['CTF', 'Penetration Testing', 'Security Analysis', 'Incident Response'],
-			credentialId: 'CYBER-2025',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 6,
-			name: 'Cybersecurity Training Achievement',
-			issuer:
-				'Ministry of Information Technology and Communications and Embassy of the Slovak Republic Kenya',
-			date: 'July 2025',
-			image: certificateImages.cybergame,
-			description: 'Completion of advanced cybersecurity training modules and practical exercises.',
-			skills: ['CTF', 'Penetration Testing', 'Security Analysis', 'Incident Response'],
-			credentialId: 'CYBERGAME-2025',
-			verified: true,
-			isPdf: false
-		},
-		{
-			id: 7,
-			name: 'Cybersecurity Training Achievement',
-			issuer: 'H7TEX CTF Team',
-			date: 'October 2025',
-			image: certificateImages.h7ctf,
-			description: 'Completion of the h7ctf international cybersecurity competition.',
-			skills: ['CTF', 'Penetration Testing', 'Security Analysis', 'Incident Response'],
-			credentialId: 'H7CTF-2025',
-			verified: true,
-			isPdf: false
-		}
-	];
 
 	// Certificate activity window: fixed start year, rolling end year
 	const startYear = 2023;
@@ -224,6 +40,7 @@
 	// Lightbox state
 	let selectedCertificate: Certificate | null = null;
 	let selectedBadge: Badge | null = null;
+	let unavailableCertificateImages: number[] = [];
 
 	// Zoom state for the certificate lightbox
 	let zoom = 1;
@@ -262,6 +79,15 @@
 		selectedBadge = null;
 	};
 
+	const markCertificateImageUnavailable = (certificateId: number) => {
+		if (!unavailableCertificateImages.includes(certificateId)) {
+			unavailableCertificateImages = [...unavailableCertificateImages, certificateId];
+		}
+	};
+
+	const createCertificateImageErrorHandler = (certificate: Certificate) => () =>
+		markCertificateImageUnavailable(certificate.id);
+
 	// Handle ESC key to close, plus lightbox zoom shortcuts
 	const handleKeydown = (e: KeyboardEvent) => {
 		if (e.key === 'Escape') {
@@ -277,15 +103,6 @@
 	const handleWheel = (e: WheelEvent) => {
 		if (e.deltaY < 0) zoomIn();
 		else zoomOut();
-	};
-
-	const createCertificateCardKeydownHandler = (certificate: Certificate) => {
-		return (e: KeyboardEvent) => {
-			if (e.key === 'Enter' || e.key === ' ') {
-				e.preventDefault();
-				openModal(certificate);
-			}
-		};
 	};
 
 	const createBadgeKeydownHandler = (badge: Badge) => {
@@ -318,7 +135,7 @@
 
 <div class="certificates">
 	<PageHero
-		eyebrow="05 / Certificates"
+		eyebrow="Certificates"
 		title="Credentials, on record"
 		summary="Certifications, training achievements, and competition credentials in cybersecurity and information technology. Click any card to open the certificate image in a lightbox with zoom controls."
 	/>
@@ -333,7 +150,7 @@
 	<div class="filters" use:reveal>
 		<span class="filter-label">Filter by skill</span>
 		<div class="filter-buttons">
-			{#each allSkills as skill}
+			{#each allSkills as skill (skill)}
 				<button
 					class="filter-btn"
 					class:active={selectedSkill === skill}
@@ -352,17 +169,36 @@
 				class="certificate-card"
 				use:reveal
 				style={`--reveal-delay: ${Math.min(i, 8) * 60}ms`}
-				on:click={() => openModal(certificate)}
-				on:keydown={createCertificateCardKeydownHandler(certificate)}
-				role="button"
-				tabindex="0"
 			>
 				<div class="image-wrapper">
-					<img src={certificate.image} alt={certificate.name} loading="lazy" />
-					<div class="image-overlay">
-						<ExpandIcon />
-						<span>View</span>
-					</div>
+					{#if unavailableCertificateImages.includes(certificate.id)}
+						<div class="image-unavailable" role="status">
+							<span>Certificate image unavailable</span>
+							<a
+								href={`https://drive.google.com/file/d/${certificate.driveFileId}/view`}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Open in Google Drive
+							</a>
+						</div>
+					{:else}
+						<img
+							src={certificate.image}
+							alt={certificate.name}
+							loading="lazy"
+							on:error={() => markCertificateImageUnavailable(certificate.id)}
+						/>
+						<button
+							class="image-overlay"
+							type="button"
+							on:click={() => openModal(certificate)}
+							aria-label={`View full-size certificate: ${certificate.name}`}
+						>
+							<ExpandIcon />
+							<span>View full-size</span>
+						</button>
+					{/if}
 				</div>
 
 				<div class="content">
@@ -380,7 +216,7 @@
 					<p class="description">{certificate.description}</p>
 
 					<div class="skills">
-						{#each certificate.skills as skill}
+						{#each certificate.skills as skill (skill)}
 							<Tag>{skill}</Tag>
 						{/each}
 					</div>
@@ -409,7 +245,7 @@
 		Currently working toward these targets.
 	</SectionHeading>
 	<div class="upcoming">
-		{#each upcoming as item, i}
+		{#each upcoming as item, i (item.name)}
 			<div class="upcoming-item" use:reveal style={`--reveal-delay: ${i * 70}ms`}>
 				<svelte:component this={item.icon} />
 				<span>{item.name}</span>
@@ -418,7 +254,7 @@
 	</div>
 
 	<!-- Certification badges marquee -->
-	<SectionHeading title="Certification journey" meta="Earned and in progress">
+	<SectionHeading title="Certifications" meta="Earned and in progress">
 		Click a badge for details.
 	</SectionHeading>
 	<div class="marquee" use:reveal>
@@ -449,7 +285,13 @@
 
 <!-- Certificate lightbox: image only, with magnify controls -->
 {#if selectedCertificate}
-	<div class="lightbox-overlay" use:portal role="dialog" aria-modal="true" aria-label={selectedCertificate.name}>
+	<div
+		class="lightbox-overlay"
+		use:portal
+		role="dialog"
+		aria-modal="true"
+		aria-label={selectedCertificate.name}
+	>
 		<div class="lightbox-topbar">
 			<p class="lightbox-title">{selectedCertificate.name}</p>
 			<button class="lightbox-btn" on:click={closeModal} aria-label="Close lightbox">
@@ -457,14 +299,28 @@
 			</button>
 		</div>
 
-		<div class="lightbox-stage" on:click|self={closeModal} on:wheel|preventDefault={handleWheel}>
-			<img
-				class="lightbox-image"
-				src={selectedCertificate.image}
-				alt={selectedCertificate.name}
-				style={`transform: scale(${zoom})`}
-				draggable="false"
-			/>
+		<div class="lightbox-stage" on:wheel|preventDefault={handleWheel}>
+			{#if unavailableCertificateImages.includes(selectedCertificate.id)}
+				<div class="lightbox-unavailable" role="status">
+					<p>The certificate image is unavailable.</p>
+					<a
+						href={`https://drive.google.com/file/d/${selectedCertificate.driveFileId}/view`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Open in Google Drive
+					</a>
+				</div>
+			{:else}
+				<img
+					class="lightbox-image"
+					src={selectedCertificate.image}
+					alt={selectedCertificate.name}
+					style={`transform: scale(${zoom})`}
+					draggable="false"
+					on:error={createCertificateImageErrorHandler(selectedCertificate)}
+				/>
+			{/if}
 		</div>
 
 		<div class="lightbox-toolbar" role="toolbar" aria-label="Zoom controls">
@@ -503,14 +359,8 @@
 
 <!-- Badge modal -->
 {#if selectedBadge}
-	<div class="modal-overlay" use:portal on:click|self={closeBadgeModal} aria-hidden="true">
-		<div
-			class="badge-modal"
-			role="dialog"
-			aria-modal="true"
-			aria-label={selectedBadge.name}
-			on:click|stopPropagation
-		>
+	<div class="modal-overlay" use:portal>
+		<div class="badge-modal" role="dialog" aria-modal="true" aria-label={selectedBadge.name}>
 			<button class="modal-close" on:click={closeBadgeModal} aria-label="Close modal">
 				<XMarkIcon />
 			</button>
@@ -600,21 +450,15 @@
 		border: 1px solid var(--border-color);
 		border-radius: var(--radius-lg);
 		overflow: hidden;
-		cursor: pointer;
 		transition:
 			border-color var(--transition-base),
 			transform var(--transition-base),
 			box-shadow var(--transition-base);
 
-		&:hover,
-		&:focus-visible {
+		&:hover {
 			border-color: var(--border-color-accent);
 			transform: translateY(-3px);
 			box-shadow: var(--shadow-colored);
-
-			.image-overlay {
-				opacity: 1;
-			}
 		}
 	}
 
@@ -628,30 +472,57 @@
 		img {
 			width: 100%;
 			height: 100%;
-			object-fit: cover;
-			object-position: top;
+			padding: 0.55rem;
+			object-fit: contain;
+			object-position: center;
 		}
 	}
 
 	.image-overlay {
 		position: absolute;
-		inset: 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 0.5rem;
-		background: rgba(6, 9, 7, 0.72);
+		right: 0.7rem;
+		bottom: 0.7rem;
+		padding: 0.55rem 0.8rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--radius-full);
+		background: var(--surface-elevated);
 		color: var(--accent);
-		font-family: var(--font-mono);
-		font-size: var(--font-size-sm);
-		letter-spacing: 0.04em;
-		opacity: 0;
-		transition: opacity var(--transition-base);
+		font-size: var(--font-size-xs);
+		font-weight: 600;
+		box-shadow: var(--shadow-sm);
 
 		:global(svg) {
-			width: 1.25rem;
-			height: 1.25rem;
+			width: 0.9rem;
+			height: 0.9rem;
 		}
+
+		&:hover {
+			border-color: var(--accent);
+			background: var(--accent);
+			color: var(--background-elevated);
+		}
+	}
+
+	.image-unavailable {
+		display: flex;
+		height: 100%;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 0.6rem;
+		padding: 1rem;
+		color: var(--text-color-dim);
+		font-size: var(--font-size-sm);
+		text-align: center;
+	}
+
+	.image-unavailable a,
+	.lightbox-unavailable a {
+		font-weight: 600;
 	}
 
 	.content {
@@ -707,6 +578,7 @@
 		line-height: var(--line-height-normal);
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
+		line-clamp: 3;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
@@ -993,6 +865,15 @@
 		padding: 0 var(--space-lg) var(--space-sm);
 	}
 
+	.lightbox-unavailable {
+		padding: 2rem;
+		text-align: center;
+
+		p {
+			margin-bottom: 0.8rem;
+		}
+	}
+
 	.lightbox-image {
 		max-width: 100%;
 		max-height: 100%;
@@ -1071,7 +952,9 @@
 		-webkit-backdrop-filter: blur(24px) saturate(150%);
 		border: 1px solid var(--glass-border);
 		border-radius: var(--radius-lg);
-		box-shadow: var(--shadow-2xl), inset 0 1px 0 var(--glass-highlight);
+		box-shadow:
+			var(--shadow-2xl),
+			inset 0 1px 0 var(--glass-highlight);
 		animation: modal-in 250ms cubic-bezier(0.22, 1, 0.36, 1);
 
 		img {

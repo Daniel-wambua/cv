@@ -142,7 +142,7 @@
 
   {#if achievements?.length}
   <section class="section">
-    <h2>Stats</h2>
+    <h2>Achievements</h2>
     <ul>
       {#each achievements as ach}
         <li>{ach.text || ach}</li>
